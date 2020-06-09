@@ -1,0 +1,1882 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="certifyVM"
+            type="com.dmonster.darling.honey.myinformation.viewmodel.MarriageCertVM" />
+
+        <variable
+            name="marriageRadioVM"
+            type="com.dmonster.darling.honey.myinformation.viewmodel.RadioButtonVM" />
+
+        <import type="android.view.View"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".myinformation.view.MyProfileFragment">
+
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/nsv_frag_my_info_member_view"
+            style="@style/NestedScrollViewTheme"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_frag_my_info_member_complete"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center_horizontal"
+                android:orientation="vertical">
+
+                <!-- 회원정보 -->
+                <!-- 회원정보 -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+
+                    <!-- 프로필 이미지 -->
+
+                    <FrameLayout
+                        android:id="@+id/fl_img_over_shadow"
+                        android:layout_width="0dp"
+                        android:layout_height="75dp"
+                        android:background="@color/shaodw"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <!--                        <ImageView-->
+                    <!--                            android:id="@+id/civ_frag_my_info_member_profile_image"-->
+                    <!--                            android:layout_width="0dp"-->
+                    <!--                            android:layout_height="320dp"-->
+                    <!--                            app:layout_constraintEnd_toEndOf="parent"-->
+                    <!--                            app:layout_constraintStart_toStartOf="parent"-->
+                    <!--                            app:layout_constraintTop_toTopOf="parent" />-->
+
+                    <TextView
+                                 
+                        android:id="@+id/tv_frag_my_info_member_talk_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:letterSpacing="-0.03"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="@color/color_white"
+                        android:textSize="@dimen/text_xxlarge"
+                        app:layout_constraintBottom_toTopOf="@+id/tv_frag_my_info_member_area"
+                        app:layout_constraintStart_toStartOf="@+id/tv_frag_my_info_member_area"
+                        app:layout_constraintTop_toTopOf="@+id/fl_img_over_shadow"
+                        tools:ignore="SpUsage" />
+
+                    <Button
+                        android:id="@+id/btn_frag_my_info_member_edit_pic"
+                        android:layout_width="0dp"
+                        android:layout_height="39dp"
+                        android:layout_marginEnd="22dp"
+                        android:layout_marginRight="22dp"
+                        android:background="@drawable/bg_border_round_marigold"
+                        android:padding="3dp"
+                        android:text="@string/profile_picture_edit"
+                        android:textColor="@color/color_white"
+                        android:textSize="@dimen/text_normal"
+                        android:visibility="gone"
+                        app:layout_constraintBottom_toBottomOf="@+id/fl_img_over_shadow"
+                        app:layout_constraintEnd_toEndOf="@+id/fl_img_over_shadow"
+                        app:layout_constraintTop_toTopOf="@+id/fl_img_over_shadow"
+                        app:layout_constraintWidth_percent="0.305"
+                        tools:ignore="SpUsage" />
+
+                    <TextView
+                                 
+                        android:id="@+id/tv_frag_my_info_member_age_on_pic"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="21dp"
+                        android:layout_marginLeft="21dp"
+                        android:layout_marginBottom="14dp"
+                        android:letterSpacing="-0.03"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="#ffffff"
+                        android:textSize="@dimen/text_large"
+                        app:layout_constraintBottom_toBottomOf="@id/fl_img_over_shadow"
+                        app:layout_constraintStart_toStartOf="@id/fl_img_over_shadow"
+                        tools:ignore="SpUsage" />
+
+                    <TextView
+                                 
+                        android:id="@+id/tv_frag_my_info_member_area"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="-0.03"
+                        android:maxLines="1"
+                        android:singleLine="true"
+                        android:textColor="#ffffff"
+                        android:textSize="@dimen/text_large"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_frag_my_info_member_age_on_pic"
+                        app:layout_constraintStart_toEndOf="@id/tv_frag_my_info_member_age_on_pic"
+                        tools:ignore="SpUsage" />
+
+
+                    <LinearLayout
+                        android:id="@+id/ll_frag_my_info_member_information"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginBottom="20dp"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/fl_img_over_shadow">
+
+
+                        <!-- 지역 -->
+
+                        <!-- 회원유형 -->
+                        <LinearLayout style="@style/ProfileLayoutTheme">
+
+                            <!-- 이름 Title -->
+                            <TextView
+                                style="@style/profileTitleStyle"
+                                android:layout_width="@dimen/default_margin_100dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:text="@string/information_member_name" />
+
+                            <!-- 성 -->
+                            <EditText
+                                android:id="@+id/et_frag_my_info_member_first_name"
+                                style="@style/profileContentStyle"
+                                android:hint="@string/hint_information_last_name"
+                                android:inputType="text"
+                                android:maxLength="5"
+                                android:imeOptions="actionDone"
+                                android:maxLines="1" />
+
+                            <!-- 이름 -->
+                            <EditText
+                                android:id="@+id/et_frag_my_info_member_last_name"
+                                style="@style/profileContentStyle"
+                                android:layout_height="match_parent"
+                                android:hint="@string/hint_information_last_name"
+                                android:maxLength="5"
+                                android:padding="@dimen/default_margin_5dp"
+                                android:visibility="gone" />
+
+                            <!-- 성씨만표기 -->
+                            <CheckBox
+                                android:id="@+id/cb_frag_my_info_member_first_name_check"
+                                android:layout_width="@dimen/default_margin_0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="4"
+                                android:checked="false"
+                                android:paddingRight="@dimen/default_margin_15dp"
+                                android:text="@string/information_member_first_name_check"
+                                android:textColor="@color/notify_select_text_color"
+                                android:textSize="@dimen/text_large"
+                                android:visibility="gone"
+                                tools:ignore="SpUsage" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/rl_frag_my_info_member_age"
+                            style="@style/ProfileLayoutTheme">
+
+                            <!-- 나이 Title -->
+                            <TextView
+                                
+                                style="@style/profileTitleStyle"
+                                android:layout_width="@dimen/default_margin_100dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:text="@string/information_member_age" />
+
+                            <!-- 나이 -->
+                            <TextView
+                                android:id="@+id/tv_frag_my_info_member_age"
+                                style="@style/profileContentStyle" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout style="@style/ProfileLayoutTheme">
+
+                            <TextView
+                                style="@style/profileTitleStyle"
+                                android:layout_width="@dimen/default_margin_100dp"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:text="@string/information_member_type" />
+
+                            <RadioGroup
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
+
+                                <!-- 결혼 -->
+                                <RadioButton
+                                    android:id="@+id/rb_frag_my_info_member_marry"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:paddingEnd="@dimen/default_margin_15dp"
+                                    android:paddingRight="@dimen/default_margin_15dp"
+                                    android:checked="@={marriageRadioVM.isFirstRadioChecked}"
+                                    android:clickable="true"
+                                    android:focusable="true"
+                                    android:text="@string/information_member_marry"
+                                    android:textSize="@dimen/text_large" />
+
+                                <!-- 재혼 -->
+                                <RadioButton
+                                    android:id="@+id/rb_frag_my_info_member_remarry"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="match_parent"
+                                    android:text="@string/information_member_remarry"
+                                    android:clickable="true"
+                                    android:focusable="true"
+                                    android:checked="@{!marriageRadioVM.isFirstRadioChecked}"
+                                    android:textSize="@dimen/text_large" />
+                            </RadioGroup>
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+                <!-- 가려진 정보입니다. -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <!-- 정보 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:layout_marginTop="@dimen/default_margin_10dp"
+                        android:background="@color/color_gray"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+                                 
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="23dp"
+                            android:layout_marginLeft="23dp"
+                            android:alpha="0.5"
+                            android:gravity="center_vertical"
+                            android:letterSpacing="-0.03"
+                            android:text="@string/information_member_information"
+                            android:textColor="@color/color_main"
+                            android:textSize="@dimen/text_large"
+                            tools:ignore="SpUsage" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:background="@drawable/bg_border_round"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        android:paddingStart="@dimen/default_margin_20dp"
+                        android:paddingEnd="@dimen/default_margin_20dp">
+
+                        <ImageView
+                            android:layout_width="5dp"
+                            android:layout_height="5dp"
+                            android:layout_gravity="top"
+                            android:layout_marginTop="3dp"
+                            android:src="@drawable/ic_circle"
+                            android:tint="@color/peachy_pink" />
+
+                        <TextView
+                                 
+                            android:id="@+id/tv_frag_my_info_member_mark_content"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha="0.5"
+                            android:letterSpacing="-0.02"
+                            android:textColor="@color/color_main"
+                            android:textSize="@dimen/text_xsmall"
+                            tools:ignore="SpUsage" />
+                    </LinearLayout>
+
+                    <!-- 이름 -->
+
+                    <!-- 나이 -->
+
+                    <!-- 형제/자매 -->
+                    <LinearLayout style="@style/ProfileLayoutTheme">
+
+                        <LinearLayout style="@style/ProfileTitleLayoutTheme">
+
+                            <!-- 고향(시, 도) Title -->
+                            <TextView
+                                style="@style/profileTitleStyle"
+                                android:text="@string/information_member_hometown" />
+
+                            <ImageView
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"
+                                android:layout_gravity="top"
+                                android:layout_marginTop="8dp"
+                                android:src="@drawable/ic_circle"
+                                android:tint="@color/peachy_pink" />
+                        </LinearLayout>
+
+                        <!-- 고향(시, 도) -->
+                        <RelativeLayout
+                            android:id="@+id/rl_frag_my_info_member_hometown01"
+                            style="@style/MyInfoContentLayoutTheme"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/tv_frag_my_info_member_hometown01"
+                                style="@style/MyInfoContentTextTheme"
+                                android:layout_toLeftOf="@+id/iv_frag_my_info_member_hometown01_arrow" />
+
+                            <ImageView
+                                android:id="@+id/iv_frag_my_info_member_hometown01_arrow"
+                                style="@style/MyInfoContentArrowTheme" />
+                        </RelativeLayout>
+
+                        <!-- 고향(구, 군) -->
+                        <RelativeLayout
+                            android:id="@+id/rl_frag_my_info_member_hometown02"
+                            style="@style/MyInfoContentLayoutTheme"
+                            android:layout_marginLeft="@dimen/default_margin_10dp"
+                            android:layout_weight="1">
+
+                            <TextView
+                                android:id="@+id/tv_frag_my_info_member_hometown02"
+                                style="@style/MyInfoContentTextTheme"
+                                android:layout_toLeftOf="@+id/iv_frag_my_info_member_hometown02_arrow" />
+
+                            <ImageView
+                                android:id="@+id/iv_frag_my_info_member_hometown02_arrow"
+                                style="@style/MyInfoContentArrowTheme" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/ProfileLayoutTheme">
+
+                        <LinearLayout style="@style/ProfileTitleLayoutTheme">
+
+                            <!-- 형제/자매 Title -->
+                            <TextView
+                                style="@style/profileTitleStyle"
+                                android:text="@string/information_member_sibling" />
+
+                            <ImageView
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"
+                                android:layout_gravity="top"
+                                android:layout_marginTop="8dp"
+                                android:src="@drawable/ic_circle"
+                                android:tint="@color/peachy_pink" />
+                        </LinearLayout>
+
+                        <!-- 남 -->
+                        <RelativeLayout
+                            android:id="@+id/rl_frag_my_info_member_sibling_male"
+                            android:layout_width="@dimen/default_margin_0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_border_round_greyish">
+
+                            <TextView
+                                android:id="@+id/tv_frag_my_info_member_sibling_male"
+                                style="@style/MyInfoContentTextTheme"
+                                android:layout_marginRight="4dp"
+                                android:layout_toLeftOf="@+id/iv_frag_my_info_member_sibling_male_arrow"
+                                android:paddingLeft="@dimen/default_margin_4dp" />
+
+                            <ImageView
+                                android:id="@+id/iv_frag_my_info_member_sibling_male_arrow"
+                                style="@style/MyInfoContentArrowTheme" />
+                        </RelativeLayout>
+
+                        <!-- 녀 -->
+                        <RelativeLayout
+                            android:id="@+id/rl_frag_my_info_member_sibling_female"
+                            android:layout_width="@dimen/default_margin_0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/default_margin_4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_border_round_greyish">
+
+                            <TextView
+                                android:id="@+id/tv_frag_my_info_member_sibling_female"
+                                style="@style/MyInfoContentTextTheme"
+                                android:layout_marginRight="4dp"
+                                android:layout_toLeftOf="@+id/iv_frag_my_info_member_sibling_female_arrow"
+                                android:paddingLeft="@dimen/default_margin_4dp" />
+
+                            <ImageView
+                                android:id="@+id/iv_frag_my_info_member_sibling_female_arrow"
+                                style="@style/MyInfoContentArrowTheme" />
+                        </RelativeLayout>
+
+                        <!-- 째 -->
+                        <RelativeLayout
+                            android:id="@+id/rl_frag_my_info_member_sibling_number"
+                            android:layout_width="@dimen/default_margin_0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="@dimen/default_margin_4dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_border_round_greyish">
+
+                            <TextView
+                                android:id="@+id/tv_frag_my_info_member_sibling_number"
+                                style="@style/MyInfoContentTextTheme"
+                                android:layout_marginRight="4dp"
+                                android:layout_toLeftOf="@+id/iv_frag_my_info_member_sibling_number_arrow"
+                                android:paddingLeft="@dimen/default_margin_4dp" />
+
+                            <ImageView
+                                android:id="@+id/iv_frag_my_info_member_sibling_number_arrow"
+                                style="@style/MyInfoContentArrowTheme" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <!-- 고향(시, 도) -->
+
+                    <!-- 직업 -->
+                    <LinearLayout style="@style/ProfileLayoutTheme">
+
+                        <LinearLayout style="@style/ProfileTitleLayoutTheme">
+
+                            <!-- 직업 Title -->
+                            <TextView
+                                style="@style/profileTitleStyle"
+                                android:text="@string/information_member_job" />
+
+                            <ImageView
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"
+                                android:layout_gravity="top"
+                                android:layout_marginTop="8dp"
+                                android:src="@drawable/ic_circle"
+                                android:tint="@color/peachy_pink" />
+                        </LinearLayout>
+
+                        <!-- 직업 -->
+                        <RelativeLayout
+                            android:id="@+id/rl_frag_my_info_member_job"
+                            style="@style/MyInfoContentLayoutTheme">
+
+                            <TextView
+                                android:id="@+id/tv_frag_my_info_member_job"
+                                style="@style/MyInfoContentTextTheme"
+                                android:layout_toLeftOf="@+id/iv_frag_my_info_member_job_arrow" />
+
+                            <ImageView
+                                android:id="@+id/iv_frag_my_info_member_job_arrow"
+                                style="@style/MyInfoContentArrowTheme" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <!-- 연봉 -->
+
+                    <!-- 보유재산 -->
+                    <LinearLayout style="@style/ProfileLayoutTheme">
+
+                        <LinearLayout style="@style/ProfileTitleLayoutTheme">
+
+                            <!-- 연봉 Title -->
+                            <TextView
+                                style="@style/profileTitleStyle"
+                                android:text="@string/information_member_income" />
+
+                            <ImageView
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"
+                                android:layout_gravity="top"
+                                android:layout_marginTop="8dp"
+                                android:src="@drawable/ic_circle"
+                                android:tint="@color/peachy_pink" />
+                        </LinearLayout>
+
+                        <!-- 연봉 -->
+                        <RelativeLayout
+                            android:id="@+id/rl_frag_my_info_member_income"
+                            style="@style/MyInfoContentLayoutTheme">
+
+                            <TextView
+                                android:id="@+id/tv_frag_my_info_member_income"
+                                style="@style/MyInfoContentTextTheme"
+                                android:layout_toLeftOf="@+id/iv_frag_my_info_member_income_arrow" />
+
+                            <ImageView
+                                android:id="@+id/iv_frag_my_info_member_income_arrow"
+                                style="@style/MyInfoContentArrowTheme" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/ProfileLayoutTheme">
+
+                        <LinearLayout style="@style/ProfileTitleLayoutTheme">
+
+                            <!-- 보유재산 Title -->
+                            <TextView
+                                style="@style/profileTitleStyle"
+                                android:text="@string/information_member_fortune" />
+
+                            <ImageView
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"
+                                android:layout_gravity="top"
+                                android:layout_marginTop="8dp"
+                                android:src="@drawable/ic_circle"
+                                android:tint="@color/peachy_pink" />
+                        </LinearLayout>
+
+                        <!-- 보유재산 -->
+                        <RelativeLayout
+                            android:id="@+id/rl_frag_my_info_member_fortune"
+                            style="@style/MyInfoContentLayoutTheme">
+
+                            <TextView
+                                android:id="@+id/tv_frag_my_info_member_fortune"
+                                style="@style/MyInfoContentTextTheme"
+                                android:layout_toLeftOf="@+id/iv_frag_my_info_member_fortune_arrow" />
+
+                            <ImageView
+                                android:id="@+id/iv_frag_my_info_member_fortune_arrow"
+                                style="@style/MyInfoContentArrowTheme" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <!-- 학력 -->
+                    <LinearLayout style="@style/ProfileLayoutTheme">
+
+                        <LinearLayout style="@style/ProfileTitleLayoutTheme">
+
+                            <!-- 학력 Title -->
+                            <TextView
+                                style="@style/profileTitleStyle"
+                                android:text="@string/information_member_education" />
+
+                            <ImageView
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"
+                                android:layout_gravity="top"
+                                android:layout_marginTop="8dp"
+                                android:src="@drawable/ic_circle"
+                                android:tint="@color/peachy_pink" />
+                        </LinearLayout>
+
+                        <!-- 학력 -->
+                        <RelativeLayout
+                            android:id="@+id/rl_frag_my_info_member_education"
+                            style="@style/MyInfoContentLayoutTheme">
+
+                            <TextView
+                                android:id="@+id/tv_frag_my_info_member_education"
+                                style="@style/MyInfoContentTextTheme"
+                                android:layout_toLeftOf="@+id/iv_frag_my_info_member_education_arrow" />
+
+                            <ImageView
+                                android:id="@+id/iv_frag_my_info_member_education_arrow"
+                                style="@style/MyInfoContentArrowTheme" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <!-- 종교 -->
+                    <LinearLayout style="@style/ProfileLayoutTheme">
+
+                        <LinearLayout style="@style/ProfileTitleLayoutTheme">
+
+                            <!-- 종교 Title -->
+                            <TextView
+                                 
+                                style="@style/profileTitleStyle"
+                                android:text="@string/information_member_religion" />
+
+                            <ImageView
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"
+                                android:layout_gravity="top"
+                                android:layout_marginTop="8dp"
+                                android:src="@drawable/ic_circle"
+                                android:tint="@color/peachy_pink" />
+                        </LinearLayout>
+
+                        <!-- 종교 -->
+                        <RelativeLayout
+                            android:id="@+id/rl_frag_my_info_member_religion"
+                            style="@style/MyInfoContentLayoutTheme">
+
+                            <TextView
+                                 
+                                android:id="@+id/tv_frag_my_info_member_religion"
+                                style="@style/MyInfoContentTextTheme"
+                                android:layout_toLeftOf="@+id/iv_frag_my_info_member_religion_arrow" />
+
+                            <ImageView
+                                android:id="@+id/iv_frag_my_info_member_religion_arrow"
+                                style="@style/MyInfoContentArrowTheme" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                    <!-- 차량 -->
+                    <LinearLayout style="@style/ProfileLayoutTheme">
+
+                        <LinearLayout style="@style/ProfileTitleLayoutTheme">
+
+                            <!-- 차량 Title -->
+                            <TextView
+                                 
+                                style="@style/profileTitleStyle"
+                                android:text="@string/information_member_car" />
+                            \
+
+                            <ImageView
+                                android:layout_width="5dp"
+                                android:layout_height="5dp"
+                                android:layout_gravity="top"
+                                android:layout_marginTop="8dp"
+                                android:src="@drawable/ic_circle"
+                                android:tint="@color/peachy_pink" />
+                        </LinearLayout>
+
+                        <!-- 차량 -->
+                        <RelativeLayout
+                            android:id="@+id/rl_frag_my_info_member_car"
+                            style="@style/MyInfoContentLayoutTheme">
+
+                            <TextView
+                                 
+                                android:id="@+id/tv_frag_my_info_member_car"
+                                style="@style/MyInfoContentTextTheme"
+                                android:layout_toLeftOf="@+id/iv_frag_my_info_member_car_arrow" />
+
+                            <ImageView
+                                android:id="@+id/iv_frag_my_info_member_car_arrow"
+                                style="@style/MyInfoContentArrowTheme" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+                <!--  외모, 취미, 기타 -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginBottom="18dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/my_info_sub_data_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:background="@color/color_gray"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                        <TextView
+                                 
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="23dp"
+                            android:layout_marginLeft="23dp"
+                            android:alpha="0.5"
+                            android:gravity="center_vertical"
+                            android:letterSpacing="-0.03"
+                            android:text="@string/informatino_member_etc_title"
+                            android:textColor="@color/color_main"
+                            android:textSize="@dimen/text_large"
+                            tools:ignore="SpUsage" />
+                    </LinearLayout>
+
+
+                    <!-- 키 -->
+                    <TextView
+                                 
+                        android:id="@+id/tv_frag_my_info_member_height_title"
+                        style="@style/profileTitleStyle"
+                        android:layout_width="100dp"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="20dp"
+                        android:text="@string/information_member_height"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/my_info_sub_data_title" />
+                    <!-- 키 -->
+
+                    <EditText
+                                 
+                        android:id="@+id/et_frag_my_info_member_height"
+                        style="@style/profileContentStyle"
+                        android:layout_marginRight="@dimen/default_margin_10dp"
+                        android:background="@drawable/bg_border_round_greyish"
+                        android:gravity="center"
+                        android:inputType="numberDecimal"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:minWidth="100dp"
+                        android:padding="@dimen/default_margin_5dp"
+                        android:singleLine="true"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_frag_my_info_member_height_title"
+                        app:layout_constraintStart_toEndOf="@id/tv_frag_my_info_member_height_title"
+                        app:layout_constraintTop_toTopOf="@id/tv_frag_my_info_member_height_title" />
+
+                    <TextView
+                                 
+                        android:id="@+id/tv_frag_my_info_member_height_unit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:gravity="center"
+                        android:text="@string/information_member_height_unit"
+                        android:textSize="@dimen/text_large"
+                        app:layout_constraintBottom_toBottomOf="@id/et_frag_my_info_member_height"
+                        app:layout_constraintStart_toEndOf="@id/et_frag_my_info_member_height"
+                        app:layout_constraintTop_toTopOf="@id/et_frag_my_info_member_height"
+                        tools:ignore="SpUsage" />
+
+
+                    <!--체중 Title -->
+                    <TextView
+                                 
+                        android:id="@+id/tv_frag_my_info_member_weight_title"
+                        style="@style/profileTitleStyle"
+                        android:layout_width="100dp"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/information_member_weight"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_frag_my_info_member_height_title" />
+
+
+                    <EditText
+                                 
+                        android:id="@+id/et_frag_my_info_member_weight"
+                        style="@style/profileContentStyle"
+                        android:layout_marginRight="@dimen/default_margin_10dp"
+                        android:background="@drawable/bg_border_round_greyish"
+                        android:gravity="center"
+                        android:imeOptions="actionDone"
+                        android:inputType="numberDecimal"
+                        android:maxLength="3"
+                        android:maxLines="1"
+                        android:minWidth="100dp"
+                        android:padding="@dimen/default_margin_5dp"
+
+                        android:singleLine="true"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_frag_my_info_member_weight_title"
+                        app:layout_constraintStart_toEndOf="@id/tv_frag_my_info_member_weight_title"
+                        app:layout_constraintTop_toTopOf="@id/tv_frag_my_info_member_weight_title" />
+
+                    <TextView
+                                 
+                        android:id="@+id/tv_frag_my_info_member_weight_unit"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_marginStart="5dp"
+                        android:layout_marginLeft="5dp"
+                        android:gravity="center"
+                        android:text="@string/information_member_weight_unit"
+                        android:textSize="@dimen/text_large"
+                        app:layout_constraintBottom_toBottomOf="@id/et_frag_my_info_member_weight"
+                        app:layout_constraintStart_toEndOf="@id/et_frag_my_info_member_weight"
+                        app:layout_constraintTop_toTopOf="@id/et_frag_my_info_member_weight"
+                        tools:ignore="SpUsage" />
+
+                    <!-- 음주 -->
+
+
+                    <!-- 음주 Title -->
+                    <TextView
+                                 
+                        android:id="@+id/tv_frag_my_info_member_drink_title"
+                        style="@style/profileTitleStyle"
+                        android:layout_width="100dp"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/information_member_drinking"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_frag_my_info_member_weight_title" />
+
+                    <!-- 음주 -->
+                    <RelativeLayout
+                        android:id="@+id/rl_frag_my_info_member_drink"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/bg_border_round_greyish"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_frag_my_info_member_drink_title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/tv_frag_my_info_member_drink_title"
+                        app:layout_constraintTop_toTopOf="@id/tv_frag_my_info_member_drink_title">
+
+                        <TextView
+                                 
+                            android:id="@+id/tv_frag_my_info_member_drink"
+                            style="@style/MyInfoContentTextTheme"
+                            android:layout_toLeftOf="@+id/iv_frag_my_info_member_drink_arrow" />
+
+                        <ImageView
+                            android:id="@+id/iv_frag_my_info_member_drink_arrow"
+                            style="@style/MyInfoContentArrowTheme" />
+                    </RelativeLayout>
+                    <!-- 주량 Title -->
+                    <TextView
+                                 
+                        android:id="@+id/tv_frag_my_info_member_drink_number_title"
+                        style="@style/profileTitleStyle"
+                        android:layout_width="100dp"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/information_member_drinking_number"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_frag_my_info_member_drink_title" />
+
+                    <!-- 주량-->
+                    <RelativeLayout
+                        android:id="@+id/rl_frag_my_info_member_drink_number"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/bg_border_round_greyish"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_frag_my_info_member_drink_number_title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/tv_frag_my_info_member_drink_number_title"
+                        app:layout_constraintTop_toTopOf="@id/tv_frag_my_info_member_drink_number_title">
+
+                        <TextView
+                                 
+                            android:id="@+id/tv_frag_my_info_member_drink_number"
+                            style="@style/MyInfoContentTextTheme"
+                            android:layout_toLeftOf="@+id/iv_frag_my_info_member_drink_number_arrow" />
+
+                        <ImageView
+                            android:id="@+id/iv_frag_my_info_member_drink_number_arrow"
+                            style="@style/MyInfoContentArrowTheme" />
+                    </RelativeLayout>
+                    <!--                    흡연 타이틀-->
+                    <TextView
+                                 
+                        android:id="@+id/tv_frag_my_info_member_smoke_title"
+                        style="@style/profileTitleStyle"
+                        android:layout_width="100dp"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/information_member_smoking"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_frag_my_info_member_drink_number_title" />
+
+                    <!-- 흡연 -->
+                    <RelativeLayout
+                        android:id="@+id/rl_frag_my_info_member_smoke"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/bg_border_round_greyish"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_frag_my_info_member_smoke_title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/tv_frag_my_info_member_smoke_title"
+                        app:layout_constraintTop_toTopOf="@id/tv_frag_my_info_member_smoke_title">
+
+                        <TextView
+                                 
+                            android:id="@+id/tv_frag_my_info_member_smoke"
+                            style="@style/MyInfoContentTextTheme"
+                            android:layout_toLeftOf="@+id/iv_frag_my_info_member_smoke_arrow" />
+
+                        <ImageView
+                            android:id="@+id/iv_frag_my_info_member_smoke_arrow"
+                            style="@style/MyInfoContentArrowTheme" />
+                    </RelativeLayout>
+                    <!-- 혈액형 Title -->
+                    <TextView
+                                 
+                        android:id="@+id/tv_frag_my_info_member_blood_title"
+                        style="@style/profileTitleStyle"
+
+                        android:layout_width="100dp"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/information_member_blood"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_frag_my_info_member_smoke_title" />
+
+                    <RelativeLayout
+                        android:id="@+id/rl_frag_my_info_member_blood"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/bg_border_round_greyish"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_frag_my_info_member_blood_title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/tv_frag_my_info_member_blood_title"
+                        app:layout_constraintTop_toTopOf="@id/tv_frag_my_info_member_blood_title">
+
+                        <TextView
+                                 
+                            android:id="@+id/tv_frag_my_info_member_blood"
+                            style="@style/MyInfoContentTextTheme"
+                            android:layout_toLeftOf="@+id/iv_frag_my_info_member_blood_arrow" />
+
+                        <ImageView
+                            android:id="@+id/iv_frag_my_info_member_blood_arrow"
+                            style="@style/MyInfoContentArrowTheme" />
+                    </RelativeLayout>
+
+                    <!-- 관심사/취미 -->
+
+                    <!-- 취미 Title -->
+                    <TextView
+                                 
+                        android:id="@+id/tv_frag_my_info_member_hobby_title"
+                        style="@style/profileTitleStyle"
+                        android:layout_width="100dp"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/information_member_hobby"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_frag_my_info_member_blood_title" />
+
+                    <RelativeLayout
+                        android:id="@+id/rl_frag_my_info_member_hobby"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/bg_border_round_greyish"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_frag_my_info_member_hobby_title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/tv_frag_my_info_member_hobby_title"
+                        app:layout_constraintTop_toTopOf="@id/tv_frag_my_info_member_hobby_title">
+
+                        <TextView
+                                 
+                            android:id="@+id/tv_frag_my_info_member_hobby"
+                            style="@style/MyInfoContentTextTheme"
+                            android:layout_toLeftOf="@+id/iv_frag_my_info_member_hobby_arrow" />
+
+                        <ImageView
+                            android:id="@+id/iv_frag_my_info_member_hobby_arrow"
+                            style="@style/MyInfoContentArrowTheme" />
+                    </RelativeLayout>
+
+                    <!-- 가입경로 -->
+                    <TextView
+                                 
+                        android:id="@+id/tv_frag_my_info_member_route_title"
+                        style="@style/profileTitleStyle"
+                        android:layout_width="100dp"
+                        android:layout_marginStart="25dp"
+                        android:layout_marginLeft="25dp"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/information_member_route"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@id/tv_frag_my_info_member_hobby_title" />
+
+                    <RelativeLayout
+                        android:id="@+id/rl_frag_my_info_member_route"
+                        android:layout_width="0dp"
+                        android:layout_height="30dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginRight="20dp"
+                        android:background="@drawable/bg_border_round_greyish"
+                        app:layout_constraintBottom_toBottomOf="@id/tv_frag_my_info_member_route_title"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/tv_frag_my_info_member_route_title"
+                        app:layout_constraintTop_toTopOf="@id/tv_frag_my_info_member_route_title">
+
+                        <TextView
+                                 
+                            android:id="@+id/tv_frag_my_info_member_route"
+                            style="@style/MyInfoContentTextTheme"
+                            android:layout_toLeftOf="@+id/iv_frag_my_info_member_route_arrow" />
+
+                        <ImageView
+                            android:id="@+id/iv_frag_my_info_member_route_arrow"
+                            style="@style/MyInfoContentArrowTheme" />
+                    </RelativeLayout>
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+                <!-- 성격 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="110dp"
+                    android:orientation="vertical">
+
+                    <!-- 성격 -->
+                    <RelativeLayout
+                        android:id="@+id/rl_frag_my_info_member_character"
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:background="@color/color_gray"
+                        android:gravity="center_vertical">
+
+                        <!-- 성격 아이콘 -->
+
+                        <!-- 성격 -->
+                        <TextView
+                                 
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="23dp"
+                            android:layout_marginLeft="23dp"
+                            android:alpha="0.5"
+                            android:gravity="center_vertical"
+                            android:letterSpacing="-0.03"
+                            android:text="@string/information_member_character"
+                            android:textColor="@color/color_main"
+                            android:textSize="@dimen/text_large"
+                            tools:ignore="SpUsage" />
+
+                        <ImageView
+                            android:layout_width="8dp"
+                            android:layout_height="@dimen/text_large"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="25dp"
+                            android:background="@drawable/profile_arrow_img" />
+                    </RelativeLayout>
+
+                    <!-- 성격 Text -->
+                    <com.dmonster.darling.honey.util.common.FlowLayout
+                        android:id="@+id/fl_frag_my_info_member_character"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        app:horizontalSpacing="9dp"
+                        app:verticalSpacing="@dimen/default_margin_5dp" />
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="110dp"
+                    android:orientation="vertical">
+
+                    <!-- 나의 스타일 -->
+                    <RelativeLayout
+                        android:id="@+id/rl_frag_my_info_member_mystyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:background="@color/color_gray"
+                        android:gravity="center_vertical">
+
+
+                        <!-- 나의 스타일 -->
+                        <TextView
+                                 
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="23dp"
+                            android:layout_marginLeft="23dp"
+                            android:alpha="0.5"
+                            android:gravity="center_vertical"
+                            android:letterSpacing="-0.03"
+                            android:text="@string/information_member_mystyle"
+                            android:textColor="@color/color_main"
+                            android:textSize="@dimen/text_large"
+                            tools:ignore="SpUsage" />
+
+                        <ImageView
+                            android:layout_width="8dp"
+                            android:layout_height="@dimen/text_large"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="25dp"
+                            android:background="@drawable/profile_arrow_img" />
+                    </RelativeLayout>
+
+                    <!-- 나의 스타일 Text -->
+                    <com.dmonster.darling.honey.util.common.FlowLayout
+                        android:id="@+id/fl_frag_my_info_member_mystyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        app:horizontalSpacing="9dp"
+                        app:verticalSpacing="@dimen/default_margin_5dp" />
+                </LinearLayout>
+
+                <!-- 데이트 스타일 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="110dp"
+                    android:orientation="vertical">
+
+                    <!-- 데이트 스타일01 -->
+                    <RelativeLayout
+                        android:id="@+id/rl_frag_my_info_member_datestyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:background="@color/color_gray"
+                        android:gravity="center_vertical">
+
+                        <!-- 데이트 스타일 -->
+                        <TextView
+                                 
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="23dp"
+                            android:layout_marginLeft="23dp"
+                            android:alpha="0.5"
+                            android:gravity="center_vertical"
+                            android:letterSpacing="-0.03"
+                            android:text="@string/information_member_datestyle"
+                            android:textColor="@color/color_main"
+                            android:textSize="@dimen/text_large"
+                            tools:ignore="SpUsage" />
+
+                        <ImageView
+                            android:layout_width="8dp"
+                            android:layout_height="@dimen/text_large"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="25dp"
+                            android:background="@drawable/profile_arrow_img" />
+                    </RelativeLayout>
+
+                    <!-- 데이트 스타일 Text -->
+                    <com.dmonster.darling.honey.util.common.FlowLayout
+                        android:id="@+id/fl_frag_my_info_member_datestyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        app:horizontalSpacing="9dp"
+                        app:verticalSpacing="@dimen/default_margin_5dp" />
+                </LinearLayout>
+
+                <!-- 가족관계 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="110dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:background="@color/color_gray"
+                        android:gravity="center_vertical">
+
+
+                        <!-- 부모님 생사여부 Title -->
+                        <TextView
+                                 
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginStart="23dp"
+                            android:layout_marginLeft="23dp"
+                            android:alpha="0.5"
+                            android:gravity="center_vertical"
+                            android:letterSpacing="-0.03"
+                            android:text="@string/information_member_family_relationship"
+                            android:textColor="@color/color_main"
+                            android:textSize="@dimen/text_large"
+                            tools:ignore="SpUsage" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ProfileLayoutTheme"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <!-- 부모님 생존 Title -->
+                        <TextView
+                                 
+                            style="@style/profileTitleSecondStyle"
+                            android:layout_width="200dp"
+                            android:text="@string/information_member_parents" />
+
+                        <RelativeLayout
+                            android:id="@+id/rl_frag_my_info_member_parents"
+                            style="@style/MyInfoContentLayoutTheme">
+
+                            <TextView
+                                 
+                                android:id="@+id/tv_frag_my_info_member_parents"
+                                style="@style/MyInfoContentTextTheme"
+                                android:layout_toLeftOf="@+id/iv_frag_my_info_member_parents_arrow" />
+
+                            <ImageView
+                                android:id="@+id/iv_frag_my_info_member_parents_arrow"
+                                style="@style/MyInfoContentArrowTheme" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ProfileLayoutTheme"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <!-- 부모님 생존 Title -->
+                        <TextView
+                                 
+                            style="@style/profileTitleSecondStyle"
+                            android:layout_width="200dp"
+                            android:text="@string/information_member_marry_plan" />
+
+                        <RelativeLayout
+                            android:id="@+id/rl_frag_my_info_member_marry_plan"
+                            style="@style/MyInfoContentLayoutTheme">
+
+                            <TextView
+                                 
+                                android:id="@+id/tv_frag_my_info_member_marry_plan"
+                                style="@style/MyInfoContentTextTheme"
+                                android:layout_toLeftOf="@+id/iv_frag_my_info_member_marry_plan_arrow" />
+
+                            <ImageView
+                                android:id="@+id/iv_frag_my_info_member_marry_plan_arrow"
+                                style="@style/MyInfoContentArrowTheme" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_frag_my_info_member_divorce_layout"
+                        android:visibility="@{marriageRadioVM.isFirstRadioChecked? View.GONE : View.VISIBLE}"
+                        style="@style/ProfileLayoutTheme"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <!-- 이혼 Title -->
+                        <TextView
+                                 
+                            style="@style/profileTitleSecondStyle"
+                            android:layout_width="200dp"
+                            android:text="@string/information_member_divorce" />
+
+                        <RelativeLayout
+                            android:id="@+id/rl_frag_my_info_member_divorce"
+                            style="@style/MyInfoContentLayoutTheme">
+
+                            <TextView
+                                 
+                                android:id="@+id/tv_frag_my_info_member_divorce"
+                                style="@style/MyInfoContentTextTheme"
+                                android:layout_toLeftOf="@+id/iv_frag_my_info_member_divorce_arrow" />
+
+                            <ImageView
+                                android:id="@+id/iv_frag_my_info_member_divorce_arrow"
+                                style="@style/MyInfoContentArrowTheme" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_frag_my_info_member_divorce_year_layout"
+                        style="@style/ProfileLayoutTheme"
+                        android:visibility="@{marriageRadioVM.isFirstRadioChecked? View.GONE : View.VISIBLE}"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <!-- 이혼 Title -->
+                        <TextView
+                                 
+                            style="@style/profileTitleSecondStyle"
+                            android:layout_width="200dp"
+                            android:text="@string/information_member_divorce_year" />
+
+                        <RelativeLayout
+                            android:id="@+id/rl_frag_my_info_member_divorce_year"
+                            style="@style/MyInfoContentLayoutTheme">
+
+                            <TextView
+                                 
+                                android:id="@+id/tv_frag_my_info_member_divorce_year"
+                                style="@style/MyInfoContentTextTheme"
+                                android:layout_toLeftOf="@+id/iv_frag_my_info_member_divorce_year_arrow" />
+
+                            <ImageView
+                                android:id="@+id/iv_frag_my_info_member_divorce_year_arrow"
+                                style="@style/MyInfoContentArrowTheme" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_frag_my_info_member_children_layout"
+                        style="@style/ProfileLayoutTheme"
+                        android:visibility="@{marriageRadioVM.isFirstRadioChecked? View.GONE : View.VISIBLE}"
+                        android:layout_gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <!-- 이혼 Title -->
+                        <TextView
+                                 
+                            style="@style/profileTitleStyle"
+                            android:text="@string/information_member_children" />
+
+                        <RelativeLayout
+                            android:id="@+id/rl_frag_my_info_member_children_male"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_border_round_greyish">
+
+                            <TextView
+                                 
+                                android:id="@+id/tv_frag_my_info_member_children_male"
+                                style="@style/MyInfoContentTextTheme"
+                                android:layout_toLeftOf="@+id/iv_frag_my_info_member_children_male_arrow"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:singleLine="true" />
+
+                            <ImageView
+                                android:id="@+id/iv_frag_my_info_member_children_male_arrow"
+                                style="@style/MyInfoContentArrowTheme" />
+                        </RelativeLayout>
+
+                        <RelativeLayout
+                            android:id="@+id/rl_frag_my_info_member_children_female"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/bg_border_round_greyish">
+
+                            <TextView
+                                 
+                                android:id="@+id/tv_frag_my_info_member_children_female"
+                                style="@style/MyInfoContentTextTheme"
+                                android:layout_toLeftOf="@+id/iv_frag_my_info_member_children_female_arrow"
+                                android:ellipsize="end"
+                                android:maxLines="1"
+                                android:singleLine="true" />
+
+                            <ImageView
+                                android:id="@+id/iv_frag_my_info_member_children_female_arrow"
+                                style="@style/MyInfoContentArrowTheme" />
+                        </RelativeLayout>
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <!-- 자기소개글 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:minHeight="110dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:background="@color/color_gray"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+                                 
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="23dp"
+                            android:layout_marginLeft="23dp"
+                            android:alpha="0.5"
+                            android:gravity="center_vertical"
+                            android:letterSpacing="-0.03"
+                            android:text="@string/information_member_introduce"
+                            android:textColor="@color/color_main"
+                            android:textSize="@dimen/text_large"
+                            tools:ignore="SpUsage" />
+                    </LinearLayout>
+
+                    <!-- 자기소개글 -->
+                    <EditText
+                                 
+                        android:id="@+id/et_frag_my_info_member_introduce"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:background="@drawable/bg_border_round_greyish"
+                        android:gravity="top"
+                        android:minHeight="@dimen/default_margin_150dp"
+                        android:padding="@dimen/default_margin_10dp"
+                        android:textSize="@dimen/text_large"
+                        tools:ignore="SpUsage" />
+                </LinearLayout>
+
+                <!-- 색상변경 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/default_margin_15dp"
+                    android:layout_marginTop="@dimen/default_margin_5dp"
+                    android:layout_marginRight="@dimen/default_margin_15dp"
+                    android:gravity="center"
+                    android:visibility="gone">
+
+                    <LinearLayout
+                        android:layout_width="@dimen/default_margin_25dp"
+                        android:layout_height="@dimen/default_margin_25dp"
+                        android:background="@color/color_profile_select01"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/iv_frag_my_info_member_color01"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="@dimen/default_margin_5dp"
+                            android:src="@drawable/text_color_select" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="@dimen/default_margin_25dp"
+                        android:layout_height="@dimen/default_margin_25dp"
+
+                        android:background="@color/color_profile_select02"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/iv_frag_my_info_member_color02"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="@dimen/default_margin_5dp"
+                            android:src="@drawable/text_color_select" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="@dimen/default_margin_25dp"
+                        android:layout_height="@dimen/default_margin_25dp"
+
+                        android:background="@color/color_profile_select03"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/iv_frag_my_info_member_color03"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="@dimen/default_margin_5dp"
+                            android:src="@drawable/text_color_select" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="@dimen/default_margin_25dp"
+                        android:layout_height="@dimen/default_margin_25dp"
+
+                        android:background="@color/color_profile_select04"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/iv_frag_my_info_member_color04"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="@dimen/default_margin_5dp"
+                            android:src="@drawable/text_color_select" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="@dimen/default_margin_25dp"
+                        android:layout_height="@dimen/default_margin_25dp"
+
+                        android:background="@color/color_profile_select05"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/iv_frag_my_info_member_color05"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="@dimen/default_margin_5dp"
+                            android:src="@drawable/text_color_select" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="@dimen/default_margin_25dp"
+                        android:layout_height="@dimen/default_margin_25dp"
+
+                        android:background="@color/color_profile_select06"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/iv_frag_my_info_member_color06"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="@dimen/default_margin_5dp"
+                            android:src="@drawable/text_color_select" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="@dimen/default_margin_25dp"
+                        android:layout_height="@dimen/default_margin_25dp"
+
+                        android:background="@color/color_profile_select07"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/iv_frag_my_info_member_color07"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="@dimen/default_margin_5dp"
+                            android:src="@drawable/text_color_select" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="@dimen/default_margin_25dp"
+                        android:layout_height="@dimen/default_margin_25dp"
+
+                        android:background="@color/color_profile_select08"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/iv_frag_my_info_member_color08"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="@dimen/default_margin_5dp"
+                            android:src="@drawable/text_color_select" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="@dimen/default_margin_25dp"
+                        android:layout_height="@dimen/default_margin_25dp"
+
+                        android:background="@color/color_profile_select09"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/iv_frag_my_info_member_color09"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="@dimen/default_margin_5dp"
+                            android:src="@drawable/text_color_select" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="@dimen/default_margin_25dp"
+                        android:layout_height="@dimen/default_margin_25dp"
+
+                        android:background="@color/color_profile_select10"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/iv_frag_my_info_member_color10"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="@dimen/default_margin_5dp"
+                            android:src="@drawable/text_color_select" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="@dimen/default_margin_25dp"
+                        android:layout_height="@dimen/default_margin_25dp"
+
+                        android:background="@color/color_profile_select11"
+                        android:gravity="center">
+
+                        <ImageView
+                            android:id="@+id/iv_frag_my_info_member_color11"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:padding="@dimen/default_margin_5dp"
+                            android:src="@drawable/text_color_select" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 자기소개글 안내문구 -->
+                <TextView
+                                 
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/default_margin_15dp"
+                    android:layout_marginTop="@dimen/default_margin_5dp"
+                    android:layout_marginRight="@dimen/default_margin_15dp"
+                    android:text="@string/information_member_introduce_guide"
+                    android:textColor="@color/color_main"
+                    android:textSize="@dimen/text_large"
+                    android:visibility="gone"
+                    tools:ignore="SpUsage" />
+
+                <!-- 가족소개글 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:minHeight="110dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:background="@color/color_gray"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+
+                        <TextView
+                                 
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="23dp"
+                            android:layout_marginLeft="23dp"
+                            android:alpha="0.5"
+                            android:gravity="center_vertical"
+                            android:letterSpacing="-0.03"
+                            android:text="@string/information_member_family"
+                            android:textColor="@color/color_main"
+                            android:textSize="@dimen/text_large"
+                            tools:ignore="SpUsage" />
+                    </LinearLayout>
+
+                    <!-- 가족소개글 -->
+                    <EditText
+                                 
+                        android:id="@+id/et_frag_my_info_member_family"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:background="@drawable/bg_border_round_greyish"
+                        android:gravity="top"
+                        android:minHeight="@dimen/default_margin_150dp"
+                        android:padding="@dimen/default_margin_10dp"
+                        android:textSize="@dimen/text_large"
+                        tools:ignore="SpUsage" />
+                </LinearLayout>
+
+                <!-- 본인사진 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="110dp"
+                    android:orientation="vertical"
+                    android:visibility="visible">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="38dp"
+                        android:background="@color/color_gray"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <TextView
+                                 
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="23dp"
+                            android:layout_marginLeft="23dp"
+                            android:alpha="0.5"
+                            android:gravity="center_vertical"
+                            android:text="@string/information_member_picture"
+                            android:textColor="@color/color_main"
+                            android:textSize="@dimen/text_large" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+
+                        android:layout_marginTop="@dimen/default_margin_10dp"
+                        android:layout_marginRight="@dimen/default_margin_5dp"
+                        android:layout_marginBottom="@dimen/default_margin_10dp"
+                        android:orientation="vertical">
+
+                        <!-- 사진목록 -->
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/rv_frag_my_info_member_list"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:overScrollMode="never"
+                            android:scrollbars="none"
+                            tools:listitem="@layout/item_picture" />
+
+                        <!-- 사진추가 -->
+                        <Button
+                            android:id="@+id/btn_frag_my_info_member_add_picture"
+                            android:layout_width="@dimen/default_margin_100dp"
+                            android:layout_height="@dimen/default_margin_100dp"
+                            android:layout_marginTop="@dimen/default_margin_10dp"
+                            android:background="@drawable/profile_add_picture_img"
+                            android:visibility="gone" />
+
+                        <!-- 사진추가 -->
+                        <RelativeLayout
+                            android:id="@+id/rl_frag_my_info_member_add_picture"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="@dimen/default_margin_10dp"
+                            android:layout_marginRight="10dp"
+                            android:background="@drawable/join_btn">
+
+                            <TextView
+                                 
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_centerVertical="true"
+                                android:layout_marginLeft="@dimen/default_margin_10dp"
+                                android:layout_marginRight="@dimen/default_margin_10dp"
+                                android:layout_toLeftOf="@+id/iv_frag_my_info_member_picture_image_plus"
+                                android:text="@string/information_member_picture_plus"
+                                android:textSize="@dimen/text_normal" />
+
+                            <ImageView
+                                android:id="@+id/iv_frag_my_info_member_picture_image_plus"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="@dimen/default_margin_10dp"
+                                android:background="@drawable/inquiry_image_plus_img" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!--혼인관계증명서-->
+                <include
+                    layout="@layout/layout_certify"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_margin_10dp"
+                    android:layout_marginBottom="@dimen/default_margin_10dp"
+                    bind:certifyVM="@{certifyVM}"
+
+                    />
+
+                <!-- 핸드폰번호 -->
+                <RelativeLayout
+                    android:id="@+id/rl_frag_my_info_member_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/default_margin_30dp"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginEnd="25dp"
+                    android:layout_marginRight="25dp"
+                    android:layout_marginBottom="16dp"
+                    android:visibility="gone">
+
+                    <!-- 핸드폰번호 Title -->
+                    <TextView
+                                 
+                        android:id="@+id/tv_frag_my_info_member_phone"
+
+                        style="@style/profileTitleStyle"
+                        android:layout_alignParentStart="true"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+
+                        android:gravity="center_vertical"
+                        android:text="@string/information_member_phone" />
+
+                    <!-- 핸드폰번호 입력 -->
+                    <EditText
+                                 
+                        android:id="@+id/et_frag_my_info_member_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_toLeftOf="@+id/tv_frag_my_info_member_phone_auth"
+                        android:layout_toRightOf="@+id/tv_frag_my_info_member_phone"
+                        android:background="@color/color_gray"
+                        android:gravity="center"
+                        android:hint="@string/hint_information_phone"
+                        android:inputType="phone"
+                        android:maxLength="15"
+                        android:padding="@dimen/default_margin_5dp"
+                        android:textSize="@dimen/text_large"
+                        tools:ignore="SpUsage" />
+
+                    <!-- 인증 -->
+                    <TextView
+                                 
+                        android:id="@+id/tv_frag_my_info_member_phone_auth"
+                        android:layout_width="@dimen/default_margin_70dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+
+                        android:background="@drawable/btn_select_basic01"
+                        android:gravity="center"
+                        android:text="@string/information_member_phone_auth"
+                        android:textColor="@color/select_text_color01"
+                        android:textSize="@dimen/text_large"
+                        android:textStyle="bold"
+                        tools:ignore="SpUsage" />
+                </RelativeLayout>
+
+                <TextView
+                                 
+                    android:id="@+id/tv_frag_my_info_member_recommend"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/default_margin_40dp"
+                    android:layout_marginLeft="@dimen/default_margin_15dp"
+                    android:layout_marginRight="@dimen/default_margin_15dp"
+                    android:layout_marginBottom="@dimen/default_margin_15dp"
+                    android:background="@drawable/btn_select_basic01"
+                    android:gravity="center"
+                    android:text="@string/information_member_recommend"
+                    android:textColor="@color/select_text_color01"
+                    android:textSize="@dimen/text_large"
+                    android:visibility="gone"
+                    tools:ignore="SpUsage" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <!-- 수정완료 -->
+        <Button
+            android:id="@+id/btn_frag_my_info_member_complete"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/default_margin_50dp"
+            android:background="@drawable/bg_pink_purple"
+            android:text="@string/information_member_modify"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/text_xlarge"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="SpUsage" />
+
+        <!-- 프로그래스바 -->
+        <LinearLayout
+            android:id="@+id/ll_frag_my_info_member_progress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:visibility="gone">
+
+            <ProgressBar
+                android:layout_width="@dimen/progress_size"
+                android:layout_height="@dimen/progress_size" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

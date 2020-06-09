@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?><!-- 지역01 -->
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="itemVM"
+            type="com.dmonster.darling.honey.main.viewmodel.FilterSelectorItemVM" />
+        <import type="android.view.View"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/tv_item_selector_title"
+            android:layout_width="0dp"
+            android:layout_height="20dp"
+            android:alpha="0.9"
+            android:gravity="center"
+            android:letterSpacing="-0.02"
+            android:text="@{itemVM.title}"
+            app:autoSizeTextType="uniform"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_item_selector"
+            app:layout_constraintHorizontal_weight="1.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpUsage" />
+
+        <FrameLayout
+            android:id="@+id/bg_item_selector"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@color/color_gray"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/tv_item_selector"
+            app:layout_constraintTop_toTopOf="@id/tv_item_selector" />
+
+        <!-- 지역 선택01 -->
+        <TextView
+                                style="@style/baseTextViewStyle"
+            android:id="@+id/tv_item_selector"
+            android:layout_width="0dp"
+            android:layout_height="30dp"
+            android:ellipsize="marquee"
+            android:gravity="center"
+            android:letterSpacing="-0.02"
+            android:onClick="@{(v)->itemVM.onClick(v)}"
+            android:singleLine="true"
+            android:text="@{itemVM.choosenItem}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/iv_item_selector_arrow"
+            app:layout_constraintHorizontal_weight="3"
+            app:layout_constraintStart_toEndOf="@id/tv_item_selector_title"
+
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:id="@+id/iv_item_selector_arrow"
+            style="@style/MyInfoContentArrowTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:adjustViewBounds="true"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_item_selector"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_item_selector"
+            app:layout_constraintTop_toTopOf="@+id/tv_item_selector" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

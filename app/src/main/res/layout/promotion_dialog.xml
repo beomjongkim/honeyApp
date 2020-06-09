@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/layout">
+    <data>
+        <variable name="promotionDialogVM"
+                  type="com.dmonster.darling.honey.dialog.promotionDialog.ClickButton"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_transparent">
+
+        <ImageView
+                android:background="@color/color_black"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/promotion_bg_1"
+                app:layout_constraintHeight_percent="0.6"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                android:id="@+id/imageView"
+                app:layout_constraintTop_toTopOf="@+id/guideline"/>
+        <ImageButton
+                android:layout_width="0dp"
+                app:layout_constraintWidth_percent="0.4"
+                app:layout_constraintHeight_percent="0.1"
+                android:layout_height="0dp"
+                android:scaleType="fitCenter"
+                app:srcCompat="@drawable/promotion_btn_1"
+                android:background="@color/color_transparent"
+                android:id="@+id/imageButton2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toBottomOf="@+id/imageView" android:layout_marginBottom="20dp"
+                android:onClick="@{()->promotionDialogVM.onClickStart()}"
+
+        />
+
+        <Button
+                android:layout_width="0dp"
+                app:layout_constraintLeft_toLeftOf="@id/imageView"
+                app:layout_constraintRight_toRightOf="@id/imageView"
+                app:layout_constraintHeight_percent="0.06"
+                android:layout_height="0dp"
+                android:text="@string/promotion_week_later"
+                android:id="@+id/btn_promotion_week"
+                android:background="@color/color_gray"
+                android:onClick="@{()->promotionDialogVM.onClickSeeWeekLater()}"
+                app:layout_constraintTop_toBottomOf="@+id/imageView"/>
+
+
+        <androidx.constraintlayout.widget.Guideline
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                app:layout_constraintGuide_percent="0.167"
+                android:layout_height="wrap_content" app:layout_constraintGuide_begin="0dp"
+                android:id="@+id/guideline"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

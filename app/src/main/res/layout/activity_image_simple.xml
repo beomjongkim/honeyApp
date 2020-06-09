@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="simpleVM" type="com.dmonster.darling.honey.profile.viewmodel.ImageSimpleVM"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".profile.view.ImageSimpleActivity">
+
+        <com.dmonster.darling.honey.customview.CustomToolBar
+                android:id="@+id/ctb_act_image_detail_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+        >
+
+        </com.dmonster.darling.honey.customview.CustomToolBar>
+
+        <RelativeLayout
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/rl_act_image_detail_bottom_layout"
+                app:layout_constraintTop_toBottomOf="@id/ctb_act_image_detail_toolbar"
+                android:background="@color/color_black">
+
+            <!-- 이미지 -->
+            <ImageView
+                    android:id="@+id/iv_act_image_detail_picture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    imgGlideUriSimple="@{simpleVM.imageUri}"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+                android:id="@+id/rl_act_image_detail_bottom_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/default_margin_50dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:background="@color/color_image_detail_bottom">
+
+            <!-- 신고하기 -->
+            <Button
+                    android:id="@+id/btn_act_image_detail_notify"
+                    android:layout_width="@dimen/default_margin_80dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/default_margin_15dp"
+                    android:layout_marginTop="@dimen/default_margin_10dp"
+                    android:layout_marginBottom="@dimen/default_margin_10dp"
+                    android:background="@color/color_image_detail_notify"
+                    android:gravity="center"
+                    android:textSize="@dimen/text_large"
+                    android:text="@string/profile_notify"
+                    android:visibility="gone"
+                    android:textColor="@color/color_white"
+                tools:ignore="SpUsage" />
+
+            <!-- 톡하기 -->
+            <Button
+                    android:id="@+id/btn_act_image_detail_talk"
+                    android:layout_width="@dimen/default_margin_80dp"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginTop="@dimen/default_margin_10dp"
+                    android:layout_marginRight="@dimen/default_margin_15dp"
+                    android:layout_marginBottom="@dimen/default_margin_10dp"
+                    android:background="@color/color_main"
+                    android:text="@string/profile_talk"
+                    android:visibility="gone"
+                    android:textColor="@color/color_white"
+                    android:textSize="@dimen/text_large"
+                tools:ignore="SpUsage" />
+        </RelativeLayout>
+
+        <!-- 프로그래스바 -->
+        <LinearLayout
+                android:id="@+id/ll_act_image_detail_progress"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:visibility="gone">
+
+            <ProgressBar
+                    android:layout_width="@dimen/progress_size"
+                    android:layout_height="@dimen/progress_size"/>
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_act_market_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".item.view.MarketActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.dmonster.darling.honey.customview.CustomToolBar
+            android:id="@+id/ctb_act_market_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true" />
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/srl_act_market_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/ctb_act_market_toolbar">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/ll_act_market_top_layout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/default_margin_15dp"
+                        android:text="@string/market_title"
+                        android:textColor="@color/color_main"
+                        android:textSize="@dimen/text_large"
+                        android:textStyle="bold"
+                        tools:ignore="SpUsage" />
+
+                    <ImageView
+                        android:layout_width="@dimen/default_margin_10dp"
+                        android:layout_height="@dimen/default_margin_1dp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/default_margin_5dp"
+                        android:background="@color/color_main" />
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/default_margin_5dp"
+                        android:text="@string/market_content"
+                        android:textSize="@dimen/text_large"
+                        tools:ignore="SpUsage" />
+
+                    <!-- 현재보유코인 -->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/default_margin_50dp"
+                        android:layout_marginTop="@dimen/default_margin_10dp"
+                        android:background="@color/color_gray">
+
+                        <TextView
+                                style="@style/baseTextViewStyle"
+                            android:id="@+id/tv_act_market_now_coin_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentLeft="true"
+                            android:layout_marginLeft="@dimen/default_margin_20dp"
+                            android:gravity="center_vertical"
+                            android:text="@string/market_now_coin_title"
+                            android:textSize="@dimen/text_large"
+                            tools:ignore="SpUsage" />
+
+                        <TextView
+                                style="@style/baseTextViewStyle"
+                            android:id="@+id/tv_act_market_now_coin"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentRight="true"
+                            android:layout_marginLeft="@dimen/default_margin_10dp"
+                            android:layout_marginRight="@dimen/default_margin_20dp"
+                            android:layout_toRightOf="@+id/tv_act_market_now_coin_title"
+                            android:gravity="right|center_vertical"
+                            android:textSize="@dimen/text_xlarge"
+                            android:textStyle="bold"
+                            tools:ignore="SpUsage" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <!-- 목록 -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_act_market_list"
+                    style="@style/RecyclerViewTheme"
+                    android:layout_below="@+id/ll_act_market_top_layout"
+                    android:layout_marginTop="@dimen/default_margin_10dp"
+                    android:layout_marginBottom="@dimen/default_margin_10dp"
+                    android:paddingLeft="@dimen/default_margin_5dp"
+                    android:paddingRight="@dimen/default_margin_5dp"
+                    tools:listitem="@layout/item_market" />
+
+                <!-- 목록없음 -->
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:id="@+id/tv_act_market_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_below="@+id/ll_act_market_top_layout"
+                    android:gravity="center"
+                    android:text="@string/msg_app_no_list"
+                    android:textSize="@dimen/text_xxlarge"
+                    android:visibility="gone"
+                    tools:ignore="SpUsage" />
+            </RelativeLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <!-- 프로그래스바 -->
+        <LinearLayout
+            android:id="@+id/ll_act_market_progress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:visibility="gone">
+
+            <ProgressBar
+                android:layout_width="@dimen/progress_size"
+                android:layout_height="@dimen/progress_size" />
+        </LinearLayout>
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

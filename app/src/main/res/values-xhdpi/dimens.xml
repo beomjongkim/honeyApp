@@ -1,0 +1,11 @@
+<resources>
+    <dimen name="text_xxsmall">9.5dp</dimen>
+    <dimen name="text_xsmall">11.5dp</dimen>
+    <dimen name="text_small">12.5dp</dimen>
+    <dimen name="text_normal">13.5dp</dimen>
+    <dimen name="text_large">14.5dp</dimen>
+    <dimen name="text_xlarge">16.5dp</dimen>
+    <dimen name="text_xxlarge">19.5dp</dimen>
+    <dimen name="text_much_large">40dp</dimen>
+</resources>
+

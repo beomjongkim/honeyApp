@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.dmonster.darling.honey"
+    tools:ignore="LockedOrientationActivity">
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.CALL_PHONE" /> <!-- <uses-permission android:name="com.android.vending.BILLING" /> -->
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <application
+        android:name=".base.GlobalApplication"
+        android:allowBackup="true"
+        android:fullBackupContent="@xml/backup_descriptor"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name=".intro.view.SlideActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".block_friends.view.BlockFriendsActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.FACTORY_TEST" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".test.view.TestActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.FACTORY_TEST" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".join.view.SocialJoinActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.FACTORY_TEST" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".profile.view.ImageSimpleActivity" />
+        <activity
+            android:name=".intro.view.IntroActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="intro"
+                    android:scheme="honey" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".main.view.MainActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.FACTORY_TEST" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".login.view.LoginEmailActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.FACTORY_TEST" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".login.view.FindIDPWActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name=".join.view.JoinActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name=".agreement.view.AgreementActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".agreement.view.UseActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".profile.view.ProfileActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.FACTORY_TEST" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".profile.view.ImageDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".profile.view.GoodActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name=".profile.view.InterestActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name=".talk.view.TalkActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".talk.view.TalkImageDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".myactivity.view.LoveActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".myinformation.view.RecommendActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="recommend"
+                    android:scheme="honey" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".item.view.MarketActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="market"
+                    android:scheme="honey" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".item.view.ItemUseActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".servicecenter.view.ServiceCenterActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".alarm.view.AlarmActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".inquiry.view.InquiryMainActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.FACTORY_TEST" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".notice.view.NoticeActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="notice"
+                    android:scheme="honey" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".question.view.QuestionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".block.view.BlockActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".information.view.MyInfoActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name=".myinformation.view.MyProfileActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateHidden">
+            <intent-filter>
+                <action android:name="android.intent.action.FACTORY_TEST" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".information.view.PhoneAuthActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize|stateHidden" /> <!-- 네이버 로그인 -->
+        <activity
+            android:name="com.nhn.android.naverlogin.ui.OAuthLoginActivity"
+            android:theme="@style/Theme.AppCompat.Light.Dialog" />
+        <activity
+            android:name="com.nhn.android.naverlogin.ui.OAuthLoginInAppBrowserActivity"
+            android:label="OAuth2.0 In-app" />
+
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="@string/kakao_app_key" />
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name" />
+        <activity
+            android:name="com.facebook.CustomTabActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="@string/fb_login_protocol_scheme" />
+            </intent-filter>
+        </activity>
+
+        <service
+            android:name=".fcm.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_stat_name" />
+        <!--
+ Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+        <meta-data
+            android:name="firebase_messaging_auto_init_enabled"
+            android:value="false" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" />
+    </application>
+
+</manifest>

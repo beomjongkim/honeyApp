@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="dialogVM"
+            type="com.dmonster.darling.honey.common.viewmodel.DialogVM" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_border_round"
+        android:padding="1dp">
+
+        <ImageButton
+            android:id="@+id/ib_viewmodel_dialog_backBtn"
+            style="@style/ImageButtoninConstraintTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="8dp"
+            android:layout_marginStart="21dp"
+            android:layout_marginLeft="21dp"
+            android:onClick="@{(v)->dialogVM.onClickBack(v)}"
+            android:rotation="90"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_viewmodel_dialog_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_viewmodel_dialog_name"
+            app:srcCompat="@drawable/notice_down_arrow_img" />
+
+        <TextView
+                                style="@style/baseTextViewStyle"
+            android:id="@+id/tv_viewmodel_dialog_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:letterSpacing="-0.03"
+            android:text="@{dialogVM.title}"
+            android:textColor="@color/color_gender_male"
+            android:textSize="@dimen/text_xlarge"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpUsage" />
+
+        <FrameLayout
+            android:id="@+id/frameLayout2"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:background="@color/color_gray"
+            android:visibility='@{dialogVM.subTitle.equals("") ? View.GONE :  View.VISIBLE}'
+            app:layout_constraintBottom_toBottomOf="@+id/tv_viewmodel_dialog_notice"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_viewmodel_dialog_notice" />
+
+        <TextView
+                                style="@style/baseTextViewStyle"
+            android:id="@+id/tv_viewmodel_dialog_notice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:alpha="0.6"
+            android:text="@{dialogVM.subTitle}"
+            android:visibility='@{dialogVM.subTitle.equals("") ? View.GONE :  View.VISIBLE}'
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/text_normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_viewmodel_dialog_name"
+            tools:ignore="SpUsage" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_viewmodel_dialog"
+            CustomAdapter="@{dialogVM.customAdapter}"
+            layoutType='@{dialogVM.viewType}'
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:overScrollMode="never"
+            app:layout_constraintBottom_toTopOf="@id/v_filter_age_line_horizon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout2" />
+
+        <View
+            android:id="@+id/v_filter_age_line_horizon"
+            style="@style/baseLine.horizontal"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintBottom_toTopOf="@id/btn_viewmodel_dialog_cancel"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btn_viewmodel_dialog_cancel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="4dp"
+            android:alpha="0.9"
+            android:background="@color/color_transparent"
+            android:onClick="@{(v)->dialogVM.onClickCancel(v)}"
+            android:text="@string/dialog_cancel"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/text_large"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_viewmodel_dialog_confirm"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="SpUsage" />
+
+        <View
+            style="@style/baseLine.vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_viewmodel_dialog_confirm"
+            app:layout_constraintStart_toEndOf="@id/btn_viewmodel_dialog_cancel"
+            app:layout_constraintTop_toBottomOf="@id/v_filter_age_line_horizon" />
+
+        <Button
+            android:id="@+id/btn_viewmodel_dialog_confirm"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="4dp"
+            android:alpha="0.9"
+            android:background="@color/color_transparent"
+            android:onClick="@{(v)->dialogVM.onClickConfirm(v)}"
+            android:text="@string/dialog_enter"
+            android:textColor="@color/cornflower"
+            android:textSize="@dimen/text_large"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/btn_viewmodel_dialog_cancel"
+            tools:ignore="SpUsage" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

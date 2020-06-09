@@ -1,0 +1,214 @@
+<resources>
+
+    <!-- Base application theme. -->
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:windowBackground">@color/color_white</item>
+        <item name="android:textViewStyle">@style/baseTextViewStyle</item>
+        <item name="checkboxStyle">@style/baseCheckBox</item>
+    </style>
+
+    <style name="baseTextViewStyle" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/color_text_main</item>
+        <item name="android:textColorHint">@color/color_hint</item>
+        <item name="android:fontFamily">@font/melona</item>
+    </style>
+
+    <style name="baseTextViewTitleStyle" parent="android:Widget.TextView">
+        <item name="android:textColor">@color/color_text_main</item>
+        <item name="android:textColorHint">@color/color_hint</item>
+        <item name="android:fontFamily">@font/tt_together</item>
+    </style>
+
+    <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@color/color_white</item>
+        <item name="android:textColor">@color/color_black</item>
+    </style>
+
+    <style name="profileTitleStyle" parent="baseTextViewTitleStyle">
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textColor">@color/color_main</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/text_large</item>
+        <item name="android:alpha">0.9</item>
+        <item name="android:padding">4dp</item>
+    </style>
+
+    <style name="profileContentStyle" parent="baseTextViewStyle">
+        <item name="android:background">@color/color_transparent</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:textColor">@color/color_main</item>
+        <item name="android:textSize">@dimen/text_large</item>
+        <item name="android:alpha">0.75</item>
+    </style>
+
+    <style name="NestedScrollViewTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:overScrollMode">never</item>
+        <item name="android:scrollbars">none</item>
+        <item name="android:fillViewport">true</item>
+        <item name="android:background">@color/color_white</item>
+    </style>
+
+    <style name="RecyclerViewTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:overScrollMode">never</item>
+        <item name="android:scrollbars">none</item>
+        <item name="android:background">@color/color_white</item>
+    </style>
+
+    <style name="ProfileLayoutTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/default_margin_30dp</item>
+        <item name="android:layout_marginTop">@dimen/default_margin_5dp</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginRight">20dp</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="ProfileArticleImgTheme">
+        <item name="android:layout_width">@dimen/default_margin_10dp</item>
+        <item name="android:layout_height">@dimen/default_margin_10dp</item>
+        <item name="android:background">@drawable/profile_article</item>
+        <item name="android:layout_marginRight">@dimen/default_margin_5dp</item>
+        <item name="android:layout_gravity">center_vertical</item>
+    </style>
+
+    <style name="ProfileTitleLayoutTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:layout_width">@dimen/default_margin_100dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="ProfileTitleTextTheme" parent="baseTextViewTitleStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:paddingRight">@dimen/default_margin_10dp</item>
+        <item name="android:textSize">@dimen/text_large</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ProfileContentTextTheme" parent="baseTextViewStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:padding">@dimen/default_margin_5dp</item>
+        <item name="android:textSize">@dimen/text_large</item>
+        <item name="android:visibility">gone</item>
+        <item name="android:background">@color/color_transparent</item>
+    </style>
+
+    <style name="ProfileTitleLayoutStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">43dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:background">@color/color_gray</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="ProfileTitleTextStyle" parent="baseTextViewTitleStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">23dp</item>
+        <item name="android:layout_marginLeft">23dp</item>
+        <item name="android:alpha">0.6</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">@dimen/text_large</item>
+    </style>
+
+    <style name="ProfileContentHiddenLayout" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">30dp</item>
+<!--        <item name="android:maxHeight">40dp</item>-->
+<!--        <item name="android:minHeight">20dp</item>-->
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">right</item>
+        <item name="android:background">@drawable/profile_look_layout</item>
+    </style>
+
+    <style name="ProfileHideTextTheme" parent="baseTextViewStyle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:text">@string/profile_look</item>
+        <item name="android:textSize">@dimen/text_small</item>
+        <item name="android:alpha">0.7</item>
+        <item name="android:paddingRight">@dimen/default_margin_10dp</item>
+        <item name="android:paddingLeft">@dimen/default_margin_10dp</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:layout_margin">@dimen/default_margin_1dp</item>
+        <item name="android:background">@drawable/profile_look_text</item>
+    </style>
+
+    <style name="MyInfoContentLayoutTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:background">@drawable/bg_border_round_greyish</item>
+    </style>
+
+    <style name="MyInfoContentTextTheme" parent="baseTextViewStyle">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_marginRight">8dp</item>
+        <item name="android:textColor">@color/color_main</item>
+        <item name="android:alpha">0.75</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:paddingLeft">8dp</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:gravity">start|center_vertical</item>
+        <item name="android:textSize">@dimen/text_large</item>
+    </style>
+
+    <style name="MyInfoContentArrowTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_alignParentRight">true</item>
+        <item name="android:layout_centerVertical">true</item>
+        <item name="android:layout_marginRight">@dimen/default_margin_10dp</item>
+        <item name="android:background">@drawable/login_arrow</item>
+    </style>
+
+    <style name="ImageButtoninConstraintTheme">
+        <item name="android:background">@color/color_transparent</item>
+        <item name="android:scaleType">fitCenter</item>
+        <item name="android:adjustViewBounds">true</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
+
+    <style name="baseCheckBox" parent="Widget.AppCompat.CompoundButton.CheckBox">
+        <item name="android:paddingStart">5dp</item>
+        <item name="android:paddingLeft">5dp</item>
+        <item name="android:button">@drawable/custom_check_box</item>
+    </style>
+
+    <style name="baseLine">
+        <item name="android:alpha">0.25</item>
+        <item name="android:background">@color/color_hint</item>
+    </style>
+
+    <style name="baseLine.vertical" parent="baseLine">
+        <item name="android:layout_width">1dp</item>
+        <item name="android:layout_height">0dp</item>
+    </style>
+
+    <style name="baseLine.horizontal" parent="baseLine">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">1dp</item>
+    </style>
+
+    <style name="joinTextStyle" parent="baseTextViewStyle">
+        <item name="android:alpha">0.65</item>
+        <item name="android:textSize">@dimen/text_large</item>
+        <item name="android:textColor">@color/color_text_main</item>
+    </style>
+</resources>

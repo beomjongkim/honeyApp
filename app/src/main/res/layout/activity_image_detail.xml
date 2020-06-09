@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".profile.view.ImageDetailActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.dmonster.darling.honey.customview.CustomToolBar
+            android:id="@+id/ctb_act_image_detail_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/rl_act_image_detail_bottom_layout"
+            android:layout_below="@id/ctb_act_image_detail_toolbar"
+            android:background="@color/color_black">
+
+            <!-- 이미지 -->
+            <ImageView
+                android:id="@+id/iv_act_image_detail_picture"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true" />
+
+            <!-- 이전 -->
+            <ImageView
+                android:id="@+id/iv_act_image_detail_before"
+                android:layout_width="@dimen/default_margin_50dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/image_detail_before_btn" />
+
+            <!-- 다음 -->
+            <ImageView
+                android:id="@+id/iv_act_image_detail_next"
+                android:layout_width="@dimen/default_margin_50dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/image_detail_next_btn" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:id="@+id/rl_act_image_detail_bottom_layout"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_margin_50dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/color_image_detail_bottom">
+
+            <!-- 신고하기 -->
+            <Button
+                android:id="@+id/btn_act_image_detail_notify"
+                android:layout_width="@dimen/default_margin_80dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/default_margin_15dp"
+                android:layout_marginTop="@dimen/default_margin_10dp"
+                android:layout_marginBottom="@dimen/default_margin_10dp"
+                android:background="@color/color_image_detail_notify"
+                android:gravity="center"
+                android:textSize="@dimen/text_large"
+                android:text="@string/profile_notify"
+                android:textColor="@color/color_white"
+                tools:ignore="SpUsage" />
+
+            <!-- 톡하기 -->
+            <Button
+                android:id="@+id/btn_act_image_detail_talk"
+                android:layout_width="@dimen/default_margin_80dp"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/default_margin_10dp"
+                android:layout_marginRight="@dimen/default_margin_15dp"
+                android:layout_marginBottom="@dimen/default_margin_10dp"
+                android:background="@color/color_main"
+                android:text="@string/profile_talk"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/text_large"
+                tools:ignore="SpUsage" />
+        </RelativeLayout>
+
+        <!-- 프로그래스바 -->
+        <LinearLayout
+            android:id="@+id/ll_act_image_detail_progress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:visibility="gone">
+
+            <ProgressBar
+                android:layout_width="@dimen/progress_size"
+                android:layout_height="@dimen/progress_size" />
+        </LinearLayout>
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

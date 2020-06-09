@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android"
+         xmlns:app="http://schemas.android.com/apk/res-auto"
+         xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable name="naviVM" type="com.dmonster.darling.honey.main.viewmodel.NavigationVM"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+                                                       android:layout_width="match_parent"
+                                                       android:layout_height="match_parent"
+                                                       tools:context=".main.view.MainActivity">
+
+
+
+            <!-- 메인화면 -->
+        <FrameLayout
+                android:id="@+id/fl_act_main_content_layout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/include"
+                 app:layout_constraintTop_toTopOf="parent"/>
+
+            <ImageView
+                    android:id="@+id/iv_act_main_shadow"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_floating_menu_background"
+                    android:visibility="gone"/>
+
+            <!-- 더보기 -->
+
+        <!--<com.github.clans.fab.FloatingActionMenu-->
+                <!--android:id="@+id/fam_act_main_more"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="0dp"-->
+                <!--android:paddingRight="@dimen/default_margin_10dp"-->
+                <!--app:menu_colorNormal="@android:color/transparent"-->
+                <!--app:menu_colorPressed="@android:color/transparent"-->
+                <!--app:menu_fab_size="mini"-->
+                <!--app:menu_icon="@drawable/main_menu04_img_on"-->
+                <!--app:menu_labels_colorNormal="@android:color/transparent"-->
+                <!--app:menu_labels_colorPressed="@android:color/transparent"-->
+                <!--app:menu_labels_colorRipple="@android:color/transparent"-->
+                <!--app:menu_labels_showShadow="false"-->
+                <!--app:menu_labels_style="@style/FloatingTheme"-->
+                <!--app:menu_labels_textSize="@dimen/text_large"-->
+                <!--app:menu_openDirection="down"-->
+                <!--app:menu_shadowColor="@android:color/white"-->
+                <!--app:menu_shadowXOffset="@dimen/default_margin_0dp"-->
+                <!--app:menu_showShadow="true" app:layout_constraintBottom_toTopOf="@+id/include"-->
+                <!--app:layout_constraintTop_toTopOf="parent">-->
+
+            <!--&lt;!&ndash; 닫기 &ndash;&gt;-->
+            <!--<com.github.clans.fab.FloatingActionButton-->
+                    <!--android:id="@+id/fab_act_main_close"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:src="@drawable/main_menu04_close_img"-->
+                    <!--app:fab_colorNormal="@android:color/transparent"-->
+                    <!--app:fab_colorPressed="@android:color/transparent"-->
+                    <!--app:fab_showShadow="false"/>-->
+
+            <!--&lt;!&ndash; 로그아웃 &ndash;&gt;-->
+            <!--<com.github.clans.fab.FloatingActionButton-->
+                    <!--android:id="@+id/fab_act_main_logout"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:src="@drawable/main_menu04_logout_img"-->
+                    <!--android:visibility="gone"-->
+                    <!--app:fab_colorNormal="@android:color/transparent"-->
+                    <!--app:fab_colorPressed="@android:color/transparent"-->
+                    <!--app:fab_label="@string/main_more_menu_logout"-->
+                    <!--app:fab_showShadow="false"/>-->
+
+            <!--&lt;!&ndash; 회원탈퇴 &ndash;&gt;-->
+            <!--<com.github.clans.fab.FloatingActionButton-->
+                    <!--android:id="@+id/fab_act_main_withdrawal"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:src="@drawable/main_menu04_withdrawal_img"-->
+                    <!--android:visibility="gone"-->
+                    <!--app:fab_colorNormal="@android:color/transparent"-->
+                    <!--app:fab_colorPressed="@android:color/transparent"-->
+                    <!--app:fab_label="@string/main_more_menu_withdrawal"-->
+                    <!--app:fab_showShadow="false"/>-->
+
+            <!--&lt;!&ndash; 휴면설정 &ndash;&gt;-->
+            <!--<com.github.clans.fab.FloatingActionButton-->
+                    <!--android:id="@+id/fab_act_main_dormant"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:src="@drawable/main_menu04_dormant_img"-->
+                    <!--android:visibility="gone"-->
+                    <!--app:fab_colorNormal="@android:color/transparent"-->
+                    <!--app:fab_colorPressed="@android:color/transparent"-->
+                    <!--app:fab_label="@string/main_more_menu_dormant"-->
+                    <!--app:fab_showShadow="false"/>-->
+
+            <!--&lt;!&ndash; 차단회원 &ndash;&gt;-->
+            <!--<com.github.clans.fab.FloatingActionButton-->
+                    <!--android:id="@+id/fab_act_main_block"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:src="@drawable/main_menu04_block_img"-->
+                    <!--app:fab_colorNormal="@android:color/transparent"-->
+                    <!--app:fab_colorPressed="@android:color/transparent"-->
+                    <!--app:fab_label="@string/main_more_menu_block"-->
+                    <!--app:fab_showShadow="false"/>-->
+
+            <!--&lt;!&ndash; 이용방법 &ndash;&gt;-->
+            <!--<com.github.clans.fab.FloatingActionButton-->
+                    <!--android:id="@+id/fab_act_main_use"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:src="@drawable/main_menu04_use_img"-->
+                    <!--app:fab_colorNormal="@android:color/transparent"-->
+                    <!--app:fab_colorPressed="@android:color/transparent"-->
+                    <!--app:fab_label="@string/main_more_menu_use"-->
+                    <!--app:fab_showShadow="false"/>-->
+
+            <!--&lt;!&ndash; 자주묻는질문 &ndash;&gt;-->
+            <!--<com.github.clans.fab.FloatingActionButton-->
+                    <!--android:id="@+id/fab_act_main_question"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:src="@drawable/main_menu04_question_img"-->
+                    <!--app:fab_colorNormal="@android:color/transparent"-->
+                    <!--app:fab_colorPressed="@android:color/transparent"-->
+                    <!--app:fab_label="@string/main_more_menu_question"-->
+                    <!--app:fab_showShadow="false"/>-->
+
+            <!--&lt;!&ndash; 1:1 문의 &ndash;&gt;-->
+            <!--<com.github.clans.fab.FloatingActionButton-->
+                    <!--android:id="@+id/fab_act_main_inquiry"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:src="@drawable/main_menu04_inquiry_img"-->
+                    <!--app:fab_colorNormal="@android:color/transparent"-->
+                    <!--app:fab_colorPressed="@android:color/transparent"-->
+                    <!--app:fab_label="@string/main_more_menu_inquiry"-->
+                    <!--app:fab_showShadow="false"/>-->
+
+            <!--&lt;!&ndash; 알림설정 &ndash;&gt;-->
+            <!--<com.github.clans.fab.FloatingActionButton-->
+                    <!--android:id="@+id/fab_act_main_alarm"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:src="@drawable/main_menu04_alarm_img"-->
+                    <!--app:fab_colorNormal="@android:color/transparent"-->
+                    <!--app:fab_colorPressed="@android:color/transparent"-->
+                    <!--app:fab_label="@string/main_more_menu_alarm"-->
+                    <!--app:fab_showShadow="false"/>-->
+
+            <!--&lt;!&ndash; 친구초대 &ndash;&gt;-->
+            <!--<com.github.clans.fab.FloatingActionButton-->
+                    <!--android:id="@+id/fab_act_main_invitation"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:src="@drawable/main_menu04_invitation_img"-->
+                    <!--app:fab_colorNormal="@android:color/transparent"-->
+                    <!--app:fab_colorPressed="@android:color/transparent"-->
+                    <!--app:fab_label="@string/main_more_menu_invitation"-->
+                    <!--app:fab_showShadow="false"/>-->
+
+            <!--&lt;!&ndash; 기본정보 &ndash;&gt;-->
+            <!--<com.github.clans.fab.FloatingActionButton-->
+                    <!--android:id="@+id/fab_act_main_my_info"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:src="@drawable/main_menu04_my_info_img"-->
+                    <!--app:fab_colorNormal="@android:color/transparent"-->
+                    <!--app:fab_colorPressed="@android:color/transparent"-->
+                    <!--app:fab_label="@string/main_more_menu_my_info"-->
+                    <!--app:fab_showShadow="false"/>-->
+
+            <!--&lt;!&ndash; 고객센터 &ndash;&gt;-->
+            <!--<com.github.clans.fab.FloatingActionButton-->
+                    <!--android:id="@+id/fab_act_main_service_center"-->
+                    <!--android:layout_width="wrap_content"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:src="@drawable/main_menu04_service_center_img"-->
+                    <!--app:fab_colorNormal="@android:color/transparent"-->
+                    <!--app:fab_colorPressed="@android:color/transparent"-->
+                    <!--app:fab_label="@string/main_more_menu_service_center"-->
+                    <!--app:fab_showShadow="false"/>-->
+        <!--</com.github.clans.fab.FloatingActionMenu>-->
+        <include
+                app:naviVM="@{naviVM}"
+                layout="@layout/layout_navigationbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:id="@+id/include"/>
+            <!--<RelativeLayout-->
+            <!--android:id="@+id/rl_act_main_menu_layout"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="@dimen/default_margin_50dp"-->
+            <!--android:background="@drawable/bg_line_bottom">-->
+
+            <!--&lt;!&ndash; 메인 &ndash;&gt;-->
+            <!--<ImageView-->
+            <!--android:id="@+id/iv_act_main_main"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:paddingLeft="@dimen/default_margin_10dp"-->
+            <!--android:paddingRight="@dimen/default_margin_10dp"-->
+            <!--android:src="@drawable/main_logo" />-->
+
+            <!--&lt;!&ndash; 나의 활동 &ndash;&gt;-->
+            <!--<com.github.clans.fab.FloatingActionButton-->
+            <!--android:id="@+id/fab_act_main_activity"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_toLeftOf="@+id/fab_act_main_information"-->
+            <!--android:src="@drawable/main_menu_select01"-->
+            <!--app:fab_colorNormal="@android:color/transparent"-->
+            <!--app:fab_colorPressed="@android:color/transparent"-->
+            <!--app:fab_showShadow="false" />-->
+
+            <!--&lt;!&ndash; 나의 정보 &ndash;&gt;-->
+            <!--<com.github.clans.fab.FloatingActionButton-->
+            <!--android:id="@+id/fab_act_main_information"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_toLeftOf="@+id/fab_act_main_item"-->
+            <!--android:src="@drawable/main_menu_select02"-->
+            <!--app:fab_colorNormal="@android:color/transparent"-->
+            <!--app:fab_colorPressed="@android:color/transparent"-->
+            <!--app:fab_showShadow="false" />-->
+
+            <!--&lt;!&ndash; 아이템 &ndash;&gt;-->
+            <!--<com.github.clans.fab.FloatingActionButton-->
+            <!--android:id="@+id/fab_act_main_item"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_toLeftOf="@+id/fab_act_main_more"-->
+            <!--android:src="@drawable/main_menu_select03"-->
+            <!--app:fab_colorNormal="@android:color/transparent"-->
+            <!--app:fab_colorPressed="@android:color/transparent"-->
+            <!--app:fab_showShadow="false" />-->
+
+            <!--&lt;!&ndash; 더보기 &ndash;&gt;-->
+            <!--<com.github.clans.fab.FloatingActionButton-->
+            <!--android:id="@+id/fab_act_main_more"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_alignParentRight="true"-->
+            <!--android:src="@drawable/main_menu_select04"-->
+            <!--app:fab_colorNormal="@android:color/transparent"-->
+            <!--app:fab_colorPressed="@android:color/transparent"-->
+            <!--app:fab_showShadow="false" />-->
+            <!--</RelativeLayout>-->
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

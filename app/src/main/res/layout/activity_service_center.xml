@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".servicecenter.view.ServiceCenterActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.dmonster.darling.honey.customview.CustomToolBar
+            android:id="@+id/ctb_act_service_center_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true" />
+
+        <androidx.core.widget.NestedScrollView
+            style="@style/NestedScrollViewTheme"
+            android:layout_below="@id/ctb_act_service_center_toolbar">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <!-- 안내 문구 -->
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/bg_line_bottom"
+                    android:elevation="10dp"
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:padding="24dp">
+
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:layout_width="250dp"
+                        android:layout_height="wrap_content"
+                        android:text="@string/service_center_title_content"
+                        android:alpha="0.64"
+                        android:textSize="@dimen/text_xsmall"
+                        android:textColor="@color/color_main"  android:letterSpacing="-0.02"
+                        tools:ignore="SpUsage" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:paddingLeft="@dimen/default_margin_20dp"
+                    android:paddingRight="@dimen/default_margin_20dp"
+                    android:paddingBottom="@dimen/default_margin_20dp">
+
+                    <!-- 이메일 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="28dp">
+
+                        <TextView
+                                style="@style/baseTextViewStyle"
+                            android:layout_width="@dimen/default_margin_120dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/service_center_email"
+                            android:textSize="@dimen/text_large"
+                            android:textColor="@color/color_main"
+                            android:letterSpacing="-0.03"
+                            android:alpha="0.9"
+                            android:textStyle="bold"
+                            tools:ignore="SpUsage" />
+
+                        <TextView
+                                style="@style/baseTextViewStyle"
+                            android:id="@+id/tv_act_service_center_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/default_margin_10dp"
+                            android:singleLine="true"
+                            android:textSize="@dimen/text_normal"
+                            android:textColor="@color/color_main"
+                            android:letterSpacing="-0.03"
+                            android:alpha="0.75"
+                            tools:ignore="SpUsage" />
+                    </LinearLayout>
+
+                    <!-- 고객센터 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_margin_10dp"
+                        android:visibility="gone">
+
+                        <TextView
+                                style="@style/baseTextViewStyle"
+                            android:layout_width="@dimen/default_margin_120dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/service_center_phone"
+                            android:textSize="@dimen/text_large"
+                            android:textColor="@color/color_main"
+                            android:letterSpacing="-0.03"
+                            android:alpha="0.9"
+                            android:textStyle="bold"
+                            tools:ignore="SpUsage" />
+
+                        <TextView
+                                style="@style/baseTextViewStyle"
+                            android:id="@+id/tv_act_service_center_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/default_margin_10dp"
+                            android:singleLine="true"
+                            android:textSize="@dimen/text_normal"
+                            android:textColor="@color/color_main"
+                            android:letterSpacing="-0.03"
+                            android:alpha="0.75"
+                            tools:ignore="SpUsage" />
+                    </LinearLayout>
+
+                    <!-- 통신판매신고서 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_margin_10dp"
+                        android:visibility="gone">
+
+                        <TextView
+                                style="@style/baseTextViewStyle"
+                            android:layout_width="@dimen/default_margin_120dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/service_center_communication"
+                            android:textSize="@dimen/text_normal"
+                            android:textStyle="bold"
+                            tools:ignore="SpUsage" />
+
+                        <TextView
+                                style="@style/baseTextViewStyle"
+                            android:id="@+id/tv_act_service_center_communication"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/default_margin_10dp"
+                            android:singleLine="true"
+                            android:textSize="@dimen/text_normal"
+                            tools:ignore="SpUsage" />
+                    </LinearLayout>
+
+                    <!-- 사업자등록번호 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_margin_10dp">
+
+                        <TextView
+                                style="@style/baseTextViewStyle"
+                            android:layout_width="@dimen/default_margin_120dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/service_center_business"  android:textSize="@dimen/text_normal"
+                            android:textColor="@color/color_main"
+                            android:letterSpacing="-0.03"
+
+                            android:alpha="0.9"
+                            android:textStyle="bold"
+                            tools:ignore="SpUsage" />
+
+                        <TextView
+                                style="@style/baseTextViewStyle"
+                            android:id="@+id/tv_act_service_center_business"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/default_margin_10dp"
+                            android:singleLine="true"
+                            android:alpha="0.75"
+                            android:textSize="@dimen/text_normal"
+                            android:textColor="@color/color_main"
+                            android:letterSpacing="-0.03"
+                            android:lineSpacingExtra="7dp"
+                            tools:ignore="SpUsage" />
+                    </LinearLayout>
+
+                    <!-- 이용약관 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="25dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                                style="@style/baseTextViewStyle"
+                            android:layout_width="@dimen/default_margin_120dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/service_center_agreement"
+                            android:textSize="@dimen/text_large"
+                            android:textColor="@color/color_main"
+                            android:letterSpacing="-0.02"
+                            android:alpha="0.75"
+                            tools:ignore="SpUsage" />
+
+                        <TextView
+                                style="@style/baseTextViewStyle"
+                            android:id="@+id/tv_act_service_center_agreement"
+                            android:layout_width="@dimen/default_margin_90dp"
+                            android:layout_height="@dimen/text_size_30dp"
+                            android:layout_marginLeft="@dimen/default_margin_10dp"
+                            android:background="@drawable/bg_border_round_cornflower"
+                            android:gravity="center"
+                            android:text="@string/join_agreement_look"
+                            android:textSize="@dimen/text_small"
+                            android:textColor="@color/cornflower"
+                            android:letterSpacing="-0.03"
+                            tools:ignore="SpUsage" />
+                    </LinearLayout>
+
+                    <!-- 개인정보취급방침 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_margin_10dp"
+                        android:gravity="center_vertical">
+
+                        <TextView
+                                style="@style/baseTextViewStyle"
+                            android:layout_width="@dimen/default_margin_120dp"
+                            android:layout_height="wrap_content"
+                            android:alpha="0.75"
+                            android:letterSpacing="-0.02"
+                            android:text="@string/service_center_personal"
+                            android:textColor="@color/color_main"
+                            android:textSize="@dimen/text_large"
+                            tools:ignore="SpUsage" />
+
+                        <TextView
+                                style="@style/baseTextViewStyle"
+                            android:id="@+id/tv_act_service_center_personal"
+                            android:layout_width="@dimen/default_margin_90dp"
+                            android:layout_height="@dimen/text_size_30dp"
+                            android:layout_marginLeft="@dimen/default_margin_10dp"
+                            android:background="@drawable/bg_border_round_cornflower"
+                            android:gravity="center"
+                            android:text="@string/join_agreement_look"
+                            android:textSize="@dimen/text_small"
+                            android:textColor="@color/cornflower"
+                            android:letterSpacing="-0.03"
+                            tools:ignore="SpUsage" />
+                    </LinearLayout>
+
+                    <!-- 위치기반서비스 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_margin_10dp"
+                        android:gravity="center_vertical"
+                        android:visibility="gone">
+
+                        <TextView
+                                style="@style/baseTextViewStyle"
+                            android:layout_width="@dimen/default_margin_120dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/service_center_location"
+                            android:textSize="@dimen/text_large"
+                            android:textStyle="bold"
+                            tools:ignore="SpUsage" />
+
+                        <TextView
+                                style="@style/baseTextViewStyle"
+                            android:layout_width="@dimen/default_margin_90dp"
+                            android:layout_height="@dimen/text_size_30dp"
+                            android:layout_marginLeft="@dimen/default_margin_10dp"
+                            android:background="@drawable/btn_select_basic01"
+                            android:gravity="center"
+                            android:text="@string/join_agreement_look"
+                            android:textColor="@color/select_text_color01"
+                            android:textSize="@dimen/text_normal"
+                            tools:ignore="SpUsage" />
+                    </LinearLayout>
+
+                    <!-- 공지사항 바로가기 -->
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:id="@+id/tv_act_service_center_inquiry"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/default_margin_50dp"
+                        android:layout_marginTop="@dimen/default_margin_25dp"
+                        android:padding="5dp"
+                        android:background="@drawable/bg_btn_pink_purple"
+                        android:gravity="center"
+                        android:textColor="@color/color_white"
+                        android:text="@string/service_inquiry"
+                        android:textSize="@dimen/text_xlarge"
+                        android:elevation="3dp"
+                        android:letterSpacing="-0.02"
+                        tools:ignore="SpUsage" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:visibility="gone"
+                        android:layout_marginTop="@dimen/default_margin_15dp"
+                        android:orientation="horizontal">
+
+                        <!-- 1:1 문의 -->
+                        <ImageView
+                            android:layout_width="@dimen/default_margin_0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:background="@drawable/btn_mypage_dormant" />
+
+                        <!-- 자주묻는질문 -->
+                        <ImageView
+                            android:layout_width="@dimen/default_margin_0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/default_margin_10dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/btn_mypage_withdrawal" />
+                    </LinearLayout>
+
+                    <!-- 고객센터 전화걸기 -->
+                    <Button
+                        android:id="@+id/btn_act_service_center_call"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/default_margin_50dp"
+                        android:layout_marginLeft="@dimen/default_margin_20dp"
+                        android:layout_marginTop="@dimen/default_margin_10dp"
+                        android:layout_marginRight="@dimen/default_margin_20dp"
+                        android:background="@drawable/dialog_enter_btn"
+                        android:text="@string/service_center_call"
+                        android:textColor="@color/color_white"
+                        android:textSize="@dimen/text_xlarge"
+                        android:visibility="gone"
+                        tools:ignore="SpUsage" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <!-- 프로그래스바 -->
+        <LinearLayout
+            android:id="@+id/ll_act_service_center_progress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:visibility="gone">
+
+            <ProgressBar
+                android:layout_width="@dimen/progress_size"
+                android:layout_height="@dimen/progress_size" />
+        </LinearLayout>
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

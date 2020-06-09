@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <!-- 날짜 -->
+            <RelativeLayout
+                android:id="@+id/rl_item_new_member_date"
+                android:layout_width="match_parent"
+                android:layout_height="27dp"
+                android:layout_marginTop="@dimen/default_margin_21dp"
+                android:background="@color/color_gray70">
+
+                <!-- 날짜 -->
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:id="@+id/tv_item_new_member_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                 android:layout_centerInParent="true"
+                    android:alpha="0.5"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginBottom="6dp"
+                    android:textColor="@color/color_main"
+                    android:textSize="@dimen/text_small"
+                    tools:ignore="SpUsage" />
+
+
+            </RelativeLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <!-- 프로필 이미지 -->
+                <de.hdodenhof.circleimageview.CircleImageView
+            android:src="@drawable/img_base"
+                    android:id="@+id/civ_item_new_member_image"
+                    android:layout_width="53dp"
+                    android:layout_height="53dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginTop="16dp"
+                    app:civ_border_color="@color/color_gray"
+                    app:civ_border_width="@dimen/default_margin_1dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <!-- 결혼, 재혼 -->
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:id="@+id/tv_item_new_member_marry"
+                    android:layout_width="30dp"
+                    android:layout_height="20dp"
+                    android:gravity="center"
+                    android:textColor="@color/color_white"
+                    android:textSize="@dimen/text_xxsmall"
+                    app:layout_constraintBottom_toBottomOf="@+id/civ_item_new_member_image"
+                    app:layout_constraintEnd_toEndOf="@+id/civ_item_new_member_image"
+                    app:layout_constraintStart_toEndOf="@+id/civ_item_new_member_image"
+                    tools:ignore="SpUsage" />
+
+                <LinearLayout
+                    android:id="@+id/linearLayout2"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginLeft="3dp"
+                    android:gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_item_new_member_good"
+                    app:layout_constraintStart_toEndOf="@+id/tv_item_new_member_marry"
+                    app:layout_constraintTop_toTopOf="@+id/civ_item_new_member_image">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <!-- 대화명 -->
+                        <TextView
+                            style="@style/baseTextViewTitleStyle"
+                            android:id="@+id/tv_item_new_member_talk_id"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:textColor="@color/color_main"
+                            android:textSize="@dimen/text_large"
+                            android:textStyle="bold"
+                            tools:ignore="SpUsage" />
+
+                        <!-- 지역, 나이 -->
+                        <TextView
+                                style="@style/baseTextViewStyle"
+                            android:id="@+id/tv_item_new_member_area_age"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/default_margin_3dp"
+                            android:layout_toRightOf="@+id/tv_item_new_member_talk_id"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:textColor="@color/color_main"
+                            android:textSize="@dimen/text_large"
+                            tools:ignore="SpUsage" />
+                    </RelativeLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="7dp"
+                            android:layout_height="7dp"
+                            android:src="@drawable/ic_circle"
+                            android:tint="@color/dark_peach" />
+
+                        <!-- 시간 -->
+                        <TextView
+                                style="@style/baseTextViewStyle"
+                            android:id="@+id/tv_item_new_member_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:alpha="0.65"
+                            android:paddingStart="4dp"
+                            android:paddingLeft="4dp"
+                            android:textColor="@color/accent"
+                            android:textSize="@dimen/text_small"
+                            tools:ignore="SpUsage" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 호감, 관심있어요 버튼 -->
+                <LinearLayout
+                    android:id="@+id/btn_item_new_member_good"
+                    android:layout_width="69dp"
+                    android:layout_height="36dp"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/bg_round_btn_accent"
+                    android:gravity="center"
+                    android:scaleX="0.9"
+                    android:scaleY="0.9"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_item_new_member_talk"
+                    app:layout_constraintTop_toTopOf="@+id/civ_item_new_member_image">
+
+                    <ImageView
+                        android:id="@+id/iv_item_new_member_good"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:paddingEnd="2dp"
+                        android:paddingRight="2dp"
+                        android:src="@drawable/ic_heart" />
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:id="@+id/tv_item_new_member_good"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:letterSpacing="-0.02"
+                        android:paddingStart="@dimen/default_margin_2dp"
+                        android:paddingLeft="@dimen/default_margin_2dp"
+                        android:text="관심"
+                        android:textColor="@color/color_white"
+                        android:textSize="@dimen/text_normal"
+                        tools:ignore="SpUsage" />
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/btn_item_new_member_talk"
+                    android:layout_width="69dp"
+                    android:layout_height="36dp"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/bg_btn_soft"
+                    android:gravity="center"
+                    android:scaleX="0.9"
+                    android:scaleY="0.9"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/civ_item_new_member_image">
+
+                    <ImageView
+                        android:id="@+id/lv_item_new_member_talk"
+                        android:layout_width="16dp"
+                        android:layout_height="wrap_content"
+                        android:adjustViewBounds="true"
+                        android:paddingEnd="2dp"
+                        android:paddingRight="2dp"
+                        android:src="@drawable/ic_talk" />
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:id="@+id/tv_item_new_member_talk"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical|start"
+                        android:letterSpacing="-0.02"
+                        android:text="톡하기"
+                        android:textColor="@color/color_white"
+                        android:textSize="@dimen/text_normal"
+                        tools:ignore="SpUsage" />
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

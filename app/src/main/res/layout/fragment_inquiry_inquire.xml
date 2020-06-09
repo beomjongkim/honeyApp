@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".inquiry.view.InquiryMenu01Fragment">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.core.widget.NestedScrollView
+            style="@style/NestedScrollViewTheme"
+            android:layout_above="@+id/btn_frag_inquiry_inquire">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/default_margin_20dp"
+                android:paddingRight="@dimen/default_margin_20dp">
+
+                <!-- 문의종류 선택 -->
+                <RelativeLayout
+                    android:id="@+id/rl_frag_inquiry_inquire_kind"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_margin_20dp"
+                    android:background="@drawable/join_btn">
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:id="@+id/tv_frag_inquiry_inquire_kind"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/default_margin_10dp"
+                        android:layout_marginRight="@dimen/default_margin_10dp"
+                        android:layout_toLeftOf="@+id/iv_frag_inquiry_inquire_kind_arrow"
+                        android:text="@string/inquiry_inquire_kind"
+                        android:alpha="0.35"
+                        android:textColor="@color/color_black"
+                        android:textSize="@dimen/text_large"
+                        tools:ignore="SpUsage" />
+
+                    <ImageView
+                        android:id="@+id/iv_frag_inquiry_inquire_kind_arrow"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/default_margin_10dp"
+                        android:background="@drawable/notice_down_arrow_img" />
+                </RelativeLayout>
+
+                <!-- 문의내용 -->
+                <EditText
+                                style="@style/baseTextViewStyle"
+                    android:id="@+id/et_frag_inquiry_inquire_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_margin_10dp"
+                    android:background="@drawable/join_btn"
+                    android:gravity="top"
+                    android:maxHeight="@dimen/default_margin_300dp"
+                    android:minHeight="@dimen/default_margin_200dp"
+                    android:padding="@dimen/default_margin_10dp"
+                    android:textSize="@dimen/text_large"
+                    tools:ignore="SpUsage" />
+
+                <!-- 핸드폰번호 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_margin_10dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/inquiry_inquire_phone"
+                        android:textColor="@color/color_black"
+                        android:textSize="@dimen/text_large"
+                        android:alpha="0.7"
+                        tools:ignore="SpUsage" />
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/default_margin_5dp"
+                        android:text="@string/inquiry_inquire_phone_compulsory"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/text_large"
+                        android:alpha="0.7"
+                        tools:ignore="SpUsage" />
+
+                    <!-- 번호 입력 -->
+                    <EditText
+                                style="@style/baseTextViewStyle"
+                        android:id="@+id/et_frag_inquiry_inquire_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#59000000"
+                        android:layout_marginLeft="@dimen/default_margin_10dp"
+                        android:background="@drawable/join_btn"
+                        android:hint="@string/hint_inquiry_inquire_phone"
+                        android:inputType="phone"
+                        android:maxLength="15"
+                        android:maxLines="1"
+                        android:padding="6dp"
+                        android:singleLine="true"
+                        android:textSize="@dimen/text_normal"
+                        tools:ignore="SpUsage" />
+                </LinearLayout>
+
+                <!-- 이미지등록 -->
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_margin_15dp"
+                    android:alpha="0.7"
+                    android:textColor="@color/color_black"
+                    android:text="@string/inquiry_inquire_image"
+                    android:textSize="@dimen/text_large"
+                    tools:ignore="SpUsage" />
+
+                <!-- 파일선택 -->
+                <RelativeLayout
+                    android:id="@+id/rl_frag_inquiry_inquire_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_margin_5dp"
+                    android:background="@drawable/join_btn">
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:id="@+id/tv_frag_inquiry_inquire_image"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginLeft="@dimen/default_margin_10dp"
+                        android:layout_marginRight="@dimen/default_margin_10dp"
+                        android:layout_toLeftOf="@+id/iv_frag_inquiry_inquire_image_plus"
+                        android:text="@string/inquiry_inquire_image_file"
+                        android:textSize="@dimen/text_normal"
+                        android:textColor="@color/color_black"
+                        android:alpha="0.35"
+                        android:letterSpacing="-0.02"
+                        tools:ignore="SpUsage" />
+
+                    <ImageView
+                        android:id="@+id/iv_frag_inquiry_inquire_image_plus"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/default_margin_10dp"
+                        android:background="@drawable/inquiry_image_plus_img" />
+                </RelativeLayout>
+
+                <!-- 안내 문구 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="end"
+                    android:padding="@dimen/default_margin_10dp">
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="end"
+                        android:text="@string/inquiry_inquire_image_content"
+                        android:textSize="@dimen/text_xsmall"
+                        android:textColor="@color/color_black"
+                        android:alpha="0.35"
+                        android:letterSpacing="-0.02"
+                        tools:ignore="SpUsage" />
+                </LinearLayout>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <!-- 문의하기 -->
+        <Button
+            android:id="@+id/btn_frag_inquiry_inquire"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_margin_50dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/bg_pink_purple"
+            android:text="@string/inquiry_title_inquire"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/text_xlarge"
+            tools:ignore="SpUsage" />
+
+        <!-- 프로그래스바 -->
+        <LinearLayout
+            android:id="@+id/ll_frag_inquiry_inquire_progress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:visibility="gone">
+
+            <ProgressBar
+                android:layout_width="@dimen/progress_size"
+                android:layout_height="@dimen/progress_size" />
+        </LinearLayout>
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

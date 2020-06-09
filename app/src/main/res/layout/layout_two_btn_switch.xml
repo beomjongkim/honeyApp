@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="twoBtnSwitchVM"
+            type="com.dmonster.darling.honey.common.viewmodel.TwoBtnSwitchVM" />
+    </data>
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:background="@color/color_white"
+        android:elevation="@dimen/default_margin_20dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <Button
+            android:id="@+id/button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:alpha="@{twoBtnSwitchVM.isSwitched ? 0.35f : 1f}"
+            android:background="@color/color_transparent"
+            android:onClick="@{()->twoBtnSwitchVM.onClickFirst()}"
+            android:text="@{twoBtnSwitchVM.firstBtnTitle}"
+            android:textColor="@{twoBtnSwitchVM.isSwitched ? @color/color_black : @color/cornflower}"
+            android:textSize="@dimen/text_large"
+            tools:ignore="SpUsage" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:alpha="0.45"
+            android:background="@color/color_gray" />
+
+        <Button
+            android:id="@+id/button2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:alpha="@{twoBtnSwitchVM.isSwitched ? 1f : 0.35f}"
+            android:background="@color/color_transparent"
+            android:onClick="@{()->twoBtnSwitchVM.onClickSecond()}"
+            android:text="@{twoBtnSwitchVM.secondBtnTitle}"
+            android:textColor="@{twoBtnSwitchVM.isSwitched ? @color/cornflower : @color/color_black}"
+            android:textSize="@dimen/text_large"
+            tools:ignore="SpUsage" />
+    </LinearLayout>
+</layout>

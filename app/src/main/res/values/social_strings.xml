@@ -1,0 +1,15 @@
+<resources>
+    <!-- 네이버 로그인 -->
+    <string name="NAVER_CLIENT_ID" translatable="false">D3Ruxl9pfBY9pmsf_Y_x</string>
+    <string name="NAVER_CLIENT_SECRET" translatable="false">cunLm57kqj</string>
+    <string name="NAVER_CLIENT_NAME" translatable="false">자기야</string>
+
+    <!-- 카카오 로그인 -->
+    <string name="kakao_app_key" translatable="false">56fc2e99bbd637833ffc82b33b8ee705</string>
+
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+
+<!--    google 로그인 -->
+    <string name="google_server_client_id">559271288753-32ce64q4jl1e39kj80gesf08p1f72pq3.apps.googleusercontent.com</string>
+
+</resources>

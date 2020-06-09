@@ -1,0 +1,612 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".information.view.MyInfoActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.dmonster.darling.honey.customview.CustomToolBar
+            android:id="@+id/ctb_act_my_info_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true" />
+
+        <androidx.core.widget.NestedScrollView
+            style="@style/NestedScrollViewTheme"
+            android:layout_above="@+id/btn_act_my_info_complete"
+            android:layout_below="@+id/ctb_act_my_info_toolbar">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/text_large"
+                android:paddingRight="@dimen/text_large">
+
+                <!-- 이메일 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_margin_10dp"
+                    android:orientation="vertical">
+
+                    <!-- 이메일 Title -->
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.9"
+                        android:letterSpacing="-0.03"
+                        android:text="@string/my_info_email"
+                        android:textColor="@color/color_main"
+                        android:textSize="@dimen/text_large"
+                        android:textStyle="bold"
+                        tools:ignore="SpUsage" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/default_margin_40dp"
+                        android:layout_marginTop="10dp">
+
+                        <TextView
+                                style="@style/baseTextViewStyle"
+                            android:id="@+id/tv_act_my_info_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+
+                            android:layout_marginRight="@dimen/default_margin_10dp"
+                            android:layout_toLeftOf="@+id/tv_act_my_info_logout"
+
+                            android:alpha="0.75"
+                            android:ellipsize="end"
+                            android:gravity="center_vertical"
+                            android:letterSpacing="-0.03"
+                            android:maxLines="1"
+                            android:padding="@dimen/default_margin_5dp"
+                            android:singleLine="true"
+                            android:textColor="@color/color_main"
+                            android:textSize="@dimen/text_normal"
+                            tools:ignore="SpUsage" />
+
+                        <!-- 로그아웃 -->
+                        <TextView
+                                style="@style/baseTextViewStyle"
+                            android:id="@+id/tv_act_my_info_logout"
+                            android:layout_width="@dimen/default_margin_100dp"
+                            android:layout_height="@dimen/default_margin_30dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_alignParentBottom="true"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/bg_border_round_cornflower"
+                            android:gravity="center"
+                            android:letterSpacing="-0.03"
+                            android:text="@string/my_info_logout"
+                            android:textColor="@color/cornflower"
+                            android:textSize="@dimen/text_small"
+                            tools:ignore="SpUsage" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <!-- 비밀번호 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_margin_10dp"
+                    android:orientation="vertical">
+
+                    <!-- 비밀번호 Title -->
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:alpha="0.9"
+                        android:letterSpacing="-0.03"
+                        android:text="@string/my_info_password_title"
+                        android:textColor="@color/color_main"
+                        android:textSize="@dimen/text_large"
+                        android:textStyle="bold"
+                        tools:ignore="SpUsage" />
+
+                    <!-- 기존 비밀번호 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/default_margin_40dp"
+                        android:layout_marginTop="10dp">
+
+                        <!-- 기존 비밀번호 체크 -->
+
+                        <!-- 기존 비밀번호 입력 -->
+                        <EditText
+                                style="@style/baseTextViewStyle"
+                            android:id="@+id/et_act_my_info_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+
+                            android:background="@drawable/bg_border_round"
+                            android:hint="@string/hint_my_info_password"
+                            android:inputType="textPassword"
+                            android:letterSpacing="-0.03"
+                            android:maxLength="10"
+                            android:maxLines="1"
+                            android:paddingStart="20dp"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="@dimen/default_margin_10dp"
+                            android:singleLine="true"
+                            android:textColor="#66414141"
+                            android:textSize="@dimen/text_small"
+                            tools:ignore="SpUsage" />
+                    </LinearLayout>
+
+                    <!-- 새 비밀번호 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/default_margin_40dp"
+                        android:layout_marginTop="10dp">
+
+                        <!-- 새 비밀번호 체크 -->
+
+                        <!-- 새 비밀번호 입력 -->
+                        <EditText
+                                style="@style/baseTextViewStyle"
+                            android:id="@+id/et_act_my_info_new_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_border_round"
+                            android:hint="@string/hint_my_info_password_new"
+                            android:inputType="textPassword"
+                            android:letterSpacing="-0.03"
+                            android:maxLength="10"
+                            android:maxLines="1"
+                            android:paddingStart="20dp"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="@dimen/default_margin_10dp"
+                            android:singleLine="true"
+                            android:textColor="#66414141"
+                            android:textSize="@dimen/text_small"
+                            tools:ignore="SpUsage" />
+                    </LinearLayout>
+
+                    <!-- 새 비밀번호 확인 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/default_margin_40dp"
+                        android:layout_marginTop="10dp">
+
+                        <!-- 새 비밀번호 체크 -->
+
+                        <!-- 새 비밀번호 입력 -->
+                        <EditText
+                                style="@style/baseTextViewStyle"
+                            android:id="@+id/et_act_my_info_new_password_check"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_border_round"
+                            android:hint="@string/hint_my_info_password_new_check"
+                            android:inputType="textPassword"
+                            android:letterSpacing="-0.03"
+                            android:maxLength="10"
+                            android:maxLines="1"
+                            android:paddingStart="20dp"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="@dimen/default_margin_10dp"
+                            android:singleLine="true"
+                            android:textColor="#66414141"
+                            android:textSize="@dimen/text_small"
+                            tools:ignore="SpUsage" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 대화명 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_margin_10dp"
+                    android:orientation="vertical">
+
+                    <!-- 대화명 Title -->
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="-0.03"
+                        android:text="@string/my_info_talk_id"
+                        android:textColor="@color/color_main"
+                        android:textSize="@dimen/text_large"
+                        android:textStyle="bold"
+                        tools:ignore="SpUsage" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/default_margin_40dp"
+                        android:layout_marginTop="10dp">
+
+                        <!-- 대화명 체크 -->
+
+                        <!-- 대화명 입력 -->
+                        <EditText
+                                style="@style/baseTextViewStyle"
+                            android:id="@+id/et_act_my_info_talk_id"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_border_round"
+                            android:hint="@string/hint_join_talk"
+                            android:letterSpacing="-0.03"
+                            android:maxLength="10"
+                            android:maxLines="1"
+                            android:paddingStart="20dp"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="@dimen/default_margin_10dp"
+                            android:singleLine="true"
+                            android:textColor="#66414141"
+                            android:textSize="@dimen/text_small"
+                            tools:ignore="SpUsage" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 나이 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_margin_10dp"
+                    android:orientation="vertical">
+
+                    <!-- 나이 Title -->
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="-0.03"
+                        android:text="@string/my_info_age"
+                        android:textColor="@color/color_main"
+                        android:textSize="@dimen/text_large"
+                        android:textStyle="bold"
+                        tools:ignore="SpUsage" />
+
+                    <!-- 나이 입력 -->
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:id="@+id/tv_act_my_info_age"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/default_margin_40dp"
+                        android:layout_marginTop="10dp"
+
+                        android:ellipsize="end"
+                        android:gravity="center_vertical"
+                        android:maxLines="1"
+                        android:padding="@dimen/default_margin_5dp"
+                        android:singleLine="true"
+                        android:textSize="@dimen/text_normal"
+                        tools:ignore="SpUsage" />
+                </LinearLayout>
+
+                <!-- 회원유형 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_margin_10dp"
+                    android:orientation="vertical">
+
+                    <!-- 회원유형 Title -->
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="-0.03"
+                        android:text="@string/my_info_type"
+                        android:textColor="@color/color_main"
+                        android:textSize="@dimen/text_large"
+                        android:textStyle="bold"
+                        tools:ignore="SpUsage" />
+
+                    <!-- 회원유형 선택 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="48dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bg_border_round"
+                        android:orientation="horizontal">
+
+                        <!-- 결혼 -->
+                        <CheckBox
+                            android:id="@+id/cb_act_my_info_marry"
+                            android:layout_width="@dimen/default_margin_0dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="bottom"
+                            android:layout_weight="1"
+                            android:button="@color/color_transparent"
+                            android:gravity="center"
+                            android:text="@string/my_info_type_marry"
+                            android:textColor="@color/check_text_color02"
+                            android:textSize="@dimen/text_normal"
+                            tools:ignore="SpUsage" />
+
+                        <FrameLayout
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/color_gray" />
+                        <!-- 재혼 -->
+                        <CheckBox
+                            android:id="@+id/cb_act_my_info_remarry"
+                            android:layout_width="@dimen/default_margin_0dp"
+                            android:layout_height="match_parent"
+                            android:layout_gravity="bottom"
+                            android:layout_weight="1"
+                            android:button="@color/color_transparent"
+                            android:gravity="center"
+                            android:text="@string/my_info_type_remarry"
+                            android:textColor="@color/check_text_color02"
+                            android:textSize="@dimen/text_normal"
+                            tools:ignore="SpUsage" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 지역 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_margin_10dp"
+                    android:orientation="vertical">
+
+                    <!-- 지역 Title -->
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="-0.03"
+                        android:text="@string/my_info_area"
+                        android:textColor="@color/color_main"
+                        android:textSize="@dimen/text_large"
+                        android:textStyle="bold"
+                        tools:ignore="SpUsage" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bg_border_round"
+                        android:orientation="horizontal">
+
+                        <!-- 지역01 -->
+                        <RelativeLayout
+                            android:id="@+id/rl_act_my_info_area01"
+                            android:layout_width="@dimen/default_margin_0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+
+                            <TextView
+                                style="@style/baseTextViewStyle"
+                                android:id="@+id/tv_act_my_info_area01"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"
+                                android:alpha="0.5"
+                                android:ellipsize="end"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:padding="@dimen/default_margin_5dp"
+                                android:singleLine="true"
+                                android:textColor="@color/color_main"
+                                android:textSize="@dimen/text_normal"
+                                tools:ignore="SpUsage" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="@dimen/default_margin_10dp"
+                                android:background="@drawable/login_arrow" />
+                        </RelativeLayout>
+
+                        <FrameLayout
+                            android:layout_width="1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/color_gray" />
+                        <!-- 지역02 -->
+                        <RelativeLayout
+                            android:id="@+id/rl_act_my_info_area02"
+                            android:layout_width="@dimen/default_margin_0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+
+                            <TextView
+                                style="@style/baseTextViewStyle"
+                                android:id="@+id/tv_act_my_info_area02"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerVertical="true"
+                                android:layout_alignParentRight="true"
+                                android:alpha="0.5"
+                                android:ellipsize="end"
+                                android:gravity="center"
+                                android:maxLines="1"
+                                android:padding="@dimen/default_margin_5dp"
+                                android:singleLine="true"
+                                android:textColor="@color/color_main"
+                                android:textSize="@dimen/text_normal"
+                                tools:ignore="SpUsage" />
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:layout_marginRight="@dimen/default_margin_10dp"
+                                android:background="@drawable/login_arrow" />
+                        </RelativeLayout>
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 핸드폰 번호 변경 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_margin_10dp"
+                    android:orientation="vertical">
+
+                    <!-- 핸드폰 번호 변경 Title -->
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:letterSpacing="-0.03"
+                        android:text="@string/my_info_phone"
+                        android:textColor="@color/color_main"
+                        android:textSize="@dimen/text_large"
+                        android:textStyle="bold"
+                        tools:ignore="SpUsage" />
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/default_margin_40dp"
+                        android:layout_marginTop="10dp">
+
+                        <!-- 휴대폰번호 -->
+                        <TextView
+                                style="@style/baseTextViewStyle"
+                            android:id="@+id/tv_act_my_info_phone"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="@dimen/default_margin_10dp"
+                            android:layout_toLeftOf="@+id/tv_act_my_info_phone_edit"
+                            android:alpha="0.75"
+                            android:ellipsize="end"
+                            android:gravity="center_vertical"
+                            android:letterSpacing="-0.03"
+                            android:maxLines="1"
+                            android:padding="@dimen/default_margin_5dp"
+                            android:singleLine="true"
+                            android:textColor="@color/color_main"
+                            android:textSize="@dimen/text_normal"
+                            tools:ignore="SpUsage" />
+
+                        <!-- 전번 인증 -->
+                        <TextView
+                                style="@style/baseTextViewStyle"
+                            android:id="@+id/tv_act_my_info_phone_edit"
+                            android:layout_width="@dimen/default_margin_100dp"
+                            android:layout_height="@dimen/default_margin_30dp"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:alpha="0.75"
+                            android:background="@drawable/bg_border_round_cornflower"
+                            android:gravity="center"
+                            android:text="@string/my_info_phone_edit"
+                            android:textColor="@color/cornflower"
+                            android:textSize="@dimen/text_normal"
+                            tools:ignore="SpUsage" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_margin_10dp"
+                    android:background="@drawable/bg_border_round"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:id="@+id/ll_act_my_info_dormant"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="10dp">
+                        <!-- 휴면설정 -->
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_dormant"
+                            android:tint="@color/accent"/>
+
+                        <TextView
+                                style="@style/baseTextViewStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="8dp"
+                            android:text="@string/main_more_menu_dormant"
+                            android:textSize="@dimen/text_normal"
+                            android:paddingLeft="8dp"
+                            tools:ignore="SpUsage" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/ll_act_my_info_withdrawal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:padding="10dp">
+                        <!-- 회원탈퇴 -->
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:tint="@color/accent"
+                            android:src="@drawable/ic_withdrawal" />
+
+                        <TextView
+                                style="@style/baseTextViewStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingStart="8dp"
+                            android:textSize="@dimen/text_normal"
+                            android:text="@string/main_more_menu_withdrawal"
+                            android:paddingLeft="8dp"
+                            tools:ignore="SpUsage" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/default_margin_15dp"
+                    android:layout_marginBottom="@dimen/default_margin_10dp"
+                    android:alpha="0.5"
+                    android:letterSpacing="-0.02"
+                    android:text="@string/my_info_content"
+                    android:textColor="@color/color_main"
+                    android:textSize="@dimen/text_small"
+                    tools:ignore="SpUsage" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <!-- 수정완료 -->
+        <Button
+            android:id="@+id/btn_act_my_info_complete"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_margin_50dp"
+            android:layout_alignParentBottom="true"
+            android:background="@drawable/bg_pink_purple"
+            android:text="@string/information_member_modify"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/text_xlarge"
+            tools:ignore="SpUsage" />
+
+        <!-- 프로그래스바 -->
+        <LinearLayout
+            android:id="@+id/ll_act_my_info_progress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:visibility="gone">
+
+            <ProgressBar
+                android:layout_width="@dimen/progress_size"
+                android:layout_height="@dimen/progress_size" />
+        </LinearLayout>
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

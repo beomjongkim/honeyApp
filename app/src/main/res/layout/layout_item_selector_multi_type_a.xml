@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="itemCheckVM"
+            type="com.dmonster.darling.honey.custom_recyclerview.viewmodel.SelectorMultiItemVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".dialog.SelectorAdapter">
+
+        <TextView
+                                style="@style/baseTextViewStyle"
+            android:id="@+id/tv_item_selector_multi_check"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:alpha="@{itemCheckVM.isChecked? 1f : 0.6f}"
+            android:textColor="@{itemCheckVM.isChecked ? @color/color_white : @color/color_black}"
+            android:background ="@{itemCheckVM.isChecked ? @color/colorAccent : @color/color_transparent}"
+            android:button="@color/color_transparent"
+            android:gravity="center"
+            android:lines="2"
+            android:onClick="@{(v)->itemCheckVM.onClick(v)}"
+            android:padding="@dimen/default_margin_5dp"
+            android:text="@{itemCheckVM.title}"
+            android:textSize="@dimen/text_large"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpUsage" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".dialog.ItemLoveDialog">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="@dimen/popup_profile_width"
+            android:layout_height="wrap_content"
+            android:background="@drawable/popup_round"
+            android:orientation="vertical">
+
+            <!-- 러브카드 -->
+            <TextView
+                                style="@style/baseTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin_15dp"
+                android:gravity="center"
+                android:text="@string/popup_love_title"
+                android:textColor="@color/color_main"
+                android:textSize="@dimen/text_xlarge"
+                android:textStyle="bold"
+                tools:ignore="SpUsage" />
+
+            <ImageView
+                android:layout_width="@dimen/item_administration_img_size"
+                android:layout_height="@dimen/item_administration_img_size"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/default_margin_15dp"
+                android:background="@drawable/item_love_img" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin_15dp"
+                android:background="@color/color_sub"
+                android:orientation="vertical"
+                android:padding="@dimen/default_margin_10dp">
+
+                <!-- 러브카드 내용 -->
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/popup_love_content"
+                    android:textColor="@color/color_main"
+                    android:textSize="@dimen/text_normal"
+                    tools:ignore="SpUsage" />
+            </LinearLayout>
+
+            <!-- 매칭률 높음 -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/default_margin_40dp"
+                android:layout_marginTop="@dimen/default_margin_15dp"
+                android:paddingLeft="@dimen/default_margin_15dp"
+                android:paddingRight="@dimen/default_margin_15dp"
+                android:visibility="gone">
+
+                <!-- 매칭률 높음 -->
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/popup_love_item01"
+                    android:textSize="@dimen/text_large"
+                    tools:ignore="SpUsage" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:orientation="horizontal">
+
+                    <!-- 매칭률 높음 구매수량 Down -->
+                    <ImageView
+                        android:id="@+id/iv_dlg_item_love_item01_count_down"
+                        android:layout_width="@dimen/default_margin_40dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/profile_count_down_btn" />
+
+                    <!-- 매칭률 높음 구매수량 개수 -->
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:id="@+id/tv_dlg_item_love_item01_count"
+                        android:layout_width="@dimen/default_margin_40dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_line_up_bottom"
+                        android:gravity="center"
+                        android:maxLength="2"
+                        android:text="@string/popup_profile_count_default"
+                        android:textSize="@dimen/text_xlarge"
+                        android:textStyle="bold"
+                        tools:ignore="SpUsage" />
+
+                    <!-- 매칭률 높음 구매수량 Up -->
+                    <ImageView
+                        android:id="@+id/iv_dlg_item_love_item01_count_up"
+                        android:layout_width="@dimen/default_margin_40dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/profile_count_up_btn" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <!-- 매칭률 매우높음 -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/default_margin_40dp"
+                android:layout_marginTop="@dimen/default_margin_15dp"
+                android:paddingLeft="@dimen/default_margin_15dp"
+                android:paddingRight="@dimen/default_margin_15dp"
+                android:visibility="gone">
+
+                <!-- 매칭률 매우높음 -->
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    android:text="@string/popup_love_item02"
+                    android:textSize="@dimen/text_large"
+                    tools:ignore="SpUsage" />
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentRight="true"
+                    android:orientation="horizontal">
+
+                    <!-- 매칭률 매우높음 구매수량 Down -->
+                    <ImageView
+                        android:id="@+id/iv_dlg_item_love_item02_count_down"
+                        android:layout_width="@dimen/default_margin_40dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/profile_count_down_btn" />
+
+                    <!-- 매칭률 매우높음 구매수량 개수 -->
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:id="@+id/tv_dlg_item_love_item02_count"
+                        android:layout_width="@dimen/default_margin_40dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/bg_line_up_bottom"
+                        android:gravity="center"
+                        android:maxLength="2"
+                        android:text="@string/popup_talk_count_default"
+                        android:textSize="@dimen/text_xlarge"
+                        android:textStyle="bold"
+                        tools:ignore="SpUsage" />
+
+                    <!-- 매칭률 매우높음 구매수량 Up -->
+                    <ImageView
+                        android:id="@+id/iv_dlg_item_love_item02_count_up"
+                        android:layout_width="@dimen/default_margin_40dp"
+                        android:layout_height="match_parent"
+                        android:background="@drawable/profile_count_up_btn" />
+                </LinearLayout>
+            </RelativeLayout>
+
+            <!-- 코인 -->
+            <TextView
+                                style="@style/baseTextViewStyle"
+                android:id="@+id/tv_dlg_item_love_coin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin_10dp"
+                android:gravity="right"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/default_margin_15dp"
+                android:paddingRight="@dimen/default_margin_15dp"
+                android:singleLine="true"
+                android:textColor="@color/color_main"
+                android:textSize="@dimen/text_xxlarge"
+                android:textStyle="bold"
+                android:visibility="gone"
+                tools:ignore="SpUsage" />
+
+            <!-- 높음 -->
+            <RelativeLayout
+                android:id="@+id/rl_dlg_item_love_item01"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin_15dp"
+                android:background="@drawable/charge_coin_select"
+                android:padding="@dimen/default_margin_5dp">
+
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:id="@+id/tv_dlg_item_love_title01"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="@dimen/default_margin_15dp"
+                    android:text="@string/popup_love_item_title01"
+                    android:textColor="@color/charge_select_text_color"
+                    android:textSize="@dimen/text_large"
+                    tools:ignore="SpUsage" />
+
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:id="@+id/tv_dlg_item_love_price01"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/default_margin_15dp"
+                    android:text="@string/popup_love_item_price01"
+                    android:textColor="@color/select_text_color01"
+                    android:textSize="@dimen/text_xlarge"
+                    tools:ignore="SpUsage" />
+            </RelativeLayout>
+
+            <!-- 매우높음 -->
+            <RelativeLayout
+                android:id="@+id/rl_dlg_item_love_item02"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin_15dp"
+                android:background="@drawable/charge_coin_select"
+                android:padding="@dimen/default_margin_5dp">
+
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:id="@+id/tv_dlg_item_love_title02"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="@dimen/default_margin_15dp"
+                    android:text="@string/popup_love_item_title02"
+                    android:textColor="@color/charge_select_text_color"
+                    android:textSize="@dimen/text_large"
+                    tools:ignore="SpUsage" />
+
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:id="@+id/tv_dlg_item_love_price02"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/default_margin_15dp"
+                    android:text="@string/popup_love_item_price02"
+                    android:textColor="@color/select_text_color01"
+                    android:textSize="@dimen/text_xlarge"
+                    tools:ignore="SpUsage" />
+            </RelativeLayout>
+
+            <!-- 현재보유코인 -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin_15dp"
+                android:background="@color/color_gray"
+                android:padding="@dimen/default_margin_5dp">
+
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="@dimen/default_margin_15dp"
+                    android:text="@string/popup_item_now_coin"
+                    android:textSize="@dimen/text_large"
+                    tools:ignore="SpUsage" />
+
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:id="@+id/tv_dlg_item_love_now_coin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/default_margin_15dp"
+                    android:textSize="@dimen/text_xlarge"
+                    tools:ignore="SpUsage" />
+            </RelativeLayout>
+
+            <!-- 부족한 코인 -->
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_gray"
+                android:padding="@dimen/default_margin_5dp">
+
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:id="@+id/tv_dlg_item_love_lack_coin_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_marginLeft="@dimen/default_margin_15dp"
+                    android:textSize="@dimen/text_large"
+                    tools:ignore="SpUsage" />
+
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:id="@+id/tv_dlg_item_love_lack_coin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_marginRight="@dimen/default_margin_15dp"
+                    android:textSize="@dimen/text_xlarge"
+                    tools:ignore="SpUsage" />
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/default_margin_40dp"
+                android:layout_margin="@dimen/default_margin_15dp"
+                android:orientation="horizontal"
+                android:paddingLeft="@dimen/default_margin_15dp"
+                android:paddingRight="@dimen/default_margin_15dp">
+
+                <!-- 취소 -->
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:id="@+id/tv_dlg_item_love_cancel"
+                    android:layout_width="@dimen/default_margin_0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginRight="@dimen/default_margin_5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_select_basic01"
+                    android:gravity="center"
+                    android:text="@string/popup_profile_cancel"
+                    android:textColor="@color/select_text_color01"
+                    android:textSize="@dimen/text_large"
+                    tools:ignore="SpUsage" />
+
+                <!-- 구매하기 -->
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:id="@+id/tv_dlg_item_love_enter"
+                    android:layout_width="@dimen/default_margin_0dp"
+                    android:layout_height="match_parent"
+                    android:layout_marginLeft="@dimen/default_margin_5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_select_basic02"
+                    android:gravity="center"
+                    android:textColor="@color/select_text_color02"
+                    android:textSize="@dimen/text_large"
+                    tools:ignore="SpUsage" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="popupVM"
+            type="com.dmonster.darling.honey.common.viewmodel.PopupVM" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/tv_viewmodel_notice_title"
+            style="@style/baseTextViewTitleStyle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/text_much_large"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@{popupVM.title}"
+            android:textColor="@color/accent"
+            app:autoSizeTextType="uniform" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_round_btn_accent"
+            android:padding="16dp">
+
+            <TextView
+                android:id="@+id/tv_viewmodel_notice_content"
+                style="@style/baseTextViewStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                android:gravity="center"
+                android:text="@{popupVM.subTitle}"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/text_xlarge"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/tv_viewmodel_notice_click"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.9"
+                tools:ignore="SpUsage" />
+
+            <TextView
+                android:id="@+id/tv_viewmodel_notice_click"
+                style="@style/baseTextViewStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/bg_border_round"
+                android:gravity="center"
+                android:onClick="@{(v)->popupVM.onClickLink(v,popupVM.link)}"
+                android:text="@{popupVM.subTitleTwo}"
+                android:textColor="@color/color_main"
+                android:textSize="@dimen/text_xlarge"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.51"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintWidth_percent="0.9"
+                tools:ignore="SpUsage" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+</layout>

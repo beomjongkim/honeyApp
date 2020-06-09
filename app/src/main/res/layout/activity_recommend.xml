@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_act_recommend_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".myinformation.view.RecommendActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.dmonster.darling.honey.customview.CustomToolBar
+            android:id="@+id/ctb_act_recommend_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true" />
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/srl_act_recommend_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/ctb_act_recommend_toolbar">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:id="@+id/tv_act_recommend_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/default_margin_40dp"
+                    android:background="@drawable/bg_line_bottom"
+                    android:gravity="center_vertical"
+                    android:padding="@dimen/default_margin_10dp"
+                    android:textColor="@color/color_main"
+                    android:textSize="@dimen/text_large"
+                    tools:ignore="SpUsage" />
+
+                <!-- 목록 -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_act_recommend_list"
+                    style="@style/RecyclerViewTheme"
+                    android:layout_below="@+id/tv_act_recommend_number"
+                    android:layout_marginTop="@dimen/default_margin_5dp"
+                    tools:listitem="@layout/item_recommend" />
+
+                <!-- 목록없음 -->
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:id="@+id/tv_act_recommend_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:text="@string/msg_app_no_list"
+                    android:textSize="@dimen/text_xxlarge"
+                    android:visibility="gone"
+                    tools:ignore="SpUsage" />
+            </RelativeLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <!-- 프로그래스바 -->
+        <LinearLayout
+            android:id="@+id/ll_act_recommend_progress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:visibility="gone">
+
+            <ProgressBar
+                android:layout_width="@dimen/progress_size"
+                android:layout_height="@dimen/progress_size" />
+        </LinearLayout>
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,426 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+
+        <variable
+            name="phoneCertVM"
+            type="com.dmonster.darling.honey.join.viewmodel.PhoneCertVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".join.view.SocialJoinActivity">
+
+        <View
+            android:id="@+id/v_act_social_join_top_line"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="@color/color_gray"
+            android:elevation="1dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/gl_act_social_join_top" />
+
+        <ImageView
+            android:id="@+id/iv_act_social_join_logo"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/gl_act_social_join_mid"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/v_act_social_join_top_line"
+            app:layout_constraintVertical_bias="0.47000003"
+            app:layout_constraintWidth_percent="0.27"
+            app:srcCompat="@drawable/naver_logo" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_act_social_join_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.1" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_act_social_join_mid"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_act_social_join_bottom"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.75" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_act_social_join_start"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.05" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_act_social_join_end"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.95" />
+
+        <TextView
+                                style="@style/baseTextViewStyle"
+            android:id="@+id/tv_act_social_join_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="@dimen/text_xlarge"
+
+            app:layout_constraintBottom_toTopOf="@+id/gl_act_social_join_top"
+            app:layout_constraintEnd_toStartOf="@+id/gl_act_social_join_end"
+            app:layout_constraintStart_toStartOf="@+id/gl_act_social_join_start"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.65"
+            tools:ignore="SpUsage" />
+
+        <TextView
+                                style="@style/baseTextViewStyle"
+            android:id="@+id/tv_act_social_join_enter"
+            android:layout_width="0dp"
+            android:layout_height="54dp"
+            android:background="@color/dandelion"
+            android:gravity="center"
+            android:text="@string/dialog_enter"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/text_xlarge"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="SpUsage" />
+
+        <ImageView
+            android:id="@+id/tv_act_social_join_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="16dp"
+            android:rotation="90"
+            android:tint="@color/color_black"
+            app:layout_constraintBottom_toTopOf="@id/gl_act_social_join_top"
+            app:layout_constraintStart_toStartOf="@id/gl_act_social_join_start"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.65"
+            app:srcCompat="@drawable/login_arrow" />
+
+        <LinearLayout
+            android:id="@+id/ll_act_social_join_recommendation"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/default_margin_40dp"
+            android:background="@drawable/bg_border_round"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@id/gl_act_social_join_end"
+            app:layout_constraintStart_toStartOf="@id/gl_act_social_join_start"
+            app:layout_constraintTop_toBottomOf="@+id/ll_act_social_join_gender">
+
+            <EditText
+                                style="@style/baseTextViewStyle"
+                android:id="@+id/et_act_social_join_recommendation"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/color_transparent"
+                android:hint="@string/hint_join_recommendation"
+                android:maxLines="1"
+                android:paddingLeft="@dimen/default_margin_10dp"
+                android:paddingRight="@dimen/default_margin_10dp"
+                android:singleLine="true"
+                android:textSize="@dimen/text_large"
+                tools:ignore="SpUsage" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_act_social_join_gender"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:background="@drawable/bg_border_round"
+            app:layout_constraintBottom_toTopOf="@+id/gl_act_social_join_bottom"
+            app:layout_constraintEnd_toStartOf="@+id/gl_act_social_join_end"
+            app:layout_constraintHeight_percent="0.065"
+            app:layout_constraintStart_toStartOf="@+id/gl_act_social_join_start"
+            app:layout_constraintTop_toBottomOf="@+id/ll_act_social_join_birth_area">
+
+            <!-- 남성 -->
+            <CheckBox
+                android:id="@+id/cb_act_social_join_male"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/color_transparent"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/join_male"
+                android:textColor="@color/check_text_color03"
+                android:textSize="@dimen/text_large"
+                tools:ignore="SpUsage" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/color_gray" />
+            <!-- 여성 -->
+            <CheckBox
+                android:id="@+id/cb_act_social_join_female"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/color_transparent"
+                android:button="@null"
+                android:gravity="center"
+                android:text="@string/join_female"
+                android:textColor="@color/check_text_color03"
+                android:textSize="@dimen/text_large"
+                tools:ignore="SpUsage" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="45dp"
+            android:gravity="start"
+
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toStartOf="@+id/gl_act_social_join_end"
+            app:layout_constraintStart_toStartOf="@+id/gl_act_social_join_start"
+            app:layout_constraintTop_toTopOf="@+id/gl_act_social_join_bottom">
+
+            <CheckBox
+                android:id="@+id/cb_act_social_join_phone_check"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:clickable="false"
+                android:visibility="visible" />
+
+
+            <TextView
+                android:id="@+id/tv_act_social_join_phone_cert"
+                style="@style/joinTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center_vertical"
+                android:text="@string/information_member_phone" />
+
+            <EditText
+                android:id="@+id/et_act_social_join_phone_cert"
+                style="@style/joinTextStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:background="@color/color_gray"
+                android:digits="0123456789"
+                android:gravity="center"
+                android:hint="@string/hint_information_phone"
+                android:inputType="phone"
+                android:maxLength="12"
+                android:padding="@dimen/default_margin_5dp"
+                android:singleLine="true"
+                android:text="@={phoneCertVM.phoneNumber}"
+                android:textSize="@dimen/text_large"
+                tools:ignore="SpUsage" />
+
+            <TextView
+                android:id="@+id/tv_act_social_join_phone_cert_auth"
+                style="@style/joinTextStyle"
+                android:layout_width="@dimen/default_margin_70dp"
+                android:layout_height="match_parent"
+                android:background="@drawable/btn_select_basic01"
+                android:gravity="center"
+                android:onClick="@{(v)->phoneCertVM.onClickCert(v)}"
+                android:text="@string/information_member_phone_auth"
+                android:textColor="@color/select_text_color01"
+                android:textSize="@dimen/text_large"
+                android:textStyle="bold"
+                tools:ignore="SpUsage" />
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_act_social_join_birth_area"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@id/ll_act_social_join_gender"
+            app:layout_constraintEnd_toStartOf="@+id/gl_act_social_join_end"
+            app:layout_constraintHeight_percent="0.065"
+            app:layout_constraintStart_toStartOf="@+id/gl_act_social_join_start"
+            app:layout_constraintTop_toBottomOf="@+id/ll_act_social_join_nickname">
+            <CheckBox
+                android:id="@+id/cb_act_social_join_area_check"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:clickable="false"
+                android:visibility="gone" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/bg_border_round"
+                >
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <!-- 지역 입력 -->
+                    <RelativeLayout
+                        android:id="@+id/rl_act_social_join_area"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingRight="@dimen/default_margin_10dp">
+
+                        <TextView
+                                style="@style/baseTextViewStyle"
+                            android:id="@+id/tv_act_social_join_area"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="@dimen/default_margin_10dp"
+                            android:layout_toLeftOf="@+id/iv_act_social_join_area"
+                            android:ellipsize="end"
+                            android:gravity="center_vertical"
+                            android:hint="@string/hint_join_area"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:singleLine="true"
+                            android:textColorHint="@color/color_main40"
+                            android:textSize="@dimen/text_large"
+                            tools:ignore="SpUsage" />
+
+                        <ImageView
+                            android:id="@+id/iv_act_social_join_area"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/login_arrow" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="match_parent"
+                    android:background="@color/color_gray" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:gravity="center">
+
+                    <!-- 태어난 년도 체크 -->
+
+                    <CheckBox
+                        android:id="@+id/cb_act_social_join_age_check"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:clickable="false"
+                        android:visibility="gone" />
+
+                    <!-- 태어난 년도 입력 -->
+                    <RelativeLayout
+                        android:id="@+id/rl_act_social_join_age"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:paddingRight="@dimen/default_margin_10dp">
+
+                        <TextView
+                                style="@style/baseTextViewStyle"
+                            android:id="@+id/tv_act_social_join_age"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginRight="@dimen/default_margin_10dp"
+                            android:layout_toLeftOf="@+id/iv_act_social_join_age"
+                            android:background="@color/color_white"
+                            android:gravity="center_vertical"
+                            android:hint="@string/hint_join_birth_year"
+                            android:paddingLeft="20dp"
+                            android:paddingRight="20dp"
+                            android:singleLine="true"
+                            android:textColorHint="@color/color_main40"
+                            android:textSize="@dimen/text_large"
+                            tools:ignore="SpUsage" />
+
+                        <ImageView
+                            android:id="@+id/iv_act_social_join_age"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/login_arrow" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/ll_act_social_join_nickname"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:gravity="center"
+            app:layout_constraintBottom_toTopOf="@id/ll_act_social_join_birth_area"
+            app:layout_constraintEnd_toStartOf="@+id/gl_act_social_join_end"
+            app:layout_constraintHeight_percent="0.065"
+            app:layout_constraintStart_toStartOf="@+id/gl_act_social_join_start"
+            app:layout_constraintTop_toTopOf="@+id/gl_act_social_join_mid"
+            tools:ignore="SpUsage">
+
+            <!-- 대화명 체크 -->
+            <CheckBox
+                android:id="@+id/cb_act_social_join_talk_check"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:clickable="false"
+                android:visibility="visible" />
+
+            <!-- 대화명 입력 -->
+            <EditText
+                                style="@style/baseTextViewStyle"
+                android:background="@drawable/bg_border_round"
+                android:id="@+id/et_act_social_join_talk"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/default_margin_40dp"
+                android:hint="@string/hint_join_social_talk"
+                android:maxLength="6"
+                android:maxLines="1"
+                android:inputType="textPersonName"
+                android:textColor="@color/color_main"
+                android:paddingLeft="20dp"
+                android:paddingTop="10dp"
+                android:paddingRight="20dp"
+                android:paddingBottom="10dp"
+                android:singleLine="true"
+                android:textColorHint="@color/color_main40"
+                android:textSize="@dimen/text_large"
+                tools:ignore="SpUsage" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_act_social_join_progress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ProgressBar
+                android:layout_width="@dimen/progress_size"
+                android:layout_height="@dimen/progress_size" />
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

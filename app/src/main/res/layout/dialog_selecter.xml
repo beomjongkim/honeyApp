@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".dialog.SelectorDialog">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+                                style="@style/baseTextViewStyle"
+            android:id="@+id/tv_selector_com_title"
+            android:layout_width="@dimen/popup_profile_width"
+            android:layout_height="wrap_content"
+            android:background="@drawable/popup_round_title"
+            android:gravity="center"
+            android:padding="@dimen/default_margin_5dp"
+            android:textColor="@color/color_main"
+            android:textSize="@dimen/text_large"
+            android:textStyle="bold"
+            tools:ignore="SpUsage" />
+
+        <LinearLayout
+            android:layout_width="@dimen/popup_profile_width"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/popup_round_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_margin_15dp"
+                android:orientation="vertical">
+
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:id="@+id/tv_dlg_selector_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/color_main"
+                    android:textSize="@dimen/text_large"
+                    tools:ignore="SpUsage" />
+
+                <!-- 목록 -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_dlg_selector_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_margin_10dp"
+                    android:overScrollMode="never"
+                    android:scrollbars="none" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/default_margin_40dp"
+                    android:layout_marginTop="@dimen/default_margin_20dp"
+                    android:orientation="horizontal">
+
+                    <!-- 취소 -->
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:id="@+id/tv_dlg_selector_cancel"
+                        android:layout_width="@dimen/default_margin_0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginRight="@dimen/default_margin_5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_select_basic01"
+                        android:gravity="center"
+                        android:text="@string/dialog_cancel"
+                        android:textColor="@color/select_text_color01"
+                        android:textSize="@dimen/text_large"
+                        tools:ignore="SpUsage" />
+
+                    <!-- 검색 -->
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:id="@+id/tv_dlg_selector_search"
+                        android:layout_width="@dimen/default_margin_0dp"
+                        android:layout_height="match_parent"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="@dimen/default_margin_5dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/btn_select_basic02"
+                        android:gravity="center"
+                        android:text="@string/popup_selector_search"
+                        android:textColor="@color/select_text_color02"
+                        android:textSize="@dimen/text_large"
+                        tools:ignore="SpUsage" />
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

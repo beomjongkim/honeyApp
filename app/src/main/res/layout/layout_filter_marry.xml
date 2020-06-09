@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="marryVM"
+            type="com.dmonster.darling.honey.main.viewmodel.FilterMarryVM" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_border_round"
+        android:padding="1dp">
+
+        <ImageButton
+            android:id="@+id/ib_filter_marry_backBtn"
+            style="@style/ImageButtoninConstraintTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="8dp"
+            android:layout_marginStart="21dp"
+            android:layout_marginLeft="21dp"
+            android:onClick="@{()->marryVM.onClickBack()}"
+            android:rotation="90"
+            app:layout_constraintBottom_toBottomOf="@id/tv_filter_marry_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/tv_filter_marry_name"
+            app:srcCompat="@drawable/notice_down_arrow_img" />
+
+        <TextView
+                                style="@style/baseTextViewStyle"
+            android:id="@+id/tv_filter_marry_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:letterSpacing="-0.03"
+            android:text="@string/filter_name_marry"
+            android:textColor="@color/color_gender_male"
+            android:textSize="@dimen/text_xlarge"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpUsage" />
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:background="@color/color_gray"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_filter_marry_notice"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_filter_marry_notice">
+
+        </FrameLayout>
+
+        <TextView
+                                style="@style/baseTextViewStyle"
+            android:id="@+id/tv_filter_marry_notice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="21dp"
+            android:alpha="0.5"
+            android:letterSpacing="-0.03"
+            android:text="@string/filter_marry_plan"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/text_normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_filter_marry_name"
+            tools:ignore="SpUsage" />
+
+        <RadioGroup
+            android:id="@+id/rg_filter_age_gender"
+            onCheckedChangeListener="@{marryVM.listener}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:layout_marginBottom="14dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/btn_filter_marry_clear"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_filter_marry_notice">
+
+            <RadioButton
+                android:id="@+id/rb_not_care"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/text_xxsmall"
+                style="@style/baseTextViewStyle"
+                android:checked="@{marryVM.checkIndex == 0 ? true : false}"
+                android:padding="3dp"
+                android:tag="@string/filter_marry_not_care"
+                android:text="@string/filter_marry_not_care"
+                android:textSize="@dimen/text_large"
+                tools:ignore="SpUsage" />
+
+            <RadioButton
+                android:id="@+id/rb_marry"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/text_xxsmall"
+                android:checked="@{marryVM.checkIndex == 1 ? true : false}"
+                style="@style/baseTextViewStyle"
+                android:padding="3dp"
+                android:tag="@string/my_info_type_marry"
+                android:text="@string/my_info_type_marry"
+                android:textSize="@dimen/text_large"
+                tools:ignore="SpUsage" />
+
+            <RadioButton
+                android:id="@+id/rb_marry_again"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/text_xxsmall"
+                android:checked="@{marryVM.checkIndex == 2 ? true : false}"
+                style="@style/baseTextViewStyle"
+                android:padding="3dp"
+                android:tag="@string/my_info_type_remarry"
+                android:text="@string/my_info_type_remarry"
+                android:textSize="@dimen/text_large"
+                tools:ignore="SpUsage" />
+
+        </RadioGroup>
+
+        <View
+            android:id="@+id/v_bottom_line_horizontal"
+            style="@style/baseLine.horizontal"
+            android:layout_marginBottom="4dp"
+
+            app:layout_constraintBottom_toTopOf="@id/btn_filter_marry_clear"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            android:id="@+id/btn_filter_marry_clear"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="4dp"
+            android:background="@color/color_transparent"
+            android:onClick="@{(v)->marryVM.onClickInit(v)}"
+            android:text="@string/popup_selector_clear"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/text_large"
+            style="@style/baseTextViewStyle"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_filter_marry_search"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="SpUsage" />
+
+        <View
+            style="@style/baseLine.vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_filter_marry_search"
+            app:layout_constraintStart_toEndOf="@id/btn_filter_marry_clear"
+            app:layout_constraintTop_toBottomOf="@id/v_bottom_line_horizontal"
+
+            />
+
+        <Button
+            android:id="@+id/btn_filter_marry_search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="4dp"
+            style="@style/baseTextViewStyle"
+            android:background="@color/color_transparent"
+            android:onClick="@{()->marryVM.onClickSearch()}"
+            android:text="@string/popup_selector_search"
+            android:textColor="@color/cornflower"
+            android:textSize="@dimen/text_large"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/btn_filter_marry_clear"
+            tools:ignore="SpUsage" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

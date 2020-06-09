@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="login_email_array">
+        <item>naver.com</item>
+        <item>nate.com</item>
+        <item>daum.net</item>
+        <item>hanmail.net</item>
+        <item>gmail.com</item>
+        <item>직접입력</item>
+    </string-array>
+
+    <string-array name="main_area_array">
+        <item>서울</item>
+        <item>경기</item>
+        <item>강원</item>
+        <item>경남</item>
+        <item>경북</item>
+        <item>광주</item>
+        <item>대구</item>
+        <item>대전</item>
+        <item>부산</item>
+        <item>세종</item>
+        <item>울산</item>
+        <item>인천</item>
+        <item>전남</item>
+        <item>전북</item>
+        <item>제주</item>
+        <item>충남</item>
+        <item>충북</item>
+        <item>해외</item>
+    </string-array>
+
+    <string-array name="main_age_array">
+        <item>전체</item>
+        <item>20 ~ 25</item>
+        <item>26 ~ 30</item>
+        <item>31 ~ 35</item>
+        <item>36 ~ 40</item>
+        <item>41 ~ 45</item>
+        <item>46 ~ 50</item>
+        <item>51 ~ 55</item>
+        <item>56 ~ 60</item>
+        <item>61 ~ 65</item>
+        <item>65 이상</item>
+    </string-array>
+
+    <string-array name="ideal_type_age_array">
+        <item>20 ~ 25</item>
+        <item>26 ~ 30</item>
+        <item>31 ~ 35</item>
+        <item>36 ~ 40</item>
+        <item>41 ~ 45</item>
+        <item>46 ~ 50</item>
+        <item>51 ~ 55</item>
+        <item>56 ~ 60</item>
+        <item>61 ~ 65</item>
+        <item>65 이상</item>
+    </string-array>
+
+    <string-array name="ideal_type_area_array">
+        <item>서울</item>
+        <item>경기</item>
+        <item>강원</item>
+        <item>경남</item>
+        <item>경북</item>
+        <item>광주</item>
+        <item>대구</item>
+        <item>대전</item>
+        <item>부산</item>
+        <item>세종</item>
+        <item>울산</item>
+        <item>인천</item>
+        <item>전남</item>
+        <item>전북</item>
+        <item>제주</item>
+        <item>충남</item>
+        <item>충북</item>
+        <item>해외</item>
+    </string-array>
+
+    <string-array name="ideal_type_height_array">
+        <item>150cm</item>
+        <item>155cm</item>
+        <item>160cm</item>
+        <item>165cm</item>
+        <item>170cm</item>
+        <item>175cm</item>
+        <item>180cm</item>
+        <item>185cm</item>
+        <item>190cm</item>
+    </string-array>
+
+    <string-array name="ideal_type_weight_array">
+        <item>45kg 미만</item>
+        <item>45kg</item>
+        <item>50kg</item>
+        <item>55kg</item>
+        <item>60kg</item>
+        <item>65kg</item>
+        <item>70kg</item>
+        <item>75kg</item>
+        <item>80kg</item>
+        <item>85kg</item>
+        <item>90kg</item>
+        <item>95kg</item>
+        <item>100kg</item>
+        <item>100kg 이상</item>
+    </string-array>
+
+    <string-array name="ideal_type_income_array">
+        <item>3000만원 미만</item>
+        <item>3000만원대</item>
+        <item>4000만원대</item>
+        <item>5000만원대</item>
+        <item>6000만원대</item>
+        <item>7000만원대</item>
+        <item>8000만원대</item>
+        <item>9000만원대</item>
+        <item>1억 이상</item>
+    </string-array>
+
+    <string-array name="inquiry_array">
+        <item>로그인/접속오류</item>
+        <item>서비스/기타오류</item>
+        <item>결제문의</item>
+        <item>탈퇴하기</item>
+        <item>기타</item>
+    </string-array>
+</resources>

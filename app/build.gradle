@@ -1,0 +1,185 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'kotlin-kapt'
+// Add the Fabric plugin.
+apply plugin: 'io.fabric'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.dmonster.darling.honey"
+        minSdkVersion 16
+        targetSdkVersion 28
+        versionCode 39
+        versionName "1.2.13"
+        setProperty("archivesBaseName", applicationId + "-v" + versionCode + "(" + versionName + ")")
+//        multiDexEnabled true
+        renderscriptSupportModeEnabled true
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("honey.jks")
+            storePassword 'wkrldi'
+            keyAlias 'honey'
+            keyPassword 'wkrldi'
+        }
+    }
+
+    buildTypes {
+        release {
+            // 프로가드 활성화
+            minifyEnabled true
+            shrinkResources true
+
+            // 기본 프로가드 설정
+            proguardFile getDefaultProguardFile('proguard-android.txt')
+            // 프로젝트에 필요한 프로가드 설정
+            proguardFile 'proguard-rules.pro'
+
+            signingConfig signingConfigs.release
+            buildConfigField 'boolean', 'ENABLE_CRASHLYTICS', 'true'
+        }
+        debug {
+// 프로가드 활성화
+            minifyEnabled true
+            shrinkResources true
+
+            // 기본 프로가드 설정
+            proguardFile getDefaultProguardFile('proguard-android.txt')
+            // 프로젝트에 필요한 프로가드 설정
+            proguardFile 'proguard-rules.pro'
+            // 디버그에 필요한 프로가드 설정
+            proguardFile 'proguard-debug.pro'
+
+            debuggable true
+            testCoverageEnabled true
+            buildConfigField 'boolean', 'ENABLE_CRASHLYTICS', 'false'
+        }
+    }
+
+//    dexOptions {
+//        preDexLibraries = false
+//        dexInProcess = false
+//        javaMaxHeapSize "4g"
+//    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    dataBinding {
+        enabled = true
+    }
+    kapt {
+        javacOptions {
+            // Increase the max count of errors from annotation processors.
+            // Default is 100.
+            option("-Xmaxerrs", 500)
+        }
+    }
+}
+
+dependencies {
+
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'androidx.appcompat:appcompat:1.1.0'
+    implementation 'androidx.vectordrawable:vectordrawable-animated:1.0.0'
+    implementation 'androidx.browser:browser:1.0.0'
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+    implementation 'com.google.android.material:material:1.0.0'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'de.hdodenhof:circleimageview:2.2.0'
+
+    //AAC
+    //LiveData를 사용하기 위한 라이브러리
+    implementation "androidx.lifecycle:lifecycle-viewmodel:2.1.0"
+
+    // FireBase
+    implementation 'com.google.firebase:firebase-core:17.2.2'
+    implementation 'com.google.firebase:firebase-analytics:17.2.2'
+    implementation 'com.google.firebase:firebase-messaging:20.1.0'
+    implementation 'com.google.firebase:firebase-database:19.2.0'
+    implementation 'com.google.firebase:firebase-auth:19.2.0'
+
+    // Add the Firebase Crashlytics dependency.
+    implementation 'com.crashlytics.sdk.android:crashlytics:2.10.1'
+
+    //Google Login
+    implementation 'com.google.android.gms:play-services-auth:17.0.0'
+
+    // Kotlin
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+
+    // RxKotlin
+    implementation "io.reactivex.rxjava2:rxkotlin:2.2.0"
+    // RxAndroid
+    implementation "io.reactivex.rxjava2:rxandroid:2.0.2"
+    // RxView
+    implementation "com.jakewharton.rxbinding2:rxbinding:2.0.0"
+
+    implementation 'org.jsoup:jsoup:1.11.3'
+
+
+    // Network
+    implementation 'com.google.code.gson:gson:2.8.6'
+    implementation 'com.squareup.retrofit2:retrofit:2.4.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.9.0'
+
+    // MultiDex
+//    implementation 'androidx.multidex:multidex:2.0.1'
+
+    // Glide
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    implementation 'jp.wasabeef:glide-transformations:2.0.1'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    kapt 'androidx.lifecycle:lifecycle-compiler:2.1.0'
+    kapt 'com.github.bumptech.glide:compiler:4.8.0'
+
+
+    // BlurView
+    implementation 'com.github.mmin18:realtimeblurview:1.1.2'
+
+    //Animation
+    implementation 'com.airbnb.android:lottie:3.3.1'
+
+    // PhotoViewAttacher
+    implementation 'com.commit451:PhotoView:1.2.4'
+
+//    //이미지 슬라이더
+    implementation 'com.github.WindSekirun:RollingBanner:1.0.7-androidx'
+
+    // TedBottomPicker
+    implementation 'gun0912.ted:tedbottompicker:1.1.0'
+
+    // FloatingActionButton
+    implementation 'com.github.clans:fab:1.6.4'
+
+//    // InAppPurchase
+//    implementation 'com.anjlab.android.iab.v3:library:1.0.44'
+
+    // 네이버 로그인
+    implementation 'com.naver.nid:naveridlogin-android-sdk:4.2.6'
+
+    // 카카오 로그인
+    implementation group: project.KAKAO_SDK_GROUP, name: 'usermgmt', version: project.KAKAO_SDK_VERSION
+
+    // 페이스북 로그인
+    implementation 'com.facebook.android:facebook-login:5.8.0'
+
+    //퍼미션 관리
+    implementation 'gun0912.ted:tedpermission:1.0.3'
+
+    //유닛테스트
+    testImplementation 'junit:junit:4.12'
+    testImplementation 'org.mockito:mockito-core:2.23.0'
+    androidTestImplementation 'androidx.test:runner:1.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-alpha05'
+}

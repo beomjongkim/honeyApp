@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="ageGenderVM"
+            type="com.dmonster.darling.honey.main.viewmodel.FilterAgeGenderVM" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_border_round"
+        android:padding="1dp">
+
+        <ImageButton
+            android:id="@+id/ib_filter_age_gender_backBtn"
+            style="@style/ImageButtoninConstraintTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="8dp"
+            android:layout_marginStart="21dp"
+            android:layout_marginLeft="21dp"
+            android:onClick="@{()->ageGenderVM.onClickBack()}"
+            android:rotation="90"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_filter_age_gender_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_filter_age_gender_name"
+            app:srcCompat="@drawable/notice_down_arrow_img" />
+
+        <TextView
+                                style="@style/baseTextViewStyle"
+            android:id="@+id/tv_filter_age_gender_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:letterSpacing="-0.03"
+            android:text="@string/filter_name_age_gender"
+            android:textColor="@color/color_gender_male"
+            android:textSize="@dimen/text_xlarge"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpUsage" />
+
+        <FrameLayout
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:background="@color/color_gray"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_filter_age_gender_notice"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_filter_age_gender_notice" />
+
+        <TextView
+                                style="@style/baseTextViewStyle"
+            android:id="@+id/tv_filter_age_gender_notice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:alpha="0.6"
+            android:text="@string/popup_selector_age_content"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/text_normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_filter_age_gender_name"
+            tools:ignore="SpUsage" />
+
+        <RadioGroup
+            android:id="@+id/rg_filter_age_gender"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="22dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_filter_age_gender_notice">
+
+            <RadioButton
+                style="@style/baseTextViewStyle"
+                android:id="@+id/rb_filter_age_gender_male"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="80dp"
+                android:layout_marginRight="80dp"
+                android:alpha="0.9"
+                android:checked="@={ageGenderVM.radioMaleChecked}"
+                android:padding="3dp"
+                android:text="@string/join_male"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/text_large"
+                tools:ignore="SpUsage" />
+
+            <RadioButton
+                style="@style/baseTextViewStyle"
+                android:id="@+id/rb_filter_age_gender_female"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:alpha="0.9"
+                android:checked="@{!ageGenderVM.radioMaleChecked}"
+                android:padding="3dp"
+                android:text="@string/join_female"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/text_large"
+                tools:ignore="SpUsage" />
+
+        </RadioGroup>
+
+        <View
+            android:id="@+id/v_filter_age_divider"
+
+            style="@style/baseLine.horizontal"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rg_filter_age_gender" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_filter_age_gender"
+            CustomAdapter="@{ageGenderVM.customAdapter}"
+            layoutType='@{"grid"}'
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:overScrollMode="never"
+            app:layout_constraintBottom_toTopOf="@id/v_filter_age_line_horizon"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/v_filter_age_divider"
+            app:layout_constraintWidth_percent="0.93" />
+
+        <View
+            android:id="@+id/v_filter_age_line_horizon"
+            style="@style/baseLine.horizontal"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintBottom_toTopOf="@id/btn_filter_age_gender_clear"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            style="@style/baseTextViewStyle"
+            android:id="@+id/btn_filter_age_gender_clear"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="4dp"
+            android:alpha="0.9"
+            android:background="@color/color_transparent"
+            android:onClick="@{(v)->ageGenderVM.onClickInit(v)}"
+            android:text="@string/popup_selector_clear"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/text_large"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_filter_age_gender_search"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="SpUsage" />
+
+        <View
+            style="@style/baseLine.vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_filter_age_gender_search"
+            app:layout_constraintStart_toEndOf="@id/btn_filter_age_gender_clear"
+            app:layout_constraintTop_toBottomOf="@id/v_filter_age_line_horizon" />
+
+        <Button
+            style="@style/baseTextViewStyle"
+            android:id="@+id/btn_filter_age_gender_search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="4dp"
+            android:alpha="0.9"
+            android:background="@color/color_transparent"
+            android:onClick="@{()->ageGenderVM.onClickSearch()}"
+            android:text="@string/popup_selector_search"
+            android:textColor="@color/cornflower"
+            android:textSize="@dimen/text_large"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/btn_filter_age_gender_clear"
+            tools:ignore="SpUsage" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

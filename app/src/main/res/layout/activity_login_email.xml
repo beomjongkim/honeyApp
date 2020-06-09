@@ -1,0 +1,392 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".login.view.LoginActivity">
+
+            <include
+                layout="@layout/layout_logo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toTopOf="@+id/ll_act_login_input_layout"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.25" />
+
+            <LinearLayout
+                android:id="@+id/ll_act_login_input_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="@id/gl_login_email_end"
+                app:layout_constraintStart_toStartOf="@id/gl_login_email_start"
+                app:layout_constraintTop_toTopOf="@+id/gl_login_email_middle">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:orientation="horizontal">
+
+                    <!-- 아이디 -->
+                    <RelativeLayout
+                        android:layout_width="@dimen/default_margin_0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/join_btn">
+
+                        <EditText
+                                style="@style/baseTextViewStyle"
+                            android:id="@+id/et_act_login_id"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/color_transparent"
+                            android:hint="@string/hint_login_id"
+                            android:paddingStart="16dp"
+                            android:paddingLeft="16dp"
+                            android:singleLine="true"
+                            android:textColor="@color/color_main50"
+                            android:textSize="@dimen/text_large"
+                            tools:ignore="SpUsage" />
+                    </RelativeLayout>
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/default_margin_10dp"
+                        android:layout_marginRight="@dimen/default_margin_10dp"
+                        android:gravity="center_vertical"
+                        android:text="@string/login_email_mark"
+                        android:textSize="@dimen/text_large"
+                        tools:ignore="SpUsage" />
+
+                    <!-- 이메일 -->
+                    <RelativeLayout
+                        android:id="@+id/rl_act_login_email"
+                        android:layout_width="@dimen/default_margin_0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/join_btn">
+
+                        <TextView
+                                style="@style/baseTextViewStyle"
+                            android:id="@+id/tv_act_login_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentLeft="true"
+                            android:layout_toLeftOf="@+id/iv_act_login_email"
+                            android:gravity="center_vertical"
+                            android:hint="@string/hint_login_email"
+                            android:textColorHint="@color/color_main50"
+                            android:paddingStart="16dp"
+                            android:paddingLeft="16dp"
+                            android:textColor="@color/color_main50"
+                            android:textSize="@dimen/text_large"
+                            tools:ignore="SpUsage" />
+
+                        <EditText
+                                style="@style/baseTextViewStyle"
+                            android:id="@+id/et_act_login_email"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentLeft="true"
+                            android:layout_toLeftOf="@+id/iv_act_login_email"
+                            android:background="@color/color_transparent"
+                            android:gravity="center_vertical"
+                            android:inputType="textEmailAddress"
+                            android:maxLines="1"
+                            android:paddingLeft="@dimen/default_margin_10dp"
+                            android:singleLine="true"
+                            android:textColor="@color/color_main50"
+                            android:textSize="@dimen/text_large"
+                            android:visibility="gone"
+                            tools:ignore="SpUsage" />
+
+                        <ImageView
+                            android:id="@+id/iv_act_login_email"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginLeft="@dimen/default_margin_10dp"
+                            android:layout_marginRight="@dimen/default_margin_10dp"
+                            android:background="@drawable/login_arrow" />
+                    </RelativeLayout>
+                </LinearLayout>
+
+                <EditText
+                                style="@style/baseTextViewStyle"
+                    android:id="@+id/et_act_login_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/join_btn"
+                    android:hint="@string/hint_login_password"
+                    android:inputType="textPassword"
+                    android:maxLength="10"
+                    android:padding="@dimen/default_margin_5dp"
+                    android:paddingStart="16dp"
+                    android:paddingLeft="16dp"
+                    android:singleLine="true"
+                    android:textColor="@color/color_main50"
+                    android:textSize="@dimen/text_large"
+                    tools:ignore="SpUsage" />
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_login_email_middle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.39" />
+
+            <TextView
+                                style="@style/baseTextViewStyle"
+                android:id="@+id/tv_act_login_login"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/default_margin_50dp"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_btn_coral"
+                android:elevation="8dp"
+                android:gravity="center"
+                android:text="@string/login_login"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/text_xlarge"
+                app:layout_constraintEnd_toEndOf="@id/gl_login_email_end"
+                app:layout_constraintStart_toStartOf="@id/gl_login_email_start"
+                app:layout_constraintTop_toBottomOf="@+id/ll_act_login_input_layout"
+                tools:ignore="SpUsage" />
+
+            <LinearLayout
+                android:id="@+id/ll_act_login_find_layout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin_10dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="@id/gl_login_email_end"
+                app:layout_constraintTop_toBottomOf="@id/tv_act_login_login">
+
+                <!-- 아이디 찾기 -->
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:id="@+id/tv_act_login_find_id_password"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:alpha="0.4"
+                    android:gravity="center"
+                    android:letterSpacing="-0.03"
+                    android:text="@string/login_find_id_password"
+                    android:textColor="@color/color_black"
+                    android:textSize="@dimen/text_normal"
+                    tools:ignore="SpUsage" />
+
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom"
+                android:layout_marginTop="70dp"
+                android:layout_marginBottom="32dp"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/gl_login_email_end"
+                app:layout_constraintStart_toStartOf="@+id/gl_login_email_start"
+                app:layout_constraintTop_toBottomOf="@+id/ll_act_login_find_layout">
+
+                <!-- 카카오 로그인 -->
+
+                <!-- 네이버 로그인 -->
+                <LinearLayout
+                    android:id="@+id/ll_act_login_naver"
+                    android:layout_width="@dimen/default_margin_0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/login_sns_img_size"
+                        android:layout_height="@dimen/login_sns_img_size"
+                        android:background="@drawable/login_naver_img" />
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_margin_10dp"
+                        android:alpha="0.7"
+                        android:letterSpacing="-0.03"
+                        android:textAlignment="center"
+                        android:text="@string/login_naver"
+                        android:textColor="@color/color_main"
+                        android:textSize="@dimen/text_xsmall"
+                        tools:ignore="SpUsage"
+                        android:layout_gravity="center_horizontal" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_act_login_kakao"
+                    android:layout_width="@dimen/default_margin_0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="@dimen/login_sns_img_size"
+                        android:layout_height="@dimen/login_sns_img_size"
+                        android:background="@drawable/login_kakao_img" />
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_margin_10dp"
+                        android:alpha="0.7"
+                        android:textAlignment="center"
+                        android:letterSpacing="-0.03"
+                        android:text="@string/login_kakao"
+                        android:textColor="@color/color_main"
+                        android:textSize="@dimen/text_xsmall"
+                        tools:ignore="SpUsage"
+                        android:layout_gravity="center_horizontal" />
+                </LinearLayout>
+                <!-- 페이스북로그인 -->
+                <LinearLayout
+                    android:id="@+id/ll_act_login_facebook"
+                    android:layout_width="@dimen/default_margin_0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="@dimen/login_sns_img_size"
+                        android:layout_height="@dimen/login_sns_img_size"
+                        android:background="@drawable/ic_facebook"
+                        android:visibility="visible"
+                        />
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_margin_10dp"
+                        android:alpha="0.7"
+                        android:letterSpacing="-0.03"
+                        android:textAlignment="center"
+                        android:text="@string/login_facebook"
+                        android:textColor="@color/color_main"
+                        android:textSize="@dimen/text_xsmall"
+                        tools:ignore="SpUsage"
+                        android:layout_gravity="center_horizontal" />
+                </LinearLayout>
+                <!-- 페이스북로그인 -->
+                <LinearLayout
+                    android:id="@+id/ll_act_login_google"
+                    android:layout_width="@dimen/default_margin_0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <ImageView
+                        android:layout_width="@dimen/login_sns_img_size"
+                        android:layout_height="@dimen/login_sns_img_size"
+                        android:background="@drawable/ic_google"
+                        android:visibility="visible"
+                        />
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_margin_10dp"
+                        android:alpha="0.7"
+                        android:letterSpacing="-0.03"
+                        android:textAlignment="center"
+                        android:text="@string/login_google"
+                        android:textColor="@color/color_main"
+                        android:textSize="@dimen/text_xsmall"
+                        tools:ignore="SpUsage"
+                        android:layout_gravity="center_horizontal" />
+                </LinearLayout>
+                <!-- 회원가입 -->
+                <LinearLayout
+                    android:id="@+id/ll_act_login_join"
+                    android:layout_width="@dimen/default_margin_0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <include
+                        layout="@layout/layout_logo"
+                        android:layout_width="@dimen/login_sns_img_size"
+                        android:layout_height="@dimen/login_sns_img_size" />
+
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_margin_10dp"
+                        android:alpha="0.7"
+                        android:letterSpacing="-0.03"
+                        android:text="@string/login_join"
+                        android:textColor="@color/color_main"
+                        android:textSize="@dimen/text_xsmall"
+                        android:textAlignment="center"
+                        tools:ignore="SpUsage"
+                        android:layout_gravity="center_horizontal" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_login_email_start"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.044" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.9" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/gl_login_email_end"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.956" />
+
+            <LinearLayout
+                android:id="@+id/ll_act_login_progress"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:visibility="gone">
+
+                <ProgressBar
+                    android:layout_width="@dimen/progress_size"
+                    android:layout_height="@dimen/progress_size" />
+            </LinearLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </LinearLayout>
+</ScrollView>

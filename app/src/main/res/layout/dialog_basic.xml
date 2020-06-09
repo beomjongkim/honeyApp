@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <!-- Title -->
+
+        <LinearLayout
+            android:layout_width="@dimen/custom_dialog_width"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/bg_border_round"
+            android:orientation="vertical">
+
+            <!-- Content Title -->
+            <TextView
+                                style="@style/baseTextViewStyle"
+                android:id="@+id/tv_dlg_basic_title"
+                android:layout_width="@dimen/custom_dialog_width"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/default_margin_5dp"
+                android:layout_marginTop="@dimen/default_margin_25dp"
+                android:textColor="@color/color_black"
+                android:letterSpacing="-0.02"
+                android:textSize="@dimen/text_xlarge"
+                android:textStyle="bold"
+                tools:ignore="SpUsage" />
+
+            <TextView
+                                style="@style/baseTextViewStyle"
+                android:id="@+id/tv_dlg_basic_content_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/default_margin_5dp"
+                android:gravity="center"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/text_large"
+                android:alpha="0.6"
+                android:letterSpacing="-0.03"
+                android:visibility="gone"
+                tools:ignore="SpUsage" />
+
+            <!-- Content -->
+            <TextView
+                                style="@style/baseTextViewStyle"
+                android:id="@+id/tv_dlg_basic_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/text_large"
+                android:alpha="0.6"
+                android:letterSpacing="-0.03"
+                tools:ignore="SpUsage" />
+
+            <!-- 잔여코인 -->
+            <TextView
+                                style="@style/baseTextViewStyle"
+                android:id="@+id/tv_dlg_basic_coin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/default_margin_10dp"
+                android:gravity="center"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/text_large"
+                android:alpha="0.6"
+                android:letterSpacing="-0.03"
+                android:visibility="gone"
+                tools:ignore="SpUsage" />
+
+            <View
+                android:id="@+id/v_filter_age_line_horizon"
+                style="@style/baseLine.horizontal"
+                android:layout_width="match_parent"
+                android:layout_marginTop="32dp" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/default_margin_40dp"
+
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/tv_dlg_basic_cancel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginLeft="8dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_weight="1"
+                    android:alpha="0.9"
+                    android:background="@color/color_transparent"
+                    android:text="@string/dialog_cancel"
+                    android:textColor="@color/color_black"
+                    android:textSize="@dimen/text_large"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/btn_viewmodel_dialog_confirm"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    tools:ignore="SpUsage" />
+
+                <View
+                    style="@style/baseLine.vertical"
+                    android:layout_height="match_parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/btn_viewmodel_dialog_confirm"
+                    app:layout_constraintStart_toEndOf="@id/btn_viewmodel_dialog_cancel"
+                    app:layout_constraintTop_toBottomOf="@id/v_filter_age_line_horizon" />
+
+                <Button
+                    android:id="@+id/tv_dlg_basic_enter"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginRight="8dp"
+                    android:layout_marginBottom="4dp"
+                    android:layout_weight="1"
+                    android:alpha="0.9"
+                    android:background="@color/color_transparent"
+                    android:text="@string/dialog_enter"
+                    android:textColor="@color/cornflower"
+                    android:textSize="@dimen/text_large"
+                    app:layout_constrainedWidth="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintHorizontal_weight="1"
+                    app:layout_constraintStart_toEndOf="@+id/btn_viewmodel_dialog_cancel"
+                    tools:ignore="SpUsage" />
+
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

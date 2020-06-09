@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <import type="android.view.View"/>
+        <variable name="viewModel" type="com.dmonster.darling.honey.myinformation.viewmodel.PictureRollingItemVM"/>
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+        <ImageView
+            android:id="@+id/iv_picture_item_normal"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_width="0dp" android:layout_height="0dp"
+            imgGlideUrl="@{viewModel.uri}"
+            android:visibility="@{viewModel.isCircle? View.GONE : View.VISIBLE}"
+            android:src="@drawable/bg_color_main"
+            />
+        <ImageView
+            android:id="@+id/iv_picture_item_circle"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_width="0dp" android:layout_height="0dp"
+            imgGlideCircleUrl="@{viewModel.uri}"
+            android:visibility="@{viewModel.isCircle? View.VISIBLE : View.GONE}"
+            android:src="@drawable/bg_color_main"
+            />
+        <com.github.mmin18.widget.RealtimeBlurView
+            android:id="@+id/rbv_picture_item"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_width="0dp" android:layout_height="0dp"
+            android:visibility="gone" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

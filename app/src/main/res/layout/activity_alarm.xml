@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   tools:context=".alarm.view.AlarmActivity">
+
+    <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+        <com.dmonster.darling.honey.customview.CustomToolBar
+                android:id="@+id/ctb_act_alarm_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"/>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/ctb_act_alarm_toolbar">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <!-- 모든 알람 켜기 -->
+                <RelativeLayout
+                    android:id="@+id/rl_act_alarm_all_on"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/default_margin_50dp"
+                    android:background="@color/color_gray">
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/default_margin_10dp"
+                        android:layout_marginRight="@dimen/default_margin_10dp"
+                        android:layout_toLeftOf="@+id/sw_act_alarm_all_on"
+                        android:gravity="center_vertical"
+                        android:text="@string/alarm_all_on"
+                        android:textSize="@dimen/text_large"
+                        tools:ignore="SpUsage" />
+
+                    <Switch
+                        android:id="@+id/sw_act_alarm_all_on"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="@dimen/default_margin_10dp"
+                        android:paddingRight="@dimen/default_margin_10dp"
+                        android:thumb="@drawable/switch_thumb_selector"
+                        android:track="@drawable/switch_track_selector" />
+                </RelativeLayout>
+
+                <!-- 신규톡 -->
+                <RelativeLayout
+                    android:id="@+id/rl_act_alarm_new_talk"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/default_margin_50dp">
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/default_margin_10dp"
+                        android:layout_marginRight="@dimen/default_margin_10dp"
+                        android:layout_toLeftOf="@+id/sw_act_alarm_new_talk"
+                        android:gravity="center_vertical"
+                        android:text="@string/alarm_new_talk"
+                        android:textSize="@dimen/text_large"
+                        tools:ignore="SpUsage" />
+
+                    <Switch
+                        android:id="@+id/sw_act_alarm_new_talk"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="@dimen/default_margin_10dp"
+                        android:paddingRight="@dimen/default_margin_10dp"
+                        android:thumb="@drawable/switch_thumb_selector"
+                        android:track="@drawable/switch_track_selector" />
+                </RelativeLayout>
+
+                <!-- 호감있어요, 관심있어요 -->
+                <RelativeLayout
+                    android:id="@+id/rl_act_alarm_good"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/default_margin_50dp">
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:id="@+id/tv_act_alarm_good"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/default_margin_10dp"
+                        android:layout_marginRight="@dimen/default_margin_10dp"
+                        android:layout_toLeftOf="@+id/sw_act_alarm_good"
+                        android:gravity="center_vertical"
+                        android:text="@string/alarm_good"
+                        android:textSize="@dimen/text_large"
+                        tools:ignore="SpUsage" />
+
+                    <Switch
+                        android:id="@+id/sw_act_alarm_good"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="@dimen/default_margin_10dp"
+                        android:paddingRight="@dimen/default_margin_10dp"
+                        android:thumb="@drawable/switch_thumb_selector"
+                        android:track="@drawable/switch_track_selector" />
+                </RelativeLayout>
+
+                <!-- 신규회원 -->
+                <RelativeLayout
+                    android:id="@+id/rl_act_alarm_new_member"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/default_margin_50dp">
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/default_margin_10dp"
+                        android:layout_marginRight="@dimen/default_margin_10dp"
+                        android:layout_toLeftOf="@+id/sw_act_alarm_new_member"
+                        android:gravity="center_vertical"
+                        android:text="@string/alarm_new_member"
+                        android:textSize="@dimen/text_large"
+                        tools:ignore="SpUsage" />
+
+                    <Switch
+                        android:id="@+id/sw_act_alarm_new_member"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="@dimen/default_margin_10dp"
+                        android:paddingRight="@dimen/default_margin_10dp"
+                        android:thumb="@drawable/switch_thumb_selector"
+                        android:track="@drawable/switch_track_selector" />
+                </RelativeLayout>
+
+                <!-- 러브카드 -->
+                <RelativeLayout
+                    android:id="@+id/rl_act_alarm_love_card"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/default_margin_50dp"
+                    android:visibility="gone">
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/default_margin_10dp"
+                        android:layout_marginRight="@dimen/default_margin_10dp"
+                        android:layout_toLeftOf="@+id/sw_act_alarm_love_card"
+                        android:gravity="center_vertical"
+                        android:text="@string/alarm_love_card"
+                        android:textSize="@dimen/text_large"
+                        tools:ignore="SpUsage" />
+
+                    <Switch
+                        android:id="@+id/sw_act_alarm_love_card"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="@dimen/default_margin_10dp"
+                        android:paddingRight="@dimen/default_margin_10dp"
+                        android:thumb="@drawable/switch_thumb_selector"
+                        android:track="@drawable/switch_track_selector" />
+                </RelativeLayout>
+
+
+                <!-- 전체열람 -->
+                <RelativeLayout
+                    android:id="@+id/rl_act_alarm_open"
+                    android:layout_width="match_parent"
+                    android:visibility="gone"
+                    android:layout_height="@dimen/default_margin_50dp">
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/default_margin_10dp"
+                        android:layout_marginRight="@dimen/default_margin_10dp"
+                        android:layout_toLeftOf="@+id/sw_act_alarm_open"
+                        android:gravity="center_vertical"
+                        android:text="@string/alarm_open"
+                        android:textSize="@dimen/text_large"
+                        tools:ignore="SpUsage" />
+
+                    <Switch
+                        android:id="@+id/sw_act_alarm_open"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="@dimen/default_margin_10dp"
+                        android:paddingRight="@dimen/default_margin_10dp"
+                        android:thumb="@drawable/switch_thumb_selector"
+                        android:track="@drawable/switch_track_selector" />
+                </RelativeLayout>
+                <!-- 공지사항 -->
+                <RelativeLayout
+                    android:id="@+id/rl_act_alarm_notice"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/default_margin_50dp">
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/default_margin_10dp"
+                        android:layout_marginRight="@dimen/default_margin_10dp"
+                        android:layout_toLeftOf="@+id/sw_act_alarm_notice"
+                        android:gravity="center_vertical"
+                        android:text="@string/alarm_notice"
+                        android:textSize="@dimen/text_large"
+                        tools:ignore="SpUsage" />
+
+                    <Switch
+                        android:id="@+id/sw_act_alarm_notice"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="@dimen/default_margin_10dp"
+                        android:paddingRight="@dimen/default_margin_10dp"
+                        android:thumb="@drawable/switch_thumb_selector"
+                        android:track="@drawable/switch_track_selector" />
+                </RelativeLayout>
+                <!-- 광고 -->
+                <RelativeLayout
+                    android:id="@+id/rl_act_alarm_ad"
+                    android:layout_width="match_parent"
+                    android:visibility="gone"
+                    android:layout_height="@dimen/default_margin_50dp">
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginLeft="@dimen/default_margin_10dp"
+                        android:layout_marginRight="@dimen/default_margin_10dp"
+                        android:layout_toLeftOf="@+id/sw_act_alarm_ad"
+                        android:gravity="center_vertical"
+                        android:text="@string/alarm_ad"
+                        android:textSize="@dimen/text_large"
+                        tools:ignore="SpUsage" />
+
+                    <Switch
+                        android:id="@+id/sw_act_alarm_ad"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:paddingLeft="@dimen/default_margin_10dp"
+                        android:paddingRight="@dimen/default_margin_10dp"
+                        android:thumb="@drawable/switch_thumb_selector"
+                        android:track="@drawable/switch_track_selector" />
+                </RelativeLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:alpha="0.3"
+                    android:visibility="gone"
+                    android:background="@color/warm_grey" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:visibility="gone"
+                    android:layout_height="180dp">
+
+                    <ImageView
+                        android:id="@+id/iv_alarm_agreement"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="32dp"
+                        android:cropToPadding="false"
+                        android:paddingTop="10dp"
+                        android:scaleType="fitStart"
+                        android:src="@drawable/event_alarm"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintLeft_toLeftOf="parent"
+                        app:layout_constraintRight_toRightOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.858" />
+
+                    <ImageButton
+                        android:id="@+id/ib_alarm_disagree"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:background="@color/color_transparent"
+                        android:scaleType="centerInside"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_alarm_disagree"
+                        app:layout_constraintTop_toTopOf="@+id/iv_alarm_agreement"
+                        app:srcCompat="@drawable/switch_dot_off" />
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:id="@+id/tv_alarm_agree"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:text="@string/alarm_agree"
+                        app:layout_constraintEnd_toStartOf="@+id/ib_alarm_disagree"
+                        app:layout_constraintTop_toTopOf="@+id/iv_alarm_agreement" />
+
+                    <ImageButton
+                        android:id="@+id/ib_alarm_agree"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginRight="8dp"
+                        android:background="@color/color_transparent"
+                        android:scaleType="centerInside"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_alarm_agree"
+                        app:layout_constraintTop_toTopOf="@+id/iv_alarm_agreement"
+                        app:srcCompat="@drawable/switch_dot_off" />
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:id="@+id/tv_alarm_disagree"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="@string/alarm_disagree"
+                        app:layout_constraintEnd_toEndOf="@+id/iv_alarm_agreement"
+                        app:layout_constraintTop_toTopOf="@+id/iv_alarm_agreement" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </LinearLayout>
+
+        </ScrollView>
+
+        <!-- 프로그래스바 -->
+        <LinearLayout
+                android:id="@+id/ll_act_alarm_progress"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:visibility="gone">
+
+            <ProgressBar
+                    android:layout_width="@dimen/progress_size"
+                    android:layout_height="@dimen/progress_size"/>
+        </LinearLayout>
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".intro.view.SlideActivity">
+
+    <pyxis.uzuki.live.rollingbanner.RollingBanner
+        android:id="@+id/banner"
+        android:layout_width="@dimen/default_margin_0dp"
+        android:layout_height="@dimen/default_margin_0dp"
+        app:bottomMargin="@dimen/default_bottom_margin"
+        app:enableIndicator="false"
+        app:enableLooping="false"
+        app:enableRolling="false"
+        app:flingAble="true"
+        app:indicatorMargin="@dimen/default_indicator_margin"
+        app:indicatorRes="@drawable/default_indicator"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:rollingDelay="3000"
+        app:scrollingDelay="250"
+        app:smoothScroll="true">
+
+    </pyxis.uzuki.live.rollingbanner.RollingBanner>
+
+
+    <TextView
+        android:id="@+id/tv_slide_skip"
+        style="@style/baseTextViewTitleStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="16dp"
+        android:text="건너뛰기"
+        android:textColor="@color/soft"
+        android:textSize="30dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

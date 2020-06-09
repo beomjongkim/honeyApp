@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   tools:context=".myinformation.view.adapter.RecommendAdapter">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- 프로필 이미지 -->
+            <de.hdodenhof.circleimageview.CircleImageView
+            android:src="@drawable/img_base"
+                android:id="@+id/civ_item_recommend_image"
+                android:layout_width="@dimen/default_margin_70dp"
+                android:layout_height="@dimen/default_margin_70dp"
+                android:layout_margin="@dimen/default_margin_10dp"
+                app:civ_border_color="@color/color_gray"
+                app:civ_border_width="@dimen/default_margin_1dp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginTop="@dimen/default_margin_10dp"
+                android:layout_marginRight="@dimen/default_margin_15dp"
+                android:layout_marginBottom="@dimen/default_margin_10dp"
+                android:layout_toRightOf="@+id/civ_item_recommend_image"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <!-- 결혼, 재혼 -->
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:id="@+id/tv_item_recommend_marry"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@color/color_main_type_marry"
+                        android:padding="@dimen/default_margin_3dp"
+                        android:textColor="@color/color_white"
+                        android:textSize="@dimen/text_xsmall"
+                        tools:ignore="SpUsage" />
+
+                    <!-- 대화명 -->
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:id="@+id/tv_item_recommend_talk_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/default_margin_5dp"
+                        android:textColor="@color/color_main"
+                        android:textSize="@dimen/text_xlarge"
+                        android:textStyle="bold"
+                        tools:ignore="SpUsage" />
+                </LinearLayout>
+
+                <!-- 자기소개 -->
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:id="@+id/tv_item_recommend_introduce"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_margin_10dp"
+                    android:maxLines="2"
+                    android:textSize="@dimen/text_large"
+                    tools:ignore="SpUsage" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_gray"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/default_margin_10dp"
+            android:paddingTop="@dimen/default_margin_5dp"
+            android:paddingRight="@dimen/default_margin_10dp"
+            android:paddingBottom="@dimen/default_margin_5dp">
+
+            <!-- 이름 -->
+            <TextView
+                                style="@style/baseTextViewStyle"
+                android:id="@+id/tv_item_recommend_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/text_large"
+                tools:ignore="SpUsage" />
+
+            <!-- 나이 -->
+            <TextView
+                                style="@style/baseTextViewStyle"
+                android:id="@+id/tv_item_recommend_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/default_margin_10dp"
+                android:textSize="@dimen/text_large"
+                tools:ignore="SpUsage" />
+
+            <!-- 지역 -->
+            <TextView
+                                style="@style/baseTextViewStyle"
+                android:id="@+id/tv_item_recommend_area"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/default_margin_10dp"
+                android:textSize="@dimen/text_large"
+                tools:ignore="SpUsage" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

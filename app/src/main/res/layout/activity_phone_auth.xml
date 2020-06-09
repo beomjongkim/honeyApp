@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".information.view.PhoneAuthActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.dmonster.darling.honey.customview.CustomToolBar
+            android:id="@+id/ctb_act_phone_auth_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true" />
+
+        <androidx.core.widget.NestedScrollView
+            style="@style/NestedScrollViewTheme"
+            android:layout_below="@+id/ctb_act_phone_auth_toolbar">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/default_margin_40dp"
+                    android:layout_marginLeft="@dimen/default_margin_15dp"
+                    android:layout_marginTop="@dimen/default_margin_20dp"
+                    android:layout_marginRight="@dimen/default_margin_15dp">
+
+                    <EditText
+                                style="@style/baseTextViewStyle"
+                        android:id="@+id/et_act_phone_auth_phone"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/default_margin_10dp"
+                        android:layout_toLeftOf="@+id/tv_act_phone_auth_receive"
+                        android:background="@drawable/join_btn"
+                        android:hint="@string/phone_auth_hint_phone"
+                        android:inputType="phone"
+                        android:maxLength="11"
+                        android:maxLines="1"
+                        android:padding="@dimen/default_margin_5dp"
+                        android:textSize="@dimen/text_large"
+                        tools:ignore="SpUsage" />
+
+                    <!-- 인증번호 받기 -->
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:id="@+id/tv_act_phone_auth_receive"
+                        android:layout_width="@dimen/default_margin_120dp"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/btn_select_basic01"
+                        android:gravity="center"
+                        android:text="@string/phone_auth_number"
+                        android:textColor="@color/select_text_color01"
+                        android:textSize="@dimen/text_large"
+                        android:textStyle="bold"
+                        tools:ignore="SpUsage" />
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/default_margin_40dp"
+                    android:layout_marginLeft="@dimen/default_margin_15dp"
+                    android:layout_marginTop="@dimen/default_margin_10dp"
+                    android:layout_marginRight="@dimen/default_margin_15dp">
+
+                    <EditText
+                                style="@style/baseTextViewStyle"
+                        android:id="@+id/et_act_phone_auth_number"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="@dimen/default_margin_10dp"
+                        android:layout_toLeftOf="@+id/tv_act_phone_auth_number_check"
+                        android:background="@drawable/join_btn"
+                        android:hint="@string/phone_auth_hint_number"
+                        android:inputType="number"
+                        android:maxLines="1"
+                        android:padding="@dimen/default_margin_5dp"
+                        android:textSize="@dimen/text_large"
+                        tools:ignore="SpUsage" />
+
+                    <!-- 인증번호 확인 -->
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:id="@+id/tv_act_phone_auth_number_check"
+                        android:layout_width="@dimen/default_margin_120dp"
+                        android:layout_height="@dimen/default_margin_40dp"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true"
+                        android:layout_gravity="center"
+                        android:background="@drawable/btn_select_basic01"
+                        android:gravity="center"
+                        android:text="@string/phone_auth_number_check"
+                        android:textColor="@color/select_text_color01"
+                        android:textSize="@dimen/text_large"
+                        android:textStyle="bold"
+                        tools:ignore="SpUsage" />
+                </RelativeLayout>
+
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/default_margin_15dp"
+                    android:layout_marginTop="@dimen/default_margin_20dp"
+                    android:layout_marginRight="@dimen/default_margin_15dp"
+                    android:text="@string/phone_auth_content01"
+                    android:textSize="@dimen/text_large"
+                    tools:ignore="SpUsage" />
+
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/default_margin_15dp"
+                    android:layout_marginTop="@dimen/default_margin_10dp"
+                    android:layout_marginRight="@dimen/default_margin_15dp"
+                    android:text="@string/phone_auth_content02"
+                    android:textSize="@dimen/text_large"
+                    tools:ignore="SpUsage" />
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <!-- 프로그래스바 -->
+        <LinearLayout
+            android:id="@+id/ll_act_phone_auth_progress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_white"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:visibility="gone">
+
+            <ProgressBar
+                android:layout_width="@dimen/progress_size"
+                android:layout_height="@dimen/progress_size" />
+        </LinearLayout>
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

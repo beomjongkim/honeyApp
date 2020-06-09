@@ -1,0 +1,778 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="member_area_array">
+        <item>서울</item>
+        <item>경기</item>
+        <item>강원</item>
+        <item>경남</item>
+        <item>경북</item>
+        <item>광주</item>
+        <item>대구</item>
+        <item>대전</item>
+        <item>부산</item>
+        <item>세종</item>
+        <item>울산</item>
+        <item>인천</item>
+        <item>전남</item>
+        <item>전북</item>
+        <item>제주</item>
+        <item>충남</item>
+        <item>충북</item>
+        <item>해외</item>
+    </string-array>
+
+    <string-array name="member_area_guangwon_array">
+        <item>강릉시</item>
+        <item>고성군</item>
+        <item>동해시</item>
+        <item>삼척시</item>
+        <item>속초시</item>
+        <item>양구군</item>
+        <item>양양군</item>
+        <item>영월군</item>
+        <item>원주시</item>
+        <item>인제군</item>
+        <item>정선군</item>
+        <item>철원군</item>
+        <item>춘천시</item>
+        <item>태백시</item>
+        <item>평창군</item>
+        <item>홍천군</item>
+        <item>화천군</item>
+        <item>횡성군</item>
+    </string-array>
+
+    <string-array name="member_area_gyeonggi_array">
+        <item>가평군</item>
+        <item>고양시</item>
+        <item>과천시</item>
+        <item>광명시</item>
+        <item>광주시</item>
+        <item>구리시</item>
+        <item>군포시</item>
+        <item>권선구</item>
+        <item>기흥구</item>
+        <item>김포시</item>
+        <item>단원구</item>
+        <item>동두천시</item>
+        <item>동안구</item>
+        <item>만안구</item>
+        <item>부천시</item>
+        <item>분당구</item>
+        <item>상록구</item>
+        <item>성남시</item>
+        <item>수원시</item>
+        <item>수정구</item>
+        <item>수지구</item>
+        <item>시흥시</item>
+        <item>안산시</item>
+        <item>안성시</item>
+        <item>안양시</item>
+        <item>양평군</item>
+        <item>여주시</item>
+        <item>영통구</item>
+        <item>오산시</item>
+        <item>용인시</item>
+        <item>의왕시</item>
+        <item>의정부시</item>
+        <item>이천시</item>
+        <item>일산동구</item>
+        <item>일산서구</item>
+        <item>장안구</item>
+        <item>중원구</item>
+        <item>처인구</item>
+        <item>팔달구</item>
+        <item>평택시</item>
+        <item>하남시</item>
+        <item>화성시</item>
+        <item>남양주시</item>
+        <item>양주시</item>
+        <item>연천군</item>
+        <item>파주시</item>
+        <item>포천시</item>
+    </string-array>
+
+    <string-array name="member_area_gyeongnam_array">
+        <item>거제시</item>
+        <item>거창군</item>
+        <item>고성군</item>
+        <item>김해시</item>
+        <item>남해군</item>
+        <item>마산합포</item>
+        <item>마산회원</item>
+        <item>밀양시</item>
+        <item>사천시</item>
+        <item>산청군</item>
+        <item>양산시</item>
+        <item>의령군</item>
+        <item>의창구</item>
+        <item>진주시</item>
+        <item>진해구</item>
+        <item>창녕군</item>
+        <item>창원시</item>
+        <item>통영시</item>
+        <item>하동군</item>
+        <item>함안군</item>
+        <item>함양군</item>
+        <item>합천군</item>
+    </string-array>
+
+    <string-array name="member_area_gyeongbuk_array">
+        <item>경산시</item>
+        <item>경주시</item>
+        <item>고령군</item>
+        <item>구미시</item>
+        <item>군위군</item>
+        <item>김천시</item>
+        <item>문경시</item>
+        <item>봉환군</item>
+        <item>상주시</item>
+        <item>성주군</item>
+        <item>안동시</item>
+        <item>영덕군</item>
+        <item>영양군</item>
+        <item>영주시</item>
+        <item>영천군</item>
+        <item>예천군</item>
+        <item>울릉군</item>
+        <item>울진군</item>
+        <item>의성군</item>
+        <item>청도군</item>
+        <item>청송군</item>
+        <item>칠곡군</item>
+        <item>포항시</item>
+    </string-array>
+
+    <string-array name="member_area_gwangju_array">
+        <item>광산구</item>
+        <item>남구</item>
+        <item>동구</item>
+        <item>북구</item>
+        <item>서구</item>
+    </string-array>
+
+    <string-array name="member_area_daegu_array">
+        <item>남구</item>
+        <item>달서구</item>
+        <item>달성군</item>
+        <item>동구</item>
+        <item>북구</item>
+        <item>서구</item>
+        <item>수성구</item>
+        <item>중구</item>
+    </string-array>
+
+    <string-array name="member_area_daejeon_array">
+        <item>대덕구</item>
+        <item>동구</item>
+        <item>서구</item>
+        <item>유성구</item>
+        <item>중구</item>
+    </string-array>
+
+    <string-array name="member_area_busan_array">
+        <item>강서구</item>
+        <item>금정구</item>
+        <item>기장군</item>
+        <item>남구</item>
+        <item>동구</item>
+        <item>동래구</item>
+        <item>부산진구</item>
+        <item>북구</item>
+        <item>사상구</item>
+        <item>사하구</item>
+        <item>서구</item>
+        <item>수영구</item>
+        <item>연제구</item>
+        <item>영도구</item>
+        <item>중구</item>
+        <item>해운대구</item>
+    </string-array>
+
+    <string-array name="member_area_seoul_array">
+        <item>강남구</item>
+        <item>강동구</item>
+        <item>강북구</item>
+        <item>강서구</item>
+        <item>관악구</item>
+        <item>광진구</item>
+        <item>구로구</item>
+        <item>금천구</item>
+        <item>노원구</item>
+        <item>도봉구</item>
+        <item>동대문구</item>
+        <item>동작구</item>
+        <item>마포구</item>
+        <item>서대문구</item>
+        <item>서초구</item>
+        <item>성동구</item>
+        <item>성북구</item>
+        <item>송파구</item>
+        <item>양천구</item>
+        <item>영등포구</item>
+        <item>용산구</item>
+        <item>은평구</item>
+        <item>종로구</item>
+        <item>중구</item>
+        <item>중랑구</item>
+    </string-array>
+
+    <string-array name="member_area_sejong_array">
+        <item>세종시</item>
+    </string-array>
+
+    <string-array name="member_area_ulsan_array">
+        <item>중구</item>
+        <item>남구</item>
+        <item>동구</item>
+        <item>북구</item>
+        <item>울주군</item>
+    </string-array>
+
+    <string-array name="member_area_incheon_array">
+        <item>강화군</item>
+        <item>계양구</item>
+        <item>남동구</item>
+        <item>동구</item>
+        <item>미추홀구</item>
+        <item>부평구</item>
+        <item>서구</item>
+        <item>연수구</item>
+        <item>옹진군</item>
+        <item>중구</item>
+    </string-array>
+
+    <string-array name="member_area_jeonnam_array">
+        <item>강진군</item>
+        <item>고흥군</item>
+        <item>곡성군</item>
+        <item>광양시</item>
+        <item>구례군</item>
+        <item>나주시</item>
+        <item>담양군</item>
+        <item>목포시</item>
+        <item>무안군</item>
+        <item>보성군</item>
+        <item>순천시</item>
+        <item>신안군</item>
+        <item>여수시</item>
+        <item>영광군</item>
+        <item>영암군</item>
+        <item>완도군</item>
+        <item>장성군</item>
+        <item>장흥군</item>
+        <item>진도군</item>
+        <item>함평군</item>
+        <item>해남군</item>
+        <item>화순군</item>
+    </string-array>
+
+    <string-array name="member_area_jeonbuk_array">
+        <item>고창군</item>
+        <item>군산시</item>
+        <item>김제시</item>
+        <item>남원시</item>
+        <item>덕진구</item>
+        <item>무주군</item>
+        <item>부안군</item>
+        <item>순창군</item>
+        <item>완산구</item>
+        <item>완주군</item>
+        <item>익산시</item>
+        <item>임실군</item>
+        <item>장수군</item>
+        <item>전주시</item>
+        <item>정읍시</item>
+        <item>진안군</item>
+    </string-array>
+
+    <string-array name="member_area_jeju_array">
+        <item>서귀포시</item>
+        <item>제주시</item>
+    </string-array>
+
+    <string-array name="member_area_chungnam_array">
+        <item>계룡시</item>
+        <item>공주시</item>
+        <item>금산군</item>
+        <item>논산시</item>
+        <item>당진시</item>
+        <item>동남구</item>
+        <item>보령시</item>
+        <item>부여군</item>
+        <item>서북구</item>
+        <item>서산시</item>
+        <item>서천군</item>
+        <item>아산시</item>
+        <item>예산군</item>
+        <item>천안시</item>
+        <item>청양군</item>
+        <item>태안군</item>
+        <item>홍성군</item>
+    </string-array>
+
+    <string-array name="member_area_chungbuk_array">
+        <item>괴산군</item>
+        <item>단양군</item>
+        <item>보은군</item>
+        <item>상당구</item>
+        <item>서원구</item>
+        <item>영동군</item>
+        <item>옥천군</item>
+        <item>음성군</item>
+        <item>제천시</item>
+        <item>증평군</item>
+        <item>진천군</item>
+        <item>청원구</item>
+        <item>청주시</item>
+        <item>충주시</item>
+        <item>흥덕구</item>
+    </string-array>
+
+    <string-array name="member_area_foreign_array">
+        <item>일본</item>
+        <item>중국</item>
+        <item>동남아</item>
+        <item>유럽</item>
+        <item>미국</item>
+        <item>캐나다</item>
+        <item>남미</item>
+        <item>호주</item>
+        <item>뉴질랜드</item>
+        <item>아프리카</item>
+        <item>중동</item>
+        <item>기타지역</item>
+    </string-array>
+
+    <string-array name="member_sibling_male_array">
+        <item>0남</item>
+        <item>1남</item>
+        <item>2남</item>
+        <item>3남</item>
+        <item>4남</item>
+    </string-array>
+
+    <string-array name="member_sibling_female_array">
+        <item>0녀</item>
+        <item>1녀</item>
+        <item>2녀</item>
+        <item>3녀</item>
+        <item>4녀</item>
+    </string-array>
+
+    <string-array name="member_sibling_number_array">
+        <item>첫째</item>
+        <item>둘째</item>
+        <item>셋째</item>
+        <item>넷째</item>
+        <item>다섯째</item>
+        <item>여섯째</item>
+        <item>일곱째</item>
+        <item>여덟째</item>
+    </string-array>
+
+    <string-array name="member_income_array">
+        <item>3000만원 미만</item>
+        <item>3000만원대</item>
+        <item>4000만원대</item>
+        <item>5000만원대</item>
+        <item>6000만원대</item>
+        <item>7000만원대</item>
+        <item>8000만원대</item>
+        <item>9000만원대</item>
+        <item>1억 이상</item>
+        <item>3억 이상</item>
+        <item>5억 이상</item>
+    </string-array>
+
+    <string-array name="member_fortune_array">
+        <item>1억 미만</item>
+        <item>1억 이상</item>
+        <item>3억 이상</item>
+        <item>5억 이상</item>
+        <item>10억 이상</item>
+    </string-array>
+
+    <string-array name="member_education_array">
+        <item>초,중졸</item>
+        <item>고졸</item>
+        <item>대학재학</item>
+        <item>대학중퇴</item>
+        <item>대학(2년)졸</item>
+        <item>대학(3년)졸</item>
+        <item>대학(4년)졸</item>
+        <item>대학원재학</item>
+        <item>대학원졸</item>
+        <item>대학원중퇴</item>
+        <item>박사과정</item>
+        <item>박사학위</item>
+        <item>기타</item>
+    </string-array>
+
+    <string-array name="member_car_array">
+        <item>소형</item>
+        <item>준중형</item>
+        <item>중형</item>
+        <item>대형</item>
+        <item>수입</item>
+        <item>SUV</item>
+        <item>승합</item>
+        <item>바이크</item>
+        <item>없음</item>
+    </string-array>
+
+    <string-array name="member_religion_array">
+        <item>기독교</item>
+        <item>불교</item>
+        <item>천주교</item>
+        <item>이슬람교</item>
+        <item>무교</item>
+        <item>기타</item>
+    </string-array>
+
+    <string-array name="member_character_array">
+        <item>털털한</item>
+        <item>성실한</item>
+        <item>도발적인</item>
+        <item>유머/재치</item>
+        <item>단순한</item>
+        <item>낙천적인</item>
+        <item>정직한</item>
+        <item>엉뚱한</item>
+        <item>도도한</item>
+        <item>활발한</item>
+        <item>주도적인</item>
+        <item>애교있는</item>
+        <item>수줍은</item>
+        <item>감성적인</item>
+        <item>친절한</item>
+        <item>조용한</item>
+        <item>터프한</item>
+        <item>다정다감</item>
+        <item>매상긍정</item>
+        <item>이해심깊은</item>
+        <item>자유분방</item>
+        <item>여성스러움</item>
+        <item>남자다움</item>
+        <item>내성적인</item>
+        <item>열정적인</item>
+        <item>유쾌한</item>
+        <item>까칠한</item>
+        <item>왕고집</item>
+        <item>4차원적</item>
+        <item>솔직한</item>
+        <item>직설적인</item>
+        <item>신중한</item>
+    </string-array>
+
+    <string-array name="member_hobby_array">
+        <item>맥주</item>
+        <item>커피</item>
+        <item>반려동물</item>
+        <item>수다떨기</item>
+        <item>미팅/채팅</item>
+        <item>게임</item>
+        <item>종교</item>
+        <item>외국어/어학</item>
+        <item>쇼핑</item>
+        <item>맛집탐방</item>
+        <item>요리하기</item>
+        <item>청춘사업</item>
+        <item>패션</item>
+        <item>댄스</item>
+        <item>재테크</item>
+        <item>라디오</item>
+        <item>여행</item>
+        <item>드라이브</item>
+        <item>영화보기</item>
+        <item>음악듣기</item>
+        <item>노래부르기</item>
+        <item>드라마보기</item>
+        <item>그림그리기</item>
+        <item>악기연주</item>
+        <item>독서/문화</item>
+        <item>사진/영상</item>
+        <item>웹툰/애니</item>
+        <item>바둑/장기</item>
+        <item>컴퓨터/IT</item>
+        <item>수다떨기</item>
+        <item>SNS관리</item>
+        <item>골동품수집</item>
+        <item>기타수집</item>
+        <item>약초캐기</item>
+        <item>봉사활동</item>
+        <item>놀이동산</item>
+        <item>레져</item>
+        <item>낚시</item>
+        <item>등산</item>
+        <item>수영</item>
+        <item>골프</item>
+        <item>야구</item>
+        <item>축구</item>
+        <item>농구</item>
+        <item>탁구</item>
+        <item>테니스</item>
+        <item>볼링</item>
+        <item>스포츠/운동</item>
+        <item>자전거</item>
+        <item>오토바이</item>
+        <item>자동차</item>
+        <item>전시회</item>
+        <item>기타</item>
+    </string-array>
+
+    <string-array name="member_blood_array">
+        <item>A형</item>
+        <item>B형</item>
+        <item>AB형</item>
+        <item>O형</item>
+    </string-array>
+
+    <string-array name="member_job_array">
+        <item>경영</item>
+        <item>기획</item>
+        <item>사무/관리</item>
+        <item>홍보/광고</item>
+        <item>정부행정</item>
+        <item>공기업/기관</item>
+        <item>법률</item>
+        <item>무역</item>
+        <item>유통</item>
+        <item>연구/개발</item>
+        <item>운송(버스/철도)</item>
+        <item>물류/배송</item>
+        <item>설치</item>
+        <item>정비/AS</item>
+        <item>외국어/번역</item>
+        <item>보안/경비/경호</item>
+        <item>뷰티</item>
+        <item>미용/이용</item>
+        <item>예식</item>
+        <item>장례</item>
+        <item>외식</item>
+        <item>프랜차이즈</item>
+        <item>숙박</item>
+        <item>여행</item>
+        <item>기계</item>
+        <item>생산/제조</item>
+        <item>전기</item>
+        <item>전자</item>
+        <item>가스/수도</item>
+        <item>자동차</item>
+        <item>조선</item>
+        <item>금속/재료</item>
+        <item>섬유화학</item>
+        <item>석유화학</item>
+        <item>정유</item>
+        <item>식품공학</item>
+        <item>식품가공/제조</item>
+        <item>판매</item>
+        <item>서비스</item>
+        <item>의류</item>
+        <item>유아/완구</item>
+        <item>교육</item>
+        <item>금융</item>
+        <item>증권</item>
+        <item>투자</item>
+        <item>보험</item>
+        <item>회계/세무</item>
+        <item>영업</item>
+        <item>고객상담</item>
+        <item>문화/예술</item>
+        <item>공연</item>
+        <item>공예</item>
+        <item>방송</item>
+        <item>신문/잡지</item>
+        <item>도서/출판</item>
+        <item>사진</item>
+        <item>인쇄/인화</item>
+        <item>음악/악기</item>
+        <item>연극/영화</item>
+        <item>엔터테인먼트</item>
+        <item>게임</item>
+        <item>만화/웹툰</item>
+        <item>통신</item>
+        <item>ICT</item>
+        <item>반도체</item>
+        <item>LED/광산업</item>
+        <item>환경</item>
+        <item>인터넷</item>
+        <item>모바일</item>
+        <item>빅데이터</item>
+        <item>로봇</item>
+        <item>나노</item>
+        <item>바이오</item>
+        <item>신소재</item>
+        <item>신재생에너지</item>
+        <item>우주/항공</item>
+        <item>디자인</item>
+        <item>인테리어</item>
+        <item>건설</item>
+        <item>토목</item>
+        <item>설계</item>
+        <item>부동산/임대</item>
+        <item>의료/보건</item>
+        <item>제약</item>
+        <item>종교</item>
+        <item>농업</item>
+        <item>어업</item>
+        <item>축산업</item>
+        <item>낙농업</item>
+        <item>임업</item>
+        <item>광산업</item>
+        <item>자영업</item>
+        <item>전문직/특수직</item>
+        <item>군인/군무원</item>
+        <item>스포츠</item>
+        <item>사회복지</item>
+        <item>프리랜서</item>
+        <item>취업준비</item>
+        <item>창업준비</item>
+        <item>아르바이트</item>
+        <item>학생</item>
+        <item>기타</item>
+    </string-array>
+
+    <string-array name="member_mystyle_female_array">
+        <item>다리가 이뻐요</item>
+        <item>게임을 잘해요</item>
+        <item>털털해요</item>
+        <item>손이 예뻐요</item>
+        <item>짙은눈썹</item>
+        <item>섹시한 타투</item>
+        <item>뛰어난 커리어</item>
+        <item>요리를 잘해요</item>
+        <item>뭐든 잘 먹어요</item>
+        <item>허세 없어요</item>
+        <item>경제력</item>
+        <item>솔직해요</item>
+        <item>목소리가 좋아요</item>
+        <item>섬세해요</item>
+        <item>잘록한 허리</item>
+        <item>엉덩이가 예뻐요</item>
+        <item>배려심이 깊어요</item>
+        <item>큰 눈</item>
+        <item>말을 잘 들어줘요</item>
+        <item>보조개</item>
+        <item>패션감각</item>
+        <item>혼자 잘 놀아요</item>
+        <item>유머감각</item>
+        <item>장난기가 많아요</item>
+        <item>골반미녀</item>
+        <item>한 사람만 봐요</item>
+        <item>긍정적 마인드</item>
+        <item>웃음이 많아요</item>
+        <item>워커홀릭</item>
+        <item>애교가 많아요</item>
+        <item>시사에 밝아요</item>
+        <item>다정해요</item>
+        <item>쌍커플 없는 눈</item>
+        <item>피부가 좋아요</item>
+        <item>좋은 체력</item>
+        <item>섹시한 두뇌</item>
+        <item>노래를 잘해요</item>
+        <item>비율이 좋아요</item>
+        <item>예의가 발라요</item>
+        <item>오똑한 콧날</item>
+        <item>동안이에요</item>
+        <item>운동감각</item>
+        <item>대화를 잘해요</item>
+        <item>웃는게 예뻐요</item>
+        <item>재주가 많아요</item>
+        <item>찰랑찰랑 머릿결</item>
+        <item>돈이 많아요</item>
+        <item>표현을 잘해요</item>
+        <item>강아지상</item>
+        <item>고양이상</item>
+    </string-array>
+
+    <string-array name="member_mystyle_male_array">
+        <item>듬직한 등</item>
+        <item>게임을 잘해요</item>
+        <item>털털해요</item>
+        <item>손이 예뻐요</item>
+        <item>짙은눈썹</item>
+        <item>섹시한 타투</item>
+        <item>뛰어난 커리어</item>
+        <item>요리를 잘해요</item>
+        <item>뭐든 잘 먹어요</item>
+        <item>허세 없어요</item>
+        <item>경제력</item>
+        <item>솔직해요</item>
+        <item>목소리가 좋아요</item>
+        <item>섬세해요</item>
+        <item>선명한 王자</item>
+        <item>엉덩이가 예뻐요</item>
+        <item>배려심이 깊어요</item>
+        <item>큰 눈</item>
+        <item>말을 잘 들어줘요</item>
+        <item>보조개</item>
+        <item>패션감각</item>
+        <item>혼자 잘 놀아요</item>
+        <item>유머감각</item>
+        <item>장난기가 많아요</item>
+        <item>넓은 어깨</item>
+        <item>한 사람만 봐요</item>
+        <item>긍정적 마인드</item>
+        <item>웃음이 많아요</item>
+        <item>워커홀릭</item>
+        <item>애교가 많아요</item>
+        <item>시사에 밝아요</item>
+        <item>다정해요</item>
+        <item>쌍커플 없는 눈</item>
+        <item>피부가 좋아요</item>
+        <item>좋은 체력</item>
+        <item>섹시한 두뇌</item>
+        <item>노래를 잘해요</item>
+        <item>비율이 좋아요</item>
+        <item>예의가 발라요</item>
+        <item>오똑한 콧날</item>
+        <item>동안이에요</item>
+        <item>운동감각</item>
+        <item>대화를 잘해요</item>
+        <item>웃는게 예뻐요</item>
+        <item>재주가 많아요</item>
+        <item>찰랑찰랑 머릿결</item>
+        <item>돈이 많아요</item>
+        <item>표현을 잘해요</item>
+        <item>강아지상</item>
+        <item>고양이상</item>
+    </string-array>
+
+    <string-array name="member_datestyle_array">
+        <item>취미활동 공유하기</item>
+        <item>같이 산책</item>
+        <item>영화 관람하기</item>
+        <item>서로 사진 찍어주기</item>
+        <item>드라이브가기</item>
+        <item>공연 관람하기</item>
+        <item>전시회 관람하기</item>
+        <item>같이 술 마시기</item>
+        <item>노래방 데이트</item>
+        <item>통화 자주하기</item>
+        <item>즉흥적인 만남</item>
+        <item>맛집투어</item>
+        <item>한번 볼때 진하게 만나기</item>
+        <item>짧더라도 자주 만나기</item>
+        <item>스포츠관람</item>
+        <item>집데이트</item>
+        <item>꾸준히 연락하기</item>
+        <item>카페 데이트</item>
+        <item>친구같은 편한만남</item>
+        <item>같이 게임하기</item>
+        <item>도시락 나들이</item>
+        <item>커플운동</item>
+        <item>여행가기</item>
+        <item>침대에서 뒹굴</item>
+        <item>요리 해주기</item>
+        <item>자동차 동호회</item>
+        <item>악기 배우기</item>
+        <item>치열한 토론</item>
+    </string-array>
+    <string-array name="member_drink">
+        <item>음주안함</item>
+        <item>월 1~2회</item>
+        <item>주 1~2회</item>
+        <item >주 3회 이상</item>
+    </string-array>
+</resources>

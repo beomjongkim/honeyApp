@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:id="@+id/cl_frag_my_act_new_member_layout"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   tools:context=".newMember.view.NewMemeberSearchFragment">
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/srl_frag_my_act_new_member_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/ll_frag_my_act_new_member_top_layout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/default_margin_35dp"
+                    android:background="@color/color_gray"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/my_activity_new_member_title01"
+                        android:textSize="@dimen/text_large"
+                        tools:ignore="SpUsage" />
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="@dimen/default_margin_3dp"
+                        android:text="@string/my_activity_new_member_title02"
+                        android:textColor="@color/color_main"
+                        android:textSize="@dimen/text_large"
+                        android:textStyle="bold"
+                        tools:ignore="SpUsage" />
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/my_activity_new_member_title03"
+                        android:textSize="@dimen/text_large"
+                        android:visibility="gone"
+                        tools:ignore="SpUsage" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/ll_frag_my_act_new_member_ideal_type"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/default_margin_35dp"
+                    android:layout_marginLeft="@dimen/default_margin_20dp"
+                    android:layout_marginTop="@dimen/default_margin_10dp"
+                    android:layout_marginRight="@dimen/default_margin_20dp"
+                    android:layout_marginBottom="@dimen/default_margin_10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:layout_width="@dimen/default_margin_0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"
+                        android:background="@drawable/new_member_area_left"
+                        android:gravity="center"
+                        android:text="@string/my_activity_new_member_area"
+                        android:textColor="@color/color_white"
+                        android:textSize="@dimen/text_large"
+                        tools:ignore="SpUsage" />
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:id="@+id/tv_frag_my_act_new_member_area"
+                        android:layout_width="@dimen/default_margin_0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="5"
+                        android:background="@drawable/new_member_area_center"
+                        android:gravity="center"
+                        android:textColor="@color/color_main"
+                        android:textSize="@dimen/text_large"
+                        tools:ignore="SpUsage" />
+
+                    <Button
+                        android:layout_width="@dimen/default_margin_0dp"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:background="@drawable/new_member_area_right" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- 목록 -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_frag_my_act_new_member_list"
+                style="@style/RecyclerViewTheme"
+                android:layout_below="@+id/ll_frag_my_act_new_member_top_layout"
+                tools:listitem="@layout/item_my_act_new_member" />
+
+            <!-- 목록없음 -->
+            <TextView
+                                style="@style/baseTextViewStyle"
+                android:id="@+id/tv_frag_my_act_new_member_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/ll_frag_my_act_new_member_top_layout"
+                android:gravity="center"
+                android:text="@string/msg_app_no_list"
+                android:textSize="@dimen/text_xxlarge"
+                android:visibility="gone"
+                tools:ignore="SpUsage" />
+
+            <!-- 프로그래스바 -->
+            <LinearLayout
+                android:id="@+id/ll_frag_my_act_new_member_progress"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:visibility="gone">
+
+                <ProgressBar
+                    android:layout_width="@dimen/progress_size"
+                    android:layout_height="@dimen/progress_size" />
+            </LinearLayout>
+        </RelativeLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".customview.CustomDialog">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+                                style="@style/baseTextViewStyle"
+            android:id="@+id/tv_custom_dialog_title"
+            android:layout_width="@dimen/custom_dialog_width"
+            android:layout_height="wrap_content"
+            android:background="@drawable/popup_round_title"
+            android:gravity="center"
+            android:padding="@dimen/default_margin_5dp"
+            android:textColor="@color/color_main"
+            android:textSize="@dimen/text_xlarge"
+            android:textStyle="bold"
+            tools:ignore="SpUsage" />
+
+        <LinearLayout
+            android:layout_width="@dimen/custom_dialog_width"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/popup_round_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/default_margin_20dp"
+                android:orientation="vertical">
+
+                <!-- 목록 -->
+                <androidx.core.widget.NestedScrollView
+                    android:id="@+id/nsv_custom_dialog_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:overScrollMode="never"
+                    android:scrollbars="none">
+
+                    <LinearLayout
+                        android:id="@+id/ll_custom_dialog_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_weight="1"
+                        android:orientation="vertical" />
+                </androidx.core.widget.NestedScrollView>
+
+                <!-- 취소 -->
+                <Button
+                    android:id="@+id/btn_custom_dialog_cancel"
+                    android:layout_width="@dimen/custom_dialog_button_width"
+                    android:layout_height="@dimen/custom_dialog_button_height"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/default_margin_20dp"
+                    android:background="@drawable/btn_select_basic02"
+                    android:text="@string/dialog_cancel"
+                    android:textColor="@color/select_text_color02"
+                    android:textSize="@dimen/text_large"
+                    tools:ignore="SpUsage" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

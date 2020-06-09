@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+<!--        <variable name="BannerVM" type="com.dmonster.darling.honey.main.viewmodel.RollingBannerVM"/>-->
+        <variable name="filterVM" type="com.dmonster.darling.honey.main.viewmodel.FilterVM"/>
+
+        <import type="android.view.View"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl_frag_main_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".main.view.MainFragment">
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                android:id="@+id/srl_frag_main_layout"
+                srlRefreshListener="@{filterVM.refreshListener}"
+                isRefreshing="@{filterVM.isRefreshing}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+            <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+<!--                <pyxis.uzuki.live.rollingbanner.RollingBanner-->
+<!--                        android:id="@+id/bn_frag_main"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="60dp"-->
+<!--                        app:indicatorRes="@drawable/default_indicator"-->
+<!--                        app:enableLooping="true"-->
+<!--                        app:bottomMargin="@dimen/default_bottom_margin"-->
+<!--                        app:enableIndicator="true"-->
+<!--                        app:enableRolling="true"-->
+<!--                        app:flingAble="true"-->
+<!--                        app:indicatorMargin="@dimen/default_indicator_margin"-->
+<!--                        app:rollingDelay="8000"-->
+<!--                        app:scrollingDelay="1000"-->
+<!--                        android:visibility="gone"-->
+<!--                        app:smoothScroll="true" app:layout_constraintHorizontal_bias="0.0"-->
+<!--                        BannerItemArray="@{BannerVM.itemList}"-->
+<!--                        android:layout_alignParentTop="true"-->
+<!--                        android:layout_marginTop="0dp"/>-->
+                <!--<LinearLayout-->
+                        <!--android:id="@+id/ll_frag_main_top_layout"-->
+                        <!--android:layout_below="@id/bn_frag_main"-->
+                        <!--android:layout_width="match_parent"-->
+                        <!--android:layout_height="@dimen/default_margin_35dp"-->
+                        <!--android:orientation="horizontal">-->
+
+                    <!--&lt;!&ndash; 지역 &ndash;&gt;-->
+                    <!--<ImageView-->
+                            <!--android:id="@+id/iv_frag_main_area"-->
+                            <!--android:layout_width="@dimen/default_margin_0dp"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:layout_weight="1"-->
+                            <!--android:background="@drawable/btn_select_main_area"/>-->
+
+                    <!--&lt;!&ndash; 성별 &ndash;&gt;-->
+                    <!--<ImageView-->
+                            <!--android:id="@+id/iv_frag_main_gender"-->
+                            <!--android:layout_width="@dimen/default_margin_0dp"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:layout_weight="1"-->
+                            <!--android:background="@drawable/btn_select_main_gender"/>-->
+
+                    <!--&lt;!&ndash; 연령 &ndash;&gt;-->
+                    <!--<ImageView-->
+                            <!--android:id="@+id/iv_frag_main_age"-->
+                            <!--android:layout_width="@dimen/default_margin_0dp"-->
+                            <!--android:layout_height="match_parent"-->
+                            <!--android:layout_weight="1"-->
+                            <!--android:background="@drawable/btn_select_main_age"/>-->
+                <!--</LinearLayout>-->
+                <include
+                        android:id="@+id/ll_frag_main_top_layout"
+                        android:layout_alignParentTop="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        layout="@layout/layout_filter"
+                        bind:filterVM="@{filterVM}"
+                />
+                <!-- 공지사항 -->
+                <LinearLayout
+                        android:id="@+id/ll_frag_main_notice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ll_frag_main_top_layout"
+                        android:background="@drawable/bg_line_bottom"
+                        android:paddingLeft="@dimen/default_margin_5dp"
+                        android:paddingTop="@dimen/default_margin_3dp"
+                        android:paddingRight="@dimen/default_margin_5dp"
+                        android:paddingBottom="@dimen/default_margin_5dp"
+                        android:visibility="gone">
+
+                    <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/default_margin_25dp"
+                            android:background="@drawable/join_btn"
+                            android:paddingLeft="@dimen/default_margin_10dp"
+                            android:paddingRight="@dimen/default_margin_10dp">
+
+                        <TextView
+                                style="@style/baseTextViewStyle"
+                                android:id="@+id/tv_frag_main_notice"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:gravity="center_vertical"
+                                android:maxLines="1"
+                                android:singleLine="true"
+                                android:textSize="@dimen/text_normal"
+                            tools:ignore="SpUsage" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 목록 -->
+                <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_frag_main_list"
+                        style="@style/RecyclerViewTheme"
+                        android:layout_marginTop="@dimen/default_margin_3dp"
+                        setMainDataList="@{filterVM.dataList}"
+                        setMainScrollListener="@{filterVM.scrollListener}"
+                        isScroll="@{filterVM.isScroll}"
+                        android:layout_below="@+id/ll_frag_main_notice"
+                        tools:listitem="@layout/item_main"/>
+
+                <!-- 목록없음 -->
+                <TextView
+                                style="@style/baseTextViewStyle"
+                        android:id="@+id/tv_frag_main_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_below="@+id/ll_frag_main_top_layout"
+                        android:gravity="center"
+                        android:text="@string/msg_app_no_list"
+                        android:textSize="@dimen/text_xxlarge"
+                        android:visibility="gone"
+                    tools:ignore="SpUsage" />
+
+                <!-- 위로 올리기(자동갱신) -->
+                <FrameLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_alignParentBottom="true"
+                        android:layout_margin="@dimen/default_margin_20dp">
+
+                    <!-- 자동 -->
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                            android:id="@+id/tv_frag_main_refresh"
+                            android:layout_width="@dimen/list_up_btn_size"
+                            android:layout_height="@dimen/list_up_btn_size"
+                            android:background="@drawable/main_refresh"
+                            android:clickable="true"
+                            android:gravity="center"
+                            android:text="@string/main_refresh"
+                            android:textColor="@color/color_white"
+                            android:textSize="@dimen/text_large"
+                            android:visibility="gone"
+                        tools:ignore="SpUsage" />
+
+                    <!-- 위로 올리기 -->
+                    <ImageButton
+                            android:background="@color/color_transparent"
+                            android:id="@+id/btn_frag_main_refresh"
+                            android:layout_width="63dp"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/list_up_btn"
+                            android:scaleType="fitXY"
+                            android:adjustViewBounds="true"/>
+                </FrameLayout>
+
+                <!-- 프로그래스바 -->
+                <LinearLayout
+                        android:id="@+id/ll_frag_main_progress"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:gravity="center"
+                        android:visibility="gone">
+
+                    <ProgressBar
+                            android:layout_width="@dimen/progress_size"
+                            android:layout_height="@dimen/progress_size"/>
+                </LinearLayout>
+
+            </RelativeLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

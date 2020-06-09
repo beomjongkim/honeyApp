@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="popupVM"
+            type="com.dmonster.darling.honey.common.viewmodel.PopupVM" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/tv_viewmodel_dialog_name"
+            style="@style/baseTextViewTitleStyle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/text_much_large"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="@{popupVM.title}"
+            android:textColor="@color/accent"
+            app:autoSizeTextType="uniform" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_border_accent_popup"
+            android:padding="30dp">
+
+            <Button
+                android:id="@+id/btn_viewmodel_dialog_cancel"
+                style="@style/baseTextViewStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/bg_round_gray"
+                android:backgroundTint="@color/warm_grey"
+                android:gravity="center"
+                android:onClick="@{(v)->popupVM.dialogInterface.onCancel(v)}"
+                android:text="@{popupVM.negativeText}"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/text_large"
+                android:textStyle="bold"
+                android:visibility='@{popupVM.negativeText == "" ? View.GONE : View.VISIBLE }'
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn_viewmodel_dialog_confirm"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="SpUsage" />
+
+            <Button
+                android:id="@+id/btn_viewmodel_dialog_confirm"
+                style="@style/baseTextViewStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/bg_round_gray"
+                android:backgroundTint="@color/accent"
+                android:gravity="center"
+                android:onClick="@{(v)->popupVM.dialogInterface.onConfirm(v)}"
+                android:text="@{popupVM.positiveText}"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/text_large"
+                android:textStyle="bold"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toEndOf="@+id/btn_viewmodel_dialog_cancel"
+                tools:ignore="SpUsage" />
+
+            <TextView
+                android:id="@+id/tv_viewmodel_dialog_notice"
+                style="@style/baseTextViewStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:gravity="center"
+                android:text="@{popupVM.subTitle}"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/text_xlarge"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toTopOf="@id/btn_viewmodel_dialog_confirm"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.9"
+                tools:ignore="SpUsage" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+</layout>

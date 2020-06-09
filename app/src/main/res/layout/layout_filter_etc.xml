@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="etcVM"
+            type="com.dmonster.darling.honey.main.viewmodel.FilterEtcVM" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_border_round"
+        android:padding="1dp">
+
+        <ImageButton
+            android:id="@+id/ib_filter_etc_backBtn"
+            style="@style/ImageButtoninConstraintTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="8dp"
+            android:layout_marginStart="21dp"
+            android:layout_marginLeft="21dp"
+            android:onClick="@{()->etcVM.onClickBack()}"
+            android:rotation="90"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_filter_etc_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_filter_etc_name"
+            app:srcCompat="@drawable/notice_down_arrow_img" />
+
+        <TextView
+                                style="@style/baseTextViewStyle"
+            android:id="@+id/tv_filter_etc_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:letterSpacing="-0.03"
+            android:text="@string/filter_name_etc"
+            android:textColor="@color/color_gender_male"
+            android:textSize="@dimen/text_xlarge"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpUsage" />
+
+        <View
+            android:id="@+id/v_filter_etc"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:layout_marginTop="14dp"
+            android:background="@color/color_gray"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_filter_etc_name" />
+
+        <TextView
+                                style="@style/baseTextViewStyle"
+            android:id="@+id/tv_filter_etc_notice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.5"
+            android:text="@string/filter_etc_notice"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/text_normal"
+            app:layout_constraintBottom_toBottomOf="@+id/v_filter_etc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/v_filter_etc"
+            tools:ignore="SpUsage" />
+
+        <include
+            android:id="@+id/in_filter_etc_religion"
+            layout="@layout/layout_item_selector"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="21dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            app:itemVM="@{etcVM.itemVMs[0]}"
+            app:layout_constraintEnd_toStartOf="@+id/in_filter_etc_income"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/v_filter_etc" />
+
+        <include
+            android:id="@+id/in_filter_etc_income"
+            layout="@layout/layout_item_selector"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="21dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            app:itemVM="@{etcVM.itemVMs[1]}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/in_filter_etc_religion"
+            app:layout_constraintTop_toBottomOf="@+id/v_filter_etc" />
+
+        <include
+            android:id="@+id/in_filter_etc_fortune"
+            layout="@layout/layout_item_selector"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            app:itemVM="@{etcVM.itemVMs[2]}"
+            app:layout_constraintEnd_toStartOf="@+id/in_filter_etc_blood"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/in_filter_etc_religion" />
+
+        <include
+            android:id="@+id/in_filter_etc_blood"
+            layout="@layout/layout_item_selector"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            app:itemVM="@{etcVM.itemVMs[3]}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/in_filter_etc_fortune"
+            app:layout_constraintTop_toBottomOf="@+id/in_filter_etc_religion" />
+
+        <include
+            android:id="@+id/in_filter_etc_education"
+            layout="@layout/layout_item_selector"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="17dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            app:itemVM="@{etcVM.itemVMs[4]}"
+            app:layout_constraintEnd_toStartOf="@+id/in_filter_etc_drink"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/in_filter_etc_blood" />
+
+        <include
+            android:id="@+id/in_filter_etc_drink"
+            layout="@layout/layout_item_selector"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="17dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginRight="24dp"
+            app:itemVM="@{etcVM.itemVMs[5]}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/in_filter_etc_education"
+            app:layout_constraintTop_toBottomOf="@+id/in_filter_etc_blood" />
+
+        <include
+            android:id="@+id/in_filter_etc_baby"
+            layout="@layout/layout_item_selector"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="17dp"
+            app:itemVM="@{etcVM.itemVMs[6]}"
+            app:layout_constraintEnd_toEndOf="@+id/in_filter_etc_education"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/in_filter_etc_education" />
+
+        <View
+            android:id="@+id/v_filter_etc_divider"
+            style="@style/baseLine.horizontal"
+            android:layout_marginTop="21dp"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/in_filter_etc_baby" />
+
+        <CheckBox
+            android:id="@+id/checkBox2"            style="@style/baseTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="16dp"
+            android:alpha="0.8"
+            android:checked="@={etcVM.profile_pic}"
+            android:text="@string/filter_etc_profile_pic"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/text_large"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/v_filter_etc_divider"
+            tools:ignore="SpUsage" />
+
+        <CheckBox
+            android:id="@+id/checkBox3"
+            style="@style/baseTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="32dp"
+            android:layout_marginLeft="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="16dp"
+            android:alpha="0.8"
+            android:checked="@={etcVM.marry_pic}"
+            android:text="@string/filter_etc_certi_marry"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/text_large"
+            app:layout_constraintBottom_toTopOf="@+id/btn_filter_etc_clear"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/checkBox2"
+            tools:ignore="SpUsage" />
+
+        <View
+            android:id="@+id/v_bottom_line_horizontal"
+            style="@style/baseLine.horizontal"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintBottom_toTopOf="@id/btn_filter_etc_clear"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <Button
+            style="@style/baseTextViewStyle"
+            android:id="@+id/btn_filter_etc_clear"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="4dp"
+            android:alpha="0.8"
+            android:background="@color/color_transparent"
+            android:onClick="@{(v)->etcVM.onClickInit(v)}"
+            android:text="@string/popup_selector_clear"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/text_large"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_filter_etc_search"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:ignore="SpUsage" />
+
+        <View
+            style="@style/baseLine.vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_filter_etc_search"
+            app:layout_constraintStart_toEndOf="@id/btn_filter_etc_clear"
+            app:layout_constraintTop_toBottomOf="@id/v_bottom_line_horizontal" />
+
+        <Button
+            style="@style/baseTextViewStyle"
+            android:id="@+id/btn_filter_etc_search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="4dp"
+            android:alpha="0.8"
+            android:background="@color/color_transparent"
+            android:onClick="@{()->etcVM.onClickSearch()}"
+            android:text="@string/popup_selector_search"
+            android:textColor="@color/cornflower"
+            android:textSize="@dimen/text_large"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/btn_filter_etc_clear"
+            tools:ignore="SpUsage" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

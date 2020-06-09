@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="naviVM"
+            type="com.dmonster.darling.honey.main.viewmodel.NavigationVM" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_line_up_bottom">
+
+        <!-- 메인 -->
+        <com.dmonster.darling.honey.customview.ClickableImageView
+            android:id="@+id/iv_layout_navi_home"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:adjustViewBounds="true"
+            srcClickable="@{naviVM.fragmentNumber == 0 ? @drawable/main_navi_home_on :@drawable/main_navi_home_off}"
+            android:onClick="@{(v)->naviVM.onClickMain(v)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_percent="0.11"  />
+
+        <!-- 상점 -->
+        <com.dmonster.darling.honey.customview.ClickableImageView
+            android:id="@+id/iv_layout_navi_market"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:onClick="@{(v)->naviVM.onClickMarket(v)}"
+            android:adjustViewBounds="true"
+            srcClickable="@{naviVM.fragmentNumber == 1 ? @drawable/main_navi_market_on :@drawable/main_navi_market_off}"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_layout_navi_home"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_layout_navi_home"
+            app:layout_constraintWidth_percent="0.107"  />
+
+<!--        신입회원-->
+        <com.dmonster.darling.honey.customview.ClickableImageView
+            android:id="@+id/iv_layout_navi_ideal"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:onClick="@{(v)->naviVM.onClickNewMember(v)}"
+            android:adjustViewBounds="true"
+            srcClickable="@{naviVM.fragmentNumber == 2 ? @drawable/main_navi_ideal_on :@drawable/main_navi_ideal_off}"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_layout_navi_home"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_layout_navi_home"
+            app:layout_constraintWidth_percent="0.11"  />
+
+<!--        나의 인기-->
+        <com.dmonster.darling.honey.customview.ClickableImageView
+            android:id="@+id/iv_layout_navi_me"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            srcClickable="@{naviVM.fragmentNumber == 3 ? @drawable/main_navi_me_on :@drawable/main_navi_me_off}"
+            android:onClick="@{(v)->naviVM.onClickMyPopularity(v)}"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_layout_navi_home"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.7"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_layout_navi_home"
+            app:layout_constraintWidth_percent="0.11"  />
+
+<!--        알람-->
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:src="@drawable/ic_circle"
+            android:tint="@color/deep_orange"
+            android:visibility="@{naviVM.countTotal > 0 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@id/tv_layout_navi_alarm_cnt"
+            app:layout_constraintEnd_toEndOf="@id/tv_layout_navi_alarm_cnt"
+            app:layout_constraintStart_toStartOf="@id/tv_layout_navi_alarm_cnt"
+            app:layout_constraintTop_toTopOf="@id/tv_layout_navi_alarm_cnt" />
+
+        <TextView
+            android:id="@+id/tv_layout_navi_alarm_cnt"
+            style="@style/baseTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="3dp"
+            android:text="@{naviVM.countTotal.toString()}"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/text_xxsmall"
+            android:visibility="@{naviVM.countTotal > 0 ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_layout_navi_me"
+            app:layout_constraintEnd_toEndOf="@id/iv_layout_navi_me"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.18"
+            tools:ignore="SpUsage" />
+
+<!--        설정-->
+        <com.dmonster.darling.honey.customview.ClickableImageView
+            android:id="@+id/iv_layout_navi_option"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            srcClickable="@{naviVM.fragmentNumber == 4 ? @drawable/main_navi_option_on :@drawable/main_navi_option_off}"
+            android:onClick="@{(v)->naviVM.onClickOption(v)}"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_layout_navi_home"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.9"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_layout_navi_home"
+            app:layout_constraintWidth_percent="0.11"  />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

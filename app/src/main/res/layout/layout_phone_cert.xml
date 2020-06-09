@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="phoneCertVM"
+            type="com.dmonster.darling.honey.join.viewmodel.PhoneCertVM" />
+    </data>
+
+    <!-- 핸드폰번호 -->
+    <RelativeLayout
+        android:id="@+id/rl_phone_cert"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/default_margin_30dp"
+        android:visibility="visible">
+
+        <!-- 핸드폰번호 Title -->
+        <TextView
+            android:id="@+id/tv_phone_cert"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            style="@style/joinTextStyle"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:gravity="center_vertical"
+            android:text="@string/information_member_phone" />
+
+        <!-- 핸드폰번호 입력 -->
+        <EditText
+            android:id="@+id/et_phone_cert"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toLeftOf="@+id/tv_phone_cert_auth"
+            android:layout_toRightOf="@+id/tv_phone_cert"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/color_gray"
+            android:gravity="center"
+            android:hint="@string/hint_information_phone"
+            android:inputType="phone"
+            android:maxLength="12"
+            android:singleLine="true"
+            android:padding="@dimen/default_margin_5dp"
+            android:textSize="@dimen/text_large"
+            tools:ignore="SpUsage"
+            android:digits="0123456789"
+            android:text="@={phoneCertVM.phoneNumber}"
+            style="@style/joinTextStyle"/>
+
+        <!-- 인증 -->
+        <TextView
+            android:id="@+id/tv_phone_cert_auth"
+            android:layout_width="@dimen/default_margin_70dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            style="@style/joinTextStyle"
+            android:onClick="@{(v)->phoneCertVM.onClickCert(v)}"
+            android:background="@drawable/btn_select_basic01"
+            android:gravity="center"
+            android:text="@string/information_member_phone_auth"
+            android:textColor="@color/select_text_color01"
+            android:textSize="@dimen/text_large"
+            android:textStyle="bold"
+            tools:ignore="SpUsage" />
+    </RelativeLayout>
+
+</layout>

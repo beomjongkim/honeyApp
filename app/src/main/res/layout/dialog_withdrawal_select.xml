@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="dialog.WithdrawalSelectDialog">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+                                style="@style/baseTextViewStyle"
+            android:id="@+id/tv_dlg_withdrawal_select_title"
+            android:layout_width="@dimen/custom_dialog_width"
+            android:layout_height="wrap_content"
+            android:background="@drawable/popup_round_title"
+            android:gravity="center"
+            android:padding="@dimen/default_margin_5dp"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/text_xlarge"
+            android:textStyle="bold"
+            tools:ignore="SpUsage" />
+
+        <LinearLayout
+            android:layout_width="@dimen/custom_dialog_width"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/popup_round_content"
+            android:orientation="vertical"
+            android:paddingTop="@dimen/default_margin_10dp"
+            android:paddingBottom="@dimen/default_margin_10dp">
+
+            <!-- 탈퇴사유 -->
+            <TextView
+                                style="@style/baseTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/msg_main_withdrawal_reason"
+                android:textSize="@dimen/text_large"
+                tools:ignore="SpUsage" />
+
+            <!-- 탈퇴사유01 -->
+            <CheckBox
+                android:id="@+id/cb_dlg_withdrawal_select01"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/default_margin_30dp"
+                android:layout_marginTop="@dimen/default_margin_10dp"
+                android:background="@drawable/popup_notify_select"
+                android:button="@color/color_transparent"
+                android:checked="true"
+                android:gravity="center"
+                android:text="@string/msg_main_withdrawal_select01"
+                android:textColor="@color/notify_select_text_color"
+                android:textSize="@dimen/text_large"
+                tools:ignore="SpUsage" />
+
+            <!-- 탈퇴사유02 -->
+            <CheckBox
+                android:id="@+id/cb_dlg_withdrawal_select02"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/default_margin_30dp"
+                android:background="@drawable/popup_notify_select"
+                android:button="@color/color_transparent"
+                android:gravity="center"
+                android:text="@string/msg_main_withdrawal_select02"
+                android:textColor="@color/notify_select_text_color"
+                android:textSize="@dimen/text_large"
+                tools:ignore="SpUsage" />
+
+            <!-- 탈퇴사유03 -->
+            <CheckBox
+                android:id="@+id/cb_dlg_withdrawal_select03"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/default_margin_30dp"
+                android:background="@drawable/popup_notify_select"
+                android:button="@color/color_transparent"
+                android:gravity="center"
+                android:text="@string/msg_main_withdrawal_select03"
+                android:textColor="@color/notify_select_text_color"
+                android:textSize="@dimen/text_large"
+                tools:ignore="SpUsage" />
+
+            <!-- 탈퇴사유04 -->
+            <CheckBox
+                android:id="@+id/cb_dlg_withdrawal_select04"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/default_margin_30dp"
+                android:background="@drawable/popup_notify_select"
+                android:button="@color/color_transparent"
+                android:gravity="center"
+                android:text="@string/msg_main_withdrawal_select04"
+                android:textColor="@color/notify_select_text_color"
+                android:textSize="@dimen/text_large"
+                tools:ignore="SpUsage" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/default_margin_40dp"
+                android:layout_marginLeft="@dimen/default_margin_20dp"
+                android:layout_marginTop="@dimen/default_margin_10dp"
+                android:layout_marginRight="@dimen/default_margin_20dp"
+                android:layout_marginBottom="@dimen/default_margin_10dp"
+                android:orientation="horizontal">
+
+                <!-- 취소 -->
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:id="@+id/tv_dlg_withdrawal_cancel"
+                    android:layout_width="@dimen/default_margin_0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="@dimen/default_margin_5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_select_basic01"
+                    android:gravity="center"
+                    android:text="@string/dialog_cancel"
+                    android:textColor="@color/select_text_color01"
+                    android:textSize="@dimen/text_large"
+                    tools:ignore="SpUsage" />
+
+                <!-- 확인 -->
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:id="@+id/tv_dlg_withdrawal_enter"
+                    android:layout_width="@dimen/default_margin_0dp"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="center"
+                    android:layout_marginLeft="@dimen/default_margin_5dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_select_basic02"
+                    android:gravity="center"
+                    android:text="@string/dialog_enter"
+                    android:textColor="@color/select_text_color02"
+                    android:textSize="@dimen/text_large"
+                    tools:ignore="SpUsage" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

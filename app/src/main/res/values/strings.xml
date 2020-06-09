@@ -1,0 +1,796 @@
+<resources>
+
+    <string name="app_name">자기야</string>
+    <string name="app_update">market://details?id=</string>
+    <string name="app_market_url">https://play.google.com/store/apps/details?id=com.dmonster.darling.honey</string>
+    <string name="app_folder_name">/Honey</string>
+    <string name="app_folder_name_shared">/HoneyShared</string>
+    <string name="app_shared">공유하기</string>
+    <string name="app_shared_female">https://play.google.com/store/apps/details?id=com.dmonster.darling.honey\n\n추천인
+        회원번호 : %s
+    </string>
+    <string name="facebook_app_id">2267136000253752</string>
+    <string name="fb_login_protocol_scheme">fb2267136000253752</string>
+
+    <string name="app_channel_id">알림</string>
+    <string name="app_phone_number">번호없음</string>
+
+    <string name="dialog_title">선택하세요.</string>
+    <string name="dialog_enter">확인</string>
+    <string name="dialog_cancel">취소</string>
+    <string name="dialog_register">등록</string>
+    <string name="dialog_no">안함</string>
+
+    <string name="utility_except_korean_regex">abcdefghijklmnopqrstuvwxyz ABCDEFGHIJKLMNOPQRSTUVWXYZ !@#$%*()_-[]{}`~/.,^+=?\ 0123456789</string>
+    <string name="utility_english_number_only_regex">abcdefghijklmnopqrstuvwxyz 0123456789</string>
+    <string name="utility_korean_number_only_regex">^[ㄱ-ㅎ가-힣0-9]+$</string>
+
+    <string name="utility_car_regex01">
+        ^\d{2}[가|나|다|라|마|거|너|더|러|머|버|서|어|저|고|노|도|로|모|보|소|오|조|구|누|두|루|무|부|수|우|주|바|사|아|자|허|배|호|하\x20]\d{4}/*$
+    </string>
+    <string name="utility_car_regex02">
+        ^[서울|부산|대구|인천|대전|광주|울산|제주|경기|강원|충남|전남|전북|경남|경북|세종]{2}\d{2}[가|나|다|라|마|거|너|더|러|머|버|서|어|저|고|노|도|로|모|보|소|오|조|구|누|두|루|무|부|수|우|주|바|사|아|자|허|배|호|하\x20]\d{4}$
+    </string>
+    <string name="utility_date_former">년생</string>
+    <string name="utility_date_year">yyyy</string>
+    <string name="utility_date_time_second">yyyy-MM-dd HH:mm:ss</string>
+    <string name="utility_date_format_day">yyyy년 MM월 dd일</string>
+    <string name="utility_time_minute_noon">hh:mm a</string>
+    <string name="utility_time_second">hh:mm:ss</string>
+    <string name="utility_time_format_minute">aa hh시 mm분</string>
+
+    <string name="board_date">yyyy-MM-dd hh:mm:ss(E)</string>
+    <string name="board_date_format">yy.MM.dd</string>
+
+    <string name="msg_app_permission">앱 사용을 위해 권한 동의가 필요합니다.</string>
+    <string name="msg_app_network_check">네트워크 상태를 확인해주세요.</string>
+    <string name="msg_app_update">자기야 새 버전이 있습니다.\n업데이트 하시겠습니까?</string>
+    <string name="msg_app_finish">종료 하시겠습니까?</string>
+    <string name="msg_app_login">로그인 후 이용가능합니다.</string>
+    <string name="msg_app_logout">로그아웃하시겠습니까?</string>
+    <string name="msg_app_logout_complete">로그아웃되었습니다.</string>
+    <string name="msg_app_withdrawal_complete">회원탈퇴 되었습니다.</string>
+    <string name="msg_app_save_image_complete">저장되었습니다.</string>
+    <string name="msg_app_save_image_failed">저장에 실패하였습니다.</string>
+    <string name="msg_app_no_list">목록이 존재하지 않습니다.</string>
+    <string name="msg_app_call">전화연결 하시겠습니까?</string>
+    <string name="msg_app_select_delete">삭제하시겠습니까?</string>
+    <string name="msg_error_id">아이디를 입력하세요.</string>
+    <string name="msg_error_password">비밀번호를 입력하세요.</string>
+    <string name="msg_error_password_check">비밀번호 확인을 입력하세요.</string>
+    <string name="msg_error_password_discord">비밀번호가 일치하지 않습니다.</string>
+    <string name="msg_error_email">이메일을 입력하세요.</string>
+    <string name="msg_error_talk">대화명을 입력하세요.</string>
+    <string name="msg_error_age">태어난 년도를 입력하세요.</string>
+    <string name="msg_error_area_join">지역을 입력하세요.</string>
+    <string name="msg_error_gender">성별을 선택하세요.</string>
+    <string name="msg_error_agreement">이용약관에 동의해야합니다.</string>
+    <string name="msg_error_personal">개인정보처리방침에 동의해야합니다.</string>
+    <string name="msg_error_profile">님 프로필을 등록하세요!!\n\n프로필을 등록만 해도 자기야의 모든 기능을 무.제.한.무.료 이용가능합니다.</string>
+    <string name="msg_error_phone_check">핸드폰 인증 후 이용 가능합니다.</string>
+    <string name="msg_error_select">잘못 입력하셨습니다.</string>
+
+    <string name="msg_ideal_type_age">나이를 선택하세요.</string>
+    <string name="msg_ideal_type_area">지역을 선택하세요.</string>
+    <string name="msg_ideal_type_height">키를 선택하세요.</string>
+    <string name="msg_ideal_type_weight">몸무게를 선택하세요.</string>
+    <string name="msg_ideal_type_style">스타일을 선택하세요.</string>
+    <string name="msg_ideal_type_income">연봉을 선택하세요.</string>
+    <string name="msg_ideal_type_education">학력을 선택하세요.</string>
+    <string name="msg_ideal_type_religion">종교를 선택하세요.</string>
+    <string name="msg_ideal_type_blood">혈액형을 선택하세요.</string>
+
+    <string name="arrow">%s > %s</string>
+    <string name="wave">%s ~ %s</string>
+    <string name="comma_str01">%s,%s</string>
+    <string name="comma_str02">%s,%s,%s</string>
+    <string name="comma_str03">%s,%s,%s,%s</string>
+    <string name="comma_int01">%d,%d</string>
+    <string name="line_str">%s-%s-%s</string>
+    <string name="bracket01">(%s)</string>
+    <string name="bracket02">(%s/%s)</string>
+    <string name="won">%d 원</string>
+    <string name="age">%s세</string>
+    <string name="birth">%s년생</string>
+    <string name="age_birth">%s세 / %s년생</string>
+    <string name="children">%s남 %s녀</string>
+    <string name="children_male">%s남</string>
+    <string name="children_female">%s녀</string>
+    <string name="height">%s cm</string>
+    <string name="height_unit">cm</string>
+    <string name="weight">%s kg</string>
+    <string name="weight_unit">kg</string>
+    <string name="weight_unit_below">미만</string>
+    <string name="weight_unit_above">이상</string>
+    <string name="year">%s년</string>
+    <string name="year_before">%s년 이전</string>
+    <string name="msg_error_value_smaller">%s 보다 작게 입력하세요.</string>
+    <string name="msg_error_value_bigger">%s 보다 크게 입력하세요.</string>
+    <string name="msg_error_area">이미 선택된 지역을 선택하셨습니다.</string>
+    <string name="msg_error_style">이미 선택된 스타일을 선택하셨습니다.</string>
+    <string name="msg_error_picture">사진은 최대 10개까지 등록가능합니다.</string>
+
+    <string name="msg_error_join_talk">대화명에는 6자이내의 한글과 숫자만 사용 가능합니다.</string>
+
+    <string name="hint_login_id">아이디</string>
+    <string name="hint_login_email">이메일</string>
+    <string name="hint_login_password">비밀번호</string>
+    <string name="hint_join_password">비밀번호</string>
+    <string name="hint_join_password_check">비밀번호 확인</string>
+    <string name="hint_join_talk">대화명 (6자이내의 한글과 숫자만 사용가능)</string>
+    <string name="hint_join_birth_year">태어난 년도</string>
+    <string name="hint_join_birth_month">월</string>
+    <string name="hint_join_birth_day">일</string>
+    <string name="hint_join_area">지역</string>
+    <string name="hint_join_area_deatail">상세지역</string>
+    <string name="hint_join_recommendation">추천인 회원번호</string>
+    <string name="hint_join_phone">휴대폰 번호 입력</string>
+    <string name="hint_join_social_talk">대화명(6자이내의 한글과 숫자)</string>
+
+    <string name="social_login_kakao_title">카카오톡으로 가입하기</string>
+    <string name="social_login_google_title">구글로 가입하기</string>
+    <string name="social_login_facebook_title">페이스북으로 가입하기</string>
+    <string name="social_login_naver_title">네이버로 가입하기</string>
+
+    <string name="login_email_mark">\u0040</string>
+    <string name="login_login">로그인</string>
+    <string name="login_find_id">아이디 찾기</string>
+    <string name="login_find_password">비밀번호 찾기</string>
+    <string name="login_find_id_password">계정을 잃어버리셨나요? 아이디/ 비밀번호 찾기</string>
+    <string name="login_kakao">카카오 로그인</string>
+    <string name="login_naver">네이버 로그인</string>
+    <string name="login_facebook">페이스북\n로그인</string>
+    <string name="login_google">구글 로그인</string>
+    <string name="login_join">무료회원가입</string>
+
+    <string name="join_title">회원가입</string>
+    <string name="join_use_id_initial">아이디 및 이메일을 입력하세요.</string>
+    <string name="join_use_id">이미 사용중인 아이디입니다.</string>
+    <string name="join_use_not_id">사용가능한 아이디입니다.</string>
+    <string name="join_id_guide">가입 후 수정이 불가합니다. 정확히 입력해주세요.</string>
+    <string name="join_password_guide">비밀번호는 4자 이상의 한글과 숫자만 사용 가능합니다.</string>
+    <string name="join_talk_guide">※한글만 사용가능합니다.(5자이내)</string>
+    <string name="join_male">남성</string>
+    <string name="join_female">여성</string>
+    <string name="join_agreement">이용약관 동의</string>
+    <string name="join_personal">개인정보처리방침 동의</string>
+    <string name="join_agreement_look">약관보기</string>
+    <string name="join_personal_look">방침보기</string>
+    <string name="join_cancel">취소</string>
+    <string name="join_enter">가입하기</string>
+    <string name="agreement_title">이용약관</string>
+    <string name="personal_title">개인정보 처리방침</string>
+
+    <string name="main_more_menu_service_center">고객센터</string>
+    <string name="main_more_menu_invitation">친구초대</string>
+    <string name="main_more_menu_alarm">알림설정</string>
+    <string name="main_more_menu_inquiry">1:1 문의</string>
+    <string name="main_more_menu_question">자주묻는질문</string>
+    <string name="main_more_menu_use">이용방법</string>
+    <string name="main_more_menu_block">차단회원</string>
+    <string name="main_more_menu_block_friends">지인차단</string>
+    <string name="main_more_menu_dormant">휴면설정</string>
+    <string name="main_more_menu_withdrawal">회원탈퇴</string>
+    <string name="main_more_menu_logout">로그아웃</string>
+    <string name="main_more_menu_withdrawal_do">탈퇴하기</string>
+    <string name="main_more_menu_my_info">기본정보</string>
+
+    <string name="main_refresh">자동</string>
+    <string name="main_jumpup_complete_title">점프업 완료!!</string>
+    <string name="main_jumpup_complete">점프업을 완료했습니다! \n\n이제 다른 회원분들을 살펴보러 가실래요?\n\n자기야는 현재 모든 기능이 무료입니다.</string>
+    <string name="msg_main_dormant">계정 휴면 하시겠습니까?</string>
+    <string name="msg_main_dormant_clear">계정 휴면상태입니다.\n계정 휴면을 해제하시겠습니까?</string>
+    <string name="msg_main_dormant_complete">계정 휴면이 완료되었습니다.</string>
+    <string name="msg_main_dormant_clear_complete">계정 휴면해제가 완료되었습니다.</string>
+    <string name="msg_main_withdrawal">자기야를 탈퇴하시겠습니까?</string>
+    <string name="msg_main_withdrawal_coin">잔여 코인 : %s</string>
+    <string name="msg_main_withdrawal_dormant">정말 탈퇴하시겠습니까?\n휴면하시면 재로그인시 언제든 활동 가능합니다.</string>
+    <string name="msg_main_withdrawal_reason">탈퇴사유</string>
+    <string name="msg_main_withdrawal_select01">더 이상 필요 없어서</string>
+    <string name="msg_main_withdrawal_select02">자기야에서 결혼상대를 만나서</string>
+    <string name="msg_main_withdrawal_select03">내 프로필 공개하기 싫어서</string>
+    <string name="msg_main_withdrawal_select04">재가입하기 위해서</string>
+
+    <string name="my_activity_menu_talk">나의 톡</string>
+    <string name="my_activity_menu_reading">내 프로필 열람회원</string>
+    <string name="my_activity_menu_profile">내가 본 프로필</string>
+
+
+    <string name="my_activity_talk_select">전체선택</string>
+    <string name="my_activity_talk_delete">선택삭제</string>
+    <string name="my_activity_new_member_title01">이상형 선택 지역의</string>
+    <string name="my_activity_new_member_title02">신규회원 가입 알림</string>
+    <string name="my_activity_new_member_title03">을 받을 수 있습니다.</string>
+    <string name="my_activity_new_member_area">이상형 선택 지역</string>
+    <string name="my_activity_new_member_area_default">선택안함</string>
+    <string name="msg_my_activity_talk_delete">선택한 톡을 삭제 하시겠습니까?</string>
+    <string name="msg_my_activity_select_talk">삭제할 톡을 선택해주세요.</string>
+    <string name="msg_my_activity_love">러브카드를 구입하시면 30일동안 하루에 1명씩 이상형을 소개 받을 수 있습니다. 구매하시겠습니까?</string>
+    <string name="msg_my_activity_profile_delete">선택한 프로필을 삭제 하시겠습니까?</string>
+    <string name="msg_my_activity_select_profile">삭제할 프로필을 선택해주세요.</string>
+
+    <string name="my_activity_profile_open_basic">기본열람</string>
+    <string name="my_activity_profile_open_all">전체열람</string>
+
+    <string name="talk_title">톡하기</string>
+    <string name="talk_title_detail">%s(%s/%s)님</string>
+    <string name="talk_send">보내기</string>
+    <string name="talk_type_message">메시지</string>
+    <string name="talk_type_logout">logout</string>
+    <string name="talk_type_info">info</string>
+    <string name="talk_type_good">카드보내기</string>
+    <string name="msg_talk_send_image">선택한 이미지를 전송하시겠습니까?</string>
+    <string name="msg_talk_delete">톡하기를 삭제하시겠습니까?\n대화 내용 및 정보가 모두 삭제됩니다.</string>
+    <string name="msg_talk_delete_complete">삭제되었습니다.</string>
+    <string name="msg_talk_message">메시지를 입력하세요.</string>
+    <string name="msg_talk_error_message">전송에 실패하였습니다.</string>
+
+    <string name="information_member_area">지역</string>
+    <string name="information_member_type">회원유형</string>
+    <string name="information_member_marry">결혼</string>
+    <string name="information_member_remarry">재혼</string>
+    <string name="information_member_mark_content">는 %s님의 가려진 정보입니다.</string>
+    <string name="information_member_blur_content">※ 블러처리된 부분은 가려진 정보입니다.</string>
+    <string name="information_member_information">상세정보</string>
+    <string name="informatino_member_etc_title">외모 및 기타</string>
+    <string name="information_member_name">이름</string>
+    <string name="information_member_first_name_check">성씨만표기</string>
+    <string name="information_member_age">나이</string>
+    <string name="information_member_sibling">형제/자매</string>
+    <string name="information_member_children">자녀</string>
+    <string name="information_member_hometown">고향</string>
+    <string name="information_member_job">직업</string>
+    <string name="information_member_income">연봉</string>
+    <string name="information_member_fortune">보유재산</string>
+    <string name="information_member_education">학력</string>
+    <string name="information_member_car">차량</string>
+    <string name="information_member_religion">종교</string>
+    <string name="information_member_family_relationship">가족 관계</string>
+    <string name="information_member_parents">부모님은 살아 계십니까?</string>
+    <string name="information_member_marry_plan">결혼 계획은 있나요?</string>
+    <string name="information_member_marry_plan_select01">언제든지</string>
+    <string name="information_member_marry_plan_select02">빠를수록</string>
+    <string name="information_member_marry_plan_select03">좋은 사람 만나면</string>
+    <string name="information_member_marry_plan_select04">없음</string>
+    <string name="information_member_divorce">이혼 절차는 마무리 되셨나요?</string>
+    <string name="information_member_divorce_select01">네</string>
+    <string name="information_member_divorce_select02">진행중</string>
+    <string name="information_member_divorce_select03">사별</string>
+    <string name="information_member_divorce_select04">혼인신고 안했음</string>
+    <string name="information_member_divorce_year_title">이혼(사별)한지 몇 년 되셨나요?</string>
+    <string name="information_member_divorce_year">이혼(사별)연도</string>
+    <string name="information_member_divorce_year_content">%s에 이혼(사별)</string>
+    <string name="information_member_appearance">외모 / 취미 / 기타</string>
+    <string name="information_member_height">키</string>
+    <string name="information_member_weight">체중</string>
+    <string name="information_member_height_unit">cm</string>
+    <string name="information_member_weight_unit">kg</string>
+    <string name="information_member_drinking">음주</string>
+    <string name="information_member_drinking_not">음주안함</string>
+    <string name="information_member_drinking01">월 1~2회</string>
+    <string name="information_member_drinking02">주 1~2회</string>
+    <string name="information_member_drinking03">주 3회 이상</string>
+    <string name="information_member_drinking_detail01">1~2잔</string>
+    <string name="information_member_drinking_detail02">반병정도</string>
+    <string name="information_member_drinking_detail03">1병정도</string>
+    <string name="information_member_drinking_detail04">1병 이상</string>
+    <string name="information_member_smoking">흡연</string>
+    <string name="information_member_blood">혈액형</string>
+    <string name="information_member_blood_a">A형</string>
+    <string name="information_member_blood_b">B형</string>
+    <string name="information_member_blood_ab">AB형</string>
+    <string name="information_member_blood_o">O형</string>
+    <string name="information_member_character">성격</string>
+    <string name="information_member_hobby">취미</string>
+    <string name="information_member_mystyle">나의 스타일</string>
+    <string name="information_member_datestyle">데이트 스타일</string>
+    <string name="information_member_introduce">자기소개</string>
+    <string name="information_member_introduce_guide">※ 연락처, SNS 아이디 작성 및 요구시 이용정지 될 수 있습니다.</string>
+    <string name="information_member_family">가족소개</string>
+    <string name="information_member_picture">본인사진</string>
+    <string name="information_member_cert">혼인 관계 증명서</string>
+    <string name="information_member_picture_plus">사진을 선택하세요.</string>
+    <string name="information_member_route">가입경로</string>
+    <string name="information_member_phone">휴대폰번호</string>
+    <string name="information_member_phone_auth">인증</string>
+    <string name="information_member_recommend">추천인 현황</string>
+    <string name="information_member_recommend_number">나의 회원번호 : %s</string>
+    <string name="information_member_modify">수정하기</string>
+    <string name="information_member_modify_complete">수정완료</string>
+    <string name="msg_information_member_modify_complete">내 정보를 수정하였습니다.</string>
+    <string name="msg_information_member_home">홈으로</string>
+
+    <string name="msg_error_information_member_talk_id">대화명을 입력하세요.</string>
+    <string name="msg_error_information_member_area">지역을 입력하세요.</string>
+    <string name="msg_error_information_member_name">이름을 입력하세요.</string>
+    <string name="msg_error_information_member_sibling">형제/자매를 입력하세요.</string>
+    <string name="msg_error_information_member_children">자녀를 입력하세요.</string>
+    <string name="msg_error_information_member_hometown">고향을 입력하세요.</string>
+    <string name="msg_error_information_member_job">직업을 입력하세요.</string>
+    <string name="msg_error_information_member_income">연봉을 입력하세요.</string>
+    <string name="msg_error_information_member_fortune">보유재산을 입력하세요.</string>
+    <string name="msg_error_information_member_education">학력을 입력하세요.</string>
+    <string name="msg_error_information_member_car">차량을 입력하세요.</string>
+    <string name="msg_error_information_member_religion">종교를 입력하세요.</string>
+    <string name="msg_error_information_member_height">키를 입력하세요.</string>
+    <string name="msg_error_information_member_weight">몸무게를 입력하세요.</string>
+    <string name="msg_error_information_member_character">성격을 입력하세요.</string>
+    <string name="msg_error_information_member_hobby">취미를 입력하세요.</string>
+    <string name="msg_error_information_member_mystyle">나의 스타일을 입력하세요.</string>
+    <string name="msg_error_information_member_datestyle">데이트 스타일을 입력하세요.</string>
+    <string name="msg_error_information_member_divorceyear">이혼(사별)연도를 입력하세요.</string>
+    <string name="msg_error_information_member_introduce">자기소개를 입력하세요.</string>
+    <string name="msg_error_information_member_family">가족소개를 입력하세요.</string>
+    <string name="msg_error_information_member_phone">휴대폰번호를 입력하세요.</string>
+    <string name="msg_error_information_member_phone_auth">휴대폰인증을 해주세요.</string>
+
+    <string name="information_member_dlg_area">지역 선택</string>
+    <string name="information_member_dlg_age">나이 선택</string>
+    <string name="information_member_dlg_sibling">형제/자매 선택</string>
+    <string name="information_member_dlg_hometown">고향 선택</string>
+    <string name="information_member_dlg_job">직업 선택</string>
+    <string name="information_member_dlg_income">연봉 선택</string>
+    <string name="information_member_dlg_fortune">보유재산 선택</string>
+    <string name="information_member_dlg_education">학력 선택</string>
+    <string name="information_member_dlg_car">차량 선택</string>
+    <string name="information_member_dlg_religion">종교 선택</string>
+    <string name="information_member_dlg_children">자녀 선택</string>
+    <string name="information_member_dlg_character">성격 선택</string>
+    <string name="information_member_dlg_hobby">취미 선택</string>
+    <string name="information_member_dlg_mystyle">나의 스타일 선택</string>
+    <string name="information_member_dlg_datestyle">데이트 스타일 선택</string>
+    <string name="information_member_dlg_divorce_year">이혼(사별)연도 선택</string>
+
+    <string name="hint_information_last_name">이름</string>
+    <string name="hint_information_phone">휴대폰번호 입력</string>
+
+    <string name="key_information_parents_select01">네(모두)</string>
+    <string name="key_information_parents_select02">아버지만</string>
+    <string name="key_information_parents_select03">어머니만</string>
+    <string name="key_information_parents_select04">아니오(작고)</string>
+    <string name="key_information_drinking_not">음주안함</string>
+    <string name="key_information_not_smoking">경험없음</string>
+    <string name="key_information__prohibit_smoking">금연</string>
+    <string name="key_information_smoking">흡연</string>
+    <string name="key_information_route01">지인소개</string>
+    <string name="key_information_route02">광고</string>
+    <string name="key_information_route03">검색</string>
+    <string name="key_information_route04">기타</string>
+
+    <string name="information_ideal_type_age">나이</string>
+    <string name="information_ideal_type_area">지역</string>
+    <string name="information_ideal_type_height">키</string>
+    <string name="information_ideal_type_weight">몸무게</string>
+    <string name="information_ideal_type_style">스타일</string>
+    <string name="information_ideal_type_income">연봉</string>
+    <string name="information_ideal_type_education">학력</string>
+    <string name="information_ideal_type_religion">종교</string>
+    <string name="information_ideal_type_blood">혈액형</string>
+    <string name="information_ideal_type_wave">~</string>
+    <string name="information_ideal_type_select_modify">수정하기</string>
+    <string name="information_ideal_type_select_complete">선택완료</string>
+    <string name="msg_information_ideal_type_select_complete">이상형 선택이 완료되었습니다.</string>
+    <string name="msg_information_ideal_type_home">홈으로</string>
+
+    <string name="information_ideal_type_dlg_age">나이 선택</string>
+    <string name="information_ideal_type_dlg_area">지역 선택</string>
+    <string name="information_ideal_type_dlg_height">키 선택</string>
+    <string name="information_ideal_type_dlg_weight">몸무게 선택</string>
+    <string name="information_ideal_type_dlg_style">스타일 선택</string>
+    <string name="information_ideal_type_dlg_income">연봉 선택</string>
+    <string name="information_ideal_type_dlg_education">학력 선택</string>
+    <string name="information_ideal_type_dlg_religion">종교 선택</string>
+    <string name="information_ideal_type_dlg_blood">혈액형 선택</string>
+
+    <string name="profile_title">프로필</string>
+    <string name="profile_title_talk">%s님의 프로필</string>
+    <string name="profile_good">호감있어요</string>
+    <string name="profile_interest">관심있어요</string>
+    <string name="profile_talk">톡하기</string>
+    <string name="profile_look">보기</string>
+    <string name="profile_notify">신고하기</string>
+    <string name="profile_block">차단하기</string>
+    <string name="msg_profile_error_own">본인에게는 불가능합니다.</string>
+    <string name="msg_profile_error_good">이성에게만 가능합니다.</string>
+    <string name="msg_profile_error_gender">이성끼리만 채팅이 가능합니다.</string>
+    <string name="msg_profile_item">%s 구매후 이용가능합니다.\n구매하시겠습니까?</string>
+    <string name="msg_profile_item_look">프로필 열람권</string>
+    <string name="msg_profile_item_talk">톡하기 이용권</string>
+    <string name="app_intorduce">커플 중매앱 자기야</string>
+    <string name="msg_profile_look_item_use"> 님의 프로필을 열람하세요!!\n\n무.제.한.무.료\n프로필 열람 이벤트 중!!</string>
+    <string name="msg_profile_talk_item_use"> 님과의 톡하기!!\n나이스 초이스!!\n\n \'자기야\'는 현재 \'톡하기\' 무제한 무료 이벤트 기간입니다.\n 화이팅 하세요!!</string>
+    <string name="msg_profile_love_item_use">%s를 이용하시겠습니까?</string>
+
+    <string name="good_title">호감있어요</string>
+    <string name="good_talk_id">님께 호감있어요를 보냅니다.</string>
+    <string name="good_expression">호감표현♥</string>
+    <string name="good_expression_select">을 선택해주세요.</string>
+    <string name="good_image_select_content">이미지를 선택하면 미리보기가 가능합니다.</string>
+    <string name="good_words">안녕하세요 사진보고 마음에 들어서 연락드려요\n오늘도 좋은하루 되세요^^</string>
+    <string name="good_express">호감있어요 보내기</string>
+    <string name="msg_good_image">이미지를 선택하세요.</string>
+
+    <string name="interest_title">관심있어요</string>
+    <string name="interest_talk_id">님께 관심있어요를 보냅니다.</string>
+    <string name="interest_expression">관심표현♥</string>
+    <string name="interest_expression_select">을 선택해주세요.</string>
+    <string name="interest_image_select_content">이미지를 선택하면 미리보기가 가능합니다.</string>
+    <string name="interest_words">안녕하세요 사진보고 마음에 들어서 연락드려요\n오늘도 좋은하루 되세요^^</string>
+    <string name="interest_express">@string/interest_title</string>
+    <string name="msg_interest_image">이미지를 선택하세요.</string>
+
+    <string name="item_now_coin_title">현재보유코인</string>
+    <string name="item_save_coin_title">적립코인</string>
+    <string name="item_now_coin">%s 코인</string>
+    <string name="item_administration">아이템 관리</string>
+    <string name="item_charge">충전하기</string>
+    <string name="item_admin_profile">프로필 열람권</string>
+    <string name="item_admin_good">호감있어요</string>
+    <string name="item_admin_talk">톡하기 이용권</string>
+    <string name="item_admin_love">러브카드</string>
+    <string name="item_admin_refresh">자동갱신</string>
+    <string name="item_admin_buy">구매하기</string>
+    <string name="item_admin_gift">선물하기</string>
+    <string name="item_admin_use_breakdown">아이템 이용 내역</string>
+    <string name="item_admin_all">전체보기</string>
+    <string name="item_admin_default01">0장</string>
+    <string name="item_admin_default02">0일</string>
+    <string name="item_admin_talk_unit">%s %s</string>
+    <string name="item_charge_coin_title">충전하기</string>
+    <string name="item_charge_coin_vat">VAT 10%</string>
+    <string name="item_charge_coin_select01">10,000코인</string>
+    <string name="item_charge_coin_select02">30,000코인</string>
+    <string name="item_charge_coin_select03">50,000코인</string>
+    <string name="item_charge_coin_select04">100,000코인</string>
+    <string name="item_charge_coin_select05">200,000코인</string>
+    <string name="item_charge_coin_select06">300,000코인</string>
+    <string name="item_charge_won_select01">11,000원</string>
+    <string name="item_charge_won_select02">33,000원</string>
+    <string name="item_charge_won_select03">55,000원</string>
+    <string name="item_charge_won_select04">110,000원</string>
+    <string name="item_charge_won_select05">220,000원</string>
+    <string name="item_charge_won_select06">330,000원</string>
+    <string name="item_charge_coin_use_title">충전방법</string>
+    <string name="item_charge_coin_use">인앱결제</string>
+    <string name="item_charge_case">휴대폰</string>
+
+    <string name="item_use_title">아이템 이용 내역</string>
+    <string name="key_item_use01">아이템 구매</string>
+    <string name="key_item_use02">상품 구매</string>
+    <string name="key_item_use03">충전</string>
+    <string name="key_item_use04">첫 대화 축하 기념</string>
+    <string name="key_item_use05">프로필 전체열람</string>
+
+    <string name="market_title">자기야 마켓</string>
+    <string name="market_content">이용권 이용 기간동안 \n 아래 사항이 제공됩니다.\n\n- 관심있어요 무제한 -\n-채팅(톡하기) 무제한-</string>
+    <string name="market_now_coin_title">현재보유코인</string>
+    <string name="market_item_coin">코인</string>
+    <string name="msg_market_item">해당상품을 구매하시겠습니까?</string>
+    <string name="msg_market_gift">해당상품을 선물하시겠습니까?</string>
+    <string name="msg_market_complete">상품구매를 완료하였습니다.</string>
+    <string name="market_item_month">월간 이용권\n(5,000원)\n구매하기</string>
+    <string name="market_item_hour">1시간 이용권\n(비디오 광고시청)\n구매하기</string>
+    <string name="market_button_buy">구매하기</string>
+    <string name="market_button_log">구매내역</string>
+
+
+    <string name="market_key_item">구매</string>
+    <string name="market_key_gift">선물</string>
+
+    <string name="service_center_title_content">어플리케이션에 관한 장애 및 문의는 아래 연락처로 문의주시면 빠른 시간 내에 처리하도록 하겠습니다.</string>
+    <string name="service_center_email">이메일</string>
+    <string name="service_center_phone">고객센터</string>
+    <string name="service_center_communication">통신판매신고서</string>
+    <string name="service_center_business">사업자등록번호</string>
+    <string name="service_center_agreement">이용약관</string>
+    <string name="service_center_personal">개인정보취급방침</string>
+    <string name="service_center_location">위치기반서비스</string>
+    <string name="service_center_call">고객센터 전화걸기</string>
+    <string name="service_center_call_tel">tel:%s</string>
+
+    <string name="alarm_all_on">전체 알림 끄기/켜기</string>
+    <string name="alarm_new_talk">신규톡</string>
+    <string name="alarm_good">호감있어요</string>
+    <string name="alarm_interest">관심있어요</string>
+    <string name="alarm_new_member">신규회원</string>
+    <string name="alarm_love_card">러브카드</string>
+    <string name="alarm_open">전체열람</string>
+    <string name="alarm_ad">광고성 알림받기</string>
+    <string name="alarm_notice">공지사항</string>
+
+    <string name="inquiry_title_inquire">문의하기</string>
+    <string name="inquiry_title_breakdown">문의내역</string>
+    <string name="inquiry_inquire_kind">문의 종류 선택</string>
+    <string name="inquiry_inquire_phone">휴대폰번호</string>
+    <string name="inquiry_inquire_phone_compulsory">(필수)</string>
+    <string name="inquiry_inquire_image">이미지 등록</string>
+    <string name="inquiry_inquire_image_file">파일을 선택하세요.</string>
+    <string name="inquiry_inquire_image_file_select">파일이 첨부되었습니다.</string>
+    <string name="inquiry_inquire_image_content">이용 및 구동 장애에 대한 문의시 이미지를 함께 \n 등록하시면 보다 빠르게 답변을 받아 보실 수 있습니다.</string>
+    <string name="inquiry_breakdown_type">[ %s ]</string>
+    <string name="inquiry_breakdown_reply_complete">답변완료</string>
+    <string name="inquiry_breakdown_reply">답변미등록</string>
+    <string name="hint_inquiry_inquire_phone">-없이 입력</string>
+    <string name="msg_inquiry_inquire_kind">문의 종류를 선택하세요.</string>
+    <string name="msg_inquiry_inquire_phone">휴대폰번호를 입력하세요.</string>
+    <string name="msg_inquiry_inquire_content">문의할 내용을 입력하세요.</string>
+    <string name="msg_inquiry_inquire_complete">문의가 등록 되었습니다.</string>
+
+    <string name="notice_title">공지사항</string>
+
+    <string name="my_info_title">기본정보</string>
+    <string name="my_info_email">이메일</string>
+    <string name="my_info_logout">로그아웃</string>
+    <string name="my_info_talk_id">대화명</string>
+    <string name="my_info_age">나이</string>
+    <string name="my_info_type">회원유형</string>
+    <string name="my_info_type_marry">결혼</string>
+    <string name="my_info_type_remarry">재혼</string>
+    <string name="my_info_content">대화명, 나이, 회원유형은 잘못된 정보에 한하여 단 1회 변경이 가능합니다.</string>
+    <string name="my_info_area">지역</string>
+    <string name="my_info_password_title">비밀번호</string>
+    <string name="my_info_phone">휴대폰 번호</string>
+    <string name="my_info_phone_edit">번호 인증</string>
+    <string name="msg_my_info_edit_complete">수정이 완료되었습니다.</string>
+    <string name="msg_my_info_error_talk_id">대화명을 입력하세요.</string>
+    <string name="msg_my_info_error_age">나이를 입력하세요.</string>
+    <string name="msg_my_info_error_type">회원유형을 입력하세요.</string>
+    <string name="msg_my_info_error_area">지역을 입력하세요.</string>
+    <string name="msg_my_info_error_password">기존 비밀번호를 입력하세요.</string>
+    <string name="msg_my_info_error_password_new">새 비밀번호를 입력하세요.</string>
+    <string name="msg_my_info_error_password_new_check">새 비밀번호 확인을 입력하세요.</string>
+    <string name="msg_my_info_error_password_discord">비밀번호가 일치하지 않습니다.</string>
+
+    <string name="hint_my_info_password">기존 비밀번호(4자~10자)</string>
+    <string name="hint_my_info_password_new">새 비밀번호(4자~10자)</string>
+    <string name="hint_my_info_password_new_check">새 비밀번호 확인(4자~10자)</string>
+
+    <string name="phone_auth_title">휴대폰 인증</string>
+    <string name="phone_auth_hint_phone">휴대폰 번호 입력</string>
+    <string name="phone_auth_hint_number">인증번호 입력</string>
+    <string name="phone_auth_number_check">확인</string>
+    <string name="phone_auth_content01">1. 자기야는 회원님들과의 신뢰를 위해 휴대폰 인증을 받습니다.</string>
+    <string name="phone_auth_content02">2. 자기야는 전화번호 1개만 등록(가입)할 수 있습니다.</string>
+    <string name="phone_auth_number">인증번호 받기</string>
+    <string name="msg_phone_auth_error_phone">휴대폰 번호를 입력하세요.</string>
+    <string name="msg_phone_auth_error_phone_valid">휴대폰 번호가 올바르지 않습니다.</string>
+    <string name="msg_phone_auth_error_number">인증번호를 입력하세요.</string>
+    <string name="msg_phone_auth_change_complete">휴대폰 번호 변경이 완료 되었습니다.</string>
+    <string name="msg_phone_auth_complete">휴대폰 인증이 완료 되었습니다.</string>
+
+    <string name="block_clear">차단해제</string>
+    <string name="msg_block_clear">회원을 차단해제 하시겠습니까?</string>
+    <string name="msg_block_select">차단해제할 회원을 선택해주세요.</string>
+    <string name="msg_block">%s님을 차단하시겠습니까?</string>
+
+    <string name="main_item_image">사진%s</string>
+    <string name="main_item_edit">수정하기</string>
+    <string name="main_item_talk">톡하기</string>
+
+    <string name="find_id_pw_title">아이디/비밀번호 찾기</string>
+    <string name="find_id_title">아이디(이메일) 찾기</string>
+    <string name="find_id_title_hint">회원가입시 입력한 휴대폰 번호를 입력하세요.</string>
+    <string name="find_id_phone_hint">휴대폰 번호입력</string>
+    <string name="find_id_enter">아이디 찾기</string>
+    <string name="find_id_enter_use">사용하기</string>
+    <string name="find_id_enter_login">로그인 하기</string>
+    <string name="find_pw_title">비밀번호 찾기</string>
+    <string name="find_pw_title_hint">회원가입시 입력한 휴대폰 번호와 이메일을 입력하세요.</string>
+    <string name="find_pw_phone_hint">휴대폰 번호입력</string>
+    <string name="find_pw_email_hint">이메일 입력</string>
+    <string name="find_pw_enter">비밀번호 찾기</string>
+    <string name="msg_find_phone">휴대폰 번호를 입력하세요.</string>
+    <string name="msg_find_email">이메일을 입력하세요.</string>
+    <string name="msg_find_pw">임시비밀번호로 로그인하였습니다. 비밀번호를 변경하시겠습니까?</string>
+
+    <string name="popup_email_check_title">회원가입</string>
+    <string name="popup_email_check_content">입력한 이메일이 정확한가요?\n이메일은 비밀번호 찾기에 사용됩니다.</string>
+
+    <string name="popup_selector_clear">초기화</string>
+    <string name="popup_selector_search">검색</string>
+    <string name="popup_selector_area_title">지역 검색</string>
+    <string name="popup_selector_area_content">거리(나와의 거리)순/ 지역 선택</string>
+    <string name="popup_selector_gender_title">성별선택</string>
+    <string name="popup_selector_gender_content">성별을 선택하세요.</string>
+    <string name="popup_selector_age_title">나이 검색</string>
+    <string name="popup_selector_age_content">나이대를 선택하세요</string>
+    <string name="msg_popup_selector_area">지역을 선택하세요.</string>
+    <string name="msg_popup_selector_gender">성별을 선택하세요.</string>
+    <string name="msg_popup_selector_age">나이를 선택하세요.</string>
+    <string name="msg_popup_selector_area_limit">최대 3개까지 선택가능합니다.</string>
+    <string name="msg_popup_selector_gender_limit">최대 1개까지 선택가능합니다.</string>
+    <string name="msg_popup_selector_age_limit">최대 4개까지 선택가능합니다.</string>
+    <string name="msg_popup_selector_member_limit">최대 3개까지 선택가능합니다.</string>
+    <string name="msg_popup_selector_member_age_limit">최대 4개까지 선택가능합니다.</string>
+    <string name="msg_popup_selector_member_income_limit">최대 3개까지 선택가능합니다.</string>
+    <string name="msg_popup_selector_member_education_limit">최대 2개까지 선택가능합니다.</string>
+    <string name="msg_popup_selector_member_religion_limit">최대 1개까지 선택가능합니다.</string>
+    <string name="msg_popup_selector_member_blood_limit">최대 1개까지 선택가능합니다.</string>
+    <string name="msg_popup_selector_member_mystyle_limit">최대 5개까지 선택가능합니다.</string>
+
+    <string name="popup_notify_title">상대방을 신고하시겠습니까?</string>
+    <string name="popup_notify_select01">허위 프로필</string>
+    <string name="popup_notify_select02">욕설 및 음란 사진/글</string>
+    <string name="popup_notify_select03">광고</string>
+    <string name="popup_notify_select04">기타</string>
+    <string name="msg_popup_notify_complete">신고가 접수되었습니다.</string>
+
+    <string name="popup_interest_title">관심있어요를 보내시겠습니까?</string>
+    <string name="popup_good_title">호감있어요를 보내시겠습니까?</string>
+    <string name="popup_love_card_title">러브카드가 도착했습니다.\n확인하시겠습니까?</string>
+
+    <string name="popup_item_now_coin">현재보유 코인</string>
+    <string name="popup_item_after_coin">구매후 코인</string>
+    <string name="popup_item_lack_coin">부족한 코인</string>
+    <string name="popup_item_sum_coin">%s코인</string>
+    <string name="popup_item_replace_coin">코인</string>
+    <string name="popup_item_replace_comma">,</string>
+
+    <string name="popup_title_set_profile">프로필 등록</string>
+
+
+    <string name="popup_profile_title">프로필 열람권</string>
+    <string name="popup_profile_content01">1.프로필 열람권은 1명의 정보를 제한없이 볼 수 있습니다.</string>
+    <string name="popup_profile_content02">2.프로필 열람을 하면 사진 확대 축소가 가능합니다.</string>
+    <string name="popup_profile_count">구매수량</string>
+    <string name="popup_profile_count_default">1</string>
+    <string name="popup_profile_cancel">취소</string>
+    <string name="popup_profile_enter">구매하기</string>
+    <string name="popup_profile_charge">충전하기</string>
+    <string name="popup_profile_item_title01">3개</string>
+    <string name="popup_profile_item_title02">5개</string>
+    <string name="popup_profile_item_title03">15개</string>
+    <string name="popup_profile_item_title04">30개</string>
+    <string name="popup_profile_item_price01">3,000코인</string>
+    <string name="popup_profile_item_price02">5,000코인</string>
+    <string name="popup_profile_item_price03">14,000코인</string>
+    <string name="popup_profile_item_price04">27,000코인</string>
+    <string name="popup_profile_coin">%d:%d:%d:%d</string>
+
+    <string name="popup_talk_title">톡하기 이용권</string>
+    <string name="popup_talk_content">톡하기 이용권은 구매시간부터 구매한 기간동안 톡을 무제한으로 보낼 수 있습니다.</string>
+    <string name="popup_talk_item01">1일권 (5900원)</string>
+    <string name="popup_talk_item02">5일권 (19,200원)</string>
+    <string name="popup_talk_item03">10일권 (36,500원)</string>
+    <string name="popup_talk_item04">15일권 (45,900원)</string>
+    <string name="popup_talk_item05">30일권 (79,000원)</string>
+    <string name="popup_talk_item_title01">1일권</string>
+    <string name="popup_talk_item_title02">5일권</string>
+    <string name="popup_talk_item_title03">10일권</string>
+    <string name="popup_talk_item_title04">15일권</string>
+    <string name="popup_talk_item_title05">30일권</string>
+    <string name="popup_talk_item_price01">5,900코인</string>
+    <string name="popup_talk_item_price02">19,200코인</string>
+    <string name="popup_talk_item_price03">36,500코인</string>
+    <string name="popup_talk_item_price04">45,900코인</string>
+    <string name="popup_talk_item_price05">79,000코인</string>
+    <string name="popup_talk_count_default">0</string>
+    <string name="popup_talk_coin">%d:%d:%d:%d:%d</string>
+
+    <string name="popup_good_title_male">호감있어요</string>
+    <string name="popup_good_content_male">호감있어요는 상대방에게 호감표현을 할 수 있습니다.</string>
+    <string name="popup_good_item_title01">3개</string>
+    <string name="popup_good_item_title02">5개</string>
+    <string name="popup_good_item_title03">10개</string>
+    <string name="popup_good_item_title04">20개</string>
+    <string name="popup_good_item_price01">3,000코인</string>
+    <string name="popup_good_item_price02">4,500코인</string>
+    <string name="popup_good_item_price03">8,000코인</string>
+    <string name="popup_good_item_price04">15,000코인</string>
+    <string name="popup_good_coin">%d:%d:%d:%d</string>
+
+    <string name="popup_love_title">러브카드</string>
+    <string name="popup_love_content">러브카드는 구매시간부터 30일동안 하루에 1명씩 이상형을 소개 받을 수 있습니다.</string>
+    <string name="popup_love_item01">높음 (20,000원)</string>
+    <string name="popup_love_item02">매우높음 (30,000원)</string>
+    <string name="popup_love_item_title01">높음</string>
+    <string name="popup_love_item_title02">매우높음</string>
+    <string name="popup_love_item_price01">20,000코인</string>
+    <string name="popup_love_item_price02">30,000코인</string>
+    <string name="popup_love_coin">%d:%d</string>
+
+    <string name="popup_refresh_title">자동갱신</string>
+    <string name="popup_refresh_item01">1일권 (10,000원)</string>
+    <string name="popup_refresh_item02">5일권 (30,000원)</string>
+    <string name="popup_refresh_item03">15일권 (50,000원)</string>
+    <string name="popup_refresh_item04">30일권 (70,000원)</string>
+    <string name="popup_refresh_item_title01">1일권</string>
+    <string name="popup_refresh_item_title02">5일권</string>
+    <string name="popup_refresh_item_title03">15일권</string>
+    <string name="popup_refresh_item_title04">30일권</string>
+    <string name="popup_refresh_item_price01">6,000코인</string>
+    <string name="popup_refresh_item_price02">20,000코인</string>
+    <string name="popup_refresh_item_price03">50,000코인</string>
+    <string name="popup_refresh_item_price04">70,000코인</string>
+    <string name="popup_refresh_content">자동갱신은 구매시간부터 구매한 기간동안 2시간마다 자동으로 본인을 목록 위로 올릴수 있습니다.</string>
+    <string name="popup_refresh_coin">%d:%d:%d:%d</string>
+
+    <string name="popup_find_id_phone">휴대폰 번호입력</string>
+    <string name="popup_find_id_content">휴대폰 번호를 입력하세요.</string>
+    <string name="popup_find_pw_phone">휴대폰 번호입력</string>
+    <string name="popup_find_pw_email">이메일입력</string>
+    <string name="popup_find_pw_content">휴대폰 번호와 이메일을 입력하세요.</string>
+    <string name="msg_popup_find_pw_phone">휴대폰 번호를 입력하세요.</string>
+    <string name="msg_popup_find_pw_email">이메일을 입력하세요.</string>
+
+    <string name="msg_popup_buy">아이템을 구매하시겠습니까?</string>
+    <string name="msg_popup_buy_complete">구매가 완료되었습니다.</string>
+
+    <string name="title_event">자기야 EVENT</string>
+    <string name="msg_popup_welcome">중매앱 \'자기야\'는 고객 여러분의 즐거운 만남을 위해 모든 기능을 무료로 제공하고 있습니다.\n\n-프로필 열람-\n-메세지 이용권-\n-관심있어요\n-점프업-\n\n\'자기야\'에서\n꼭!! 만남 성공하세요!!</string>
+    <string name="msg_popup_notWorkingYet">\'자기야\'는 현재 1.0버전으로 운영되고 있으며, 2.0버전을 대대적으로 개발중입니다.\n\n언제나 많은 성원에 힘입어 자기야 1.0 의 모든 기능을 무료로 제공하고 있습니다.\n\n이 타이밍 놓치지 마시고, \'자기야\' 1.0으로 만남을 성사시키세요.\n\n^__^\n\n*자기야 2.0 버전 출시 시, 자기야 1.0의 회원분들께는 특별한 혜택을 제공드립니다.</string>
+
+    <string name="push_notification_type_message">메시지</string>
+    <string name="push_notification_type_good">카드보내기</string>
+    <string name="push_notification_type_new_member">신규회원</string>
+    <string name="push_notification_type_love">러브카드</string>
+    <string name="push_notification_type_notice">notice</string>
+    <string name="alarm_disagree">동의안함</string>
+    <string name="alarm_agree">동의</string>
+    <string name="promotion_week_later">일주일 동안 보지 않기</string>
+    <string name="app_introduce">결혼, 재혼을 위한 중매 어플 \'자기야\'입니다.</string>
+    <string name="login_ask_lost">계정을 잃어버리셨나요? 아이디/비밀번호 찾기</string>
+    <string name="cert_notice">주민등록번호 및 개인정보 수정 후 등록해주세요\n자기야는 해당 사진의 오남용에 책임소지가 없습니다.</string>
+
+    <string name="filter_name_area">지역/거리별 검색</string>
+    <string name="filter_name_age_gender">성별/나이별 검색</string>
+    <string name="filter_name_marry">결혼 계획 검색</string>
+    <string name="filter_name_etc">기타 검색</string>
+    <string name="filter_marry_plan">어떤 사람을 찾고 계신가요?</string>
+    <string name="filter_etc_notice">나한테 꼭 맞는 사람을 찾아보세요</string>
+    <string name="filter_etc_profile_pic">프로필 사진 등록 회원</string>
+    <string name="filter_etc_certi_marry">혼인 관계 증명 회원</string>
+    <string name="navi_option">설정</string>
+    <string name="navi_me">나</string>
+    <string name="navi_ideal">신규회원</string>
+    <string name="navi_market">마켓</string>
+    <string name="navi_home">자기야 홈</string>
+    <string name="filter_area_distance">거리순</string>
+    <string name="filter_area_choose">지역 선택</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="ideal_find">신규회원 찾기</string>
+    <string name="ideal_option">신규회원 설정</string>
+    <string name="ideal_notice">신규회원 설정이 적용된 화면입니다.</string>
+    <string name="service_inquiry">1:1문의 하러가기</string>
+    <string name="dialog_subtitle_inquiry">문의 종류를 선택하세요.</string>
+    <string name="dialog_title_inquiry">문의 종류</string>
+    <string name="popup_logout_notice">자기야에서 로그아웃 하시겠습니까?</string>
+    <string name="my_profile_title">내 프로필</string>
+    <string name="information_member_drinking_number">주량</string>
+    <string name="profile_picture_edit">프로필 사진 등록</string>
+    <string name="popup_title_block">차단</string>
+    <string name="dlg_notify_title">신고</string>
+    <string name="talk_navi_main">메인</string>
+    <string name="talk_navi_out">나가기</string>
+    <string name="talk_main_delete">삭제</string>
+    <string name="talk_gift">선물하기</string>
+    <string name="talk_camera">사진</string>
+    <string name="filter_marry_not_care">무관</string>
+    <string name="alert_gps">GPS 상태를 확인해주세요</string>
+    <string name="alert_network">네트워크 상태를 확인해주세요</string>
+
+    <string name="notice_gps_allow_before">GPS 권한 설정을 하신 후 거리순 검색을 이용할 수 있습니다.</string>
+    <string name="notice_gps_denied">GPS 권한 설정 후 다시 이용해주세요</string>
+
+    <string name="notice_read_contact_allow_before">지인 차단을 위해 연락처 정보를 제공하시겠습니까?</string>
+    <string name="notice_read_contact_denied">연락처 정보 제공 후 다시 이용해주세요</string>
+
+    <string name="noti_block_contact">연락처 차단</string>
+    <string name="noti_block_facebook">페이스북 차단</string>
+    <string name="noti_block_friends">지인들을 차단하시겠습니까?</string>
+    <string name="no">아니오</string>
+    <string name="yes">네</string>
+    <string name="blocked_facebook">회원님의 페이스북의 지인들이 차단되었습니다.</string>
+    <string name="blocked_contact">회원님의 연락처의 지인들이 차단되었습니다.</string>
+    <string name="block_friends_title">자기야를 사용중인 지인들입니다.</string>
+    <string name="facebook_only">페이스북으로 가입한 회원만 사용할 수 있습니다.</string>
+    <string name="facebook_login_canceled">페이스북 로그인이 취소되었습니다</string>
+    <string name="facebook_login_error_occurred">페이스북 로그인 과정에서 오류가 발생했습니다.</string>
+    <string name="check_email_fomat">이메일 형식을 확인해주세요</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+
+</resources>

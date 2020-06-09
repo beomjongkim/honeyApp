@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   tools:context=".intro.view.IntroActivity">
+
+    <ImageView
+            android:id="@+id/iv_intro"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+
+            android:src="@color/color_white"
+    />
+
+    <TextView
+                                style="@style/baseTextViewStyle"
+        android:id="@+id/tv_intro_introduce"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:letterSpacing="-0.03"
+        android:visibility="gone"
+        android:text="@string/app_introduce"
+        android:textColor="@color/color_white"
+        android:textSize="@dimen/text_large"
+        app:layout_constraintBottom_toTopOf="@+id/gl_intro_mid"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="SpUsage" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_intro_top"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        app:layout_constraintGuide_percent="0.53" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_intro_mid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.76" />
+
+    <ImageView
+        android:layout_width="34dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:tint="@color/color_white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@+id/tv_intro_introduce"
+        app:srcCompat="@drawable/main_navi_ideal_off" />
+
+    <ImageView
+        android:visibility="gone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toTopOf="@+id/gl_intro_top"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.576"
+        android:adjustViewBounds="true"
+        app:srcCompat="@drawable/landing_cali" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

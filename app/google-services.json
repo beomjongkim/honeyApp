@@ -1,0 +1,56 @@
+{
+  "project_info": {
+    "project_number": "559271288753",
+    "firebase_url": "https://honey-6e099.firebaseio.com",
+    "project_id": "honey-6e099",
+    "storage_bucket": "honey-6e099.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:559271288753:android:d521064d7ce75169",
+        "android_client_info": {
+          "package_name": "com.dmonster.darling.honey"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "559271288753-josd3uuc5rqtrn5667eh017n50b0v74c.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dmonster.darling.honey",
+            "certificate_hash": "fe0483655d3e061e7d6fd095855a61d2e984a385"
+          }
+        },
+        {
+          "client_id": "559271288753-rc41ju08jss91bu2lr8l7598c5m83sek.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.dmonster.darling.honey",
+            "certificate_hash": "e00b66633ebcb748815cac7ccc45e4e82163e83f"
+          }
+        },
+        {
+          "client_id": "559271288753-32ce64q4jl1e39kj80gesf08p1f72pq3.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCul3psc1MQCpLrXvX2LDkGUEfHsNJcDkM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "559271288753-32ce64q4jl1e39kj80gesf08p1f72pq3.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

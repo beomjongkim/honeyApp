@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".dialog.NotifyDialog">
+
+
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/popup_round"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="33dp"
+                android:layout_height="wrap_content"
+                app:srcCompat="@drawable/ic_notify" />
+            <!-- Content Title -->
+            <TextView
+                                style="@style/baseTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:letterSpacing="-0.02"
+                android:padding="@dimen/default_margin_5dp"
+                android:text="@string/dlg_notify_title"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/text_xlarge"
+                tools:ignore="SpUsage" />
+
+        </LinearLayout>
+
+        <!-- Content -->
+        <TextView
+                                style="@style/baseTextViewStyle"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@color/color_gray"
+            android:gravity="center"
+            android:letterSpacing="-0.03"
+            android:text="@string/popup_notify_title"
+            android:textColor="#80000000"
+            android:textSize="@dimen/text_large"
+            tools:ignore="SpUsage" />
+
+        <!-- 잔여코인 -->
+
+        <!-- 허위 프로필 -->
+        <CheckBox
+            android:id="@+id/cb_dlg_notify_select01"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_margin_30dp"
+            android:background="@drawable/popup_notify_select"
+            android:button="@color/color_transparent"
+            android:checked="true"
+            android:gravity="center"
+            android:text="@string/popup_notify_select01"
+            android:textColor="@color/notify_select_text_color"
+            android:textSize="@dimen/text_large"
+            tools:ignore="SpUsage" />
+
+        <!-- 욕설 및 음란 사진/글 -->
+        <CheckBox
+            android:id="@+id/cb_dlg_notify_select02"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_margin_30dp"
+            android:background="@drawable/popup_notify_select"
+            android:button="@color/color_transparent"
+            android:gravity="center"
+            android:text="@string/popup_notify_select02"
+            android:textColor="@color/notify_select_text_color"
+            android:textSize="@dimen/text_large"
+            tools:ignore="SpUsage" />
+
+        <!-- 광고 -->
+        <CheckBox
+            android:id="@+id/cb_dlg_notify_select03"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_margin_30dp"
+            android:background="@drawable/popup_notify_select"
+            android:button="@color/color_transparent"
+            android:gravity="center"
+            android:text="@string/popup_notify_select03"
+            android:textColor="@color/notify_select_text_color"
+            android:textSize="@dimen/text_large"
+            tools:ignore="SpUsage" />
+
+        <!-- 기타 -->
+        <CheckBox
+            android:id="@+id/cb_dlg_notify_select04"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_margin_30dp"
+            android:background="@drawable/popup_notify_select"
+            android:button="@color/color_transparent"
+            android:gravity="center"
+            android:text="@string/popup_notify_select04"
+            android:textColor="@color/notify_select_text_color"
+            android:textSize="@dimen/text_large"
+            tools:ignore="SpUsage" />
+
+        <View
+            android:id="@+id/v_filter_age_line_horizon"
+            style="@style/baseLine.horizontal"
+            android:layout_width="match_parent"
+            android:layout_marginTop="16dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_margin_40dp"
+
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/tv_dlg_notify_cancel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/color_transparent"
+                android:text="@string/dialog_cancel"
+                android:textColor="@color/select_text_color03"
+                android:textSize="@dimen/text_large"
+                tools:ignore="SpUsage" />
+
+            <View
+                style="@style/baseLine.vertical"
+                android:layout_height="match_parent" />
+
+            <Button
+                android:id="@+id/tv_dlg_notify_enter"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/color_transparent"
+                android:text="@string/dialog_enter"
+                android:textColor="@color/select_text_color03"
+                android:textSize="@dimen/text_large"
+                tools:ignore="SpUsage" />
+
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

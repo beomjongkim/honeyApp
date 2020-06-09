@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<androidx.constraintlayout.widget.ConstraintLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+>
+    <ImageView android:layout_width="0dp" android:layout_height="0dp" app:layout_constraintTop_toTopOf="parent"
+               app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
+               app:layout_constraintEnd_toEndOf="parent"
+               android:src="@drawable/bg_login"
+               android:scaleType="centerCrop" android:cropToPadding="false"
+               android:scrollY="-30dp" />
+    <ImageButton
+            android:src="@drawable/btn_normal_login"
+            app:layout_constraintWidth_percent="0.75"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:background="@color/color_transparent"
+            android:scaleType="fitCenter"
+            android:id="@+id/btn_act_normal_login" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline2"
+            app:layout_constraintStart_toStartOf="parent">
+    </ImageButton>
+    <ImageButton
+            app:layout_constraintWidth_percent="0.75"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:background="@color/color_transparent"
+            android:src="@drawable/btn_kakao_login"
+            android:scaleType="fitCenter"
+            android:id="@+id/btn_act_kakao_login" app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_act_normal_login"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="5dp"
+    />
+    <ImageButton
+            app:layout_constraintWidth_percent="0.75"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:background="@color/color_transparent"
+            android:src="@drawable/btn_naver_login"
+            android:scaleType="fitCenter"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_act_kakao_login"
+            app:layout_constraintStart_toStartOf="parent" android:id="@+id/btn_act_naver_login"
+            android:layout_marginTop="5dp"
+    />
+    <androidx.constraintlayout.widget.Guideline
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/guideline2"
+            app:layout_constraintGuide_percent="0.45"/>
+    <TextView
+                                style="@style/baseTextViewStyle"
+            android:text="@string/app_introduce"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/tv_act_introduce"
+            android:textColor="@color/color_white"
+            app:layout_constraintTop_toBottomOf="@+id/btn_act_naver_login"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" android:layout_marginTop="30dp"/>
+    <ImageButton
+            android:layout_width="0dp"
+            app:layout_constraintWidth_percent="0.75"
+            android:layout_height="wrap_content"
+            android:adjustViewBounds="true"
+            android:background="@color/color_transparent"
+            android:src="@drawable/btn_normal_join"
+            android:scaleType="fitCenter"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent" android:id="@+id/btn_act_normal_join"
+            android:layout_marginTop="20dp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_act_introduce"/>
+    <TextView
+                                style="@style/baseTextViewStyle"
+            android:text="@string/login_ask_lost"
+            android:textSize="@dimen/text_xxsmall"
+            android:textColor="@color/color_white"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" android:id="@+id/tv_act_ask_lost"
+            app:layout_constraintTop_toBottomOf="@+id/btn_act_normal_join"
+            app:layout_constraintStart_toStartOf="@+id/tv_act_introduce"
+            android:layout_marginTop="15dp" app:layout_constraintEnd_toEndOf="@+id/tv_act_introduce"
+        tools:ignore="SpUsage" />
+    <EditText
+                                style="@style/baseTextViewStyle"
+            android:id="@+id/et_act_login_id_renewal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/color_transparent"
+            android:hint="@string/hint_login_id"
+            android:padding="@dimen/default_margin_5dp"
+            android:singleLine="true"
+            android:textSize="@dimen/text_large"
+            android:visibility="gone"
+        tools:ignore="SpUsage" />
+    <TextView
+                                style="@style/baseTextViewStyle"
+            android:visibility="gone"
+            android:id="@+id/tv_act_login_email_renewal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:hint="@string/hint_login_email"
+            android:textSize="@dimen/text_large"
+        tools:ignore="SpUsage" />
+    <EditText
+                                style="@style/baseTextViewStyle"
+            android:id="@+id/et_act_login_password_renewal"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/default_margin_50dp"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="@dimen/default_margin_10dp"
+            android:background="@drawable/join_btn"
+            android:hint="@string/hint_login_password"
+            android:inputType="textPassword"
+            android:maxLength="10"
+            android:padding="@dimen/default_margin_5dp"
+            android:singleLine="true"
+            android:textSize="@dimen/text_large"
+    android:visibility="gone"
+        tools:ignore="SpUsage" />
+    <!-- 프로그래스바 -->
+    <LinearLayout
+            android:id="@+id/ll_act_login_progress_renewal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:visibility="gone">
+
+        <ProgressBar
+                android:layout_width="@dimen/progress_size"
+                android:layout_height="@dimen/progress_size" />
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
+

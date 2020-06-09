@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="areaVM"
+            type="com.dmonster.darling.honey.main.viewmodel.FilterAreaVM" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_border_round"
+        android:padding="1dp">
+
+        <ImageButton
+            android:id="@+id/ib_filter_area_backBtn"
+            style="@style/ImageButtoninConstraintTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="8dp"
+            android:layout_marginStart="21dp"
+            android:layout_marginLeft="21dp"
+            android:onClick="@{()->areaVM.onClickBack()}"
+            android:rotation="90"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_filter_area_name"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_filter_area_name"
+            app:srcCompat="@drawable/notice_down_arrow_img" />
+
+        <TextView
+                                style="@style/baseTextViewStyle"
+            android:id="@+id/tv_filter_area_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:letterSpacing="-0.03"
+            android:text="@string/filter_name_area"
+            android:textColor="@color/color_gender_male"
+            android:textSize="@dimen/text_xlarge"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:ignore="SpUsage" />
+
+        <FrameLayout
+            android:id="@+id/frameLayout"
+            android:layout_width="0dp"
+            android:layout_height="35dp"
+            android:background="@color/color_gray"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_filter_area_notice"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_filter_area_notice">
+
+        </FrameLayout>
+
+        <TextView
+                                style="@style/baseTextViewStyle"
+            android:id="@+id/tv_filter_area_notice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:alpha="0.5"
+            android:letterSpacing="-0.03"
+            android:text="@string/popup_selector_area_content"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/text_normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_filter_area_name"
+            tools:ignore="SpUsage" />
+
+        <RadioGroup
+            android:id="@+id/rg_filter_area"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:letterSpacing="-0.03"
+            android:orientation="vertical"
+            android:textSize="@dimen/text_normal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.15"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frameLayout"
+            tools:ignore="SpUsage">
+
+            <RadioButton
+                android:id="@+id/rb_distance"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="@{areaVM.radioDistanceChecked}"
+                android:letterSpacing="-0.03"
+                style="@style/baseTextViewStyle"
+                android:onClick="@{(v)->areaVM.onClickArrangeDistance(v)}"
+                android:paddingStart="9dp"
+                android:paddingLeft="9dp"
+                android:paddingTop="@dimen/default_margin_15dp"
+                android:paddingBottom="@dimen/default_margin_15dp"
+                android:text="@string/filter_area_distance"
+                android:textSize="@dimen/text_large"
+                tools:ignore="SpUsage" />
+
+            <RadioButton
+                android:id="@+id/rb_recent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="@={!areaVM.radioDistanceChecked}"
+                android:onClick="@{(v)->areaVM.onClickAddress(v)}"
+                android:paddingStart="9dp"
+                android:paddingLeft="9dp"
+                style="@style/baseTextViewStyle"
+                android:paddingTop="@dimen/default_margin_15dp"
+                android:paddingBottom="@dimen/default_margin_15dp"
+                android:text="@string/filter_area_choose"
+                android:textSize="@dimen/text_large"
+                tools:ignore="SpUsage" />
+
+        </RadioGroup>
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:alpha="0.15"
+            android:background="@color/color_hint"
+            app:layout_constraintBottom_toBottomOf="@id/rg_filter_area"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/rg_filter_area" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:alpha="0.15"
+            android:background="@color/color_hint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rg_filter_area" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_filter_area"
+            CustomAdapter="@{areaVM.customAdapter}"
+            layoutType='@{"grid"}'
+            radioDistanceChecked="@{areaVM.radioDistanceChecked}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:overScrollMode="never"
+            app:layout_constraintBottom_toTopOf="@+id/v_filter_area_bottom"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/rg_filter_area"
+            app:layout_constraintWidth_percent="0.8">
+
+        </androidx.recyclerview.widget.RecyclerView>
+
+        <View
+            android:id="@+id/v_filter_area_bottom"
+            style="@style/baseLine.horizontal"
+            android:layout_marginBottom="4dp"
+            app:layout_constraintBottom_toTopOf="@+id/btn_filter_area_clear"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rv_filter_area" />
+
+        <Button
+            android:id="@+id/btn_filter_area_clear"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="4dp"
+            style="@style/baseTextViewStyle"
+            android:background="@color/color_transparent"
+            android:onClick="@{(v)->areaVM.onClickInit(v)}"
+            android:text="@string/popup_selector_clear"
+            android:textColor="@color/color_black"
+            android:textSize="@dimen/text_large"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/btn_filter_area_search"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/v_filter_area_bottom"
+            tools:ignore="SpUsage" />
+
+        <View
+            style="@style/baseLine.vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_filter_area_search"
+            app:layout_constraintStart_toEndOf="@id/btn_filter_area_clear"
+            app:layout_constraintTop_toTopOf="@+id/v_filter_area_bottom" />
+
+        <Button
+            android:id="@+id/btn_filter_area_search"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginBottom="4dp"
+            style="@style/baseTextViewStyle"
+            android:textSize="@dimen/text_large"
+            android:background="@color/color_transparent"
+            android:onClick="@{()->areaVM.onClickSearch()}"
+            android:text="@string/popup_selector_search"
+            android:textColor="@color/cornflower"
+            app:layout_constrainedWidth="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_weight="1"
+            app:layout_constraintStart_toEndOf="@+id/btn_filter_area_clear"
+            tools:ignore="SpUsage" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

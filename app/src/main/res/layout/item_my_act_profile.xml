@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingTop="16dp"
+    tools:context=".myactivity.view.adapter.ProfileAdapter">
+
+    <LinearLayout
+        android:id="@+id/ll_item_profile_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_border_round"
+        android:padding="4dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- 날짜 -->
+        <TextView
+                                style="@style/baseTextViewStyle"
+            android:id="@+id/tv_item_profile_date"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="15dp"
+            android:layout_marginRight="15dp"
+            android:alpha="0.6"
+            android:textColor="@color/color_main"
+            android:textSize="@dimen/text_small"
+            tools:ignore="SpUsage" />
+
+    </LinearLayout>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+            android:src="@drawable/img_base"
+        android:id="@+id/civ_item_profile_image"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginLeft="24dp"
+        android:layout_marginTop="8dp"
+        app:civ_border_color="@color/color_gray"
+        app:civ_border_width="@dimen/default_margin_1dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/ll_item_profile_date" />
+
+    <CheckBox
+        android:id="@+id/cb_item_profile_check"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:button="@drawable/custom_check_box_two"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintLeft_toLeftOf="@id/civ_item_profile_image"
+        app:layout_constraintRight_toLeftOf="@id/civ_item_profile_image"
+        app:layout_constraintTop_toTopOf="@id/civ_item_profile_image" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="@+id/civ_item_profile_image"
+        app:layout_constraintEnd_toStartOf="@+id/tv_item_profile_open"
+        app:layout_constraintStart_toEndOf="@+id/civ_item_profile_image"
+        app:layout_constraintTop_toTopOf="@+id/civ_item_profile_image">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!-- 대화명 -->
+            <TextView
+                                style="@style/baseTextViewStyle"
+                android:id="@+id/tv_item_profile_talk_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:alpha="0.8"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/color_main"
+                android:textSize="@dimen/text_large"
+                android:textStyle="bold"
+                tools:ignore="SpUsage" />
+
+            <!-- 지역, 나이 -->
+            <TextView
+                                style="@style/baseTextViewStyle"
+                android:id="@+id/tv_item_profile_area_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/default_margin_5dp"
+                android:layout_toRightOf="@+id/tv_item_profile_talk_id"
+                android:alpha="0.8"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:textColor="@color/color_main"
+                android:textSize="@dimen/text_large"
+                tools:ignore="SpUsage" />
+        </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:layout_width="7dp"
+                android:layout_height="7dp"
+                android:background="@drawable/bg_circle_dark_peach" />
+
+            <!-- 시간 -->
+            <TextView
+                                style="@style/baseTextViewStyle"
+                android:id="@+id/tv_item_profile_time"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/default_margin_5dp"
+                android:alpha="0.65"
+                android:textColor="@color/pale_red"
+                android:textSize="@dimen/text_small"
+                tools:ignore="SpUsage" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+                                style="@style/baseTextViewStyle"
+        android:id="@+id/tv_item_profile_open"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="11dp"
+        android:layout_marginRight="11dp"
+        android:background="@drawable/bg_btn_salmon"
+        android:gravity="center"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:text="@string/my_activity_profile_open_basic"
+        android:textColor="@color/color_white"
+        android:visibility="gone"
+        android:textSize="@dimen/text_xsmall"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/civ_item_profile_image"
+        app:layout_constraintWidth_percent="0.19"
+        tools:ignore="SpUsage" />
+
+    <TextView
+                                style="@style/baseTextViewStyle"
+        android:id="@+id/tv_item_profile_visit_num"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:background="@drawable/bg_border_round"
+        android:gravity="center"
+        android:paddingTop="4dp"
+        android:paddingBottom="4dp"
+        android:text="@string/talk_title"
+        android:textColor="@color/color_black70"
+        android:visibility="gone"
+        android:textSize="@dimen/text_xxsmall"
+        app:layout_constraintEnd_toEndOf="@+id/tv_item_profile_open"
+        app:layout_constraintTop_toBottomOf="@+id/tv_item_profile_open"
+        app:layout_constraintWidth_percent="0.19"
+        tools:ignore="SpUsage" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_item_profile"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/bg_round_gray"
+        android:padding="5dp"
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@+id/tv_item_profile_open"
+        app:layout_constraintTop_toBottomOf="@+id/civ_item_profile_image" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="idealVM"
+            type="com.dmonster.darling.honey.newMember.viewmodel.IdealVM" />
+
+        <import type="android.view.View" />
+
+
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_white">
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:elevation="@dimen/default_margin_20dp"
+            android:background="@color/color_white"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <Button
+                android:id="@+id/button"
+                style="@style/baseTextViewTitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:alpha="@{idealVM.isTabChanged? 0.35f : 1f}"
+                android:background="@color/color_transparent"
+                android:onClick="@{()->idealVM.onClickSearch()}"
+                android:text="@string/ideal_find"
+                android:textColor="@{idealVM.isTabChanged? @color/soft : @color/accent}"
+                android:textSize="@dimen/text_large"
+                tools:ignore="SpUsage" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:alpha="0.45"
+                android:background="@color/color_gray" />
+
+            <Button
+                android:id="@+id/button2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                style="@style/baseTextViewTitleStyle"
+                android:alpha="@{idealVM.isTabChanged? 1f : 0.35f}"
+                android:background="@color/color_transparent"
+                android:onClick="@{()->idealVM.onClickOption()}"
+                android:text="@string/ideal_option"
+                android:textColor="@{idealVM.isTabChanged? @color/accent : @color/soft}"
+                android:textSize="@dimen/text_large"
+                tools:ignore="SpUsage" />
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="@{idealVM.isTabChanged? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+
+            <TextView
+                                style="@style/baseTextViewStyle"
+                android:id="@+id/tv_fragment_ideal_notice"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:alpha="0.65"
+                android:text="@string/ideal_notice"
+                android:textColor="@color/color_text_main"
+                android:textSize="@dimen/text_small"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="SpUsage" />
+
+            <FrameLayout
+                android:id="@+id/fl_frag_ideal"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_marginTop="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_fragment_ideal_notice">
+
+            </FrameLayout>
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ScrollView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:visibility="@{idealVM.isTabChanged? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.57"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout">
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:id="@+id/btn_ideal_save"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:background="@drawable/bg_border_round_accent_2dp"
+                        android:focusable="false"
+                        android:onClick="@{(v)->idealVM.saveIdeal(v)}"
+                        android:padding="5dp"
+                        android:paddingStart="15dp"
+                        android:paddingLeft="15dp"
+                        android:paddingEnd="15dp"
+                        android:paddingRight="15dp"
+                        android:text="@string/information_ideal_type_select_modify"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/text_normal"
+                        app:layout_constraintEnd_toStartOf="@+id/gl_fragment_ideal_second"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_selector_multi_blood"
+                        tools:ignore="SpUsage" />
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:id="@+id/tv_selector_multi_blood"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:alpha="0.8"
+                        android:text="@string/information_member_blood"
+                        android:textColor="@color/color_black"
+                        app:layout_constraintStart_toStartOf="@+id/gl_fragment_ideal_first"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_selector_multi_religion" />
+
+                    <include
+                        android:id="@+id/in_fragment_ideal_blood"
+                        layout="@layout/layout_selector_multi"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toStartOf="@+id/gl_fragment_ideal_second"
+                        app:layout_constraintTop_toTopOf="@+id/tv_selector_multi_blood"
+                        app:layout_constraintWidth_percent="0.61"
+                        app:spinnerVM="@{idealVM.bloodVM}" />
+
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:id="@+id/tv_selector_multi_religion"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:alpha="0.8"
+                        android:text="@string/information_member_religion"
+                        android:textColor="@color/color_black"
+                        app:layout_constraintStart_toStartOf="@+id/gl_fragment_ideal_first"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_selector_multi_style" />
+
+                    <include
+                        android:id="@+id/in_fragment_ideal_religion"
+                        layout="@layout/layout_selector_multi"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toStartOf="@+id/gl_fragment_ideal_second"
+                        app:layout_constraintTop_toTopOf="@+id/tv_selector_multi_religion"
+                        app:layout_constraintWidth_percent="0.61"
+                        app:spinnerVM="@{idealVM.religionVM}" />
+
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:id="@+id/tv_selector_multi_style"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:alpha="0.8"
+                        android:text="@string/information_ideal_type_style"
+                        android:textColor="@color/color_black"
+                        app:layout_constraintStart_toStartOf="@+id/gl_fragment_ideal_first"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_selector_multi_height" />
+
+                    <include
+                        android:id="@+id/in_fragment_ideal_style"
+                        layout="@layout/layout_selector_multi"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toStartOf="@+id/gl_fragment_ideal_second"
+                        app:layout_constraintTop_toTopOf="@+id/tv_selector_multi_style"
+                        app:layout_constraintWidth_percent="0.61"
+                        app:spinnerVM="@{idealVM.styleVM}" />
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:id="@+id/tv_selector_multi_height"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:alpha="0.8"
+                        android:text="@string/information_member_height"
+                        android:textColor="@color/color_black"
+                        app:layout_constraintStart_toStartOf="@+id/gl_fragment_ideal_first"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_selector_multi_edu" />
+
+                    <include
+                        android:id="@+id/in_fragment_ideal_height"
+                        layout="@layout/layout_spinner_range"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toStartOf="@id/gl_fragment_ideal_second"
+                        app:layout_constraintStart_toStartOf="@+id/in_fragment_ideal_style"
+                        app:layout_constraintTop_toTopOf="@+id/tv_selector_multi_height"
+                        app:spinnerVM="@{idealVM.heigthVM}" />
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:id="@+id/tv_selector_multi_edu"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:alpha="0.8"
+                        android:text="@string/information_member_education"
+                        android:textColor="@color/color_black"
+                        app:layout_constraintStart_toStartOf="@+id/gl_fragment_ideal_first"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_selector_multi_area" />
+
+                    <include
+                        android:id="@+id/in_fragment_ideal_edu"
+                        layout="@layout/layout_selector_multi"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toStartOf="@+id/gl_fragment_ideal_second"
+                        app:layout_constraintTop_toTopOf="@+id/tv_selector_multi_edu"
+                        app:layout_constraintWidth_percent="0.61"
+                        app:spinnerVM="@{idealVM.eduVM}" />
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:id="@+id/tv_selector_multi_area"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:alpha="0.8"
+                        android:text="@string/information_member_area"
+                        android:textColor="@color/color_black"
+                        app:layout_constraintStart_toStartOf="@+id/gl_fragment_ideal_first"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_selector_multi_income" />
+
+                    <include
+                        android:id="@+id/in_fragment_ideal_area"
+                        layout="@layout/layout_selector_multi"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toStartOf="@+id/gl_fragment_ideal_second"
+                        app:layout_constraintTop_toTopOf="@+id/tv_selector_multi_area"
+                        app:layout_constraintWidth_percent="0.61"
+                        app:spinnerVM="@{idealVM.areaVM}" />
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:id="@+id/tv_selector_multi_income"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="18dp"
+                        android:alpha="0.8"
+                        android:text="@string/information_ideal_type_income"
+                        android:textColor="@color/color_black"
+                        app:layout_constraintStart_toStartOf="@+id/gl_fragment_ideal_first"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_selector_multi_age" />
+
+                    <include
+                        android:id="@+id/in_fragment_ideal_income"
+                        layout="@layout/layout_selector_multi"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toStartOf="@+id/gl_fragment_ideal_second"
+                        app:layout_constraintTop_toTopOf="@+id/tv_selector_multi_income"
+                        app:layout_constraintWidth_percent="0.61"
+                        app:spinnerVM="@{idealVM.incomeVM}" />
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:id="@+id/tv_selector_multi_age"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:alpha="0.8"
+                        android:text="@string/information_member_age"
+                        android:textColor="@color/color_black"
+                        app:layout_constraintStart_toStartOf="@+id/gl_fragment_ideal_first"
+                        app:layout_constraintTop_toTopOf="@+id/in_fragment_ideal_age" />
+
+                    <include
+                        android:id="@+id/in_fragment_ideal_age"
+                        layout="@layout/layout_selector_multi"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="29dp"
+                        app:layout_constraintEnd_toStartOf="@+id/gl_fragment_ideal_second"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintWidth_percent="0.61"
+                        app:spinnerVM="@{idealVM.ageVM}" />
+
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/gl_fragment_ideal_first"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.071" />
+
+                    <androidx.constraintlayout.widget.Guideline
+                        android:id="@+id/gl_fragment_ideal_second"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        app:layout_constraintGuide_percent="0.92" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+
+        </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

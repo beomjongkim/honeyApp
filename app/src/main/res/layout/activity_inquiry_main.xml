@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".inquiry.view.InquiryMainActivity">
+
+    <FrameLayout
+        android:id="@+id/fl_act_inquiry_main_content_layout"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:visibility="gone"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ProgressBar
+            android:layout_width="@dimen/progress_size"
+            android:layout_height="@dimen/progress_size" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_line_bottom"
+        android:elevation="5dp"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ctb_act_inquiry_main_toolbar">
+
+        <!-- 문의하기 -->
+        <Button
+            android:id="@+id/btn_act_inquiry_main_inquire"
+            android:layout_width="@dimen/default_margin_0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/color_transparent"
+            android:letterSpacing="-0.02"
+            android:text="@string/inquiry_title_inquire"
+            android:textColor="@color/tab_select_text_color"
+            android:textSize="@dimen/text_large"
+            tools:ignore="SpUsage" />
+
+        <!-- 문의내역 -->
+        <FrameLayout
+            android:layout_width="1dp"
+            android:layout_height="match_parent"
+            android:background="@color/color_gray">
+
+        </FrameLayout>
+
+        <Button
+            android:id="@+id/btn_act_inquiry_main_breakdown"
+            android:layout_width="@dimen/default_margin_0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:background="@color/color_transparent"
+            android:letterSpacing="-0.02"
+            android:text="@string/inquiry_title_breakdown"
+            android:textColor="@color/tab_select_text_color"
+            android:textSize="@dimen/text_large"
+            tools:ignore="SpUsage" />
+    </LinearLayout>
+
+    <com.dmonster.darling.honey.customview.CustomToolBar
+        android:id="@+id/ctb_act_inquiry_main_toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

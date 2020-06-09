@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">@color/soft</color>
+    <color name="colorPrimaryDark">@color/accent</color>
+    <color name="colorAccent">@color/accent</color>
+
+    <color name="accent">#f52515</color>
+    <color name="soft">#ff786e</color>
+    <color name="contrast">#153ff5</color>
+    <color name="contrast_soft">#9a99f7</color>
+
+    <color name="color_main">#414141</color>
+    <color name="color_sub">#FCDCE9</color>
+
+    <color name="cornflower">@color/soft</color>
+    <color name="dark_blue_grey">#1e1f58</color>
+    <color name="slime_green">#94d60a</color>
+    <color name="tealish">#1fcfcc</color>
+    <color name="dark_peach">@color/soft</color>
+    <color name="pale_red">@color/accent</color>
+    <color name="golden_yellow">@color/accent</color>
+    <color name="soft_blue">#6c83e0</color>
+    <color name="salmon">@color/accent</color>
+    <color name="pinkish_grey">#c6c6c6</color>
+    <color name="bubblegum_pink">#ff93d4</color>
+    <color name="light_purple">#c685f4</color>
+    <color name="shaodw">#a63d3d4a</color>
+    <color name="greyish">#afafaf</color>
+    <color name="peachy_pink">@color/soft</color>
+    <color name="marigold">@color/accent</color>
+    <color name="purpleish_blue">#715bed</color>
+    <color name="lavender_blue">#9a99f7</color>
+    <color name="deep_orange">@color/soft</color>
+    <color name="sandy20">#33f2e477</color>
+    <color name="purply_pink">#e777f4</color>
+    <color name="color_main50">#804a4a4a</color>
+    <color name="color_main40">#66414141</color>
+    <color name="cornflower65">#a67a69ef</color>
+    <color name="dandelion">#fde010</color>
+    <color name="vibrant_green">#1dca00</color>
+    <color name="coral">@color/soft</color>
+
+    <color name="color_transparent">#00000000</color>
+    <color name="color_white">#FFFFFF</color>
+    <color name="color_black">#000000</color>
+
+    <color name="color_black70">#b3000000</color>
+    <color name="color_black40">#66000000</color>
+    <color name="color_gray">#f1f1f3</color>
+    <color name="color_gray70">#b3f1f1f3</color>
+
+    <color name="color_hint">#888888</color>
+    <color name="warm_grey">#707070</color>
+    <color name="color_floating_menu_background">#CC4C4C4C</color>
+
+    <color name="color_btn_cancel">#6A6A6A</color>
+    <color name="color_text_main">#1e1010</color>
+    <color name="color_text_gray">#a3a3a3</color>
+
+    <color name="color_main_type_marry">@color/accent</color>
+    <color name="color_main_type_remarry">@color/soft</color>
+
+    <color name="color_image_detail_bottom">#111111</color>
+    <color name="color_image_detail_notify">#333333</color>
+
+    <color name="color_gender_male">@color/contrast</color>
+    <color name="color_gender_female">#f52515</color>
+    <color name="color_profile_border_male">@color/color_gender_male</color>
+    <color name="color_profile_border_female">@color/color_gender_female</color>
+
+    <color name="color_profile_select01">#3D3F4E</color>
+    <color name="color_profile_select02">#D95A63</color>
+    <color name="color_profile_select03">#D449A4</color>
+    <color name="color_profile_select04">#BC41EA</color>
+    <color name="color_profile_select05">#9451F9</color>
+    <color name="color_profile_select06">#E1814E</color>
+    <color name="color_profile_select07">#CAA53D</color>
+    <color name="color_profile_select08">#8BAD3D</color>
+    <color name="color_profile_select09">#459C6F</color>
+    <color name="color_profile_select10">#329C9A</color>
+    <color name="color_profile_select11">#388CFF</color>
+
+</resources>

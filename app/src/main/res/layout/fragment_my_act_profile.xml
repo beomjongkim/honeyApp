@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_frag_my_act_profile_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".myactivity.view.MyActMenu03Fragment">
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/srl_frag_my_act_profile_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="35dp"
+                android:id="@+id/rl_frag_my_act_profile_top_layout"
+                android:background="@color/color_gray">
+                <CheckBox
+                    android:id="@+id/cb_frag_my_act_profile_all_check"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:button="@drawable/custom_check_box_two"
+                    android:layout_alignParentLeft="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="15dp"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="15dp" />
+                <!-- 선택삭제 -->
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:id="@+id/tv_frag_my_act_profile_edit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_toRightOf="@id/cb_frag_my_act_profile_all_check"
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginTop="@dimen/default_margin_5dp"
+                    android:layout_marginBottom="@dimen/default_margin_5dp"
+                    android:background="@drawable/bg_border_round_cornflower_2dp"
+                    android:gravity="center"
+                    android:text="@string/my_activity_talk_delete"
+                    android:textColor="@color/cornflower"
+                    android:layout_toEndOf="@id/cb_frag_my_act_profile_all_check"
+                    android:layout_marginStart="15dp"
+                    android:paddingLeft="10dp"
+                    android:paddingRight="10dp"
+                    android:textSize="@dimen/text_xxsmall"
+                    tools:ignore="SpUsage" />
+            </RelativeLayout>
+
+            <!-- 목록 -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_frag_my_act_profile_list"
+                style="@style/RecyclerViewTheme"
+                android:layout_below="@+id/rl_frag_my_act_profile_top_layout"
+                tools:listitem="@layout/item_my_act_profile" />
+
+            <!-- 목록없음 -->
+            <TextView
+                                style="@style/baseTextViewStyle"
+                android:id="@+id/tv_frag_my_act_profile_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:text="@string/msg_app_no_list"
+                android:textSize="@dimen/text_xxlarge"
+                android:visibility="gone"
+                tools:ignore="SpUsage" />
+
+            <!-- 프로그래스바 -->
+            <LinearLayout
+                android:id="@+id/ll_frag_my_act_profile_progress"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:visibility="gone">
+
+                <ProgressBar
+                    android:layout_width="@dimen/progress_size"
+                    android:layout_height="@dimen/progress_size" />
+            </LinearLayout>
+        </RelativeLayout>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

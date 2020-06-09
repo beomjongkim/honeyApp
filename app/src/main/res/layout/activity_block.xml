@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:id="@+id/cl_act_block_layout"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   tools:context=".block.view.BlockActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.dmonster.darling.honey.customview.CustomToolBar
+            android:id="@+id/ctb_act_block_toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true" />
+
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/srl_act_block_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@id/ctb_act_block_toolbar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <LinearLayout
+                    android:id="@+id/ll_act_block_top_layout"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp"
+                        android:background="@color/color_gray">
+
+                        <CheckBox
+                            android:id="@+id/cb_act_block_edit"
+                            android:layout_width="20dp"
+                            android:layout_height="20dp"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginLeft="16dp"
+                            android:button="@drawable/custom_check_box_two"
+                            android:gravity="center"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <!-- 편집하기 -->
+                        <TextView
+                                style="@style/baseTextViewStyle"
+                            android:id="@+id/tv_act_block_edit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:layout_marginLeft="15dp"
+                            android:background="@drawable/bg_border_round_cornflower_2dp"
+                            android:gravity="center"
+                            android:letterSpacing="-0.02"
+                            android:padding="5dp"
+                            android:paddingLeft="10dp"
+                            android:paddingRight="10dp"
+                            android:text="@string/block_clear"
+                            android:textColor="@color/cornflower"
+                            android:textSize="@dimen/text_xsmall"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/cb_act_block_edit"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:ignore="SpUsage" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <!-- 전체선택 -->
+                    <CheckBox
+                        android:id="@+id/cb_act_block_select"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/my_activity_talk_select"
+                        android:textSize="@dimen/text_large"
+                        android:visibility="gone"
+                        tools:ignore="SpUsage" />
+                </LinearLayout>
+
+                <!-- 목록 -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_act_block_list"
+                    style="@style/RecyclerViewTheme"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/ll_act_block_top_layout"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    tools:listitem="@layout/item_block" />
+
+                <!-- 목록없음 -->
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:id="@+id/tv_act_block_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/ll_act_block_top_layout"
+                    android:gravity="center"
+                    android:text="@string/msg_app_no_list"
+                    android:textSize="@dimen/text_xxlarge"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.45"
+                    tools:ignore="SpUsage" />
+
+                <!-- 프로그래스바 -->
+                <LinearLayout
+                    android:id="@+id/ll_act_block_progress"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:gravity="center"
+                    android:visibility="gone">
+
+                    <ProgressBar
+                        android:layout_width="@dimen/progress_size"
+                        android:layout_height="@dimen/progress_size" />
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    </RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

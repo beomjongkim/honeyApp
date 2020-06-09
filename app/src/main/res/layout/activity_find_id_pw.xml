@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".login.view.FindIDPWActivity">
+
+    <ScrollView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/gl_find_id_pw_end"
+        app:layout_constraintStart_toStartOf="@id/gl_find_id_pw_start"
+        app:layout_constraintTop_toBottomOf="@+id/ctb_act_find_toolbar">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="33dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toStartOf="@+id/gl_find_id_pw_end"
+                app:layout_constraintStart_toStartOf="@+id/gl_find_id_pw_start"
+                app:layout_constraintTop_toTopOf="@+id/gl_find_id_pw_middle">
+
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:letterSpacing="-0.02"
+                    android:text="@string/find_id_title"
+                    android:textColor="@color/cornflower65"
+                    android:textSize="@dimen/text_xlarge"
+                    android:textStyle="bold"
+                    tools:ignore="SpUsage" />
+
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:alpha="0.5"
+                    android:text="@string/find_id_title_hint"
+                    android:textColor="@color/color_black"
+                    android:textSize="@dimen/text_large"
+                    tools:ignore="SpUsage" />
+
+                <!-- 아이디 찾기 핸드폰번호 입력 -->
+                <EditText
+                                style="@style/baseTextViewStyle"
+                    android:id="@+id/et_act_find_id_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:layout_marginTop="@dimen/default_margin_10dp"
+                    android:background="@drawable/join_btn"
+                    android:hint="@string/find_id_phone_hint"
+                    android:inputType="phone"
+                    android:letterSpacing="-0.03"
+                    android:maxLength="11"
+                    android:maxLines="1"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:singleLine="true"
+                    android:textColor="@color/color_black40"
+                    android:textSize="@dimen/text_large"
+                    tools:ignore="SpUsage" />
+
+                <!-- 아이디 -->
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:id="@+id/tv_act_find_id"
+                    android:layout_width="match_parent"
+                    android:minHeight="@dimen/default_margin_40dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/default_margin_10dp"
+                    android:gravity="center_vertical"
+                    android:textSize="@dimen/text_large"
+                    tools:ignore="SpUsage" />
+
+                <!-- 아이디 찾기 -->
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:id="@+id/tv_act_find_id_enter"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="13dp"
+                    android:background="@drawable/bg_btn_purple_lavendar_purple"
+                    android:gravity="center"
+                    android:text="@string/find_id_enter"
+                    android:textColor="@color/color_white"
+                    android:textSize="@dimen/text_xlarge"
+                    tools:ignore="SpUsage" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:layout_marginBottom="33dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toStartOf="@+id/gl_find_id_pw_end"
+                app:layout_constraintStart_toStartOf="@+id/gl_find_id_pw_start"
+                app:layout_constraintTop_toTopOf="@+id/gl_find_id_pw_middle2">
+
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:letterSpacing="-0.02"
+                    android:text="@string/find_pw_title"
+                    android:textColor="@color/cornflower65"
+                    android:textSize="@dimen/text_xlarge"
+                    android:textStyle="bold"
+                    tools:ignore="SpUsage" />
+
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:alpha="0.5"
+                    android:text="@string/find_pw_title_hint"
+                    android:textColor="@color/color_black"
+                    android:textSize="@dimen/text_large"
+                    tools:ignore="SpUsage" />
+
+                <!-- 비밀번호 찾기 핸드폰번호 입력 -->
+                <EditText
+                                style="@style/baseTextViewStyle"
+                    android:id="@+id/et_act_find_pw_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:layout_marginTop="@dimen/default_margin_10dp"
+                    android:background="@drawable/join_btn"
+                    android:hint="@string/find_pw_phone_hint"
+                    android:inputType="phone"
+                    android:letterSpacing="-0.03"
+                    android:maxLength="11"
+                    android:maxLines="1"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:singleLine="true"
+                    android:textColor="@color/color_black40"
+                    android:textSize="@dimen/text_large"
+                    tools:ignore="SpUsage" />
+
+                <!-- 비밀번호 찾기 이메일 입력 -->
+                <EditText
+                                style="@style/baseTextViewStyle"
+                    android:id="@+id/et_act_find_pw_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="58dp"
+                    android:layout_marginTop="@dimen/default_margin_10dp"
+                    android:background="@drawable/join_btn"
+                    android:hint="@string/find_pw_email_hint"
+                    android:inputType="textEmailAddress"
+                    android:letterSpacing="-0.03"
+                    android:maxLines="1"
+                    android:paddingLeft="16dp"
+                    android:paddingRight="16dp"
+                    android:singleLine="true"
+                    android:textColor="@color/color_black40"
+                    android:textSize="@dimen/text_large"
+                    tools:ignore="SpUsage" />
+
+                <!-- 비밀번호 찾기 -->
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:id="@+id/tv_act_find_pw_enter"
+                    android:layout_width="match_parent"
+                    android:layout_height="54dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="13dp"
+                    android:background="@drawable/bg_btn_purple_lavendar_purple"
+                    android:gravity="center"
+                    android:text="@string/find_pw_enter"
+                    android:textColor="@color/color_white"
+                    android:textSize="@dimen/text_xlarge"
+                    tools:ignore="SpUsage" />
+            </LinearLayout>
+
+        </LinearLayout>
+    </ScrollView>
+    <com.dmonster.darling.honey.customview.CustomToolBar
+        android:id="@+id/ctb_act_find_toolbar"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+    <LinearLayout
+        android:id="@+id/ll_act_find_progress"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clickable="true"
+        android:focusable="true"
+        android:gravity="center"
+        android:visibility="gone">
+
+        <ProgressBar
+            android:layout_width="@dimen/progress_size"
+            android:layout_height="@dimen/progress_size" />
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_find_id_pw_middle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_find_id_pw_middle2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.55" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_find_id_pw_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.044" />
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_find_id_pw_end"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintGuide_percent="0.956"
+        android:orientation="vertical" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

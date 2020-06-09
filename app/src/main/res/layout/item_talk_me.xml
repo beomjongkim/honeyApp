@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".talk.view.adapter.TalkAdapter">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- 날짜 -->
+        <RelativeLayout
+            android:id="@+id/rl_item_talk_me_date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/default_margin_10dp"
+            android:layout_marginBottom="@dimen/default_margin_5dp"
+            android:visibility="gone">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/default_margin_1dp"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:layout_toLeftOf="@+id/tv_item_talk_me_date"
+                android:alpha="0.3"
+                android:background="@color/color_main" />
+
+            <!-- 날짜 -->
+            <TextView
+                                style="@style/baseTextViewStyle"
+                android:id="@+id/tv_item_talk_me_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/default_margin_10dp"
+                android:layout_marginRight="@dimen/default_margin_10dp"
+                android:alpha="0.5"
+                android:textColor="@color/color_main"
+                android:textSize="@dimen/text_small"
+                tools:ignore="SpUsage" />
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/default_margin_1dp"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_toRightOf="@+id/tv_item_talk_me_date"
+                android:alpha="0.3"
+                android:background="@color/color_main" />
+        </RelativeLayout>
+
+        <!-- 메세지 -->
+        <LinearLayout
+            android:id="@+id/ll_item_talk_me_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal"
+            android:padding="@dimen/default_margin_5dp"
+            android:visibility="visible">
+
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical">
+
+                <!--확인표시-->
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:id="@+id/tv_item_talk_me_read_msg"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:alpha="0.94"
+                    android:text="1"
+                    android:textColor="@color/purply_pink"
+                    android:textSize="@dimen/text_xxsmall"
+                    tools:ignore="SpUsage" />
+                <!-- 메세지 시간 -->
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:id="@+id/tv_item_talk_me_message_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="end"
+                    android:alpha="0.4"
+                    android:textColor="@color/dark_blue_grey"
+                    android:textSize="@dimen/text_xsmall"
+                    tools:ignore="SpUsage" />
+            </LinearLayout>
+
+            <!-- 메세지 내용 -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="@dimen/default_margin_10dp"
+                android:background="@drawable/bg_btn_gray">
+
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:id="@+id/tv_item_talk_me_message_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:gravity="center_vertical"
+                    android:maxWidth="@dimen/default_margin_200dp"
+                    android:paddingLeft="13dp"
+                    android:paddingTop="@dimen/default_margin_10dp"
+                    android:paddingRight="13dp"
+                    android:paddingBottom="@dimen/default_margin_10dp"
+                    android:textColor="@color/color_black"
+                    android:textSize="@dimen/text_normal"
+                    tools:ignore="SpUsage" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- 이미지 -->
+        <LinearLayout
+            android:id="@+id/ll_item_talk_me_picture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:orientation="horizontal"
+            android:padding="@dimen/default_margin_5dp"
+            android:visibility="gone">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_marginEnd="10dp"
+                android:layout_marginRight="10dp"
+                android:orientation="vertical">
+
+                <!--확인표시-->
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:id="@+id/tv_item_talk_me_read_img"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:alpha="0.94"
+                    android:text="1"
+                    android:textColor="@color/purply_pink"
+                    android:textSize="@dimen/text_xxsmall"
+                    tools:ignore="SpUsage" />
+                <!-- 이미지 시간 -->
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:id="@+id/tv_item_talk_me_picture_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="end"
+                    android:alpha="0.4"
+                    android:textColor="@color/dark_blue_grey"
+                    android:textSize="@dimen/text_xsmall"
+                    tools:ignore="SpUsage" />
+            </LinearLayout>
+            <!-- 이미지 -->
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_btn_gray"
+                android:padding="@dimen/default_margin_10dp">
+
+                <ImageView
+                    android:id="@+id/iv_item_talk_me_picture_content"
+                    android:layout_width="@dimen/default_margin_200dp"
+                    android:layout_height="wrap_content"
+                    android:adjustViewBounds="true"
+                    android:maxWidth="@dimen/default_margin_200dp"
+                    android:maxHeight="@dimen/default_margin_200dp" />
+            </RelativeLayout>
+
+
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

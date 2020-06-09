@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="itemViewModel"
+            type="com.dmonster.darling.honey.item.viewmodel.ItemViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/cl_frag_market_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".item.view.MarketActivity">
+
+        <com.dmonster.darling.honey.customview.CustomToolBar
+            android:id="@+id/ctb_frag_market_toolbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/ll_frag_my_act_main_top_layout"
+            android:layout_width="0dp"
+            android:layout_height="48dp"
+            android:background="@drawable/bg_tab_line_bottom"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ctb_frag_market_toolbar">
+
+            <!-- 나의톡 -->
+            <Button
+                android:id="@+id/btn_frag_my_act_main_talk"
+                style="@style/baseTextViewTitleStyle"
+                android:layout_width="@dimen/default_margin_0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/color_transparent"
+                android:gravity="center"
+                android:letterSpacing="-0.02"
+                android:onClick="@{()->itemViewModel.onClickBuyView()}"
+                android:text="@string/market_button_buy"
+                android:textColor="@color/tab_select_text_color"
+                android:textSize="@dimen/text_normal"
+                tools:ignore="SpUsage" />
+
+            <View
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:background="@color/color_gray" />
+            <!-- 내 프로필 열람회원 -->
+            <Button
+                android:id="@+id/btn_frag_my_act_main_reading"
+                style="@style/baseTextViewTitleStyle"
+                android:layout_width="@dimen/default_margin_0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="@color/color_transparent"
+                android:gravity="center"
+                android:letterSpacing="-0.02"
+                android:onClick="@{()->itemViewModel.onClickBuyLogView()}"
+                android:text="@string/market_button_log"
+                android:textColor="@color/tab_select_text_color"
+                android:textSize="@dimen/text_normal"
+                tools:ignore="SpUsage" />
+
+
+        </LinearLayout>
+
+        <TextView
+            style="@style/baseTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/market_title"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/text_large"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/ctb_frag_market_toolbar"
+            app:layout_constraintEnd_toEndOf="@+id/ctb_frag_market_toolbar"
+            app:layout_constraintStart_toStartOf="@+id/ctb_frag_market_toolbar"
+            app:layout_constraintTop_toTopOf="@+id/ctb_frag_market_toolbar"
+            tools:ignore="SpUsage" />
+
+
+        <Button
+            android:id="@+id/btn_freepass_month"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_pink_purple"
+            android:onClick="@{()->itemViewModel.onClickBuyMonth()}"
+            android:padding="5dp"
+            android:text="@string/market_item_month"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/text_xlarge"
+            android:visibility="@{itemViewModel.toggle ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toTopOf="@+id/textView"
+            app:layout_constraintEnd_toStartOf="@+id/guideline3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_frag_my_act_main_top_layout"
+            app:layout_constraintWidth_percent="0.38" />
+
+        <Button
+            android:id="@+id/btn_freepass_hour"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_pink_purple"
+            android:text="@string/market_item_hour"
+            android:visibility="@{itemViewModel.toggle ? View.GONE : View.VISIBLE}"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/text_xlarge"
+            android:padding="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/btn_freepass_month"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline3"
+            app:layout_constraintTop_toTopOf="@+id/btn_freepass_month"
+            app:layout_constraintWidth_percent="0.38" />
+
+        <TextView
+            android:id="@+id/textView"
+            style="@style/baseTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/market_content"
+            android:textSize="@dimen/text_large"
+            android:visibility="@{itemViewModel.toggle ? View.GONE : View.VISIBLE}"
+            app:layout_constraintBottom_toTopOf="@+id/gl_frag_item"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/gl_frag_item"
+            tools:ignore="SpUsage" />
+
+
+
+        <!-- 프로그래스바 -->
+        <ProgressBar
+            android:id="@+id/pb_frag_market"
+            android:layout_width="@dimen/progress_size"
+            android:layout_height="@dimen/progress_size"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:visibility="@{itemViewModel.isProgressing ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/gl_frag_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.5" />
+
+
+        <TextView
+            android:id="@+id/tv_frag_market_left_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="32dp"
+            android:text="@{itemViewModel.text_available}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_frag_market_using"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="6dp"
+            android:gravity="center"
+            android:text="@{itemViewModel.text_left_date}"
+            app:layout_constraintBottom_toTopOf="@+id/tv_frag_market_left_day"
+            app:layout_constraintEnd_toEndOf="@+id/tv_frag_market_left_day"
+            app:layout_constraintStart_toStartOf="@+id/tv_frag_market_left_day" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            CustomAdapter="@{itemViewModel.adapter}"
+            layoutType='@{"vertical"}'
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/color_gray70"
+            android:visibility="@{itemViewModel.toggle ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@+id/tv_frag_market_using"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.487"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_frag_market_notice"
+            app:layout_constraintVertical_bias="0.0"
+            app:layout_constraintWidth_percent="0.9" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.5" />
+
+        <TextView
+            android:id="@+id/tv_frag_market_notice"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="@{itemViewModel.text_notice}"
+            android:visibility="@{itemViewModel.toggle ? View.VISIBLE : View.GONE}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll_frag_my_act_main_top_layout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

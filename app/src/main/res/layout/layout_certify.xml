@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8"?><!-- 본인사진 -->
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="certifyVM"
+            type="com.dmonster.darling.honey.myinformation.viewmodel.MarriageCertVM" />
+
+        <import type="android.view.View" />
+
+        <import type="android.text.TextUtils" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:minHeight="110dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="43dp"
+            android:background="@color/color_gray"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <TextView
+                                style="@style/baseTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="23dp"
+                android:layout_marginLeft="23dp"
+                android:alpha="0.6"
+                android:gravity="center_vertical"
+                android:letterSpacing="-0.03"
+                android:text="@string/information_member_cert"
+                android:textColor="@color/color_main"
+                android:textSize="@dimen/text_large"
+                tools:ignore="SpUsage" />
+        </LinearLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/default_margin_5dp"
+            android:layout_marginTop="@dimen/default_margin_10dp"
+            android:layout_marginRight="@dimen/default_margin_5dp"
+            android:layout_marginBottom="@dimen/default_margin_10dp"
+            android:orientation="vertical">
+
+            <ImageView
+                android:id="@+id/iv_cert_picture"
+                imgGlideUriWithoutPlaceHolder="@{certifyVM.imgUri}"
+                android:layout_width="wrap_content"
+                android:layout_height="100dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp"
+                android:onClick="@{(v)->certifyVM.onClickImage(v)}"
+                bind:layout_constraintBottom_toTopOf="@id/rl_cert_add_picture"
+                bind:layout_constraintStart_toStartOf="parent"
+                bind:layout_constraintTop_toTopOf="parent" />
+            <!--&lt;!&ndash; 사진목록 &ndash;&gt;-->
+            <!--<androidx.recyclerview.widget.RecyclerView-->
+            <!--android:id="@+id/rv_cert_list"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:overScrollMode="never"-->
+            <!--android:scrollbars="none"-->
+            <!--RecyclerViewAdapter="@{certifyVM.mAdapter}"-->
+            <!--tools:listitem="@layout/item_picture"/>-->
+
+            <!-- 사진추가 -->
+            <TextView
+                                style="@style/baseTextViewStyle"
+                android:id="@+id/tv_cert_add_picture"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginEnd="16dp"
+                android:text="@string/cert_notice"
+                android:textSize="@dimen/text_normal"
+                android:visibility="@{certifyVM.imgUri == null ? View.VISIBLE : View.GONE}"
+                bind:layout_constraintBottom_toTopOf="@+id/rl_cert_add_picture"
+                bind:layout_constraintEnd_toEndOf="parent"
+                bind:layout_constraintStart_toStartOf="parent"
+                bind:layout_constraintTop_toTopOf="parent"
+                tools:ignore="SpUsage" />
+
+            <RelativeLayout
+                android:id="@+id/rl_cert_add_picture"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/join_btn"
+                android:onClick="@{(v)->certifyVM.onClickAddPic(v)}"
+                android:visibility="@{certifyVM.isModifyMode ? View.VISIBLE : View.GONE}"
+                bind:layout_constraintEnd_toEndOf="parent"
+                bind:layout_constraintStart_toStartOf="parent"
+                bind:layout_constraintTop_toBottomOf="@id/iv_cert_picture">
+
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="@dimen/default_margin_10dp"
+                    android:layout_marginRight="@dimen/default_margin_10dp"
+                    android:layout_toLeftOf="@+id/iv_cert_picture_image_plus"
+                    android:text="@string/information_member_picture_plus"
+                    android:textSize="@dimen/text_large"
+                    tools:ignore="SpUsage" />
+
+                <ImageView
+                    android:id="@+id/iv_cert_picture_image_plus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginRight="@dimen/default_margin_10dp"
+                    android:background="@drawable/inquiry_image_plus_img" />
+            </RelativeLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</layout>

@@ -1,0 +1,190 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="filterVM"
+            type="com.dmonster.darling.honey.main.viewmodel.FilterVM" />
+
+        <import type="android.graphics.Color" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipToPadding="false"
+        android:paddingBottom="3dp"
+        android:background="@drawable/bg_color_white">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_color_white"
+            android:elevation="3dp"
+            android:padding="10dp">
+
+            <LinearLayout
+                android:id="@+id/ll_filter_marriage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{(v)->filterVM.onClickFilterMarriage(v)}"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/ll_filter_area"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:alpha="@{filterVM.isMarryFIltered? 1f : 0.55f}"
+                   android:gravity="center"
+                    android:letterSpacing="-0.02"
+                    android:text="결혼/재혼"
+                    android:textStyle="bold"
+                    android:paddingEnd="2dp"
+                    android:paddingRight="2dp"
+                    android:textColor="@{filterVM.isMarryFIltered? @color/colorPrimary : @color/color_main}"
+                    android:textSize="@dimen/text_large"
+                    tools:ignore="SpUsage" />
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="8dp"
+                    android:layout_gravity="center"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    android:layout_weight="1"
+                    android:alpha="@{filterVM.isMarryFIltered? 1f : 0.55f}"
+                    android:tint="@{filterVM.isMarryFIltered?@color/colorPrimary : @color/color_main}"
+                    app:srcCompat="@drawable/login_arrow" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_filter_area"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{(v)->filterVM.onClickFilterArea(v)}"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toStartOf="@+id/ll_filter_gender_age"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toEndOf="@id/ll_filter_marriage"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:alpha="@{filterVM.isAreaFiltered? 1f : 0.55f}"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:letterSpacing="-0.02"
+                    android:text="지역/거리"
+
+                    android:paddingEnd="2dp"
+                    android:paddingRight="2dp"
+                    android:textColor="@{filterVM.isAreaFiltered? @color/colorPrimary : @color/color_main}"
+                    android:textSize="@dimen/text_large"
+                    tools:ignore="SpUsage" />
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="8dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    android:alpha="@{filterVM.isAreaFiltered? 1f : 0.55f}"
+                    android:tint="@{filterVM.isAreaFiltered? @color/colorPrimary : @color/color_main}"
+                    app:srcCompat="@drawable/login_arrow" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_filter_gender_age"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{(v)->filterVM.onClickFilterAgeGender(v)}"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toStartOf="@+id/ll_filter_etc"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toEndOf="@id/ll_filter_area"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:alpha="@{filterVM.isAgeGenderFIltered? 1f : 0.55f}"
+                    android:gravity="center"
+                    android:textStyle="bold"
+                    android:paddingEnd="2dp"
+                    android:paddingRight="2dp"
+                    android:letterSpacing="-0.02"
+                    android:text="성별/나이"
+                    android:textColor="@{filterVM.isAgeGenderFIltered? @color/colorPrimary : @color/color_main}"
+                    android:textSize="@dimen/text_large"
+                    tools:ignore="SpUsage" />
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="8dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    android:alpha="@{filterVM.isAgeGenderFIltered? 1f : 0.55f}"
+                    android:tint="@{filterVM.isAgeGenderFIltered? @color/colorPrimary : @color/color_main}"
+                    app:srcCompat="@drawable/login_arrow" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_filter_etc"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{(v)->filterVM.onClickFilterEtc(v)}"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toEndOf="@id/ll_filter_gender_age"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textStyle="bold"
+                    android:paddingEnd="2dp"
+                    android:paddingRight="2dp"
+                    android:alpha="@{filterVM.isEtcFiltered? 1f : 0.55f}"
+                    android:gravity="center"
+                    android:letterSpacing="-0.02"
+                    android:text="기타"
+                    android:textColor="@{filterVM.isEtcFiltered? @color/colorPrimary : @color/color_main}"
+                    android:textSize="@dimen/text_large"
+                    tools:ignore="SpUsage" />
+
+                <ImageView
+                    android:layout_width="16dp"
+                    android:layout_height="8dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:scaleX="0.8"
+                    android:scaleY="0.8"
+                    android:alpha="@{filterVM.isEtcFiltered? 1f : 0.55f}"
+                    android:tint="@{filterVM.isEtcFiltered? @color/colorPrimary : @color/color_main}"
+                    app:srcCompat="@drawable/login_arrow" />
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+</layout>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   tools:context=".notice.view.adapter.NoticeAdapter">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/bg_line_bottom"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <!-- Tittle -->
+        <RelativeLayout
+            android:id="@+id/rl_item_notice_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_line_bottom"
+            android:padding="@dimen/default_margin_10dp">
+
+            <!-- 공지종류 -->
+            <TextView
+                                style="@style/baseTextViewStyle"
+                android:id="@+id/tv_item_notice_title_type"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_centerVertical="true"
+                android:textSize="@dimen/text_normal"
+                tools:ignore="SpUsage" />
+
+            <!-- 공지제목 -->
+            <TextView
+                                style="@style/baseTextViewStyle"
+                android:id="@+id/tv_item_notice_title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="@dimen/default_margin_10dp"
+                android:layout_marginRight="@dimen/default_margin_10dp"
+                android:layout_toLeftOf="@+id/tv_item_notice_date"
+                android:layout_toRightOf="@+id/tv_item_notice_title_type"
+                android:singleLine="true"
+                android:textSize="@dimen/text_normal"
+                android:alpha="0.65"
+                android:textColor="@color/color_main"
+                android:letterSpacing="-0.02"
+                tools:ignore="SpUsage" />
+
+            <!-- 날짜 -->
+            <TextView
+                                style="@style/baseTextViewStyle"
+                android:id="@+id/tv_item_notice_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginRight="@dimen/default_margin_10dp"
+                android:layout_toLeftOf="@+id/iv_item_notice_arrow"
+                android:alpha="0.8"
+                android:textSize="@dimen/text_normal"
+                android:textColor="@color/color_main"
+                android:letterSpacing="-0.02"
+                tools:ignore="SpUsage" />
+
+            <ImageView
+                android:id="@+id/iv_item_notice_arrow"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="10dp"
+                android:layout_centerVertical="true"
+                android:background="@drawable/notice_down_arrow_img" />
+        </RelativeLayout>
+
+        <!-- Content -->
+        <LinearLayout
+            android:id="@+id/ll_item_notice_content"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/color_gray"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="@dimen/default_margin_10dp">
+
+                <!-- 공지종류 -->
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:id="@+id/tv_item_notice_content_type"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/text_normal"
+                    tools:ignore="SpUsage" />
+
+                <!-- 공지제목 -->
+                <TextView
+                                style="@style/baseTextViewStyle"
+                    android:id="@+id/tv_item_notice_content_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="@dimen/default_margin_10dp"
+                    android:layout_toRightOf="@+id/tv_item_notice_title_type"
+                    android:singleLine="true"
+                    android:textSize="@dimen/text_normal"
+                    tools:ignore="SpUsage" />
+            </LinearLayout>
+
+            <!-- 공지이미지 -->
+            <ImageView
+                android:id="@+id/iv_item_notice_image"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <!-- 공지내용 -->
+            <TextView
+                                style="@style/baseTextViewStyle"
+                android:id="@+id/tv_item_notice_content"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="@dimen/default_margin_10dp"
+                android:textSize="@dimen/text_normal"
+                tools:ignore="SpUsage" />
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

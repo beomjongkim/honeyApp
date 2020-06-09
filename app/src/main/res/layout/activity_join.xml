@@ -1,0 +1,861 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="calendarVM"
+            type="com.dmonster.darling.honey.common.viewmodel.DatePickerVM" />
+
+        <variable
+            name="BirthYearVM"
+            type="com.dmonster.darling.honey.join.viewmodel.BirthYearVM" />
+
+        <variable
+            name="BirthMonthVM"
+            type="com.dmonster.darling.honey.join.viewmodel.BirthMonthVM" />
+
+        <variable
+            name="BirthDayVM"
+            type="com.dmonster.darling.honey.join.viewmodel.BirthDayVM" />
+
+        <variable
+            name="UpperSpinnerVM"
+            type="com.dmonster.darling.honey.common.viewmodel.SpinnerVM" />
+
+        <variable
+            name="LowerSpinnerVM"
+            type="com.dmonster.darling.honey.common.viewmodel.SpinnerVM" />
+
+        <variable
+            name="phoneCertVM"
+            type="com.dmonster.darling.honey.join.viewmodel.PhoneCertVM" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".join.view.JoinActivity">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.dmonster.darling.honey.customview.CustomToolBar
+                android:id="@+id/ctb_act_join_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+
+                android:layout_alignParentTop="true" />
+
+            <androidx.core.widget.NestedScrollView
+                style="@style/NestedScrollViewTheme"
+                android:layout_above="@+id/ll_act_join_bottom_layout"
+                android:layout_below="@+id/ctb_act_join_toolbar"
+                android:background="@color/color_white">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="@dimen/default_margin_20dp">
+
+                    <!-- 로고 -->
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:background="@drawable/join_logo_img"
+                        android:visibility="gone" />
+
+                    <!-- 아이디 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="@dimen/default_margin_15dp"
+                        android:orientation="horizontal">
+
+                        <!-- 아이디 체크 -->
+                        <CheckBox
+                            android:id="@+id/cb_act_join_id_check"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:clickable="false"
+                            android:visibility="visible" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:background="@drawable/bg_border_round"
+                            android:orientation="horizontal">
+                            <!-- 아이디 입력 -->
+                            <EditText
+                                style="@style/baseTextViewStyle"
+                                android:id="@+id/et_act_join_id"
+                                android:layout_width="@dimen/default_margin_0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:background="@color/color_transparent"
+                                android:hint="@string/hint_login_id"
+                                android:digits="@string/utility_except_korean_regex"
+                                android:maxLines="1"
+                                android:paddingStart="15dp"
+                                android:paddingLeft="15dp"
+                                android:paddingTop="@dimen/default_margin_5dp"
+                                android:paddingBottom="@dimen/default_margin_5dp"
+                                android:singleLine="true"
+                                android:textSize="@dimen/text_large"
+                                tools:ignore="SpUsage" />
+
+                            <TextView
+                                style="@style/baseTextViewStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="@dimen/default_margin_10dp"
+                                android:layout_marginRight="@dimen/default_margin_10dp"
+                                android:alpha="0.75"
+                                android:gravity="center_vertical"
+                                android:text="@string/login_email_mark"
+                                android:textColor="@color/color_main"
+                                android:textSize="@dimen/text_large"
+                                tools:ignore="SpUsage" />
+
+                            <!-- 이메일 입력 -->
+                            <RelativeLayout
+                                android:id="@+id/rl_act_join_email"
+                                android:layout_width="@dimen/default_margin_0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:paddingStart="15dp"
+                                android:paddingLeft="15dp">
+
+                                <TextView
+                                style="@style/baseTextViewStyle"
+                                    android:id="@+id/tv_act_join_email"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_marginRight="@dimen/default_margin_10dp"
+                                    android:layout_toLeftOf="@+id/iv_act_join_email"
+                                    android:gravity="center_vertical"
+                                    android:hint="@string/hint_login_email"
+                                    android:singleLine="true"
+                                    android:textSize="@dimen/text_large"
+                                    tools:ignore="SpUsage" />
+
+                                <EditText
+                                style="@style/baseTextViewStyle"
+                                    android:background="@color/color_transparent"
+                                    android:id="@+id/et_act_join_email"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_toLeftOf="@+id/iv_act_join_email"
+                                    android:gravity="center_vertical"
+                                    android:inputType="textEmailAddress"
+                                    android:digits="@string/utility_except_korean_regex"
+                                    android:maxLines="1"
+                                    android:singleLine="true"
+                                    android:textSize="@dimen/text_large"
+                                    android:visibility="gone"
+                                    tools:ignore="SpUsage" />
+
+                                <ImageView
+                                    android:id="@+id/iv_act_join_email"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginEnd="10dp"
+                                    android:layout_marginRight="@dimen/default_margin_10dp"
+                                    android:background="@drawable/login_arrow" />
+                            </RelativeLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    -->
+
+                    <!-- 아이디 안내문구 -->
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:id="@+id/tv_act_join_use_id"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginRight="20dp"
+                        android:alpha="0.64"
+                        android:letterSpacing="-0.02"
+                        android:text="@string/join_id_guide"
+                        android:textColor="@color/color_main"
+                        android:textSize="@dimen/text_xsmall"
+                        tools:ignore="SpUsage" />
+
+                    <!-- 비밀번호 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="@dimen/default_margin_10dp">
+
+                        <!-- 비밀번호 체크 -->
+                        <CheckBox
+                            android:id="@+id/cb_act_join_password_check"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:clickable="false"
+                            android:visibility="visible" />
+
+                        <!-- 비밀번호 입력 -->
+                        <EditText
+                                style="@style/baseTextViewStyle"
+                            android:id="@+id/et_act_join_password"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_border_round"
+                            android:hint="@string/hint_join_password"
+                            android:inputType="textPassword"
+                            android:digits="@string/utility_english_number_only_regex"
+                            android:maxLines="1"
+                            android:paddingStart="15dp"
+                            android:paddingLeft="15dp"
+                            android:singleLine="true"
+                            android:textSize="@dimen/text_large"
+                            tools:ignore="SpUsage" />
+                    </LinearLayout>
+                    <!-- 비밀번호 안내문구 -->
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:id="@+id/tv_act_join_use_password"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="end"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="20dp"
+                        android:layout_marginRight="20dp"
+                        android:alpha="0.64"
+                        android:letterSpacing="-0.02"
+                        android:text="@string/join_password_guide"
+                        android:textColor="@color/color_main"
+                        android:textSize="@dimen/text_xsmall"
+                        tools:ignore="SpUsage" />
+
+                    <!-- 비밀번호 확인 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="@dimen/default_margin_10dp">
+
+                        <!-- 비밀번호 확인 체크 -->
+                        <CheckBox
+                            android:id="@+id/cb_act_join_password_check_check"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:clickable="false"
+                            android:visibility="visible" />
+
+                        <EditText
+                                style="@style/baseTextViewStyle"
+                            android:id="@+id/et_act_join_password_check"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_border_round"
+                            android:hint="@string/hint_join_password_check"
+                            android:inputType="textPassword"
+                            android:digits="@string/utility_english_number_only_regex"
+                            android:maxLines="1"
+                            android:paddingStart="15dp"
+                            android:paddingLeft="15dp"
+                            android:singleLine="true"
+                            android:textSize="@dimen/text_large"
+                            tools:ignore="SpUsage" />
+                    </LinearLayout>
+
+
+                    <!-- 대화명 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="@dimen/default_margin_10dp">
+
+                        <!-- 대화명 체크 -->
+                        <CheckBox
+                            android:id="@+id/cb_act_join_talk_check"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:clickable="false"
+                            android:visibility="visible" />
+
+                        <EditText
+                                style="@style/baseTextViewStyle"
+                            android:id="@+id/et_act_join_talk"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_border_round"
+                            android:hint="@string/hint_join_talk"
+                            android:maxLength="6"
+                            android:maxLines="1"
+                            android:paddingStart="15dp"
+                            android:paddingLeft="15dp"
+                            android:singleLine="true"
+                            android:textSize="@dimen/text_large"
+                            tools:ignore="SpUsage" />
+                    </LinearLayout>
+
+                    <!-- 대화명 안내문구 -->
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_margin_10dp"
+                        android:text="@string/join_talk_guide"
+                        android:textSize="@dimen/text_large"
+                        android:visibility="gone"
+                        tools:ignore="SpUsage" />
+
+                    <!-- 태어난 년도-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="@dimen/default_margin_10dp"
+                        android:orientation="horizontal">
+
+                        <!-- 태어난 년도 -->
+                        <LinearLayout
+                            android:layout_width="@dimen/default_margin_0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1">
+
+                            <!-- 태어난 년도 체크 -->
+                            <CheckBox
+                                android:id="@+id/cb_act_join_age_check"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:checked="@{BirthYearVM.MPassed &amp; BirthMonthVM.MPassed &amp; BirthDayVM.MPassed}"
+                                android:clickable="false"
+                                android:visibility="visible" />
+
+                            <!-- 태어난 년도 입력 -->
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:id="@+id/rl_act_join_age"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@drawable/bg_border_round">
+
+                                <EditText
+                                style="@style/baseTextViewStyle"
+                                    android:id="@+id/et_act_join_age_year"
+                                    BaseEditRegexVM="@{BirthYearVM}"
+                                    android:layout_width="0dp"
+                                    android:layout_height="0dp"
+                                    android:layout_marginTop="1dp"
+                                    android:layout_marginBottom="1dp"
+                                    android:background="@color/color_transparent"
+                                    android:gravity="start|center_vertical"
+                                    android:hint="@string/hint_join_birth_year"
+                                    android:imeOptions="actionNext"
+                                    android:inputType="number"
+                                    android:maxLength="4"
+                                    android:paddingStart="15dp"
+                                    android:paddingLeft="15dp"
+                                    android:singleLine="true"
+                                    android:text="@{calendarVM.year ?? calendarVM.year}"
+                                    android:textSize="@dimen/text_large"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintWidth_percent="0.5"
+                                    tools:ignore="SpUsage" />
+
+                                <View
+                                    android:id="@+id/tv_slash_year_month"
+                                    android:layout_width="1dp"
+                                    android:layout_height="0dp"
+                                    android:background="@color/color_gray"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toEndOf="@id/et_act_join_age_year"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <EditText
+                                style="@style/baseTextViewStyle"
+                                    android:id="@+id/et_act_join_age_month"
+                                    BaseEditRegexVM="@{BirthMonthVM}"
+                                    android:layout_width="0dp"
+                                    android:layout_height="0dp"
+                                    android:layout_marginTop="1dp"
+                                    android:layout_marginBottom="1dp"
+                                    android:background="@color/color_transparent"
+                                    android:gravity="center_vertical|start"
+                                    android:hint="@string/hint_join_birth_month"
+                                    android:imeOptions="actionNext"
+                                    android:inputType="number"
+                                    android:maxLength="2"
+                                    android:paddingStart="15dp"
+                                    android:paddingLeft="15dp"
+                                    android:singleLine="true"
+                                    android:text="@{calendarVM.month ?? calendarVM.month}"
+                                    android:textSize="@dimen/text_large"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toEndOf="@id/tv_slash_year_month"
+                                    app:layout_constraintTop_toTopOf="parent"
+
+                                    app:layout_constraintWidth_percent="0.2"
+                                    tools:ignore="SpUsage" />
+
+                                <View
+                                    android:id="@+id/tv_slash_month_day"
+                                    android:layout_width="1dp"
+                                    android:layout_height="0dp"
+                                    android:background="@color/color_gray"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toEndOf="@id/et_act_join_age_month"
+                                    app:layout_constraintTop_toTopOf="parent" />
+
+                                <EditText
+                                style="@style/baseTextViewStyle"
+                                    android:id="@+id/et_act_join_age_day"
+                                    BaseEditRegexVM="@{BirthDayVM}"
+                                    android:layout_width="0dp"
+                                    android:layout_height="0dp"
+                                    android:layout_marginTop="1dp"
+                                    android:layout_marginBottom="1dp"
+                                    android:background="@color/color_transparent"
+                                    android:gravity="center_vertical|start"
+                                    android:hint="@string/hint_join_birth_day"
+                                    android:imeOptions="actionDone"
+                                    android:inputType="number"
+                                    android:maxLength="2"
+                                    android:paddingStart="15dp"
+                                    android:paddingLeft="15dp"
+                                    android:singleLine="true"
+                                    android:text="@{calendarVM.day ?? calendarVM.day}"
+                                    android:textSize="@dimen/text_large"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintStart_toEndOf="@id/tv_slash_month_day"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintWidth_percent="0.2"
+                                    tools:ignore="SpUsage" />
+
+                                <ImageView
+                                    android:id="@+id/iv_act_join_age"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="0dp"
+                                    android:onClick="@{(v)->calendarVM.onClickButton(v)}"
+                                    android:scaleType="fitCenter"
+                                    android:src="@drawable/login_arrow"
+                                    app:layout_constraintBottom_toBottomOf="parent"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintStart_toEndOf="@id/et_act_join_age_day"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    app:layout_constraintWidth_percent="0.05" />
+
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
+                        </LinearLayout>
+
+
+                    </LinearLayout>
+                    <!-- 지역 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="@dimen/default_margin_10dp"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/cb_act_join_area_check"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:checked="@{UpperSpinnerVM.passed &amp; LowerSpinnerVM.passed}"
+                            android:clickable="false"
+                            android:visibility="visible" />
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/bg_border_round"
+                            android:orientation="horizontal"
+                            android:weightSum="2">
+
+                            <!-- 지역 체크 -->
+
+                            <!-- 지역 입력 -->
+                            <RelativeLayout
+                                android:id="@+id/rl_act_join_area"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:paddingStart="15dp"
+                                android:paddingLeft="15dp">
+
+                                <Spinner
+                                    android:id="@+id/sp_act_join_area"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/color_transparent" />
+
+                                <TextView
+                                style="@style/baseTextViewStyle"
+                                    android:id="@+id/tv_act_join_area"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginRight="@dimen/default_margin_10dp"
+                                    android:layout_marginBottom="@dimen/default_margin_1dp"
+                                    android:layout_toLeftOf="@+id/iv_act_join_area"
+                                    android:background="@color/color_white"
+                                    android:ellipsize="end"
+                                    android:gravity="center_vertical|start"
+                                    android:hint="@string/hint_join_area"
+                                    android:paddingStart="15dp"
+                                    android:paddingLeft="15dp"
+                                    android:singleLine="true"
+                                    android:text="@{UpperSpinnerVM.text}"
+                                    android:textColor="@color/color_main"
+                                    android:textColorHint="@color/color_main40"
+                                    android:textSize="@dimen/text_large"
+                                    tools:ignore="SpUsage" />
+
+                                <ImageView
+                                    android:id="@+id/iv_act_join_area"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginEnd="@dimen/default_margin_10dp"
+                                    android:layout_marginRight="@dimen/default_margin_10dp"
+                                    android:background="@drawable/login_arrow" />
+                            </RelativeLayout>
+
+                            <View
+                                android:layout_width="@dimen/default_margin_1dp"
+                                android:layout_height="match_parent"
+                                android:background="@color/color_gray" />
+                            <!-- 지역 디테일 입력 -->
+                            <RelativeLayout
+                                android:id="@+id/rl_act_join_area_detail"
+                                android:layout_width="0dp"
+                                android:layout_height="match_parent"
+                                android:layout_weight="1"
+                                android:paddingStart="15dp"
+                                android:paddingLeft="15dp">
+
+                                <Spinner
+                                    LowerSpinnerVM="@{LowerSpinnerVM}"
+                                    UpperSpinner="@{spActJoinArea}"
+                                    UpperSpinnerVM="@{UpperSpinnerVM}"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="@color/color_transparent" />
+
+                                <TextView
+                                style="@style/baseTextViewStyle"
+                                    android:id="@+id/tv_act_join_area_detail"
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginRight="@dimen/default_margin_10dp"
+                                    android:layout_marginBottom="@dimen/default_margin_1dp"
+                                    android:layout_toLeftOf="@+id/iv_act_join_area_detail"
+                                    android:background="@color/color_white"
+                                    android:ellipsize="end"
+                                    android:gravity="center_vertical|start"
+                                    android:hint="@string/hint_join_area_deatail"
+                                    android:paddingStart="15dp"
+                                    android:paddingLeft="15dp"
+                                    android:singleLine="true"
+                                    android:text="@{LowerSpinnerVM.text}"
+                                    android:textColor="@color/color_main"
+                                    android:textColorHint="@color/color_main40"
+                                    android:textSize="@dimen/text_large"
+                                    tools:ignore="SpUsage" />
+
+                                <ImageView
+                                    android:id="@+id/iv_act_join_area_detail"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_alignParentRight="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginEnd="@dimen/default_margin_10dp"
+                                    android:layout_marginRight="@dimen/default_margin_10dp"
+                                    android:background="@drawable/login_arrow" />
+                            </RelativeLayout>
+                        </LinearLayout>
+                    </LinearLayout>
+                    <!-- 성별 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="@dimen/default_margin_10dp"
+                        android:background="@drawable/bg_border_round"
+                        android:orientation="horizontal">
+
+                        <!-- 남성 -->
+                        <CheckBox
+                            android:id="@+id/cb_act_join_male"
+                            android:layout_width="@dimen/default_margin_0dp"
+                            android:layout_height="match_parent"
+
+                            android:layout_weight="1"
+                            android:background="@color/color_transparent"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="@string/join_male"
+                            android:textColor="@color/check_text_color03"
+                            android:textSize="@dimen/text_large"
+                            tools:ignore="SpUsage" />
+
+                        <View
+                            android:layout_width="@dimen/default_margin_1dp"
+                            android:layout_height="match_parent"
+                            android:background="@color/color_gray" />
+                        <!-- 여성 -->
+                        <CheckBox
+                            android:id="@+id/cb_act_join_female"
+                            android:layout_width="@dimen/default_margin_0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:background="@color/color_transparent"
+                            android:button="@null"
+                            android:gravity="center"
+                            android:text="@string/join_female"
+                            android:textColor="@color/check_text_color03"
+                            android:textSize="@dimen/text_large"
+                            tools:ignore="SpUsage" />
+                    </LinearLayout>
+                    <!--핸드폰 번호 인증-->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="@dimen/default_margin_15dp"
+                        android:orientation="horizontal">
+
+                        <CheckBox
+                            android:id="@+id/cb_act_join_phone_check"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:clickable="false"
+                            android:visibility="visible" />
+
+
+                        <RelativeLayout
+                            android:id="@+id/rl_phone_cert"
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/default_margin_30dp"
+                            android:visibility="visible">
+
+                            <!-- 핸드폰번호 Title -->
+                            <TextView
+                                android:id="@+id/tv_phone_cert"
+                                style="@style/joinTextStyle"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentStart="true"
+                                android:layout_alignParentLeft="true"
+                                android:layout_centerVertical="true"
+                                android:gravity="center_vertical"
+                                android:text="@string/information_member_phone" />
+
+                            <!-- 핸드폰번호 입력 -->
+                            <EditText
+                                android:id="@+id/et_phone_cert"
+                                style="@style/joinTextStyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_marginLeft="10dp"
+                                android:layout_marginRight="10dp"
+                                android:layout_toLeftOf="@+id/tv_phone_cert_auth"
+                                android:layout_toRightOf="@+id/tv_phone_cert"
+                                android:background="@color/color_gray"
+                                android:digits="0123456789"
+                                android:gravity="center"
+                                android:hint="@string/hint_information_phone"
+                                android:inputType="phone"
+                                android:maxLength="12"
+                                android:padding="@dimen/default_margin_5dp"
+                                android:singleLine="true"
+                                android:text="@={phoneCertVM.phoneNumber}"
+                                android:textSize="@dimen/text_large"
+                                tools:ignore="SpUsage" />
+
+                            <!-- 인증 -->
+                            <TextView
+                                android:id="@+id/tv_phone_cert_auth"
+                                style="@style/joinTextStyle"
+                                android:layout_width="@dimen/default_margin_70dp"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
+                                android:background="@drawable/btn_select_basic01"
+                                android:gravity="center"
+                                android:onClick="@{(v)->phoneCertVM.onClickCert(v)}"
+                                android:text="@string/information_member_phone_auth"
+                                android:textColor="@color/select_text_color01"
+                                android:textSize="@dimen/text_large"
+                                android:textStyle="bold"
+                                tools:ignore="SpUsage" />
+                        </RelativeLayout>
+
+                        <include
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            layout="@layout/layout_phone_cert"
+                            app:phoneCertVM="@{phoneCertVM}"
+                            />
+                    </LinearLayout>
+                    <!-- 추천인 -->
+                    <LinearLayout
+                        android:id="@+id/ll_act_join_recommendation"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginTop="@dimen/default_margin_10dp"
+                        android:background="@drawable/bg_border_round"
+                        android:visibility="gone">
+
+                        <EditText
+                                style="@style/baseTextViewStyle"
+                            android:id="@+id/et_act_join_recommendation"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@color/color_transparent"
+                            android:hint="@string/hint_join_recommendation"
+                            android:maxLines="1"
+                            android:paddingStart="15dp"
+                            android:paddingLeft="15dp"
+                            android:singleLine="true"
+                            android:textSize="@dimen/text_large"
+                            tools:ignore="SpUsage" />
+                    </LinearLayout>
+
+                    <!-- 핸드폰번호 -->
+                    <!-- 회원가입 이용약관동의 -->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/default_margin_30dp"
+                        android:layout_marginTop="@dimen/default_margin_15dp">
+
+                        <!-- 약관동의 -->
+                        <CheckBox
+                            android:id="@+id/cb_act_join_agreement"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/default_margin_15dp"
+                            android:layout_toLeftOf="@+id/tv_act_join_agreement_detail"
+                            android:text="@string/join_agreement"
+                            style="@style/joinTextStyle"
+                            tools:ignore="SpUsage" />
+
+                        <!-- 약관보기 -->
+                        <TextView
+                            style="@style/baseTextViewStyle"
+                            android:id="@+id/tv_act_join_agreement_detail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/bg_border_round_cornflower"
+                            android:gravity="center"
+                            android:paddingLeft="@dimen/default_margin_10dp"
+                            android:paddingRight="@dimen/default_margin_10dp"
+                            android:text="@string/join_agreement_look"
+                            android:textColor="@color/color_main"
+                            android:textSize="@dimen/text_large"
+                            tools:ignore="SpUsage" />
+                    </RelativeLayout>
+
+                    <!-- 회원가입 개인정보처리방침동의 -->
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/default_margin_30dp"
+                        android:layout_marginTop="@dimen/default_margin_15dp"
+                        android:layout_marginBottom="@dimen/default_margin_15dp">
+
+                        <!-- 약관동의 -->
+                        <CheckBox
+                            android:id="@+id/cb_act_join_personal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentLeft="true"
+                            android:layout_centerVertical="true"
+                            android:layout_marginRight="@dimen/default_margin_15dp"
+                            android:layout_toLeftOf="@+id/tv_act_join_personal_detail"
+                            android:alpha="0.65"
+                            android:text="@string/join_personal"
+                            android:textColor="@color/color_main"
+                            android:textSize="@dimen/text_large"
+                            tools:ignore="SpUsage" />
+
+                        <!-- 약관보기 -->
+                        <TextView
+                                style="@style/baseTextViewStyle"
+                            android:id="@+id/tv_act_join_personal_detail"
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:layout_alignParentRight="true"
+                            android:layout_centerVertical="true"
+                            android:background="@drawable/bg_border_round_cornflower"
+                            android:gravity="center"
+                            android:paddingLeft="@dimen/default_margin_10dp"
+                            android:paddingRight="@dimen/default_margin_10dp"
+                            android:text="@string/join_personal_look"
+                            android:textColor="@color/color_main"
+                            android:textSize="@dimen/text_large"
+                            tools:ignore="SpUsage" />
+                    </RelativeLayout>
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+
+            <LinearLayout
+                android:id="@+id/ll_act_join_bottom_layout"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/default_margin_50dp"
+                android:layout_alignParentBottom="true">
+
+                <!-- 회원가입 취소 -->
+                <Button
+                    android:id="@+id/btn_act_join_cancel"
+                    android:layout_width="@dimen/default_margin_0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@color/color_btn_cancel"
+                    android:text="@string/join_cancel"
+                    android:textColor="@color/color_white"
+                    android:textSize="@dimen/text_large"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    tools:ignore="SpUsage" />
+
+                <!-- 회원가입하기 -->
+                <Button
+                    android:id="@+id/btn_act_join_enter"
+                    android:layout_width="@dimen/default_margin_0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_pink_purple"
+                    android:text="@string/join_enter"
+                    android:textColor="@color/color_white"
+                    android:textSize="@dimen/text_large"
+                    android:textStyle="bold"
+                    tools:ignore="SpUsage" />
+            </LinearLayout>
+
+            <!-- 프로그래스바 -->
+            <LinearLayout
+                android:id="@+id/ll_act_join_progress"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:visibility="gone">
+
+                <ProgressBar
+                    android:layout_width="@dimen/progress_size"
+                    android:layout_height="@dimen/progress_size" />
+            </LinearLayout>
+        </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

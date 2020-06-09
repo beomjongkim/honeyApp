@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                   xmlns:tools="http://schemas.android.com/tools"
+                                                   android:layout_width="match_parent"
+                                                   android:layout_height="match_parent"
+                                                   tools:context=".dialog.SelectorMemberDialog">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/ll_dlg_selector_member_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_border_round"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <TextView
+                                style="@style/baseTextViewStyle"
+                android:id="@+id/tv_dlg_selector_member_title"
+                android:layout_width="@dimen/popup_profile_width"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="10dp"
+                android:textColor="@color/cornflower"
+                android:textSize="@dimen/text_xlarge"
+                tools:ignore="SpUsage" />
+
+            <LinearLayout
+                android:layout_width="@dimen/popup_profile_width"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom"
+                    android:orientation="vertical">
+
+                    <TextView
+                                style="@style/baseTextViewStyle"
+                        android:id="@+id/tv_dlg_selector_member_content"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@color/color_gray"
+                        android:padding="6dp"
+                        android:layout_marginBottom="@dimen/default_margin_10dp"
+                        android:gravity="center"
+                        android:textColor="@color/color_main"
+                        android:textSize="@dimen/text_large"
+                        android:visibility="gone"
+                        tools:ignore="SpUsage" />
+
+                    <!-- 목록 -->
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_dlg_selector_member_list"
+                        android:layout_width="match_parent"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="10dp"
+                        android:layout_height="wrap_content"
+                        android:overScrollMode="ifContentScrolls"
+                        android:scrollbars="vertical" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:background="@color/color_gray"
+                        />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_gravity="bottom"
+                        android:layout_height="50dp"
+                        android:orientation="horizontal">
+
+                        <!-- 취소 -->
+                        <Button
+                            android:id="@+id/tv_dlg_selector_member_cancel"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_weight="1"
+                            android:alpha="0.8"
+                            android:background="@color/color_transparent"
+                            android:text="@string/dialog_cancel"
+                            android:textColor="@color/color_black"
+                            android:textSize="@dimen/text_large"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/btn_viewmodel_dialog_confirm"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintHorizontal_weight="1"
+                            app:layout_constraintStart_toStartOf="parent"
+                            tools:ignore="SpUsage" />
+
+                        <View
+                            style="@style/baseLine.vertical"
+                            android:layout_height="match_parent"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@id/btn_viewmodel_dialog_confirm"
+                            app:layout_constraintStart_toEndOf="@id/btn_viewmodel_dialog_cancel"
+                            app:layout_constraintTop_toBottomOf="@id/v_filter_age_line_horizon" />
+                        <!-- 확인 -->
+                        <Button
+                            android:id="@+id/tv_dlg_selector_member_enter"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="8dp"
+                            android:layout_marginRight="8dp"
+                            android:layout_marginBottom="4dp"
+                            android:layout_weight="1"
+                            android:alpha="0.8"
+                            android:background="@color/color_transparent"
+                            android:text="@string/dialog_enter"
+                            android:textColor="@color/cornflower"
+                            android:textSize="@dimen/text_large"
+                            app:layout_constrainedWidth="true"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.5"
+                            app:layout_constraintHorizontal_weight="1"
+                            tools:ignore="SpUsage" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

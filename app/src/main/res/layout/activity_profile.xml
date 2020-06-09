@@ -1,0 +1,1353 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="certifyVM"
+            type="com.dmonster.darling.honey.myinformation.viewmodel.MarriageCertVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".profile.view.ProfileActivity">
+
+
+        <Button
+            android:id="@+id/btn_act_profile_three_dot"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_centerVertical="true"
+            android:layout_marginEnd="@dimen/text_large"
+            android:layout_marginRight="@dimen/text_large"
+            android:scaleX="0.7"
+            android:scaleY="0.7"
+            android:background="@drawable/ic_three_dots"
+            app:layout_constraintBottom_toTopOf="@+id/coordinatorLayout"
+            app:layout_constraintEnd_toEndOf="@+id/ctb_act_profile_toolbar"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.dmonster.darling.honey.customview.CustomToolBar
+            android:id="@+id/ctb_act_profile_toolbar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:id="@+id/coordinatorLayout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_below="@+id/ctb_act_profile_toolbar"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ctb_act_profile_toolbar">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/color_white"
+                android:fitsSystemWindows="true"
+                app:elevation="@dimen/default_margin_0dp">
+
+                <com.google.android.material.appbar.CollapsingToolbarLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:fitsSystemWindows="true"
+                    app:contentScrim="@color/color_transparent"
+                    app:layout_scrollFlags="scroll|exitUntilCollapsed">
+
+                    <androidx.appcompat.widget.Toolbar
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        app:layout_collapseMode="pin" />
+
+                    <!-- 회원정보 -->
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:id="@+id/rl_act_profile_member_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@+id/ctb_act_profile_toolbar"
+                        android:background="@drawable/bg_line_bottom">
+
+                        <!-- 프로필 이미지 -->
+
+                        <TextView
+                             
+                            android:id="@+id/tv_act_profile_age_on_pic"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginBottom="16dp"
+                            android:letterSpacing="-0.03"
+                            android:textColor="@color/color_white"
+                            android:textSize="@dimen/text_large"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="@+id/tv_act_profile_talk_id"
+                            app:layout_constraintTop_toBottomOf="@+id/tv_act_profile_talk_id"
+                            tools:ignore="SpUsage" />
+
+                        <de.hdodenhof.circleimageview.CircleImageView
+                            android:id="@+id/iv_act_profile_member_info"
+                            android:layout_width="0dp"
+                            android:layout_height="110dp"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            android:visibility="visible"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintHorizontal_bias="0.0"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:layout_constraintWidth_percent="0.35"
+                         />
+
+                        <TextView
+                             
+                            android:id="@+id/tv_act_profile_member_pic_size"
+                            android:layout_width="@dimen/default_margin_30dp"
+                            android:layout_height="@dimen/default_margin_30dp"
+                            android:layout_marginBottom="@dimen/text_small"
+                            android:layout_marginRight="@dimen/text_small"
+                            android:background="@drawable/bg_circle_cornflower"
+                            android:gravity="center"
+                            android:text="0"
+                            android:textSize="@dimen/text_large"
+                            android:textColor="@color/color_white"
+                            app:layout_constraintRight_toRightOf="@id/iv_act_profile_member_info"
+                            app:layout_constraintBottom_toBottomOf="@id/iv_act_profile_member_info" />
+                        <TextView
+                             
+                            android:id="@+id/tv_act_profile_talk_id"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginLeft="8dp"
+                            android:layout_marginBottom="4dp"
+                            android:letterSpacing="-0.03"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:textColor="@color/color_main"
+                            android:textSize="@dimen/text_xlarge"
+                            android:textStyle="bold"
+                            app:layout_constraintBottom_toTopOf="@+id/ll_act_profile_express"
+                            app:layout_constraintStart_toStartOf="@+id/ll_act_profile_express"
+                            tools:ignore="SpUsage" />
+
+                        <TextView
+                             
+                            android:id="@+id/tv_act_profile_area"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginLeft="8dp"
+                            android:maxLines="1"
+                            android:singleLine="true"
+                            android:textColor="@color/color_main"
+                            android:textSize="@dimen/text_large"
+                            app:layout_constraintBottom_toBottomOf="@+id/tv_act_profile_talk_id"
+                            app:layout_constraintStart_toEndOf="@+id/tv_act_profile_talk_id"
+                            tools:ignore="SpUsage" />
+
+                        <LinearLayout
+                            android:id="@+id/ll_act_profile_express"
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_marginBottom="8dp"
+                            android:background="@drawable/bg_btn_pink_purple"
+                            android:gravity="center"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/ll_act_profile_talk"
+                            app:layout_constraintHorizontal_bias="0.54"
+                            app:layout_constraintStart_toEndOf="@+id/iv_act_profile_member_info"
+                            app:layout_constraintTop_toTopOf="@id/ll_act_profile_talk"
+                            app:layout_constraintWidth_percent="0.26">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="3dp"
+                                android:src="@drawable/ic_heart" />
+
+                            <TextView
+                             
+                                android:id="@+id/tv_act_profile_express"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_interest"
+                                android:textColor="@color/color_white"
+                                android:textSize="@dimen/text_xsmall"
+                                tools:ignore="SpUsage" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/ll_act_profile_talk"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginLeft="8dp"
+                            android:background="@drawable/bg_btn_purple_lavendar_purple"
+                            android:gravity="center"
+                            android:paddingTop="10dp"
+                            android:paddingBottom="10dp"
+                            app:layout_constraintBottom_toBottomOf="@+id/ll_act_profile_express"
+                            app:layout_constraintStart_toEndOf="@id/ll_act_profile_express"
+                            app:layout_constraintWidth_percent="0.26">
+
+                            <ImageView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginRight="3dp"
+                                android:scaleX="0.9"
+                                android:scaleY="0.9"
+                                android:src="@drawable/ic_talk" />
+
+                            <TextView
+                             
+                                android:id="@+id/tv_act_profile_talk"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/profile_talk"
+                                android:textColor="@color/color_white"
+                                android:textSize="@dimen/text_xsmall"
+                                tools:ignore="SpUsage" />
+                        </LinearLayout>
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </com.google.android.material.appbar.CollapsingToolbarLayout>
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <androidx.core.widget.NestedScrollView
+                style="@style/NestedScrollViewTheme"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <!-- 가려진 정보입니다. -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_margin_10dp"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <TextView
+                             
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center_vertical"
+                            android:layout_marginLeft="@dimen/default_margin_5dp"
+                            android:text="@string/information_member_blur_content"
+                            android:textSize="@dimen/text_large"
+                            tools:ignore="SpUsage" />
+                    </LinearLayout>
+
+                    <!-- 정보 -->
+                    <LinearLayout style="@style/ProfileLayoutTheme"
+                        android:layout_marginTop="10dp">
+
+                        <LinearLayout style="@style/ProfileTitleLayoutTheme">
+                            <!-- 이름 Title -->
+                            <TextView
+                                style="@style/ProfileTitleTextTheme"
+                                android:text="@string/information_member_name" />
+                        </LinearLayout>
+                        <!-- 이름 Content -->
+                        <TextView
+                            android:id="@+id/tv_act_profile_name"
+                            style="@style/ProfileContentTextTheme"
+                            android:layout_width="wrap_content"
+                            android:background="@color/color_transparent"
+                            android:maxLength="6"
+                            android:maxLines="1"
+                            android:visibility="visible" />
+
+                        <TextView
+                             
+                            android:id="@+id/tv_act_profile_marry"
+                            android:layout_width="@dimen/default_margin_40dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="16dp"
+                            android:layout_marginLeft="16dp"
+                            android:alpha="0.75"
+                            android:background="@drawable/bg_border_round"
+                            android:gravity="center"
+                            android:textSize="@dimen/text_normal"
+                            tools:ignore="SpUsage" />
+                    </LinearLayout>
+
+                    <LinearLayout style="@style/ProfileLayoutTheme">
+
+                        <LinearLayout style="@style/ProfileTitleLayoutTheme">
+                            <!-- 나이 Title -->
+                            <TextView
+                                
+                                style="@style/ProfileTitleTextTheme"
+                                android:text="@string/information_member_age" />
+                        </LinearLayout>
+                        <!-- 나이 Content -->
+                        <TextView
+                            android:id="@+id/tv_act_profile_age"
+                            style="@style/ProfileContentTextTheme"
+                            android:background="@color/color_transparent"
+                            android:visibility="visible" />
+                    </LinearLayout>
+
+                    <!-- 직업 -->
+                    <LinearLayout style="@style/ProfileLayoutTheme">
+
+                        <LinearLayout style="@style/ProfileTitleLayoutTheme">
+
+                            <!-- 직업 Title -->
+                            <TextView
+                                style="@style/ProfileTitleTextTheme"
+                                android:text="@string/information_member_job" />
+                        </LinearLayout>
+
+                        <!-- 직업 Content -->
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <!-- 직업 -->
+                            <TextView
+                                android:id="@+id/tv_act_profile_job"
+                                style="@style/ProfileContentTextTheme" />
+
+                            <!-- 가려진 정보 -->
+                            <LinearLayout
+                                android:id="@+id/ll_act_profile_job"
+                                style="@style/ProfileContentHiddenLayout">
+
+                                <!-- 보기 -->
+                                <TextView
+                                    style="@style/ProfileHideTextTheme" />
+                            </LinearLayout>
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        style="@style/ProfileTitleLayoutStyle"
+                        android:layout_height="38dp"
+                        android:layout_marginTop="20dp">
+
+                        <TextView
+                            style="@style/ProfileTitleTextStyle"
+                            android:text="@string/information_member_information" />
+                    </LinearLayout>
+
+                    <!-- 이름 -->
+
+                    <!-- 나이 -->
+
+                    <!-- 형제/자매 -->
+                    <LinearLayout
+                        style="@style/ProfileLayoutTheme"
+                        android:layout_marginTop="20dp">
+
+                        <LinearLayout style="@style/ProfileTitleLayoutTheme">
+
+                            <!-- 형제/자매 Title -->
+                            <TextView
+                                style="@style/ProfileTitleTextTheme"
+                                android:text="@string/information_member_sibling" />
+                        </LinearLayout>
+
+                        <!-- 형제/자매 Content -->
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <!-- 형제/자매 -->
+                            <TextView
+                                android:id="@+id/tv_act_profile_sibling"
+                                style="@style/ProfileContentTextTheme" />
+
+                            <!-- 가려진 정보 -->
+                            <LinearLayout
+                                android:id="@+id/ll_act_profile_sibling"
+                                style="@style/ProfileContentHiddenLayout">
+
+                                <!-- 보기 -->
+                                <TextView style="@style/ProfileHideTextTheme" />
+                            </LinearLayout>
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <!-- 고향 -->
+                    <LinearLayout style="@style/ProfileLayoutTheme">
+
+                        <LinearLayout style="@style/ProfileTitleLayoutTheme">
+
+                            <!-- 고향 Title -->
+                            <TextView
+                                style="@style/ProfileTitleTextTheme"
+                                android:text="@string/information_member_hometown" />
+                        </LinearLayout>
+
+                        <!-- 고향 Content -->
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <!-- 고향 -->
+                            <TextView
+                             
+                                android:id="@+id/tv_act_profile_hometown"
+                                style="@style/ProfileContentTextTheme" />
+
+                            <!-- 가려진 정보 -->
+                            <LinearLayout
+                                android:id="@+id/ll_act_profile_hometown"
+                                style="@style/ProfileContentHiddenLayout">
+
+                                <!-- 보기 -->
+                                <TextView
+                              style="@style/ProfileHideTextTheme" />
+                            </LinearLayout>
+                        </FrameLayout>
+                    </LinearLayout>
+                    <!-- 자녀 -->
+                    <LinearLayout
+                        android:id="@+id/ll_act_profile_children_layout"
+                        style="@style/ProfileLayoutTheme">
+
+                        <LinearLayout style="@style/ProfileTitleLayoutTheme">
+
+                            <!-- 자녀 Title -->
+                            <TextView
+                             
+                                style="@style/ProfileTitleTextTheme"
+                                android:text="@string/information_member_children" />
+                        </LinearLayout>
+
+                        <!-- 자녀 Content -->
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <!-- 자녀 -->
+                            <TextView
+                             
+                                android:id="@+id/tv_act_profile_children"
+                                style="@style/ProfileContentTextTheme" />
+
+                            <!-- 가려진 정보 -->
+                            <LinearLayout
+                                android:id="@+id/ll_act_profile_children"
+                                style="@style/ProfileContentHiddenLayout">
+
+                                <!-- 보기 -->
+                                <TextView
+                              style="@style/ProfileHideTextTheme" />
+                            </LinearLayout>
+                        </FrameLayout>
+                    </LinearLayout>
+                    <!-- 연봉 -->
+                    <LinearLayout style="@style/ProfileLayoutTheme">
+
+                        <LinearLayout style="@style/ProfileTitleLayoutTheme">
+
+                            <!-- 연봉 Title -->
+                            <TextView
+                             
+                                style="@style/ProfileTitleTextTheme"
+                                android:text="@string/information_member_income" />
+                        </LinearLayout>
+
+                        <!-- 연봉 Content -->
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <!-- 연봉 -->
+                            <TextView
+                             
+                                android:id="@+id/tv_act_profile_income"
+                                style="@style/ProfileContentTextTheme" />
+
+                            <!-- 가려진 정보 -->
+                            <LinearLayout
+                                android:id="@+id/ll_act_profile_income"
+                                style="@style/ProfileContentHiddenLayout">
+
+                                <!-- 보기 -->
+                                <TextView
+                              style="@style/ProfileHideTextTheme" />
+                            </LinearLayout>
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <!-- 보유재산 -->
+                    <LinearLayout style="@style/ProfileLayoutTheme">
+
+                        <LinearLayout style="@style/ProfileTitleLayoutTheme">
+
+                            <!-- 보유재산 Title -->
+                            <TextView
+                             
+                                style="@style/ProfileTitleTextTheme"
+                                android:text="@string/information_member_fortune" />
+                        </LinearLayout>
+
+                        <!-- 보유재산 Content -->
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <!-- 보유재산 -->
+                            <TextView
+                             
+                                android:id="@+id/tv_act_profile_fortune"
+                                style="@style/ProfileContentTextTheme" />
+
+                            <!-- 가려진 정보 -->
+                            <LinearLayout
+                                android:id="@+id/ll_act_profile_fortune"
+                                style="@style/ProfileContentHiddenLayout">
+
+                                <!-- 보기 -->
+                                <TextView
+                              style="@style/ProfileHideTextTheme" />
+                            </LinearLayout>
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <!-- 학력 -->
+                    <LinearLayout style="@style/ProfileLayoutTheme">
+
+                        <LinearLayout style="@style/ProfileTitleLayoutTheme">
+
+                            <!-- 학력 Title -->
+                            <TextView
+                             
+                                style="@style/ProfileTitleTextTheme"
+                                android:text="@string/information_member_education" />
+                        </LinearLayout>
+
+                        <!-- 학력 Content -->
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <!-- 학력 -->
+                            <TextView
+                             
+                                android:id="@+id/tv_act_profile_education"
+                                style="@style/ProfileContentTextTheme" />
+
+                            <!-- 가려진 정보 -->
+                            <LinearLayout
+                                android:id="@+id/ll_act_profile_education"
+                                style="@style/ProfileContentHiddenLayout">
+
+                                <!-- 보기 -->
+                                <TextView
+                              style="@style/ProfileHideTextTheme" />
+                            </LinearLayout>
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <!-- 차량 -->
+                    <LinearLayout style="@style/ProfileLayoutTheme">
+
+                        <LinearLayout style="@style/ProfileTitleLayoutTheme">
+
+                            <!-- 차량 Title -->
+                            <TextView
+                             
+                                style="@style/ProfileTitleTextTheme"
+                                android:text="@string/information_member_car" />
+                        </LinearLayout>
+                        <!-- 차량 Content -->
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <TextView
+                             
+                                android:id="@+id/tv_act_profile_car"
+                                style="@style/ProfileContentTextTheme"
+                                android:background="@color/color_transparent"
+                                android:visibility="visible" />
+
+                            <!-- 가려진 정보 -->
+                            <LinearLayout
+                                android:id="@+id/ll_act_profile_car"
+                                style="@style/ProfileContentHiddenLayout">
+
+                                <!-- 보기 -->
+                                <TextView
+                              style="@style/ProfileHideTextTheme" />
+                            </LinearLayout>
+                        </FrameLayout>
+
+                    </LinearLayout>
+
+                    <!-- 종교 -->
+                    <LinearLayout style="@style/ProfileLayoutTheme">
+
+                        <LinearLayout style="@style/ProfileTitleLayoutTheme">
+
+                            <!-- 종교 Title -->
+                            <TextView
+                             
+                                style="@style/ProfileTitleTextTheme"
+                                android:text="@string/information_member_religion" />
+                        </LinearLayout>
+
+                        <!-- 종교 Content -->
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <!-- 종교 -->
+                            <TextView
+                             
+                                android:id="@+id/tv_act_profile_religion"
+                                style="@style/ProfileContentTextTheme" />
+
+                            <!-- 가려진 정보 -->
+                            <LinearLayout
+                                android:id="@+id/ll_act_profile_religion"
+                                style="@style/ProfileContentHiddenLayout">
+
+                                <!-- 보기 -->
+                                <TextView
+                              style="@style/ProfileHideTextTheme" />
+                            </LinearLayout>
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <!-- 부모님 생사여부 -->
+                    <LinearLayout
+                        style="@style/ProfileLayoutTheme"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <!-- 부모님 생사여부 Title -->
+                            <TextView
+                             
+                                style="@style/ProfileTitleTextTheme"
+                                android:text="@string/information_member_parents" />
+                        </LinearLayout>
+
+                        <!-- 부모님 생사여부 Content -->
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="@dimen/default_margin_5dp">
+
+                            <!-- 부모님 생사여부 -->
+                            <TextView
+                             
+                                android:id="@+id/tv_act_profile_parents"
+                                style="@style/ProfileContentTextTheme" />
+
+                            <!-- 가려진 정보 -->
+                            <LinearLayout
+                                android:id="@+id/ll_act_profile_parents"
+                                style="@style/ProfileContentHiddenLayout">
+
+                                <!-- 보기 -->
+                                <TextView
+                              style="@style/ProfileHideTextTheme" />
+                            </LinearLayout>
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <!-- 결혼계획 -->
+                    <LinearLayout
+                        style="@style/ProfileLayoutTheme"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <!-- 결혼계획 Title -->
+                            <TextView
+                             
+                                style="@style/ProfileTitleTextTheme"
+                                android:text="@string/information_member_marry_plan" />
+                        </LinearLayout>
+
+                        <!-- 결혼계획 Content -->
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="30dp"
+                            android:layout_marginTop="@dimen/default_margin_5dp">
+
+                            <!-- 결혼계획 -->
+                            <TextView
+                             
+                                android:id="@+id/tv_act_profile_marry_plan"
+                                style="@style/ProfileContentTextTheme" />
+
+                            <!-- 가려진 정보 -->
+                            <LinearLayout
+                                android:id="@+id/ll_act_profile_marry_plan"
+                                style="@style/ProfileContentHiddenLayout">
+
+                                <!-- 보기 -->
+                                <TextView
+                              style="@style/ProfileHideTextTheme" />
+                            </LinearLayout>
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <!-- 이혼절차 -->
+                    <LinearLayout
+                        android:id="@+id/ll_act_profile_divorce_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_margin_5dp"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageView style="@style/ProfileArticleImgTheme" />
+
+                            <!-- 이혼절차 Title -->
+                            <TextView
+                             
+                                style="@style/ProfileTitleTextTheme"
+                                android:text="@string/information_member_divorce" />
+                        </LinearLayout>
+
+                        <!-- 이혼절차 Content -->
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/text_size_30dp"
+                            android:layout_marginTop="@dimen/default_margin_5dp">
+
+                            <!-- 이혼절차 -->
+                            <TextView
+                             
+                                android:id="@+id/tv_act_profile_divorce"
+                                style="@style/ProfileContentTextTheme" />
+
+                            <!-- 가려진 정보 -->
+                            <LinearLayout
+                                android:id="@+id/ll_act_profile_divorce"
+                                style="@style/ProfileContentHiddenLayout">
+
+                                <!-- 보기 -->
+                                <TextView
+                              style="@style/ProfileHideTextTheme" />
+                            </LinearLayout>
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <!-- 이혼(사별)연도 -->
+                    <LinearLayout
+                        android:id="@+id/ll_act_profile_divorce_year_layout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_margin_5dp"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal">
+
+                            <ImageView style="@style/ProfileArticleImgTheme" />
+
+                            <!-- 이혼(사별)연도 Title -->
+                            <TextView
+                             
+                                style="@style/ProfileTitleTextTheme"
+                                android:text="@string/information_member_divorce_year_title" />
+                        </LinearLayout>
+
+                        <!-- 이혼(사별)연도 Content -->
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="@dimen/text_size_30dp"
+                            android:layout_marginTop="@dimen/default_margin_5dp">
+
+                            <!-- 이혼(사별)연도 -->
+                            <TextView
+                             
+                                android:id="@+id/tv_act_profile_divorce_year"
+                                style="@style/ProfileContentTextTheme" />
+
+                            <!-- 가려진 정보 -->
+                            <LinearLayout
+                                android:id="@+id/ll_act_profile_divorce_year"
+                                style="@style/ProfileContentHiddenLayout">
+
+                                <!-- 보기 -->
+                                <TextView
+                              style="@style/ProfileHideTextTheme" />
+                            </LinearLayout>
+                        </FrameLayout>
+                    </LinearLayout>
+
+
+
+                    <!-- 외모/취미/기타 -->
+                    <LinearLayout
+                        style="@style/ProfileTitleLayoutStyle"
+                        android:layout_marginTop="20dp">
+
+                        <TextView
+                             
+                            style="@style/ProfileTitleTextStyle"
+                            android:text="@string/information_member_appearance" />
+                    </LinearLayout>
+
+                    <!-- 키 -->
+                    <LinearLayout style="@style/ProfileLayoutTheme">
+
+                        <LinearLayout style="@style/ProfileTitleLayoutTheme">
+
+                            <!-- 키 Title -->
+                            <TextView
+                             
+                                style="@style/ProfileTitleTextTheme"
+                                android:text="@string/information_member_height" />
+                        </LinearLayout>
+
+                        <!-- 키 Content -->
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <!-- 키 -->
+                            <TextView
+                             
+                                android:id="@+id/tv_act_profile_height"
+                                style="@style/ProfileContentTextTheme" />
+
+                            <!-- 가려진 정보 -->
+                            <LinearLayout
+                                android:id="@+id/ll_act_profile_height"
+                                style="@style/ProfileContentHiddenLayout">
+
+                                <!-- 보기 -->
+                                <TextView
+                              style="@style/ProfileHideTextTheme" />
+                            </LinearLayout>
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <!-- 체중 -->
+                    <LinearLayout style="@style/ProfileLayoutTheme">
+
+                        <LinearLayout style="@style/ProfileTitleLayoutTheme">
+
+                            <!-- 체중 Title -->
+                            <TextView
+                             
+                                style="@style/ProfileTitleTextTheme"
+                                android:text="@string/information_member_weight" />
+                        </LinearLayout>
+
+                        <!-- 체중 Content -->
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <!-- 체중 -->
+                            <TextView
+                             
+                                android:id="@+id/tv_act_profile_weight"
+                                style="@style/ProfileContentTextTheme" />
+
+                            <!-- 가려진 정보 -->
+                            <LinearLayout
+                                android:id="@+id/ll_act_profile_weight"
+                                style="@style/ProfileContentHiddenLayout">
+
+                                <!-- 보기 -->
+                                <TextView
+                              style="@style/ProfileHideTextTheme" />
+                            </LinearLayout>
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <!-- 음주 -->
+                    <LinearLayout style="@style/ProfileLayoutTheme">
+
+                        <LinearLayout style="@style/ProfileTitleLayoutTheme">
+
+                            <!-- 음주 Title -->
+                            <TextView
+                             
+                                style="@style/ProfileTitleTextTheme"
+                                android:text="@string/information_member_drinking" />
+                        </LinearLayout>
+
+                        <!-- 음주 Content -->
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <!-- 음주 -->
+                            <TextView
+                             
+                                android:id="@+id/tv_act_profile_drinking"
+                                style="@style/ProfileContentTextTheme" />
+
+                            <!-- 가려진 정보 -->
+                            <LinearLayout
+                                android:id="@+id/ll_act_profile_drinking"
+                                style="@style/ProfileContentHiddenLayout">
+
+                                <!-- 보기 -->
+                                <TextView
+                              style="@style/ProfileHideTextTheme" />
+                            </LinearLayout>
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <!-- 흡연 -->
+                    <LinearLayout style="@style/ProfileLayoutTheme">
+
+                        <LinearLayout style="@style/ProfileTitleLayoutTheme">
+
+                            <!-- 흡연 Title -->
+                            <TextView
+                             
+                                style="@style/ProfileTitleTextTheme"
+                                android:text="@string/information_member_smoking" />
+                        </LinearLayout>
+
+                        <!-- 흡연 Content -->
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <!-- 흡연 -->
+                            <TextView
+                             
+                                android:id="@+id/tv_act_profile_smoking"
+                                style="@style/ProfileContentTextTheme" />
+
+                            <!-- 가려진 정보 -->
+                            <LinearLayout
+                                android:id="@+id/ll_act_profile_smoking"
+                                style="@style/ProfileContentHiddenLayout">
+
+                                <!-- 보기 -->
+                                <TextView
+                              style="@style/ProfileHideTextTheme" />
+                            </LinearLayout>
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <!-- 혈액형 -->
+                    <LinearLayout style="@style/ProfileLayoutTheme">
+
+                        <LinearLayout style="@style/ProfileTitleLayoutTheme">
+
+                            <!-- 혈액형 Title -->
+                            <TextView
+                             
+                                style="@style/ProfileTitleTextTheme"
+                                android:text="@string/information_member_blood" />
+                        </LinearLayout>
+
+                        <!-- 혈액형 Content -->
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent">
+
+                            <!-- 혈액형 -->
+                            <TextView
+                             
+                                android:id="@+id/tv_act_profile_blood"
+                                style="@style/ProfileContentTextTheme" />
+
+                            <!-- 가려진 정보 -->
+                            <LinearLayout
+                                android:id="@+id/ll_act_profile_blood"
+                                style="@style/ProfileContentHiddenLayout">
+
+                                <!-- 보기 -->
+                                <TextView
+                              style="@style/ProfileHideTextTheme" />
+                            </LinearLayout>
+                        </FrameLayout>
+                    </LinearLayout>
+                    <!-- 취미 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="23dp"
+                        android:minHeight="110dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout style="@style/ProfileTitleLayoutStyle">
+
+                            <!-- 취미 Title -->
+                            <TextView
+                             
+                                style="@style/ProfileTitleTextStyle"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginLeft="20dp"
+                                android:text="@string/information_member_hobby" />
+                        </LinearLayout>
+
+                        <!-- 취미 Content -->
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/default_margin_5dp"
+                            android:minHeight="30dp">
+
+                            <!-- 취미 -->
+                            <com.dmonster.darling.honey.util.common.FlowLayout
+                                android:id="@+id/fl_act_profile_hobby"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="16dp"
+                                app:horizontalSpacing="9dp"
+                                app:verticalSpacing="@dimen/default_margin_5dp" />
+
+                            <!-- 가려진 정보 -->
+                            <LinearLayout
+                                android:id="@+id/ll_act_profile_hobby"
+                                style="@style/ProfileContentHiddenLayout">
+
+                                <!-- 보기 -->
+                                <TextView
+                              style="@style/ProfileHideTextTheme" />
+                            </LinearLayout>
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <!-- 성격 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="110dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout style="@style/ProfileTitleLayoutStyle">
+
+                            <!-- 취미 Title -->
+                            <TextView
+                             
+                                style="@style/ProfileTitleTextStyle"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginLeft="20dp"
+                                android:text="@string/information_member_character" />
+                        </LinearLayout>
+
+                        <!-- 성격 Content -->
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/default_margin_5dp"
+                            android:minHeight="30dp">
+
+                            <!-- 성격 -->
+                            <com.dmonster.darling.honey.util.common.FlowLayout
+                                android:id="@+id/fl_act_profile_chatacter"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="16dp"
+                                app:horizontalSpacing="9dp"
+                                app:verticalSpacing="@dimen/default_margin_5dp" />
+
+                            <!-- 가려진 정보 -->
+                            <LinearLayout
+                                android:id="@+id/ll_act_profile_character"
+                                style="@style/ProfileContentHiddenLayout">
+
+                                <!-- 보기 -->
+                                <TextView
+                              style="@style/ProfileHideTextTheme" />
+                            </LinearLayout>
+                        </FrameLayout>
+                    </LinearLayout>
+
+
+                    <!-- 나의 스타일 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="110dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout style="@style/ProfileTitleLayoutStyle">
+
+                            <!-- 취미 Title -->
+                            <TextView
+                             
+                                style="@style/ProfileTitleTextStyle"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginLeft="20dp"
+                                android:text="@string/information_member_mystyle" />
+                        </LinearLayout>
+
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/default_margin_5dp"
+                            android:minHeight="30dp">
+
+                            <!-- 나의 스타일 Content -->
+                            <com.dmonster.darling.honey.util.common.FlowLayout
+                                android:id="@+id/fl_act_profile_mystyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="16dp"
+                                app:horizontalSpacing="9dp"
+                                app:verticalSpacing="@dimen/default_margin_5dp" />
+
+                            <!-- 가려진 정보 -->
+                            <LinearLayout
+                                android:id="@+id/ll_act_profile_mystyle"
+                                style="@style/ProfileContentHiddenLayout">
+
+                                <!-- 보기 -->
+                                <TextView
+                              style="@style/ProfileHideTextTheme" />
+                            </LinearLayout>
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <!-- 데이트 스타일 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:minHeight="110dp"
+                        android:orientation="vertical">
+
+                        <LinearLayout style="@style/ProfileTitleLayoutStyle">
+
+                            <!-- 취미 Title -->
+                            <TextView
+                             
+                                style="@style/ProfileTitleTextStyle"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginLeft="20dp"
+                                android:text="@string/information_member_datestyle" />
+                        </LinearLayout>
+
+                        <!-- 데이트 스타일 Content -->
+                        <FrameLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="@dimen/default_margin_5dp"
+                            android:minHeight="30dp">
+
+                            <!-- 데이트 스타일 -->
+                            <com.dmonster.darling.honey.util.common.FlowLayout
+                                android:id="@+id/fl_act_profile_datestyle"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_margin="16dp"
+                                app:horizontalSpacing="9dp"
+                                app:verticalSpacing="@dimen/default_margin_5dp" />
+
+                            <!-- 가려진 정보 -->
+                            <LinearLayout
+                                android:id="@+id/ll_act_profile_datestyle"
+                                style="@style/ProfileContentHiddenLayout">
+
+                                <!-- 보기 -->
+                                <TextView
+                              style="@style/ProfileHideTextTheme" />
+                            </LinearLayout>
+                        </FrameLayout>
+                    </LinearLayout>
+
+                    <!-- 자기소개글 -->
+                    <LinearLayout style="@style/ProfileTitleLayoutStyle">
+
+                        <TextView
+                             
+                            style="@style/ProfileTitleTextStyle"
+                            android:text="@string/information_member_introduce" />
+                    </LinearLayout>
+
+                    <!-- 자기소개 -->
+                    <TextView
+                             
+                        android:id="@+id/tv_act_profile_introduce"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:background="@drawable/bg_border_round_greyish"
+                        android:gravity="top"
+                        android:minHeight="@dimen/default_margin_150dp"
+                        android:padding="@dimen/default_margin_10dp"
+                        android:textSize="@dimen/text_large"
+                        tools:ignore="SpUsage" />
+
+                    <!-- 가족소개글 -->
+                    <LinearLayout style="@style/ProfileTitleLayoutStyle">
+
+                        <TextView
+                             
+                            style="@style/ProfileTitleTextStyle"
+                            android:text="@string/information_member_family" />
+                    </LinearLayout>
+
+                    <!-- 가족소개 -->
+                    <TextView
+                             
+                        android:id="@+id/tv_act_profile_family"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:background="@drawable/bg_border_round_greyish"
+                        android:gravity="top"
+                        android:minHeight="@dimen/default_margin_150dp"
+                        android:padding="@dimen/default_margin_10dp"
+                        android:textSize="@dimen/text_large"
+                        tools:ignore="SpUsage" />
+
+                    <!-- 본인사진 -->
+                    <LinearLayout
+                        style="@style/ProfileTitleLayoutStyle"
+                        android:layout_marginTop="20dp"
+                        android:visibility="visible">
+
+                        <TextView
+                             
+                            style="@style/ProfileTitleTextStyle"
+                            android:text="@string/information_member_picture" />
+                    </LinearLayout>
+
+                    <!-- 사진목록 -->
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_act_profile_picture_list"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/default_margin_10dp"
+                        android:overScrollMode="never"
+                        android:scrollbars="none"
+                        android:visibility="visible"
+                        tools:listitem="@layout/item_profile_picture" />
+                    <!--혼인관계증명서-->
+                    <include
+                        layout="@layout/layout_certify"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        app:certifyVM="@{certifyVM}" />
+                    <!-- 가입경로 -->
+                    <LinearLayout
+                        style="@style/ProfileTitleLayoutStyle"
+                        android:layout_marginTop="20dp">
+
+                        <TextView
+                             
+                            style="@style/ProfileTitleTextStyle"
+                            android:text="@string/information_member_route" />
+                    </LinearLayout>
+
+                    <!-- 가입경로 -->
+                    <FrameLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/default_margin_5dp">
+
+                        <!-- 가입경로 -->
+                        <TextView
+                             
+                            android:id="@+id/tv_act_profile_route"
+                            style="@style/ProfileContentTextTheme" />
+
+                        <!-- 가려진 정보 -->
+                        <LinearLayout
+                            android:id="@+id/ll_act_profile_route"
+                            style="@style/ProfileContentHiddenLayout">
+
+                            <!-- 보기 -->
+                            <TextView
+                              style="@style/ProfileHideTextTheme" />
+                        </LinearLayout>
+                    </FrameLayout>
+
+                </LinearLayout>
+            </androidx.core.widget.NestedScrollView>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+            <!-- 프로그래스바 -->
+
+        <LinearLayout
+            android:id="@+id/ll_act_profile_block_report"
+            android:layout_width="100dp"
+            android:layout_height="70dp"
+            android:layout_below="@id/btn_act_profile_three_dot"
+            android:layout_toStartOf="@id/btn_act_profile_three_dot"
+            android:layout_toLeftOf="@id/btn_act_profile_three_dot"
+            android:background="@drawable/bg_border_round"
+            android:orientation="vertical"
+            android:visibility="gone"
+            android:elevation="1dp"
+            app:layout_constraintEnd_toStartOf="@+id/btn_act_profile_three_dot"
+            app:layout_constraintTop_toBottomOf="@+id/btn_act_profile_three_dot">
+            <!-- 신고하기 -->
+            <TextView
+                             
+                android:id="@+id/tv_act_profile_notify"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/profile_notify"
+                android:textColor="@color/select_text_color03"
+                android:textSize="@dimen/text_large"
+                tools:ignore="SpUsage" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:background="@color/color_gray" />
+            <!-- 차단하기 -->
+            <TextView
+                             
+                android:id="@+id/tv_act_profile_block"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/profile_block"
+                android:textColor="@color/select_text_color03"
+                android:textSize="@dimen/text_large"
+                tools:ignore="SpUsage" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll_act_profile_progress"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:visibility="gone">
+
+            <ProgressBar
+                android:layout_width="@dimen/progress_size"
+                android:layout_height="@dimen/progress_size" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
