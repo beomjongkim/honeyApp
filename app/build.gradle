@@ -74,6 +74,8 @@ android {
     dataBinding {
         enabled = true
     }
+    buildFeatures { viewBinding = true }
+
     kapt {
         javacOptions {
             // Increase the max count of errors from annotation processors.
@@ -123,6 +125,11 @@ dependencies {
 
     implementation 'org.jsoup:jsoup:1.11.3'
 
+    //다음 애드핏
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "com.google.android.gms:play-services-ads-identifier:$play_service_version"
+
+    implementation "com.kakao.adfit:ads-base:$adfit_version"
 
     // Network
     implementation 'com.google.code.gson:gson:2.8.6'

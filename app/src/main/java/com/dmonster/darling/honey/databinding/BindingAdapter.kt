@@ -6,6 +6,7 @@ import android.view.View
 import android.widget.*
 import android.widget.AdapterView.OnItemSelectedListener
 import androidx.core.content.ContextCompat
+import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,6 +15,7 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dmonster.darling.honey.R
+import com.dmonster.darling.honey.banner.viewmodel.BannerVM
 import com.dmonster.darling.honey.common.viewmodel.BaseEditRegexVM
 import com.dmonster.darling.honey.common.viewmodel.SpinnerVM
 import com.dmonster.darling.honey.custom_recyclerview.view.CustomAdapter
@@ -22,6 +24,8 @@ import com.dmonster.darling.honey.main.data.MainListData
 import com.dmonster.darling.honey.main.view.adapter.MainAdapter
 import com.dmonster.darling.honey.util.Utility
 import com.dmonster.darling.honey.util.retrofit.ResultListItem
+import com.kakao.adfit.ads.AdListener
+import com.kakao.adfit.ads.ba.BannerAdView
 
 
 object BindingAdapter {
@@ -322,6 +326,12 @@ object BindingAdapter {
             .into(imageView)
     }
 
-
+    @androidx.databinding.BindingAdapter("setAdListener")
+    @JvmStatic
+    fun setAdView(adView: BannerAdView, adListener: AdListener) {
+        adView.setClientId("DAN-1jenrlqxtcu9k")
+        adView.setAdListener(adListener)
+        adView.loadAd()
+    }
 
 }
