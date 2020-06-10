@@ -64,6 +64,7 @@ class ItemViewModel(var id: String?,var lifecycle: Lifecycle, var adapter: Custo
 
             override fun onError(e: Throwable) {
                 text_available.value = text_available.value +" 만료되었습니다."
+                isProgressing.value = false
             }
 
             override fun onNext(item:ResultItem<CheckFreePassData>) {
@@ -91,6 +92,7 @@ class ItemViewModel(var id: String?,var lifecycle: Lifecycle, var adapter: Custo
 
             override fun onError(e: Throwable) {
                 text_available.value =""
+                isProgressing.value = false
             }
 
             override fun onNext(item:ResultListItem<ItemLogData>) {
@@ -121,6 +123,7 @@ class ItemViewModel(var id: String?,var lifecycle: Lifecycle, var adapter: Custo
             }
 
             override fun onError(e: Throwable) {
+                isProgressing.value = false
             }
 
             override fun onNext(item:ResultItem<BaseItem>) {
