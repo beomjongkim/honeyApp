@@ -1,9 +1,10 @@
 package com.dmonster.darling.honey.base
 
 import android.app.Application
+import androidx.multidex.MultiDexApplication
 import com.kakao.auth.KakaoSDK
 
-class GlobalApplication: Application() {
+class GlobalApplication: MultiDexApplication() {
 
 //    @Volatile
 //    private var obj: GlobalApplication? = null

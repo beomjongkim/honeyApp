@@ -1,50 +1,46 @@
 package com.dmonster.darling.honey.banner.viewmodel
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ViewModel
-import com.kakao.adfit.ads.AdListener
-import com.kakao.adfit.ads.ba.BannerAdView
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
 
-class BannerVM(var lifecycle: Lifecycle, var view: BannerAdView)  : ViewModel() , LifecycleObserver {
+class BannerVM(var lifecycle: Lifecycle )  : ViewModel() , LifecycleObserver {
+    var adRequest : AdRequest = AdRequest.Builder().build()
+    var adListener =  object: AdListener() {
+        override fun onAdLoaded() {
+            // Code to be executed when an ad finishes loading.
+        }
 
+        override fun onAdFailedToLoad(errorCode : Int) {
+            // Code to be executed when an ad request fails.
+        }
+
+        override fun onAdOpened() {
+            // Code to be executed when an ad opens an overlay that
+            // covers the screen.
+        }
+
+        override fun onAdClicked() {
+            // Code to be executed when the user clicks on an ad.
+            Log.d("bannerVM","adClicked")
+        }
+
+        override fun onAdLeftApplication() {
+            // Code to be executed when the user has left the app.
+        }
+
+        override fun onAdClosed() {
+            // Code to be executed when the user is about to return
+            // to the app after tapping on an ad.
+        }
+    }
     init {
         lifecycle.addObserver(this)
     }
 
-    var adListener =  object : AdListener {  // optional :: 광고 수신 리스너 설정
-
-        override fun onAdLoaded() {
-            // 배너 광고 노출 완료 시 호출
-            Log.d("bannerVM", "adLoaded")
-        }
-
-        override fun onAdFailed(errorCode: Int) {
-            // 배너 광고 노출 실패 시 호출
-            Log.d("bannerVM", "errorCode:$errorCode")
-        }
-
-        override fun onAdClicked() {
-            // 배너 광고 클릭 시 호출
-            Log.d("bannerVM", "adClicked")
-
-        }
-
-    }
-    @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    fun onResume() {
-        view.resume()
-    }
-
-    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
-    fun onPause() {
-        view.pause()
-    }
-
-    @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-    fun onDestroy() {
-        view.destroy()
-    }
 }

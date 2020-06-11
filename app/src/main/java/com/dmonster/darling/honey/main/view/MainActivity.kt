@@ -82,7 +82,7 @@ class MainActivity : BaseActivity(){
             Utility.instance.getPref(this, AppKeyValue.instance.savePrefID),
             lifecycle
         )
-        binding.bannerVM = BannerVM(lifecycle,findViewById(R.id.kakao_banner))
+        binding.bannerVM = BannerVM(lifecycle)
         binding.lifecycleOwner = this
         binding.naviVM?.fragmentReplace(fragMain)
     }

@@ -24,8 +24,7 @@ import com.dmonster.darling.honey.main.data.MainListData
 import com.dmonster.darling.honey.main.view.adapter.MainAdapter
 import com.dmonster.darling.honey.util.Utility
 import com.dmonster.darling.honey.util.retrofit.ResultListItem
-import com.kakao.adfit.ads.AdListener
-import com.kakao.adfit.ads.ba.BannerAdView
+import com.google.android.gms.ads.*
 
 
 object BindingAdapter {
@@ -326,12 +325,12 @@ object BindingAdapter {
             .into(imageView)
     }
 
-    @androidx.databinding.BindingAdapter("setAdListener")
+    @androidx.databinding.BindingAdapter("setAdRequest","setAdListener")
     @JvmStatic
-    fun setAdView(adView: BannerAdView, adListener: AdListener) {
-        adView.setClientId("DAN-1jenrlqxtcu9k")
-        adView.setAdListener(adListener)
-        adView.loadAd()
+    fun setAdView(adView: AdView,  adRequest : AdRequest,adListener: AdListener) {
+        MobileAds.initialize(adView.context)
+        adView.adListener = adListener
+        adView.loadAd(adRequest)
     }
 
 }
