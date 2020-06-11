@@ -6,7 +6,7 @@
         <variable name="naviVM" type="com.dmonster.darling.honey.main.viewmodel.NavigationVM"/>
         <variable
             name="bannerVM"
-            type="com.dmonster.darling.honey.banner.viewmodel.BannerVM" />
+            type="com.dmonster.darling.honey.ads.viewmodel.BannerVM" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
                                                        android:layout_width="match_parent"

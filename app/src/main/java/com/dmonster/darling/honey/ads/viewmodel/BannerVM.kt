@@ -1,10 +1,8 @@
-package com.dmonster.darling.honey.banner.viewmodel
+package com.dmonster.darling.honey.ads.viewmodel
 
-import android.content.Context
 import android.util.Log
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.LifecycleObserver
-import androidx.lifecycle.OnLifecycleEvent
 import androidx.lifecycle.ViewModel
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest

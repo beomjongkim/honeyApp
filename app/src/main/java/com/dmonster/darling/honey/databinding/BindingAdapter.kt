@@ -6,7 +6,6 @@ import android.view.View
 import android.widget.*
 import android.widget.AdapterView.OnItemSelectedListener
 import androidx.core.content.ContextCompat
-import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,7 +14,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dmonster.darling.honey.R
-import com.dmonster.darling.honey.banner.viewmodel.BannerVM
 import com.dmonster.darling.honey.common.viewmodel.BaseEditRegexVM
 import com.dmonster.darling.honey.common.viewmodel.SpinnerVM
 import com.dmonster.darling.honey.custom_recyclerview.view.CustomAdapter
@@ -24,7 +22,10 @@ import com.dmonster.darling.honey.main.data.MainListData
 import com.dmonster.darling.honey.main.view.adapter.MainAdapter
 import com.dmonster.darling.honey.util.Utility
 import com.dmonster.darling.honey.util.retrofit.ResultListItem
-import com.google.android.gms.ads.*
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 
 
 object BindingAdapter {
@@ -327,7 +328,7 @@ object BindingAdapter {
 
     @androidx.databinding.BindingAdapter("setAdRequest","setAdListener")
     @JvmStatic
-    fun setAdView(adView: AdView,  adRequest : AdRequest,adListener: AdListener) {
+    fun setAdView(adView: AdView, adRequest : AdRequest, adListener: AdListener) {
         MobileAds.initialize(adView.context)
         adView.adListener = adListener
         adView.loadAd(adRequest)

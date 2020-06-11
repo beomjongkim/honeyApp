@@ -10,7 +10,7 @@
             type="com.dmonster.darling.honey.main.viewmodel.NavigationVM" />
         <variable
             name="bannerVM"
-            type="com.dmonster.darling.honey.banner.viewmodel.BannerVM" />
+            type="com.dmonster.darling.honey.ads.viewmodel.BannerVM" />
         <import type="android.view.View" />
     </data>
 

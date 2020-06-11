@@ -6,12 +6,10 @@ import android.os.Bundle
 import android.os.Handler
 import android.text.TextUtils
 import android.util.Log
-import android.view.View
 import androidx.databinding.DataBindingUtil
 import com.dmonster.darling.honey.R
-import com.dmonster.darling.honey.banner.viewmodel.BannerVM
+import com.dmonster.darling.honey.ads.viewmodel.BannerVM
 import com.dmonster.darling.honey.base.BaseActivity
-import com.dmonster.darling.honey.customview.CustomDialogInterface
 import com.dmonster.darling.honey.databinding.ActivityMainBinding
 import com.dmonster.darling.honey.dialog.LoveDialog
 import com.dmonster.darling.honey.newMember.view.NewMemberFragment
