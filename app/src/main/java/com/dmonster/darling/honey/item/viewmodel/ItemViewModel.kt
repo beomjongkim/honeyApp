@@ -1,11 +1,14 @@
 package com.dmonster.darling.honey.item.viewmodel
 
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.*
 import com.dmonster.darling.honey.BR
 import com.dmonster.darling.honey.R
 import com.dmonster.darling.honey.custom_recyclerview.model.RecyclerItemData
 import com.dmonster.darling.honey.custom_recyclerview.view.CustomAdapter
+import com.dmonster.darling.honey.customview.CustomPopup
+import com.dmonster.darling.honey.customview.RegisterPaymentPopup
 import com.dmonster.darling.honey.item.data.CheckFreePassData
 import com.dmonster.darling.honey.item.data.ItemLogData
 import com.dmonster.darling.honey.item.model.ItemModel
@@ -16,20 +19,14 @@ import com.dmonster.darling.honey.util.retrofit.ResultListItem
 import io.reactivex.observers.DisposableObserver
 import kotlinx.android.synthetic.main.fragment_item.view.*
 
-class ItemViewModel(var id: String?,var lifecycle: Lifecycle, var adapter: CustomAdapter) : ViewModel() , LifecycleObserver {
+class ItemViewModel(var id: String?,var lifecycle: Lifecycle, var lifecycleOwner: LifecycleOwner, var adapter: CustomAdapter) : ViewModel() , LifecycleObserver {
     var model : ItemModel
     var toggle = MutableLiveData<Boolean>().also {
         it.value = false
     }
     var user_nick = Utility.instance.UserData().getUserNick()
 
-    var text_available = MutableLiveData<String>().also{
-        if(user_nick.isNullOrBlank()){
-            it.value = "회원님은 현재 이용권 사용"
-        }else{
-            it.value = user_nick+"님은 현재 이용권 사용"
-        }
-    }
+    var text_available = MutableLiveData<String>()
 
     var text_notice = MutableLiveData<String>().also{
             it.value = "회원님의 이용권 구매내역"
@@ -57,6 +54,11 @@ class ItemViewModel(var id: String?,var lifecycle: Lifecycle, var adapter: Custo
 
     private fun checkPass(){
         isProgressing.value = true
+        if(user_nick.isNullOrBlank()){
+            text_available.value = "회원님은 현재 이용권 사용"
+        }else{
+            text_available.value = user_nick+"님은 현재 이용권 사용"
+        }
         val subscriber = object: DisposableObserver<ResultItem<CheckFreePassData>>() {
             override fun onComplete() {
                 isProgressing.value = false
@@ -113,7 +115,12 @@ class ItemViewModel(var id: String?,var lifecycle: Lifecycle, var adapter: Custo
         model.get_log_item(id,subscriber)
     }
 
-    fun onClickBuyMonth(){
+    fun onClickBuyMonth(v: View){
+        val registerPaymentPopup = RegisterPaymentPopup(v.context, 5000,lifecycleOwner )
+        registerPaymentPopup.show()
+    }
+
+    fun onClickBuyHour(){
 
     }
 

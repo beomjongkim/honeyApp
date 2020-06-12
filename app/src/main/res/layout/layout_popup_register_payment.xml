@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+
+        <variable
+            name="registerPaymentVM"
+            type="com.dmonster.darling.honey.item.viewmodel.RegisterPaymentPopupVM" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/tv_popup_register_payment_name"
+            style="@style/baseTextViewTitleStyle"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/text_much_large"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="무통장 입금"
+            android:textColor="@color/accent"
+            app:autoSizeTextType="uniform" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/bg_border_accent_popup"
+            android:padding="30dp">
+
+            <Button
+                android:id="@+id/btn_popup_register_payment_cancel"
+                style="@style/baseTextViewStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/bg_round_gray"
+                android:backgroundTint="@color/warm_grey"
+                android:gravity="center"
+                android:text="취소"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/text_large"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/btn_popup_register_payment_confirm"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toStartOf="parent"
+                tools:ignore="SpUsage" />
+
+            <Button
+                android:id="@+id/btn_popup_register_payment_confirm"
+                style="@style/baseTextViewStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/bg_round_gray"
+                android:backgroundTint="@color/accent"
+                android:gravity="center"
+                android:text="결제하기"
+                android:textColor="@color/color_white"
+                android:textSize="@dimen/text_large"
+                android:textStyle="bold"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_weight="1"
+                app:layout_constraintStart_toEndOf="@+id/btn_popup_register_payment_cancel"
+                tools:ignore="SpUsage" />
+
+            <TextView
+                android:id="@+id/tv_popup_register_payment_notice"
+                style="@style/baseTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:text="입금자명"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/text_xlarge"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintWidth_percent="0.9"
+                tools:ignore="SpUsage" />
+
+            <EditText
+                android:id="@+id/editTextTextPersonName2"
+                style="@style/baseTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginRight="16dp"
+                android:hint="  최대10자리  "
+                android:text="@={registerPaymentVM.name}"
+                android:inputType="textPersonName"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/text_xlarge"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_popup_register_payment_notice"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tv_popup_register_payment_notice" />
+
+            <TextView
+                android:id="@+id/tv_popup_register_payment_price_title"
+                style="@style/baseTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:text="입금금액"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/text_xlarge"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_popup_register_payment_notice" />
+
+            <TextView
+                android:id="@+id/tv_popup_register_payment_price"
+                style="@style/baseTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{registerPaymentVM.price}"
+
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/text_xlarge"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_popup_register_payment_price_title"
+                app:layout_constraintEnd_toEndOf="@+id/editTextTextPersonName2"
+                app:layout_constraintStart_toStartOf="@+id/editTextTextPersonName2"
+                app:layout_constraintTop_toTopOf="@+id/tv_popup_register_payment_price_title" />
+
+            <TextView
+                android:id="@+id/tv_popup_register_payment_guide"
+                style="@style/baseTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:textAlignment="center"
+                android:text="입금자명이 다를 경우 \n처리가 늦어질 수 있으니 유의해주세요."
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/text_normal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_popup_register_payment_price_title"
+                android:gravity="center_horizontal" />
+
+            <CheckedTextView
+                android:id="@+id/ct_popup_register_payment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                style="@style/baseTextViewStyle"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="결제정보를 확인하였으며, 구매진행에 동의합니다."
+                app:layout_constraintBottom_toTopOf="@+id/btn_popup_register_payment_cancel"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_popup_register_payment_guide" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+
+</layout>

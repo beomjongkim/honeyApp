@@ -44,7 +44,7 @@ class ItemFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater ,R.layout.fragment_item, container, false)
-        binding.itemViewModel = ItemViewModel(context?.let { Utility.instance.getPref(it, AppKeyValue.instance.savePrefID) },lifecycle,CustomAdapter(R.layout.layout_item_log,this) )
+        binding.itemViewModel = ItemViewModel(context?.let { Utility.instance.getPref(it, AppKeyValue.instance.savePrefID) },lifecycle,this,CustomAdapter(R.layout.layout_item_log,this) )
         binding.lifecycleOwner = this
         return binding.root
     }

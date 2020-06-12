@@ -96,7 +96,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:background="@drawable/bg_pink_purple"
-            android:onClick="@{()->itemViewModel.onClickBuyMonth()}"
+            android:onClick="@{(v)->itemViewModel.onClickBuyMonth(v)}"
             android:padding="5dp"
             android:text="@string/market_item_month"
             android:textColor="@color/color_white"
@@ -133,10 +133,10 @@
             android:text="@string/market_content"
             android:textSize="@dimen/text_large"
             android:visibility="@{itemViewModel.toggle ? View.GONE : View.VISIBLE}"
-            app:layout_constraintBottom_toTopOf="@+id/gl_frag_item"
+            app:layout_constraintBottom_toTopOf="@+id/tv_frag_market_using"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/gl_frag_item"
+            app:layout_constraintTop_toBottomOf="@id/btn_freepass_month"
             tools:ignore="SpUsage" />
 
 
