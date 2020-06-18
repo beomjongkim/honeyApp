@@ -8,7 +8,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dmonster.darling.honey.R
@@ -16,7 +15,6 @@ import com.dmonster.darling.honey.myactivity.data.ProfileData
 import de.hdodenhof.circleimageview.CircleImageView
 import java.text.SimpleDateFormat
 import java.time.LocalDate
-import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
 
 
@@ -223,7 +221,7 @@ class ProfileAdapter(val context: Context?) :
                     setBackgroundResource(R.drawable.bg_btn_salmon)
                 } else {
                     text = it.resources?.getString(R.string.my_activity_profile_open_basic)
-                    setBackgroundResource(R.drawable.bg_btn_golden_yellow)
+                    setBackgroundResource(R.drawable.bg_btn_accent)
                 }
                 setPadding(left, top, right, bottom)
             }

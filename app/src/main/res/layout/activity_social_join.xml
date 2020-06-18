@@ -90,7 +90,7 @@
             android:id="@+id/tv_act_social_join_enter"
             android:layout_width="0dp"
             android:layout_height="54dp"
-            android:background="@color/dandelion"
+            android:background="@color/orange"
             android:gravity="center"
             android:text="@string/dialog_enter"
             android:textColor="@color/color_white"
