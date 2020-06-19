@@ -5,10 +5,10 @@ import com.dmonster.darling.honey.custom_recyclerview.viewmodel.RecyclerViewItem
 import com.google.gson.annotations.SerializedName
 
 /*    아이템    */
-class ItemLogData : RecyclerViewItemVM("") {
+class PointLogData : RecyclerViewItemVM("") {
 
-    @SerializedName("mb_nick")
-    var mb_nick: String? = null
+    @SerializedName("it_point")
+    var it_point: String? = null
 
     @SerializedName("lib_on_created")
     var date: String? = null

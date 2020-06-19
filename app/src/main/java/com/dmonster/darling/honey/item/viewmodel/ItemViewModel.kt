@@ -4,20 +4,17 @@ import android.util.Log
 import android.view.View
 import androidx.lifecycle.*
 import com.dmonster.darling.honey.BR
-import com.dmonster.darling.honey.R
 import com.dmonster.darling.honey.custom_recyclerview.model.RecyclerItemData
 import com.dmonster.darling.honey.custom_recyclerview.view.CustomAdapter
-import com.dmonster.darling.honey.customview.CustomPopup
 import com.dmonster.darling.honey.customview.RegisterPaymentPopup
 import com.dmonster.darling.honey.item.data.CheckFreePassData
-import com.dmonster.darling.honey.item.data.ItemLogData
+import com.dmonster.darling.honey.item.data.PointLogData
 import com.dmonster.darling.honey.item.model.ItemModel
 import com.dmonster.darling.honey.util.Utility
 import com.dmonster.darling.honey.util.retrofit.BaseItem
 import com.dmonster.darling.honey.util.retrofit.ResultItem
 import com.dmonster.darling.honey.util.retrofit.ResultListItem
 import io.reactivex.observers.DisposableObserver
-import kotlinx.android.synthetic.main.fragment_item.view.*
 
 class ItemViewModel(var id: String?,var lifecycle: Lifecycle, var lifecycleOwner: LifecycleOwner, var adapter: CustomAdapter) : ViewModel() , LifecycleObserver {
     var model : ItemModel
@@ -29,12 +26,17 @@ class ItemViewModel(var id: String?,var lifecycle: Lifecycle, var lifecycleOwner
     var text_available = MutableLiveData<String>()
 
     var text_notice = MutableLiveData<String>().also{
-            it.value = "회원님의 이용권 구매내역"
+            it.value = "회원님의 포인트 구매, 사용 내역"
     }
 
     var text_left_date = MutableLiveData<String>().also{
         it.value = ""
     }
+
+    var text_point_info = MutableLiveData<String>().also{
+        it.value = "회원님의 포인트는 현재\n0 포인트입니다."
+    }
+
     var isProgressing = MutableLiveData<Boolean>().also {
         it.value = true
     }
@@ -84,10 +86,34 @@ class ItemViewModel(var id: String?,var lifecycle: Lifecycle, var lifecycleOwner
         }
         model.check_own_freepass(id,subscriber)
     }
-
-    private fun getLogItemPurchase(){
+    private fun getCurrentPoint(){
         isProgressing.value = true
-        val subscriber = object: DisposableObserver<ResultListItem<ItemLogData>>() {
+        val subscriber = object: DisposableObserver<ResultItem<BaseItem>>() {
+            override fun onComplete() {
+                isProgressing.value = false
+            }
+
+            override fun onError(e: Throwable) {
+                text_point_info.value ="회원님의 포인트는 현재\n0 포인트입니다."
+                isProgressing.value = false
+            }
+
+            override fun onNext(point:ResultItem<BaseItem>) {
+                point.let {
+                    if(it.isSuccess){
+                        it.item?.let{
+                            text_point_info.value =  Utility.instance.UserData().getUserNick() +"님의 포인트는 현재\n"+ it +" 포인트입니다."
+                        }
+                    }
+
+                }
+            }
+        }
+        model.read_point(id,subscriber)
+    }
+    private fun getPointLog(){
+        isProgressing.value = true
+        val subscriber = object: DisposableObserver<ResultListItem<PointLogData>>() {
             override fun onComplete() {
                 isProgressing.value = false
             }
@@ -97,13 +123,13 @@ class ItemViewModel(var id: String?,var lifecycle: Lifecycle, var lifecycleOwner
                 isProgressing.value = false
             }
 
-            override fun onNext(item:ResultListItem<ItemLogData>) {
-                item.let {
+            override fun onNext(point:ResultListItem<PointLogData>) {
+                point.let {
                     if(it.isSuccess){
                         it.items?.let{
-                            text_notice.value =  it[0].mb_nick +"님의 이용권 구매내역"
+                            text_notice.value =  Utility.instance.UserData().getUserNick() +"님의 포인트 구매, 사용 내역"
                             for (item in it){
-                                adapter.dataList.add(RecyclerItemData(0,item,BR.itemLogData))
+                                adapter.dataList.add(RecyclerItemData(0,item,BR.pointLogData))
                             }
                             adapter.notifyDataSetChanged()
                         }
@@ -112,7 +138,7 @@ class ItemViewModel(var id: String?,var lifecycle: Lifecycle, var lifecycleOwner
                 }
             }
         }
-        model.get_log_item(id,subscriber)
+        model.get_log_point(id,subscriber)
     }
 
     fun onClickBuyMonth(v: View){
@@ -146,6 +172,7 @@ class ItemViewModel(var id: String?,var lifecycle: Lifecycle, var lifecycleOwner
     fun onResume() {
         isProgressing.value = true
         checkPass()
-        getLogItemPurchase()
+        getCurrentPoint()
+        getPointLog()
     }
 }

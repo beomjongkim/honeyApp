@@ -462,13 +462,13 @@
     <string name="key_item_use05">프로필 전체열람</string>
 
     <string name="market_title">자기야 마켓</string>
-    <string name="market_content">이용권 이용 기간동안 \n 아래 사항이 제공됩니다.\n\n- 관심있어요 무제한 -\n-채팅(톡하기) 무제한-</string>
+    <string name="market_content">* 1개월 이용권 구매 시 광고가 제거됩니다.</string>
     <string name="market_now_coin_title">현재보유코인</string>
     <string name="market_item_coin">코인</string>
     <string name="msg_market_item">해당상품을 구매하시겠습니까?</string>
     <string name="msg_market_gift">해당상품을 선물하시겠습니까?</string>
     <string name="msg_market_complete">상품구매를 완료하였습니다.</string>
-    <string name="market_item_month">월간 이용권\n(5,000원)\n구매하기</string>
+    <string name="market_item_month">월간 이용권\n(50 포인트)\n구매하기</string>
     <string name="market_item_hour">1시간 이용권\n(비디오 광고시청)\n구매하기</string>
     <string name="market_button_buy">구매하기</string>
     <string name="market_button_log">구매내역</string>

@@ -1,13 +1,11 @@
 package com.dmonster.darling.honey.item.model
 
-import android.util.Log
 import com.dmonster.darling.honey.item.data.*
 import com.dmonster.darling.honey.util.ServerApi
 import com.dmonster.darling.honey.util.retrofit.BaseItem
 import com.dmonster.darling.honey.util.retrofit.ResultItem
 import com.dmonster.darling.honey.util.retrofit.ResultListItem
 import com.dmonster.darling.honey.util.retrofit.RetrofitProtocol
-import com.google.gson.JsonElement
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
@@ -78,8 +76,17 @@ class ItemModel {
     }
 
     /*    이용권 구매 기록가져오기   */
-    fun get_log_item(id: String?, subscriber: DisposableObserver<ResultListItem<ItemLogData>>) {
-        RetrofitProtocol().retrofit.getLogItem(ServerApi.instance.getLogItem, id)
+    fun get_log_point(id: String?, subscriber: DisposableObserver<ResultListItem<PointLogData>>) {
+        RetrofitProtocol().retrofit.readPointLog(ServerApi.instance.readPointLog, id)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .unsubscribeOn(Schedulers.io())
+            .subscribe(subscriber)
+    }
+
+    /*    이용권 구매 기록가져오기   */
+    fun read_point(id: String?, subscriber: DisposableObserver<ResultItem<BaseItem>>) {
+        RetrofitProtocol().retrofit.readPoint(ServerApi.instance.readPoint, id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .unsubscribeOn(Schedulers.io())

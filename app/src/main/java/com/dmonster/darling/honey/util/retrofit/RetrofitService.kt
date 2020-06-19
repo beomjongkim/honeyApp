@@ -721,10 +721,19 @@ interface RetrofitService {
     /*    이용권 구매 내역 가져오기    */
     @FormUrlEncoded
     @POST("api/base.php")
-    fun getLogItem(
+    fun readPointLog(
         @Field("method") method: String?,
         @Field("mb_id") id: String?
-    ): Observable<ResultListItem<ItemLogData>>
+    ): Observable<ResultListItem<PointLogData>>
+
+    /*    이용권 구매 내역 가져오기    */
+    @FormUrlEncoded
+    @POST("api/base.php")
+    fun readPoint(
+        @Field("method") method: String?,
+        @Field("mb_id") id: String?
+    ): Observable<ResultItem<BaseItem>>
+
 
     /*    이용권 유무 확인    */
     @FormUrlEncoded
