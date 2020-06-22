@@ -16,11 +16,10 @@ import com.dmonster.darling.honey.block_friends.view.BlockFriendsActivity
 import com.dmonster.darling.honey.customview.CustomDialogInterface
 import com.dmonster.darling.honey.customview.CustomPopup
 import com.dmonster.darling.honey.dialog.DormantClearDialog
-import com.dmonster.darling.honey.dialog.DormantDialog
 import com.dmonster.darling.honey.dialog.WithdrawalDialog
 import com.dmonster.darling.honey.information.view.MyInfoActivity
 import com.dmonster.darling.honey.inquiry.view.InquiryMainActivity
-import com.dmonster.darling.honey.item.view.ItemUseActivity
+import com.dmonster.darling.honey.point.view.ItemUseActivity
 import com.dmonster.darling.honey.myinformation.view.MyProfileActivity
 import com.dmonster.darling.honey.notice.view.NoticeActivity
 import com.dmonster.darling.honey.option.data.SimpleMyInfoData

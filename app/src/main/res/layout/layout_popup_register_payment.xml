@@ -10,7 +10,7 @@
 
         <variable
             name="registerPaymentVM"
-            type="com.dmonster.darling.honey.item.viewmodel.RegisterPaymentPopupVM" />
+            type="com.dmonster.darling.honey.point.viewmodel.RegisterPaymentPopupVM" />
     </data>
 
     <LinearLayout
@@ -139,8 +139,7 @@
                 style="@style/baseTextViewStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@{registerPaymentVM.price}"
-
+                android:text="@{registerPaymentVM.won}"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/text_xlarge"
                 android:textStyle="bold"

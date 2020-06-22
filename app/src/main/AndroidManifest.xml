@@ -136,7 +136,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".item.view.MarketActivity"
+            android:name=".point.view.MarketActivity"
             android:screenOrientation="portrait"
             android:windowSoftInputMode="adjustResize|adjustPan">
             <intent-filter>
@@ -151,7 +151,7 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".item.view.ItemUseActivity"
+            android:name=".point.view.ItemUseActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".servicecenter.view.ServiceCenterActivity"

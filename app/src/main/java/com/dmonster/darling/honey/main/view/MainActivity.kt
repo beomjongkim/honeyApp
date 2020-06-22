@@ -14,7 +14,7 @@ import com.dmonster.darling.honey.databinding.ActivityMainBinding
 import com.dmonster.darling.honey.dialog.LoveDialog
 import com.dmonster.darling.honey.newMember.view.NewMemberFragment
 import com.dmonster.darling.honey.information.view.MyInfoActivity
-import com.dmonster.darling.honey.item.view.ItemMainFragment
+import com.dmonster.darling.honey.point.view.ItemMainFragment
 import com.dmonster.darling.honey.login.data.LoginData
 import com.dmonster.darling.honey.login.view.LoginEmailActivity
 import com.dmonster.darling.honey.main.data.NoticePopupData

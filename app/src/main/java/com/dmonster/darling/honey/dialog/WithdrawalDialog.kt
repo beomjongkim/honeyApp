@@ -3,13 +3,12 @@ package com.dmonster.darling.honey.dialog
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import androidx.fragment.app.DialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import com.dmonster.darling.honey.R
-import com.dmonster.darling.honey.item.data.CoinData
+import com.dmonster.darling.honey.point.data.CoinData
 import com.dmonster.darling.honey.util.AppKeyValue
 import com.dmonster.darling.honey.util.ServerApi
 import com.dmonster.darling.honey.util.Utility
@@ -21,7 +20,6 @@ import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.dialog_basic.*
-import kotlinx.android.synthetic.main.dialog_item_talk.*
 import java.util.concurrent.TimeUnit
 
 class WithdrawalDialog: androidx.fragment.app.DialogFragment() {

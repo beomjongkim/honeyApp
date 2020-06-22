@@ -5,43 +5,39 @@ import android.content.Context
 import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
+import android.os.Bundle
 import android.view.*
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.FragmentActivity
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.OnLifecycleEvent
 import com.dmonster.darling.honey.BR
 import com.dmonster.darling.honey.R
 import com.dmonster.darling.honey.common.viewmodel.PopupVM
+import com.dmonster.darling.honey.databinding.LayoutPopupRegisterPaymentBinding
+import com.dmonster.darling.honey.point.viewmodel.RegisterPaymentPopupVM
 
-class RegisterPaymentPopup : Dialog {
-    constructor(
-        context: Context, price: Int, lifecycleOwner: LifecycleOwner? = null
-    ) : super(context) {
-        mLifecycleOwner = lifecycleOwner
-        popupVM = RegisterPaymentPopup(context,price)
+class RegisterPaymentPopup(context: Context, var price: Int,  var lifecycleOwner: LifecycleOwner) : Dialog(context), LifecycleObserver{
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         init()
     }
-    var mLifecycleOwner: LifecycleOwner? = null
-    var popupVM: RegisterPaymentPopup
-
     fun init() {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        var layoutId = R.layout.layout_popup_register_payment
 
         val binding = DataBindingUtil.inflate<ViewDataBinding>(
             LayoutInflater.from(context),
-            layoutId,
+            R.layout.layout_popup_register_payment,
             null,
             false
         )
-        binding.setVariable(BR.registerPaymentVM, popupVM)
-
-        if (mLifecycleOwner != null) {
-            binding.lifecycleOwner = mLifecycleOwner
-        }
+        binding.setVariable(BR.registerPaymentVM, RegisterPaymentPopupVM(50))
+        binding.lifecycleOwner = lifecycleOwner
 
         super.addContentView(
             binding.root,
@@ -66,5 +62,8 @@ class RegisterPaymentPopup : Dialog {
         super.onBackPressed()
         hide()
     }
-
+    @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
+    fun onPause() {
+        dismiss()
+    }
 }
