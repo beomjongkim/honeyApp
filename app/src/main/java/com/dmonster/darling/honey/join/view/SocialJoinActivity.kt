@@ -34,7 +34,6 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
-import kotlinx.android.synthetic.main.activity_join.*
 import kotlinx.android.synthetic.main.activity_social_join.*
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -99,7 +98,7 @@ class SocialJoinActivity : BaseActivity() {
                 tv_act_social_join_enter.setBackgroundColor(
                     ContextCompat.getColor(
                         it,
-                        R.color.dandelion
+                        R.color.orange
                     )
                 )
             }

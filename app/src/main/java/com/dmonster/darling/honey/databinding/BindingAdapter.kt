@@ -22,6 +22,10 @@ import com.dmonster.darling.honey.main.data.MainListData
 import com.dmonster.darling.honey.main.view.adapter.MainAdapter
 import com.dmonster.darling.honey.util.Utility
 import com.dmonster.darling.honey.util.retrofit.ResultListItem
+import com.google.android.gms.ads.AdListener
+import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.ads.AdView
+import com.google.android.gms.ads.MobileAds
 
 
 object BindingAdapter {
@@ -322,6 +326,12 @@ object BindingAdapter {
             .into(imageView)
     }
 
-
+    @androidx.databinding.BindingAdapter("setAdRequest","setAdListener")
+    @JvmStatic
+    fun setAdView(adView: AdView, adRequest : AdRequest, adListener: AdListener) {
+        MobileAds.initialize(adView.context)
+        adView.adListener = adListener
+        adView.loadAd(adRequest)
+    }
 
 }

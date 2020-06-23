@@ -4,7 +4,7 @@
     android:id="@+id/cl_act_market_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".item.view.MarketActivity">
+    tools:context=".point.view.MarketActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"

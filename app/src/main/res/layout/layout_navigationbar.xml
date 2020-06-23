@@ -8,7 +8,9 @@
         <variable
             name="naviVM"
             type="com.dmonster.darling.honey.main.viewmodel.NavigationVM" />
-
+        <variable
+            name="bannerVM"
+            type="com.dmonster.darling.honey.ads.viewmodel.BannerVM" />
         <import type="android.view.View" />
     </data>
 
@@ -17,6 +19,18 @@
         android:layout_height="wrap_content"
         android:background="@drawable/bg_line_up_bottom">
 
+        <com.google.android.gms.ads.AdView
+            xmlns:ads="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/kakao_banner"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            setAdRequest="@{bannerVM.adRequest}"
+            setAdListener="@{bannerVM.adListener}"
+            ads:adSize="BANNER"
+            ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
         <!-- 메인 -->
         <com.dmonster.darling.honey.customview.ClickableImageView
             android:id="@+id/iv_layout_navi_home"
@@ -31,7 +45,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/kakao_banner"
             app:layout_constraintWidth_percent="0.11"  />
 
         <!-- 상점 -->
@@ -103,7 +117,7 @@
             android:visibility="@{naviVM.countTotal > 0 ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="@+id/iv_layout_navi_me"
             app:layout_constraintEnd_toEndOf="@id/iv_layout_navi_me"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/kakao_banner"
             app:layout_constraintVertical_bias="0.18"
             tools:ignore="SpUsage" />
 

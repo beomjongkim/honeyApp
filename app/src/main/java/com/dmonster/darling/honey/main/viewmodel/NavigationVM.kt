@@ -7,9 +7,9 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.*
 import com.dmonster.darling.honey.R
 import com.dmonster.darling.honey.dialog.DormantClearDialog
-import com.dmonster.darling.honey.item.view.ItemFragment
+import com.dmonster.darling.honey.point.view.PointFragment
 import com.dmonster.darling.honey.newMember.view.NewMemberFragment
-import com.dmonster.darling.honey.item.view.ItemMainFragment
+import com.dmonster.darling.honey.point.view.ItemMainFragment
 import com.dmonster.darling.honey.main.data.NaviData
 import com.dmonster.darling.honey.main.model.MainModel
 import com.dmonster.darling.honey.main.view.MainFragment
@@ -176,7 +176,7 @@ class NavigationVM(var fragmentManager: FragmentManager, var mb_id: String, life
         when (idx) {
             fragMain -> newFragment = MainFragment()
 
-            fragMarket -> newFragment = ItemFragment()
+            fragMarket -> newFragment = PointFragment()
 
             fragIdeal -> newFragment = NewMemberFragment()
 //            fragIdeal -> newFragment = MyProfileActivity()

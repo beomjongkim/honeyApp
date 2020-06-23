@@ -8,7 +8,7 @@ import com.dmonster.darling.honey.information.data.MyInfoData
 import com.dmonster.darling.honey.information.data.PhoneAuthData
 import com.dmonster.darling.honey.inquiry.data.InquiryData
 import com.dmonster.darling.honey.intro.data.IntroLoginData
-import com.dmonster.darling.honey.item.data.*
+import com.dmonster.darling.honey.point.data.*
 import com.dmonster.darling.honey.block_friends.data.ContactData
 import com.dmonster.darling.honey.join.data.JoinData
 import com.dmonster.darling.honey.login.data.FindIDPWData
@@ -721,10 +721,19 @@ interface RetrofitService {
     /*    이용권 구매 내역 가져오기    */
     @FormUrlEncoded
     @POST("api/base.php")
-    fun getLogItem(
+    fun readPointLog(
         @Field("method") method: String?,
         @Field("mb_id") id: String?
-    ): Observable<ResultListItem<ItemLogData>>
+    ): Observable<ResultListItem<PointLogData>>
+
+    /*    이용권 구매 내역 가져오기    */
+    @FormUrlEncoded
+    @POST("api/base.php")
+    fun readPoint(
+        @Field("method") method: String?,
+        @Field("mb_id") id: String?
+    ): Observable<ResultItem<PointData>>
+
 
     /*    이용권 유무 확인    */
     @FormUrlEncoded

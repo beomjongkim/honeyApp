@@ -74,6 +74,8 @@ class ServerApi {
     val naviCountAlarmMethod = "proc_navi_get"
     val mainNoticeMethod = "proc_get_notice_popup"
     val checkOwnFreepass =  "user/check_own_freepass"// 이용권 소지 여부 확인
-    val getLogItem = "item/read" //이용권 구매 기록 가져오기
+    val readPointLog = "point/read_log" //포인트 이용 내역 가져오기
+    val readPoint = "point/read" //포인트 이용 내역 가져오기
+
     val buyItem = "user/buy_item"//이용권 구매하기.
 }

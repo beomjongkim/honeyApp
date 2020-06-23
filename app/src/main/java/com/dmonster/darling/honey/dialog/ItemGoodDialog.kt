@@ -4,7 +4,6 @@ import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import androidx.fragment.app.DialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -12,8 +11,7 @@ import android.view.Window
 import android.widget.RelativeLayout
 import android.widget.TextView
 import com.dmonster.darling.honey.R
-import com.dmonster.darling.honey.R.id.tv_dlg_item_good_now_coin
-import com.dmonster.darling.honey.item.data.CoinData
+import com.dmonster.darling.honey.point.data.CoinData
 import com.dmonster.darling.honey.util.AppKeyValue
 import com.dmonster.darling.honey.util.common.EventBus
 import com.dmonster.darling.honey.util.ServerApi

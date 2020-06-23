@@ -6,16 +6,15 @@ import android.os.Bundle
 import android.os.Handler
 import android.text.TextUtils
 import android.util.Log
-import android.view.View
 import androidx.databinding.DataBindingUtil
 import com.dmonster.darling.honey.R
+import com.dmonster.darling.honey.ads.viewmodel.BannerVM
 import com.dmonster.darling.honey.base.BaseActivity
-import com.dmonster.darling.honey.customview.CustomDialogInterface
 import com.dmonster.darling.honey.databinding.ActivityMainBinding
 import com.dmonster.darling.honey.dialog.LoveDialog
 import com.dmonster.darling.honey.newMember.view.NewMemberFragment
 import com.dmonster.darling.honey.information.view.MyInfoActivity
-import com.dmonster.darling.honey.item.view.ItemMainFragment
+import com.dmonster.darling.honey.point.view.ItemMainFragment
 import com.dmonster.darling.honey.login.data.LoginData
 import com.dmonster.darling.honey.login.view.LoginEmailActivity
 import com.dmonster.darling.honey.main.data.NoticePopupData
@@ -81,6 +80,7 @@ class MainActivity : BaseActivity(){
             Utility.instance.getPref(this, AppKeyValue.instance.savePrefID),
             lifecycle
         )
+        binding.bannerVM = BannerVM(lifecycle)
         binding.lifecycleOwner = this
         binding.naviVM?.fragmentReplace(fragMain)
     }
