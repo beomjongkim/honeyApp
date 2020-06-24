@@ -21,7 +21,6 @@ class PointLogData : RecyclerViewItemVM("") {
     @SerializedName("useOrCharge")
     var useOrCharge: Int? = null
 
-
     var date_split : String? = null
     var time_split : String? = null
 }

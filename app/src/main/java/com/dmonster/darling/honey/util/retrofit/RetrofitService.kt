@@ -742,6 +742,6 @@ interface RetrofitService {
         @Field("method") method: String?,
         @Field("mb_id") id: String?,
         @Field("it_id") it_id: Int?
-    ): Observable<ResultItem<BaseItem>>
+    ): Observable<ResultItem<String>>
 
 }

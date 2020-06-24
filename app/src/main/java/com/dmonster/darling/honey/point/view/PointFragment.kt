@@ -8,8 +8,9 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 
 import com.dmonster.darling.honey.R
+import com.dmonster.darling.honey.common.command.TwoBtnSwitch
 import com.dmonster.darling.honey.custom_recyclerview.view.CustomAdapter
-import com.dmonster.darling.honey.customview.RegisterPaymentPopup
+import com.dmonster.darling.honey.customview.ReservePaymentPopup
 import com.dmonster.darling.honey.databinding.FragmentPointBinding
 import com.dmonster.darling.honey.point.viewmodel.PointViewModel
 import com.dmonster.darling.honey.util.AppKeyValue
@@ -45,13 +46,21 @@ class PointFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_point, container, false)
-        context?.let {
-            binding.pointViewModel = PointViewModel(
-                Utility.instance.getPref(it, AppKeyValue.instance.savePrefID), lifecycle,
-                RegisterPaymentPopup(it, 50, this), CustomAdapter(R.layout.layout_point_log, this)
-            )
+
+            binding.pointViewModel = activity?.let { it ->
+                PointViewModel(
+                    Utility.instance.getPref(it, AppKeyValue.instance.savePrefID),lifecycle, it,
+                    ReservePaymentPopup(it,  object : TwoBtnSwitch{
+                        override fun firstBtnClicked() {
+                        }
+
+                        override fun secondBtnClicked() {
+                        }
+
+                    },this), CustomAdapter(R.layout.layout_point_log, this)
+                )
+            }
             binding.lifecycleOwner = this
-        }
 
         return binding.root
     }

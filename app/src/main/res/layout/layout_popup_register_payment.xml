@@ -10,7 +10,7 @@
 
         <variable
             name="registerPaymentVM"
-            type="com.dmonster.darling.honey.point.viewmodel.RegisterPaymentPopupVM" />
+            type="com.dmonster.darling.honey.point.viewmodel.ReservePaymentPopupVM" />
     </data>
 
     <LinearLayout
@@ -57,6 +57,7 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintStart_toStartOf="parent"
+                android:onClick="@{()->registerPaymentVM.twoBtnSwitch.secondBtnClicked()}"
                 tools:ignore="SpUsage" />
 
             <Button
@@ -81,6 +82,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_weight="1"
+                android:onClick="@{()->registerPaymentVM.twoBtnSwitch.firstBtnClicked()}"
                 app:layout_constraintStart_toEndOf="@+id/btn_popup_register_payment_cancel"
                 tools:ignore="SpUsage" />
 

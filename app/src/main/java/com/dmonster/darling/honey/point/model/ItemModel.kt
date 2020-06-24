@@ -94,7 +94,7 @@ class ItemModel {
     }
 
     /*    이용권 구매하기  */
-    fun buyItem(id: String?, it_id : Int?, subscriber: DisposableObserver<ResultItem<BaseItem>>) {
+    fun buyItem(id: String?, it_id : Int?, subscriber: DisposableObserver<ResultItem<String>>) {
         RetrofitProtocol().retrofit.buyItem(ServerApi.instance.buyItem, id, it_id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

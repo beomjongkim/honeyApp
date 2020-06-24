@@ -1,27 +1,32 @@
 package com.dmonster.darling.honey.point.viewmodel
 
+import android.app.Activity
 import android.content.Context
-import android.util.JsonReader
 import android.util.Log
 import android.view.View
+import androidx.annotation.NonNull
 import androidx.lifecycle.*
 import com.dmonster.darling.honey.BR
+import com.dmonster.darling.honey.ads.viewmodel.RewardVM
 import com.dmonster.darling.honey.custom_recyclerview.model.RecyclerItemData
 import com.dmonster.darling.honey.custom_recyclerview.view.CustomAdapter
-import com.dmonster.darling.honey.customview.RegisterPaymentPopup
+import com.dmonster.darling.honey.customview.ReservePaymentPopup
 import com.dmonster.darling.honey.point.data.CheckFreePassData
 import com.dmonster.darling.honey.point.data.PointData
 import com.dmonster.darling.honey.point.data.PointLogData
 import com.dmonster.darling.honey.point.model.ItemModel
 import com.dmonster.darling.honey.util.Utility
-import com.dmonster.darling.honey.util.retrofit.BaseItem
 import com.dmonster.darling.honey.util.retrofit.ResultItem
 import com.dmonster.darling.honey.util.retrofit.ResultListItem
+import com.google.android.gms.ads.rewarded.RewardItem
+import com.google.android.gms.ads.rewarded.RewardedAdCallback
 import io.reactivex.observers.DisposableObserver
-import okhttp3.internal.Util
 
-class PointViewModel(var id: String?, var lifecycle: Lifecycle, var registerPaymentPopup: RegisterPaymentPopup, var adapter: CustomAdapter) : ViewModel() , LifecycleObserver {
+class PointViewModel(var id: String?, lifecycle: Lifecycle, var activity: Activity, var reservePaymentPopup: ReservePaymentPopup, var adapter: CustomAdapter) : ViewModel() , LifecycleObserver {
     var model : ItemModel
+
+    var rewardVM = activity.let { RewardVM(it) }
+
     var toggle = MutableLiveData<Boolean>().also {
         it.value = false
     }
@@ -45,9 +50,37 @@ class PointViewModel(var id: String?, var lifecycle: Lifecycle, var registerPaym
         it.value = true
     }
 
+    var hasPass = MutableLiveData<Boolean>().also {
+        it.value = false
+    }
+
     init {
+
         lifecycle.addObserver(this)
         model = ItemModel()
+        rewardVM.adCallback = object: RewardedAdCallback() {
+
+            override fun onRewardedAdOpened() {
+                // Ad opened.
+                activity.let { Utility.instance.showToast(it,"Ad opened.") }
+            }
+            override fun onRewardedAdClosed() {
+                // Ad closed.
+                activity.let { Utility.instance.showToast(it,"Ad closed.") }
+            }
+            override fun onUserEarnedReward(@NonNull reward: RewardItem) {
+                // User earned reward.
+                if(hasPass.value!!){
+                    activity.let { buyItem(1, it) }
+                }
+                Log.d("RewardVM","User earned reward.")
+            }
+            override fun onRewardedAdFailedToShow(errorCode: Int) {
+                // Ad failed to display.
+                activity.let { Utility.instance.showToast(it,"Ad failed to display.") }
+            }
+        }
+
     }
 
     fun onClickBuyView(){
@@ -78,6 +111,7 @@ class PointViewModel(var id: String?, var lifecycle: Lifecycle, var registerPaym
             override fun onNext(item:ResultItem<CheckFreePassData>) {
                 item.let { it ->
                     if(it.isSuccess){
+                        hasPass.value = true
                         text_available.value = text_available.value +" 중 입니다."
                         val day  = it.item?.minutes_left?.toInt()?.div(1440)
                         val dueDate = Utility.instance.transformDateTime(it.item?.due_date!!)
@@ -162,25 +196,33 @@ class PointViewModel(var id: String?, var lifecycle: Lifecycle, var registerPaym
     }
 
     fun onClickBuyHour(){
-
+        if(rewardVM.rewardedAd.isLoaded&&(hasPass.value == false)){
+            rewardVM.rewardedAd.show(activity, rewardVM.adCallback)
+        }else{
+            Utility.instance.showToast(activity,"이용권 만료 후 광고 시청이 가능합니다.")
+        }
     }
 
     fun buyItem(itemCode : Int, context : Context){//결제 후 아이템 구매 기록 남기기
-        val subscriber = object: DisposableObserver<ResultItem<BaseItem>>() {
+        val subscriber = object: DisposableObserver<ResultItem<String>>() {
             override fun onComplete() {
             }
 
             override fun onError(e: Throwable) {
                 isProgressing.value = false
-                Utility.instance.showToast(context,"아이템 구매 실패")
+                Utility.instance.showToast(context,"아이템 구매 과정 중 오류가 발생하였습니다.")
             }
 
-            override fun onNext(item:ResultItem<BaseItem>) {
+            override fun onNext(item:ResultItem<String>) {
                 item.let { it ->
                     if(it.isSuccess){
-                        Utility.instance.showToast(context,"아이템 구매 성공")
+                        Utility.instance.showToast(context,"성공적으로 이용권을 구매하였습니다.")
                     }else{
-                        Utility.instance.showToast(context,"아이템 구매 실패")
+                        Utility.instance.showToast(context,"보유 포인트가 모자랍니다.")
+                        if(itemCode==2){
+                            reservePaymentPopup.reservePaymentPopupVM.price.value=5000
+                        }
+                        reservePaymentPopup.show()
                     }
                 }
             }
