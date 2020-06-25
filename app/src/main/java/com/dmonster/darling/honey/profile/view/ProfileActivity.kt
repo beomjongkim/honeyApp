@@ -6,16 +6,19 @@ import android.graphics.Color
 import android.net.Uri
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.util.TypedValue
 import android.view.Gravity
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.annotation.NonNull
 import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.dmonster.darling.honey.R
+import com.dmonster.darling.honey.ads.viewmodel.RewardVM
 import com.dmonster.darling.honey.base.BaseActivity
 import com.dmonster.darling.honey.customview.CustomDialogInterface
 import com.dmonster.darling.honey.customview.CustomPopup
@@ -23,6 +26,7 @@ import com.dmonster.darling.honey.databinding.ActivityProfileBinding
 import com.dmonster.darling.honey.dialog.*
 import com.dmonster.darling.honey.myinformation.data.PictureMarryData
 import com.dmonster.darling.honey.myinformation.viewmodel.MarriageCertVM
+import com.dmonster.darling.honey.point.model.ItemModel
 import com.dmonster.darling.honey.profile.data.ProfilePictureData
 import com.dmonster.darling.honey.profile.presenter.ProfileContract
 import com.dmonster.darling.honey.profile.presenter.ProfilePresenter
@@ -32,10 +36,15 @@ import com.dmonster.darling.honey.util.AppKeyValue
 import com.dmonster.darling.honey.util.Utility
 import com.dmonster.darling.honey.util.common.EventBus
 import com.dmonster.darling.honey.util.common.FlowLayout
+import com.dmonster.darling.honey.util.retrofit.ResultItem
+import com.google.android.gms.ads.rewarded.RewardItem
+import com.google.android.gms.ads.rewarded.RewardedAdCallback
 import com.jakewharton.rxbinding2.view.RxView
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.observers.DisposableObserver
 import io.reactivex.rxkotlin.addTo
 import kotlinx.android.synthetic.main.activity_profile.*
+import okhttp3.internal.Util
 import java.text.SimpleDateFormat
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -49,6 +58,7 @@ class ProfileActivity : BaseActivity(), ProfileContract.View {
     private lateinit var textArray: Array<TextView?>
     private lateinit var layoutArrayId: Array<Int>
     private lateinit var layoutArray: Array<LinearLayout?>
+    private lateinit var rewardVM : RewardVM
 
     private var viewLayoutManager: androidx.recyclerview.widget.RecyclerView.LayoutManager? = null
     private var id: String? = null
@@ -192,6 +202,50 @@ class ProfileActivity : BaseActivity(), ProfileContract.View {
 
         ll_act_profile_progress.visibility = View.VISIBLE
         mPresenter.getProfileSample(this, id, mbNo)
+
+        rewardVM = RewardVM(this)
+        rewardVM.adCallback = object : RewardedAdCallback() {
+
+            override fun onRewardedAdOpened() {
+                // Ad opened.
+                Utility.instance.showToast(this@ProfileActivity, "Ad opened.")
+            }
+
+            override fun onRewardedAdClosed() {
+                // Ad closed.
+                Utility.instance.showToast(this@ProfileActivity, "Ad closed.")
+            }
+
+            override fun onUserEarnedReward(@NonNull reward: RewardItem) {
+                ll_act_profile_progress.visibility = View.VISIBLE
+                // User earned reward.
+                val subscriber = object : DisposableObserver<ResultItem<String>>() {
+                    override fun onComplete() {
+                        ll_act_profile_progress.visibility = View.GONE
+                    }
+
+                    override fun onError(e: Throwable) {
+                        ll_act_profile_progress.visibility = View.GONE
+                    }
+
+                    override fun onNext(item: ResultItem<String>) {
+                        item.let { it ->
+                            if (it.isSuccess) {
+                                Utility.instance.showToast(this@ProfileActivity, "성공적으로 이용권을 구매하였습니다.")
+                            }
+                        }
+                        ll_act_profile_progress.visibility = View.GONE
+                    }
+                }
+                ItemModel().buyItem(id, 1, subscriber)
+                Log.d("RewardVM", "User earned reward.")
+            }
+
+            override fun onRewardedAdFailedToShow(errorCode: Int) {
+                // Ad failed to display.
+                Utility.instance.showToast(this@ProfileActivity, "Ad failed to display.")
+            }
+        }
     }
 
     private fun setListener() {
@@ -221,7 +275,8 @@ class ProfileActivity : BaseActivity(), ProfileContract.View {
                                     resources.getString(R.string.msg_profile_error_good),
                                     DialogInterface.OnClickListener { dialog, which -> })
                             } else {
-                                mPresenter.getItemCheck(id, AppKeyValue.instance.itemIdProfile)
+//                                mPresenter.getItemCheck(id, AppKeyValue.instance.itemIdProfile)
+                                mPresenter.checkPass(id,AppKeyValue.instance.itemIdProfile)
                             }
                         }
                     }
@@ -423,7 +478,8 @@ class ProfileActivity : BaseActivity(), ProfileContract.View {
                             startActivity(intent)
                         } else {
                             ll_act_profile_progress.visibility = View.VISIBLE
-                            mPresenter.getItemCheck(id, AppKeyValue.instance.itemIdTalk)
+//                            mPresenter.getItemCheck(id, AppKeyValue.instance.itemIdTalk)
+                            mPresenter.checkPass(id, AppKeyValue.instance.itemIdTalk)
                         }
                     }
                 }
@@ -523,7 +579,8 @@ class ProfileActivity : BaseActivity(), ProfileContract.View {
 
             else -> {
                 ll_act_profile_progress.visibility = View.VISIBLE
-                mPresenter.getItemCheck(id, AppKeyValue.instance.itemIdProfile)
+//                mPresenter.getItemCheck(id, AppKeyValue.instance.itemIdProfile)
+                mPresenter.checkPass(id, AppKeyValue.instance.itemIdProfile)
             }
         }
     }
@@ -1004,6 +1061,25 @@ class ProfileActivity : BaseActivity(), ProfileContract.View {
     override fun setBlockFailed(error: String?) {
         ll_act_profile_progress.visibility = View.GONE
         Utility.instance.showToast(this, error)
+    }
+
+    override fun setPassNeed() {
+        ll_act_profile_progress.visibility = View.GONE
+
+        val popup = CustomPopup(this, "이용권 구매", "이용권을 구매해서 아래 기능을 마음껏 이용해보세요!\n" +getString(R.string.msg_freepass_description), R.drawable.ic_talk_vivid, object: CustomDialogInterface{
+            override fun onConfirm(v: View) {
+                if (rewardVM.rewardedAd.isLoaded) {
+                    rewardVM.rewardedAd.show(this@ProfileActivity, rewardVM.adCallback)
+                }
+            }
+
+            override fun onCancel(v: View) {
+
+            }
+        })
+        popup.popupVM.negativeText.value = "1개월 이용권\n구매하기"
+        popup.popupVM.positiveText.value = "광고 시청 후\n이용권 받기"
+        popup.show()
     }
 
     override fun onDestroy() {

@@ -400,6 +400,7 @@
     <string name="msg_profile_look_item_use"> 님의 프로필을 열람하세요!!\n\n무.제.한.무.료\n프로필 열람 이벤트 중!!</string>
     <string name="msg_profile_talk_item_use"> 님과의 톡하기!!\n나이스 초이스!!\n\n \'자기야\'는 현재 \'톡하기\' 무제한 무료 이벤트 기간입니다.\n 화이팅 하세요!!</string>
     <string name="msg_profile_love_item_use">%s를 이용하시겠습니까?</string>
+    <string name="msg_freepass_description">[프로필열람/관심있어요/톡하기]</string>
 
     <string name="good_title">호감있어요</string>
     <string name="good_talk_id">님께 호감있어요를 보냅니다.</string>

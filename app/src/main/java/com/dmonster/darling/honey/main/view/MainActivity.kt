@@ -75,12 +75,13 @@ class MainActivity : BaseActivity(){
 
     private fun setViewModel() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
+        val mb_id  = Utility.instance.getPref(this, AppKeyValue.instance.savePrefID)
         binding.naviVM = NavigationVM(
             supportFragmentManager,
-            Utility.instance.getPref(this, AppKeyValue.instance.savePrefID),
+            mb_id,
             lifecycle
         )
-        binding.bannerVM = BannerVM(lifecycle)
+        binding.bannerVM = BannerVM(mb_id,lifecycle)
         binding.lifecycleOwner = this
         binding.naviVM?.fragmentReplace(fragMain)
     }

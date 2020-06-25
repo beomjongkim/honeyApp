@@ -35,6 +35,8 @@ interface ProfileContract {
         fun setBlockComplete(message: String?)    // 차단하기
 
         fun setBlockFailed(error: String?)    // 차단하기 호출실패
+
+        fun setPassNeed()
     }
 
     interface Presenter: BasePresenter<View> {
@@ -47,6 +49,8 @@ interface ProfileContract {
         fun getTalk(id: String?, otherId: String?, message: String?, talkImage: Uri?)    // 톡하기
 
         fun getItemCheck(id: String?, itemId: String?)    // 아이템 보유 확인
+
+        fun checkPass(id: String?, itemId: String?) // 이용권 여부 확인
 
         fun setItemUse(context: Context, id: String?, itemId: String?, mbNo: String?, otherId: String?)    // 아이템 사용
 

@@ -26,6 +26,7 @@
             android:layout_height="50dp"
             setAdRequest="@{bannerVM.adRequest}"
             setAdListener="@{bannerVM.adListener}"
+            android:visibility="@{bannerVM.hasPass? View.GONE : View.VISIBLE}"
             ads:adSize="BANNER"
             ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
             app:layout_constraintEnd_toEndOf="parent"

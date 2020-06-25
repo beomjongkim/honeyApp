@@ -5,6 +5,8 @@ import android.net.Uri
 import android.text.TextUtils
 import com.dmonster.darling.honey.R
 import com.dmonster.darling.honey.myinformation.data.PictureMarryData
+import com.dmonster.darling.honey.point.data.CheckFreePassData
+import com.dmonster.darling.honey.point.model.ItemModel
 import com.dmonster.darling.honey.profile.data.ProfileDetailData
 import com.dmonster.darling.honey.profile.data.ProfilePictureData
 import com.dmonster.darling.honey.profile.model.GoodModel
@@ -351,6 +353,30 @@ class ProfilePresenter: ProfileContract.Presenter {
             }
         }
         mModel.requestBlock(id, mbNo, type, subscriber)
+        subscription.add(subscriber)
+    }
+
+    override fun checkPass(id: String?,itemId: String?) {
+        val subscriber = object: DisposableObserver<ResultItem<CheckFreePassData>>() {
+            override fun onComplete() {
+
+            }
+
+            override fun onError(e: Throwable) {
+                mView.setPassNeed()
+                e.printStackTrace()
+            }
+
+            override fun onNext(item: ResultItem<CheckFreePassData>) {
+                item.let { it ->
+                    if(it.isSuccess)
+                        mView.setItemUseComplete(itemId,"Y")
+                    else
+                        mView.setPassNeed()
+                }
+            }
+        }
+        ItemModel().check_own_freepass(id,  subscriber)
         subscription.add(subscriber)
     }
 
