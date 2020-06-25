@@ -18,12 +18,12 @@ import com.dmonster.darling.honey.R
 import com.dmonster.darling.honey.common.command.TwoBtnSwitch
 import com.dmonster.darling.honey.point.viewmodel.ReservePaymentPopupVM
 
-class ReservePaymentPopup(context: Context, var twoBtnSwitch: TwoBtnSwitch,var lifecycleOwner: LifecycleOwner) : Dialog(context), LifecycleObserver{
+class ReservePaymentPopup(context: Context,var lifecycleOwner: LifecycleOwner) : Dialog(context), LifecycleObserver{
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         init()
     }
-    var reservePaymentPopupVM = ReservePaymentPopupVM(twoBtnSwitch)
+    var reservePaymentPopupVM = ReservePaymentPopupVM()
     fun init() {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
         window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
@@ -36,7 +36,7 @@ class ReservePaymentPopup(context: Context, var twoBtnSwitch: TwoBtnSwitch,var l
         )
         binding.setVariable(BR.registerPaymentVM, reservePaymentPopupVM)
         binding.lifecycleOwner = lifecycleOwner
-
+        binding.executePendingBindings()
         super.addContentView(
             binding.root,
             ConstraintLayout.LayoutParams(

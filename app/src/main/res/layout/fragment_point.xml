@@ -267,14 +267,32 @@
                     android:layout_marginBottom="8dp"
                     android:ems="10"
                     android:gravity="right"
-                    android:hint="0 포인트"
+                    android:hint="0"
                     android:inputType="number"
+                    android:textSize="@dimen/text_normal"
+                    android:text="@={pointViewModel.chargePoint}"
+                    android:visibility="@{pointViewModel.toggle ? View.GONE : View.VISIBLE}"
+                    app:layout_constraintBottom_toTopOf="@+id/tv_frag_market_using"
+                    app:layout_constraintEnd_toStartOf="@+id/tv_frag_point"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_point_title" />
+
+                <TextView
+                    android:id="@+id/tv_frag_point"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginLeft="32dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginRight="16dp"
+                    android:layout_marginBottom="8dp"
                     android:textSize="@dimen/text_normal"
                     android:visibility="@{pointViewModel.toggle ? View.GONE : View.VISIBLE}"
                     app:layout_constraintBottom_toTopOf="@+id/tv_frag_market_using"
                     app:layout_constraintEnd_toStartOf="@+id/guideline3"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_point_title" />
+                    app:layout_constraintTop_toBottomOf="@+id/tv_point_title"
+                    android:text="포인트" />
 
                 <Button
                     style="@style/baseTextViewStyle"
@@ -288,6 +306,7 @@
                     android:text="충전하기"
                     android:visibility="@{pointViewModel.toggle ? View.GONE : View.VISIBLE}"
                     android:textColor="@color/color_white"
+                    android:onClick="@{(v)->pointViewModel.onClickCharge(v)}"
                     android:textSize="@dimen/text_large"
                     app:layout_constraintBottom_toBottomOf="@+id/et_point_recharge"
                     app:layout_constraintStart_toStartOf="@+id/guideline3"
@@ -324,7 +343,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:visibility="@{pointViewModel.toggle ? View.GONE : View.VISIBLE}"
+                    android:visibility="@{pointViewModel.toggle ? View.GONE : View.GONE}"
                     android:text="2. 톡하기 : 화상 채팅 이용권"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -341,7 +360,7 @@
                     android:text="화상채팅 발신자 - 1분 : 1포인트"
                     android:textColor="@color/color_white"
                     android:textSize="@dimen/text_large"
-                    android:visibility="@{pointViewModel.toggle ? View.GONE : View.VISIBLE}"
+                    android:visibility="@{pointViewModel.toggle ? View.GONE : View.GONE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_title_video_chat_pass" />

@@ -22,7 +22,6 @@ import io.reactivex.observers.DisposableObserver
 class RewardVM(var activity : Activity) : ViewModel() , LifecycleObserver {
     var rewardedAd = RewardedAd(activity,"ca-app-pub-3940256099942544/5224354917")
     var model : ItemModel
-    lateinit var pointViewModel : PointViewModel
     lateinit var adCallback : RewardedAdCallback
     init {
         val adLoadCallback = object: RewardedAdLoadCallback() {
@@ -35,6 +34,7 @@ class RewardVM(var activity : Activity) : ViewModel() , LifecycleObserver {
         }
         rewardedAd.loadAd(AdRequest.Builder().build(), adLoadCallback)
         model = ItemModel()
+
     }
 
 

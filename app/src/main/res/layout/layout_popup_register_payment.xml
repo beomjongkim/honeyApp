@@ -57,7 +57,7 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintStart_toStartOf="parent"
-                android:onClick="@{()->registerPaymentVM.twoBtnSwitch.secondBtnClicked()}"
+                android:onClick="@{(v)->registerPaymentVM.twoBtnSwitch.onCancel(v)}"
                 tools:ignore="SpUsage" />
 
             <Button
@@ -82,7 +82,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_weight="1"
-                android:onClick="@{()->registerPaymentVM.twoBtnSwitch.firstBtnClicked()}"
+                android:onClick="@{(v)->registerPaymentVM.twoBtnSwitch.onConfirm(v)}"
                 app:layout_constraintStart_toEndOf="@+id/btn_popup_register_payment_cancel"
                 tools:ignore="SpUsage" />
 
@@ -111,9 +111,10 @@
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
-                android:hint="  최대10자리  "
+                android:hint="  최대 6자리  "
                 android:text="@={registerPaymentVM.name}"
                 android:inputType="textPersonName"
+                android:maxLength="6"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/text_xlarge"
                 android:textStyle="bold"
@@ -165,18 +166,20 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_popup_register_payment_price_title"
                 android:gravity="center_horizontal" />
 
-            <CheckedTextView
-                android:id="@+id/ct_popup_register_payment"
+            <CheckBox
+                android:id="@+id/cb_reserve_payment"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 style="@style/baseTextViewStyle"
                 android:layout_marginTop="16dp"
+                android:checked="@={registerPaymentVM.isChecked}"
                 android:layout_marginBottom="16dp"
                 android:text="결제정보를 확인하였으며, 구매진행에 동의합니다."
                 app:layout_constraintBottom_toTopOf="@+id/btn_popup_register_payment_cancel"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_popup_register_payment_guide" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_popup_register_payment_guide"
+                />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

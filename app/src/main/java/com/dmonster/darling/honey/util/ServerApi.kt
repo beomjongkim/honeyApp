@@ -76,6 +76,6 @@ class ServerApi {
     val checkOwnFreepass =  "user/check_own_freepass"// 이용권 소지 여부 확인
     val readPointLog = "point/read_log" //포인트 이용 내역 가져오기
     val readPoint = "point/read" //포인트 이용 내역 가져오기
-
+    val reservePayment = "user/reserve_payment"
     val buyItem = "user/buy_item"//이용권 구매하기.
 }

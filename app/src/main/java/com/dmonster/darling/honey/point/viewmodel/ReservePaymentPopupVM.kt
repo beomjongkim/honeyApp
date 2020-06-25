@@ -3,16 +3,21 @@ package com.dmonster.darling.honey.point.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.dmonster.darling.honey.common.command.TwoBtnSwitch
+import com.dmonster.darling.honey.customview.CustomDialogInterface
 
-class ReservePaymentPopupVM(var twoBtnSwitch: TwoBtnSwitch)  : ViewModel() {
+class ReservePaymentPopupVM()  : ViewModel() {
 
     var name = MutableLiveData<String>().also {
         it.value = ""
     }
-    var price= MutableLiveData<Int>().also {
-        it.value = 0
+    var price : Int = 0
+    lateinit var twoBtnSwitch: CustomDialogInterface
+    var won = MutableLiveData<String>().also {
+        it.value  =  price.toString() + "원"
     }
 
-    var won :String = price.value.toString() + "원"
+    var isChecked = MutableLiveData<Boolean>().also{
+        it.value = false
+    }
 
 }

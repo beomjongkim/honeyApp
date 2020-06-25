@@ -50,14 +50,7 @@ class PointFragment : Fragment() {
             binding.pointViewModel = activity?.let { it ->
                 PointViewModel(
                     Utility.instance.getPref(it, AppKeyValue.instance.savePrefID),lifecycle, it,
-                    ReservePaymentPopup(it,  object : TwoBtnSwitch{
-                        override fun firstBtnClicked() {
-                        }
-
-                        override fun secondBtnClicked() {
-                        }
-
-                    },this), CustomAdapter(R.layout.layout_point_log, this)
+                    ReservePaymentPopup(it, this), CustomAdapter(R.layout.layout_point_log, this)
                 )
             }
             binding.lifecycleOwner = this

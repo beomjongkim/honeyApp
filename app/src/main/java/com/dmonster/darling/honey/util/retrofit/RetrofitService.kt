@@ -735,7 +735,7 @@ interface RetrofitService {
     ): Observable<ResultItem<PointData>>
 
 
-    /*    이용권 유무 확인    */
+    /*   아이템 구매    */
     @FormUrlEncoded
     @POST("api/base.php")
     fun buyItem(
@@ -744,4 +744,12 @@ interface RetrofitService {
         @Field("it_id") it_id: Int?
     ): Observable<ResultItem<String>>
 
+    @FormUrlEncoded
+    @POST("api/base.php")
+    fun reservePayment(
+        @Field("method") method: String?,
+        @Field("mb_id") id: String?,
+        @Field("name") name: String?,
+        @Field("price") price: Int?
+        ): Observable<ResultItem<String>>
 }

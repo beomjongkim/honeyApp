@@ -75,23 +75,7 @@ class ItemModel {
             .subscribe(subscriber)
     }
 
-    /*    이용권 구매 기록가져오기   */
-    fun get_log_point(id: String?, subscriber: DisposableObserver<ResultListItem<PointLogData>>) {
-        RetrofitProtocol().retrofit.readPointLog(ServerApi.instance.readPointLog, id)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .unsubscribeOn(Schedulers.io())
-            .subscribe(subscriber)
-    }
 
-    /*    이용권 구매 기록가져오기   */
-    fun read_point(id: String?, subscriber: DisposableObserver<ResultItem<PointData>>) {
-        RetrofitProtocol().retrofit.readPoint(ServerApi.instance.readPoint, id)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .unsubscribeOn(Schedulers.io())
-            .subscribe(subscriber)
-    }
 
     /*    이용권 구매하기  */
     fun buyItem(id: String?, it_id : Int?, subscriber: DisposableObserver<ResultItem<String>>) {
