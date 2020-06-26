@@ -1,22 +1,28 @@
 package com.dmonster.darling.honey.newMember.view
 
+import android.app.Activity
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
 import android.text.TextUtils
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.NonNull
 import com.dmonster.darling.honey.R
+import com.dmonster.darling.honey.ads.viewmodel.RewardVM
 import com.dmonster.darling.honey.base.BaseFragment
 import com.dmonster.darling.honey.customview.CustomDialogInterface
 import com.dmonster.darling.honey.customview.CustomPopup
 import com.dmonster.darling.honey.dialog.ItemTalkDialog
+import com.dmonster.darling.honey.main.view.MainActivity
 import com.dmonster.darling.honey.myactivity.data.MemberData
 import com.dmonster.darling.honey.myactivity.presenter.NewMemberListContract
 import com.dmonster.darling.honey.myactivity.presenter.NewMemberListPresenter
 import com.dmonster.darling.honey.myactivity.view.adapter.NewMemberAdapter
+import com.dmonster.darling.honey.point.model.ItemModel
 import com.dmonster.darling.honey.profile.view.GoodActivity
 import com.dmonster.darling.honey.profile.view.InterestActivity
 import com.dmonster.darling.honey.profile.view.ProfileActivity
@@ -24,8 +30,13 @@ import com.dmonster.darling.honey.talk.view.TalkActivity
 import com.dmonster.darling.honey.util.AppKeyValue
 import com.dmonster.darling.honey.util.Utility
 import com.dmonster.darling.honey.util.common.EventBus
+import com.dmonster.darling.honey.util.retrofit.ResultItem
+import com.google.android.gms.ads.rewarded.RewardItem
+import com.google.android.gms.ads.rewarded.RewardedAdCallback
 import com.jakewharton.rxbinding2.view.RxView
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.observers.DisposableObserver
+import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.fragment_my_act_new_member.*
 import java.util.concurrent.TimeUnit
 
@@ -34,6 +45,7 @@ class NewMemeberSearchFragment : BaseFragment(), NewMemberListContract.View {
     private lateinit var disposeBag: CompositeDisposable
     private lateinit var mPresenter: NewMemberListContract.Presenter
     private lateinit var mAdapter: NewMemberAdapter
+    private lateinit var rewardVM : RewardVM
 
     private var viewLayoutManager: androidx.recyclerview.widget.RecyclerView.LayoutManager? = null
     private var id: String? = null
@@ -98,6 +110,50 @@ class NewMemeberSearchFragment : BaseFragment(), NewMemberListContract.View {
             AppKeyValue.instance.listLimitCnt,
             id
         )
+
+        rewardVM = RewardVM(activity as Activity)
+        rewardVM.adCallback = object : RewardedAdCallback() {
+
+            override fun onRewardedAdOpened() {
+                // Ad opened.
+                Log.d("NewMemberSearchFragment", "Ad opened.")
+            }
+
+            override fun onRewardedAdClosed() {
+                // Ad closed.
+                Log.d("NewMemberSearchFragment", "Ad closed.")
+            }
+
+            override fun onUserEarnedReward(@NonNull reward: RewardItem) {
+                ll_frag_my_act_new_member_progress.visibility = View.VISIBLE
+                // User earned reward.
+                val subscriber = object : DisposableObserver<ResultItem<String>>() {
+                    override fun onComplete() {
+                        ll_frag_my_act_new_member_progress.visibility = View.GONE
+                    }
+
+                    override fun onError(e: Throwable) {
+                        ll_frag_my_act_new_member_progress.visibility = View.GONE
+                    }
+
+                    override fun onNext(item: ResultItem<String>) {
+                        item.let { it ->
+                            if (it.isSuccess) {
+                                context?.let { it1 -> Utility.instance.showToast(it1, "성공적으로 이용권을 구매하였습니다.") }
+                            }
+                        }
+                        ll_frag_my_act_new_member_progress.visibility = View.GONE
+                    }
+                }
+                ItemModel().buyItem(id, 1, subscriber)
+                Log.d("NewMemberSearchFragment", "User earned reward.")
+            }
+
+            override fun onRewardedAdFailedToShow(errorCode: Int) {
+                // Ad failed to display.
+                Log.d("NewMemberSearchFragment", "Ad failed to display.")
+            }
+        }
     }
 
     private fun setListener() {
@@ -184,45 +240,27 @@ class NewMemeberSearchFragment : BaseFragment(), NewMemberListContract.View {
                     Utility.instance.showAlert(it1, it1.resources.getString(R.string.app_name), it1.resources.getString(R.string.msg_profile_error_good), DialogInterface.OnClickListener { dialog, which -> })
                 }
                 else {
+                    val intent :Intent
                     if(gender == "F") {
-                        Utility.instance.showTwoButtonAlert(it1, it1.getString(R.string.interest_title), talkId+it1.getString(R.string.interest_talk_id),object :CustomDialogInterface{
-                            override fun onConfirm(v: View) {
-                                val intent = Intent(context, InterestActivity::class.java)
-                                intent.putExtra(AppKeyValue.instance.goodOtherId, otherId)
-                                intent.putExtra(AppKeyValue.instance.goodOtherProfileImage, profileImage)
-                                intent.putExtra(AppKeyValue.instance.goodOtherTalkId, talkId)
-                                intent.putExtra(AppKeyValue.instance.goodOtherType, type)
-                                startActivity(intent)
-                            }
-
-                            override fun onCancel(v: View) {
-                            }
-
-                        })
-
-//                        val interestDialog = InterestDialog()
-//                        interestDialog.setOtherInfo(otherId, profileImage, talkId, type)
-//                        activity?.supportFragmentManager?.let { it2 -> interestDialog.show(it2, AppKeyValue.instance.tagInterestDlg) }
+                        intent = Intent(context, InterestActivity::class.java)
                     }
                     else {
-                        Utility.instance.showTwoButtonAlert(it1, it1.getString(R.string.interest_title), talkId+it1.getString(R.string.interest_talk_id),object :CustomDialogInterface{
-                            override fun onConfirm(v: View) {
-                                val intent = Intent(context, GoodActivity::class.java)
-                                intent.putExtra(AppKeyValue.instance.goodOtherId, otherId)
-                                intent.putExtra(AppKeyValue.instance.goodOtherProfileImage, profileImage)
-                                intent.putExtra(AppKeyValue.instance.goodOtherTalkId, talkId)
-                                intent.putExtra(AppKeyValue.instance.goodOtherType, type)
-                                startActivity(intent)
-                            }
-
-                            override fun onCancel(v: View) {
-                            }
-
-                        })
-//                        val goodDialog = GoodDialog()
-//                        goodDialog.setOtherInfo(otherId, profileImage, talkId, type)
-//                        activity?.supportFragmentManager?.let { it2 -> goodDialog.show(it2, AppKeyValue.instance.tagInterestDlg) }
+                        intent = Intent(context, GoodActivity::class.java)
                     }
+                    Utility.instance.showTwoButtonAlert(it1, it1.getString(R.string.interest_title), talkId+it1.getString(R.string.interest_talk_id),object :CustomDialogInterface{
+                        override fun onConfirm(v: View) {
+
+                            intent.putExtra(AppKeyValue.instance.goodOtherId, otherId)
+                            intent.putExtra(AppKeyValue.instance.goodOtherProfileImage, profileImage)
+                            intent.putExtra(AppKeyValue.instance.goodOtherTalkId, talkId)
+                            intent.putExtra(AppKeyValue.instance.goodOtherType, type)
+                            startActivity(intent)
+                        }
+
+                        override fun onCancel(v: View) {
+                        }
+
+                    })
                 }
             }
         }
@@ -308,26 +346,26 @@ class NewMemeberSearchFragment : BaseFragment(), NewMemberListContract.View {
             }
 
             "N" -> {
-                if (gender == "F") {
-                    val intent = Intent(context, TalkActivity::class.java)
-                    intent.putExtra(AppKeyValue.instance.talkMbNo, mbNo)
-                    intent.putExtra(AppKeyValue.instance.talkOtherId, otherId)
-                    intent.putExtra(AppKeyValue.instance.talkOtherTalkId, otherTalkId)
-                    /*    상단 타이틀정보    */
-                    intent.putExtra(AppKeyValue.instance.talkTitleName, otherTalkId)
-                    intent.putExtra(AppKeyValue.instance.talkTitleArea, otherArea)
-                    intent.putExtra(AppKeyValue.instance.talkTitleAge, otherAge)
-                    context?.startActivity(intent)
-                } else {
+//                if (gender == "F") {
+//                    val intent = Intent(context, TalkActivity::class.java)
+//                    intent.putExtra(AppKeyValue.instance.talkMbNo, mbNo)
+//                    intent.putExtra(AppKeyValue.instance.talkOtherId, otherId)
+//                    intent.putExtra(AppKeyValue.instance.talkOtherTalkId, otherTalkId)
+//                    /*    상단 타이틀정보    */
+//                    intent.putExtra(AppKeyValue.instance.talkTitleName, otherTalkId)
+//                    intent.putExtra(AppKeyValue.instance.talkTitleArea, otherArea)
+//                    intent.putExtra(AppKeyValue.instance.talkTitleAge, otherAge)
+//                    context?.startActivity(intent)
+//                } else {
                     ll_frag_my_act_new_member_progress.visibility = View.VISIBLE
-                    mPresenter.getItemCheck(id, AppKeyValue.instance.itemIdTalk)
-                }
+                    mPresenter.checkPass(id, AppKeyValue.instance.itemIdTalk)
+//                }
             }
         }
     }
 
     /*    아이템 보유 확인    */
-    override fun setItemCheckComplete(result: String?) {
+    override fun setItemCheckComplete(type: String?, result: String?) {
         ll_frag_my_act_new_member_progress.visibility = View.GONE
 
         context?.let {
@@ -361,28 +399,6 @@ class NewMemeberSearchFragment : BaseFragment(), NewMemberListContract.View {
 
                 }
 
-                "N" -> {
-                    val content = String.format(
-                        it.resources.getString(R.string.msg_profile_item),
-                        it.resources.getString(R.string.msg_profile_item_talk)
-                    )
-                    Utility.instance.showTwoButtonAlert(
-                        it,
-                        it.resources.getString(R.string.app_name),
-                        content,
-                        DialogInterface.OnClickListener { dialog, which ->
-                            if (which == DialogInterface.BUTTON_POSITIVE) {
-                                /*EventBus.sendEventItemFrag(AppKeyValue.instance.eventBusItemFrag)*/
-                                val talkDialog = ItemTalkDialog()
-                                activity?.supportFragmentManager?.let { it1 ->
-                                    talkDialog.show(
-                                        it1,
-                                        AppKeyValue.instance.tagItemTalkDlg
-                                    )
-                                }
-                            }
-                        })
-                }
                 else -> return
             }
         }
@@ -419,6 +435,28 @@ class NewMemeberSearchFragment : BaseFragment(), NewMemberListContract.View {
     override fun setTalkFailed(error: String?) {
         ll_frag_my_act_new_member_progress.visibility = View.GONE
         context?.let { Utility.instance.showToast(it, error) }
+    }
+
+    override fun setPassNeed() {
+        ll_frag_my_act_new_member_progress.visibility = View.GONE
+        context?.let {
+            val popup = CustomPopup(it, "이용권 구매", "이용권을 구매해서 아래 기능을 마음껏 이용해보세요!\n" +getString(R.string.msg_freepass_description), R.drawable.ic_talk_vivid, object: CustomDialogInterface{
+                override fun onConfirm(v: View) {
+                    if (rewardVM.rewardedAd.isLoaded) {
+                        rewardVM.rewardedAd.show(activity, rewardVM.adCallback)
+                    }
+                }
+
+                override fun onCancel(v: View) {
+                    val intent = Intent(it, MainActivity::class.java)
+                    intent.putExtra(AppKeyValue.instance.goToMarket, true)
+                    startActivity(intent)
+                }
+            })
+            popup.popupVM.negativeText.value = "1개월 이용권\n구매하기"
+            popup.popupVM.positiveText.value = "광고 시청 후\n이용권 받기"
+            popup.show()
+        }
     }
 
     override fun onDestroyView() {

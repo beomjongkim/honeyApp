@@ -24,6 +24,7 @@ import com.dmonster.darling.honey.customview.CustomDialogInterface
 import com.dmonster.darling.honey.customview.CustomPopup
 import com.dmonster.darling.honey.databinding.ActivityProfileBinding
 import com.dmonster.darling.honey.dialog.*
+import com.dmonster.darling.honey.main.view.MainActivity
 import com.dmonster.darling.honey.myinformation.data.PictureMarryData
 import com.dmonster.darling.honey.myinformation.viewmodel.MarriageCertVM
 import com.dmonster.darling.honey.point.model.ItemModel
@@ -208,12 +209,12 @@ class ProfileActivity : BaseActivity(), ProfileContract.View {
 
             override fun onRewardedAdOpened() {
                 // Ad opened.
-                Utility.instance.showToast(this@ProfileActivity, "Ad opened.")
+                Log.d("ProfileActivity", "Ad opened.")
             }
 
             override fun onRewardedAdClosed() {
                 // Ad closed.
-                Utility.instance.showToast(this@ProfileActivity, "Ad closed.")
+                Log.d("ProfileActivity", "Ad closed.")
             }
 
             override fun onUserEarnedReward(@NonNull reward: RewardItem) {
@@ -238,12 +239,12 @@ class ProfileActivity : BaseActivity(), ProfileContract.View {
                     }
                 }
                 ItemModel().buyItem(id, 1, subscriber)
-                Log.d("RewardVM", "User earned reward.")
+                Log.d("ProfileActivity", "User earned reward.")
             }
 
             override fun onRewardedAdFailedToShow(errorCode: Int) {
                 // Ad failed to display.
-                Utility.instance.showToast(this@ProfileActivity, "Ad failed to display.")
+                Log.d("ProfileActivity", "Ad failed to display.")
             }
         }
     }
@@ -265,8 +266,9 @@ class ProfileActivity : BaseActivity(), ProfileContract.View {
                                 DialogInterface.OnClickListener { dialog, which -> })
                         } else {
                             ll_act_profile_progress.visibility = View.VISIBLE
-                            if (itemUseCheck || (gender == "F" && gender != otherGender)) {
-                                mPresenter.getProfile(this, id, mbNo)
+//                            if (itemUseCheck || (gender == "F" && gender != otherGender)) {
+                            if (itemUseCheck || (gender != otherGender)){
+                            mPresenter.getProfile(this, id, mbNo)
                             } else if (gender == otherGender) {
                                 ll_act_profile_progress.visibility = View.GONE
                                 Utility.instance.showAlert(
@@ -345,90 +347,49 @@ class ProfileActivity : BaseActivity(), ProfileContract.View {
                     }
 
                     else -> {
-                        if (gender == "F") {
-                            customPopup = CustomPopup(
-                                this,
-                                getString(R.string.interest_express),
-                                getString(R.string.popup_interest_title),
-                                R.drawable.main_navi_ideal_on,
-                                object : CustomDialogInterface {
-                                    override fun onCancel(v: View) {
-                                        customPopupDismiss()
-                                    }
-
-                                    override fun onConfirm(v: View) {
-                                        val intent = Intent(v.context, InterestActivity::class.java)
-                                        intent.putExtra(
-                                            AppKeyValue.instance.goodOtherId,
-                                            otherId
-                                        )
-                                        intent.putExtra(
-                                            AppKeyValue.instance.goodOtherProfileImage,
-                                            otherProfileImage
-                                        )
-                                        intent.putExtra(
-                                            AppKeyValue.instance.goodOtherTalkId,
-                                            talkId
-                                        )
-                                        intent.putExtra(
-                                            AppKeyValue.instance.goodOtherType,
-                                            otherType
-                                        )
-                                        startActivity(intent)
-                                        customPopupDismiss()
-                                    }
-                                })
-                            customPopup?.popupVM?.let { it1 ->
-                                it1.positiveText.value = "보내기"
-                                it1.negativeText.value = "취소"
-                            }
-                            customPopup?.show()
-
-//                                val interestDialog = InterestDialog()
-//                                interestDialog.setOtherInfo(otherId, otherProfileImage, talkId, otherType)
-//                                interestDialog.show(supportFragmentManager, AppKeyValue.instance.tagInterestDlg)
-                        } else {
-                            customPopup = CustomPopup(
-                                this,
-                                getString(R.string.interest_express),
-                                getString(R.string.popup_interest_title),
-                                R.drawable.main_navi_ideal_on,
-                                object : CustomDialogInterface {
-                                    override fun onCancel(v: View) {
-                                        customPopupDismiss()
-                                    }
-
-                                    override fun onConfirm(v: View) {
-                                        val intent = Intent(v.context, InterestActivity::class.java)
-                                        intent.putExtra(
-                                            AppKeyValue.instance.goodOtherId,
-                                            otherId
-                                        )
-                                        intent.putExtra(
-                                            AppKeyValue.instance.goodOtherProfileImage,
-                                            otherProfileImage
-                                        )
-                                        intent.putExtra(
-                                            AppKeyValue.instance.goodOtherTalkId,
-                                            talkId
-                                        )
-                                        intent.putExtra(
-                                            AppKeyValue.instance.goodOtherType,
-                                            otherType
-                                        )
-                                        startActivity(intent)
-                                        customPopupDismiss()
-                                    }
-                                })
-                            customPopup?.popupVM?.let { it1 ->
-                                it1.positiveText.value = "보내기"
-                                it1.negativeText.value = "취소"
-                            }
-                            customPopup?.show()
-                            val goodDialog = GoodDialog()
-//                                goodDialog.setOtherInfo(otherId, otherProfileImage, talkId, otherType)
-//                                goodDialog.show(supportFragmentManager, AppKeyValue.instance.tagInterestDlg)
-                        }
+//                        if (gender == "F") {
+//                            customPopup = CustomPopup(
+//                                this,
+//                                getString(R.string.interest_express),
+//                                getString(R.string.popup_interest_title),
+//                                R.drawable.main_navi_ideal_on,
+//                                object : CustomDialogInterface {
+//                                    override fun onCancel(v: View) {
+//                                        customPopupDismiss()
+//                                    }
+//
+//                                    override fun onConfirm(v: View) {
+//                                        val intent = Intent(v.context, InterestActivity::class.java)
+//                                        intent.putExtra(
+//                                            AppKeyValue.instance.goodOtherId,
+//                                            otherId
+//                                        )
+//                                        intent.putExtra(
+//                                            AppKeyValue.instance.goodOtherProfileImage,
+//                                            otherProfileImage
+//                                        )
+//                                        intent.putExtra(
+//                                            AppKeyValue.instance.goodOtherTalkId,
+//                                            talkId
+//                                        )
+//                                        intent.putExtra(
+//                                            AppKeyValue.instance.goodOtherType,
+//                                            otherType
+//                                        )
+//                                        startActivity(intent)
+//                                        customPopupDismiss()
+//                                    }
+//                                })
+//                            customPopup?.popupVM?.let { it1 ->
+//                                it1.positiveText.value = "보내기"
+//                                it1.negativeText.value = "취소"
+//                            }
+//                            customPopup?.show()
+//
+//                        } else {
+                            mPresenter.checkPass(id, AppKeyValue.instance.itemIdGood)
+//
+//                        }
                     }
                 }
             })
@@ -464,23 +425,23 @@ class ProfileActivity : BaseActivity(), ProfileContract.View {
                         intent.putExtra(AppKeyValue.instance.talkTitleAge, otherAge)
                         startActivity(intent)
                     } else {
-                        if (gender == "F") {
-                            val talkId = tv_act_profile_talk_id.text.toString()
-                            val intent = Intent(this, TalkActivity::class.java)
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                            intent.putExtra(AppKeyValue.instance.talkMbNo, mbNo)
-                            intent.putExtra(AppKeyValue.instance.talkOtherId, otherId)
-                            intent.putExtra(AppKeyValue.instance.talkOtherTalkId, talkId)
-                            /*    상단 타이틀정보    */
-                            intent.putExtra(AppKeyValue.instance.talkTitleName, talkId)
-                            intent.putExtra(AppKeyValue.instance.talkTitleArea, otherArea)
-                            intent.putExtra(AppKeyValue.instance.talkTitleAge, otherAge)
-                            startActivity(intent)
-                        } else {
+//                        if (gender == "F") {
+//                            val talkId = tv_act_profile_talk_id.text.toString()
+//                            val intent = Intent(this, TalkActivity::class.java)
+//                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//                            intent.putExtra(AppKeyValue.instance.talkMbNo, mbNo)
+//                            intent.putExtra(AppKeyValue.instance.talkOtherId, otherId)
+//                            intent.putExtra(AppKeyValue.instance.talkOtherTalkId, talkId)
+//                            /*    상단 타이틀정보    */
+//                            intent.putExtra(AppKeyValue.instance.talkTitleName, talkId)
+//                            intent.putExtra(AppKeyValue.instance.talkTitleArea, otherArea)
+//                            intent.putExtra(AppKeyValue.instance.talkTitleAge, otherAge)
+//                            startActivity(intent)
+//                        } else {
                             ll_act_profile_progress.visibility = View.VISIBLE
 //                            mPresenter.getItemCheck(id, AppKeyValue.instance.itemIdTalk)
                             mPresenter.checkPass(id, AppKeyValue.instance.itemIdTalk)
-                        }
+//                        }
                     }
                 }
             })
@@ -562,15 +523,16 @@ class ProfileActivity : BaseActivity(), ProfileContract.View {
                     DialogInterface.OnClickListener { dialog, which -> })
             }
 
-            itemUseCheck || (gender == "F" && gender != otherGender) || position == 0 -> {
+//            itemUseCheck || (gender == "F" && gender != otherGender) || position == 0 -> {
+            itemUseCheck || (gender != otherGender) || position == 0 -> {
                 val intent = Intent(this, ImageDetailActivity::class.java)
                 intent.putExtra(AppKeyValue.instance.profileDetailOtherId, otherId)
                 intent.putExtra(AppKeyValue.instance.profileDetailTalkId, talkId)
                 intent.putExtra(AppKeyValue.instance.profileDetailImagePosition, position)
                 intent.putExtra(AppKeyValue.instance.profileDetailImage, dataImg)
-                if (gender != "F") {
+//                if (gender != "F") {
                     intent.putExtra(AppKeyValue.instance.profileDetailItemCheck, itemUseCheck)
-                }
+//                }
                 intent.putExtra(AppKeyValue.instance.profileMbNo, mbNo)
                 intent.putExtra(AppKeyValue.instance.profileDetailOtherArea, otherArea)
                 intent.putExtra(AppKeyValue.instance.profileDetailOtherAge, otherAge)
@@ -950,18 +912,13 @@ class ProfileActivity : BaseActivity(), ProfileContract.View {
 
                             override fun onConfirm(v: View) {
                                 if (type == AppKeyValue.instance.itemIdGood) {
-                                    val talkId = tv_act_profile_talk_id.text.toString()
-                                    val goodDialog = GoodDialog()
-                                    goodDialog.setOtherInfo(
-                                        otherId,
-                                        otherProfileImage,
-                                        talkId,
-                                        otherType
-                                    )
-                                    goodDialog.show(
-                                        supportFragmentManager,
-                                        AppKeyValue.instance.tagGoodDlg
-                                    )
+                                    val intent = Intent(this@ProfileActivity, GoodActivity::class.java)
+                                    intent.putExtra(AppKeyValue.instance.goodOtherId, otherId)
+                                    intent.putExtra(AppKeyValue.instance.goodOtherProfileImage, otherProfileImage)
+                                    intent.putExtra(AppKeyValue.instance.goodOtherTalkId, talkId)
+                                    intent.putExtra(AppKeyValue.instance.goodOtherType, otherType)
+                                    startActivity(intent)
+
                                 } else {
                                     ll_act_profile_progress.visibility = View.VISIBLE
                                     mPresenter.setItemUse(v.context, id, itemId, mbNo, otherId)
@@ -1074,7 +1031,9 @@ class ProfileActivity : BaseActivity(), ProfileContract.View {
             }
 
             override fun onCancel(v: View) {
-
+                val intent = Intent(this@ProfileActivity,MainActivity::class.java)
+                intent.putExtra(AppKeyValue.instance.goToMarket, true)
+                startActivity(intent)
             }
         })
         popup.popupVM.negativeText.value = "1개월 이용권\n구매하기"

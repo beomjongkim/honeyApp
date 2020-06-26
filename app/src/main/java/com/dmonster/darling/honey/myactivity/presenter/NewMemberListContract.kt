@@ -16,7 +16,7 @@ interface NewMemberListContract {
 
         fun setTalkCheck(result: String?, roomNo: String?)    // 채팅방여부 확인
 
-        fun setItemCheckComplete(result: String?)    // 아이템 보유 확인
+        fun setItemCheckComplete(type: String?,result: String?)    // 아이템 보유 확인
 
         fun setItemCheckFailed(error: String?)    // 아이템 보유 확인 호출실패
 
@@ -25,6 +25,8 @@ interface NewMemberListContract {
         fun setTalkComplete()    // 톡하기(채팅방으로 이동)
 
         fun setTalkFailed(error: String?)    // 톡하기 호출실패
+
+        fun setPassNeed()
     }
 
     interface Presenter: BasePresenter<View> {
@@ -35,6 +37,8 @@ interface NewMemberListContract {
         fun getTalkCheck(id: String?, otherId: String?)    // 채팅방여부 확인
 
         fun getItemCheck(id: String?, itemId: String?)    // 아이템 보유 확인
+
+        fun checkPass(id: String?, itemId: String?)
 
         fun setItemUse(id: String?, itemId: String?, mbNo: String?, otherId: String?)    // 아이템 사용
 

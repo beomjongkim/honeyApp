@@ -1,6 +1,8 @@
 package com.dmonster.darling.honey.talk.presenter
 
 import android.net.Uri
+import com.dmonster.darling.honey.point.data.CheckFreePassData
+import com.dmonster.darling.honey.point.model.ItemModel
 import com.dmonster.darling.honey.servicecenter.data.AppInfoData
 import com.dmonster.darling.honey.talk.data.TalkData
 import com.dmonster.darling.honey.talk.model.TalkModel
@@ -59,23 +61,27 @@ class TalkPresenter: TalkContract.Presenter {
 
     /*    아이템 확인    */
     override fun getItemCheck(id: String?, itemId: String?) {
-        val subscriber = object: DisposableObserver<ResultItem<String>>() {
+        val subscriber = object: DisposableObserver<ResultItem<CheckFreePassData>>() {
             override fun onComplete() {
 
             }
 
             override fun onError(e: Throwable) {
-                mView.setItemCheckFailed(e.message)
+                mView.setItemCheckComplete("N")
                 e.printStackTrace()
             }
 
-            override fun onNext(item: ResultItem<String>) {
+            override fun onNext(item: ResultItem<CheckFreePassData>) {
                 item.let { it ->
-                    mView.setItemCheckComplete(it.item)
+                    if(item.isSuccess){
+                        mView.setItemCheckComplete("Y")
+                    }else{
+                        mView.setItemCheckComplete("N")
+                    }
                 }
             }
         }
-        mModel.requestItemCheck(id, itemId, subscriber)
+        ItemModel().check_own_freepass(id, subscriber)
         subscription.add(subscriber)
     }
 

@@ -177,7 +177,7 @@
 
     <string name="main_refresh">자동</string>
     <string name="main_jumpup_complete_title">점프업 완료!!</string>
-    <string name="main_jumpup_complete">점프업을 완료했습니다! \n\n이제 다른 회원분들을 살펴보러 가실래요?\n\n자기야는 현재 모든 기능이 무료입니다.</string>
+    <string name="main_jumpup_complete">점프업을 완료했습니다! \n\n이제 다른 회원분들을 살펴보러 가실래요?</string>
     <string name="msg_main_dormant">계정 휴면 하시겠습니까?</string>
     <string name="msg_main_dormant_clear">계정 휴면상태입니다.\n계정 휴면을 해제하시겠습니까?</string>
     <string name="msg_main_dormant_complete">계정 휴면이 완료되었습니다.</string>
@@ -397,8 +397,8 @@
     <string name="msg_profile_item_look">프로필 열람권</string>
     <string name="msg_profile_item_talk">톡하기 이용권</string>
     <string name="app_intorduce">커플 중매앱 자기야</string>
-    <string name="msg_profile_look_item_use"> 님의 프로필을 열람하세요!!\n\n무.제.한.무.료\n프로필 열람 이벤트 중!!</string>
-    <string name="msg_profile_talk_item_use"> 님과의 톡하기!!\n나이스 초이스!!\n\n \'자기야\'는 현재 \'톡하기\' 무제한 무료 이벤트 기간입니다.\n 화이팅 하세요!!</string>
+    <string name="msg_profile_look_item_use"> 님의 프로필을 열람하세요!!</string>
+    <string name="msg_profile_talk_item_use"> 님과의 톡하기!!\n나이스 초이스!!\n\n 회원님을 응원합니다!!</string>
     <string name="msg_profile_love_item_use">%s를 이용하시겠습니까?</string>
     <string name="msg_freepass_description">[프로필열람/관심있어요/톡하기]</string>
 

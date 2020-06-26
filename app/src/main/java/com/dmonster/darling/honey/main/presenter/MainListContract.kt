@@ -32,6 +32,7 @@ interface MainListContract {
         fun setTalkComplete()    // 톡하기(채팅방으로 이동)
 
         fun setTalkFailed(error: String?)    // 톡하기 호출실패
+        fun setPassNeed()
     }
 
     interface Presenter: BasePresenter<View> {
@@ -48,6 +49,8 @@ interface MainListContract {
         fun getItemCheck(id: String?, itemId: String?)    // 아이템 보유 확인
 
         fun setItemUse(context: Context, id: String?, itemId: String?, mbNo: String?, otherId: String?)    // 아이템 사용
+
+        fun checkPass(id: String?,itemId: String?)
     }
 
 }

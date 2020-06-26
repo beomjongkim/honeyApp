@@ -24,6 +24,7 @@ import com.dmonster.darling.honey.myactivity.view.MyActMainFragment
 import com.dmonster.darling.honey.myinformation.view.MyProfileActivity
 import com.dmonster.darling.honey.notice.view.NoticeActivity
 import com.dmonster.darling.honey.option.view.OptionFragment
+import com.dmonster.darling.honey.point.view.PointFragment
 import com.dmonster.darling.honey.talk.view.TalkActivity
 import com.dmonster.darling.honey.util.AppKeyValue
 import com.dmonster.darling.honey.util.ServerApi
@@ -156,10 +157,9 @@ class MainActivity : BaseActivity(){
             }
         }
 
-//        if (!profileState) {
-//            fab_act_main_logout.visibility = View.VISIBLE
-//        }
-
+        if(intent.getBooleanExtra(AppKeyValue.instance.goToMarket,false)){
+            fragmentReplace(fragMarket)
+        }
     }
 
 
@@ -275,7 +275,7 @@ class MainActivity : BaseActivity(){
         when (idx) {
             fragMain -> newFragment = MainFragment()
 
-            fragMarket -> newFragment = ItemMainFragment()
+            fragMarket -> newFragment = PointFragment()
 
             fragIdeal -> newFragment = NewMemberFragment()
 

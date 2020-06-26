@@ -1,6 +1,7 @@
 package com.dmonster.darling.honey.talk.view
 
 import android.animation.ValueAnimator
+import android.app.Activity
 import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
@@ -10,14 +11,20 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.text.TextUtils
+import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import androidx.annotation.NonNull
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dmonster.darling.honey.R
+import com.dmonster.darling.honey.ads.viewmodel.RewardVM
 import com.dmonster.darling.honey.base.BaseActivity
+import com.dmonster.darling.honey.customview.CustomDialogInterface
+import com.dmonster.darling.honey.customview.CustomPopup
 import com.dmonster.darling.honey.dialog.ItemTalkDialog
 import com.dmonster.darling.honey.main.view.MainActivity
+import com.dmonster.darling.honey.point.model.ItemModel
 import com.dmonster.darling.honey.profile.view.ProfileActivity
 import com.dmonster.darling.honey.talk.data.TalkData
 import com.dmonster.darling.honey.talk.presenter.TalkContract
@@ -27,11 +34,16 @@ import com.dmonster.darling.honey.util.AppKeyValue
 import com.dmonster.darling.honey.util.common.EventBus
 import com.dmonster.darling.honey.util.Utility
 import com.dmonster.darling.honey.util.common.SoftKeyboard
+import com.dmonster.darling.honey.util.retrofit.ResultItem
+import com.google.android.gms.ads.rewarded.RewardItem
+import com.google.android.gms.ads.rewarded.RewardedAdCallback
 import com.jakewharton.rxbinding2.view.RxView
 import gun0912.tedbottompicker.TedBottomPicker
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.observers.DisposableObserver
 import io.reactivex.rxkotlin.addTo
 import kotlinx.android.synthetic.main.activity_talk.*
+import kotlinx.android.synthetic.main.fragment_my_act_new_member.*
 import java.util.concurrent.TimeUnit
 
 class TalkActivity : BaseActivity(), TalkContract.View {
@@ -39,6 +51,7 @@ class TalkActivity : BaseActivity(), TalkContract.View {
     private lateinit var disposeBag: CompositeDisposable
     private lateinit var mPresenter: TalkContract.Presenter
     private lateinit var mAdapter: TalkAdapter
+    private lateinit var rewardVM : RewardVM
 
     private var viewLayoutManager: androidx.recyclerview.widget.RecyclerView.LayoutManager? = null
     private var softkeyboard: SoftKeyboard? = null
@@ -127,6 +140,51 @@ class TalkActivity : BaseActivity(), TalkContract.View {
 
         val keyboard = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
         softkeyboard = SoftKeyboard(cl_act_talk_layout, keyboard)
+
+        rewardVM = RewardVM(this)
+        rewardVM.adCallback = object : RewardedAdCallback() {
+
+            override fun onRewardedAdOpened() {
+                // Ad opened.
+                Log.d("TalkActivity", "Ad opened.")
+            }
+
+            override fun onRewardedAdClosed() {
+                // Ad closed.
+                Log.d("TalkActivity", "Ad closed.")
+            }
+
+            override fun onUserEarnedReward(@NonNull reward: RewardItem) {
+                ll_act_talk_progress.visibility = View.VISIBLE
+                // User earned reward.
+                val subscriber = object : DisposableObserver<ResultItem<String>>() {
+                    override fun onComplete() {
+                        ll_act_talk_progress.visibility = View.GONE
+                    }
+
+                    override fun onError(e: Throwable) {
+                        ll_act_talk_progress.visibility = View.GONE
+                    }
+
+                    override fun onNext(item: ResultItem<String>) {
+                        item.let { it ->
+                            if (it.isSuccess) {
+                                Utility.instance.showToast(this@TalkActivity, "성공적으로 이용권을 구매하였습니다.")
+                            }
+                        }
+                        ll_act_talk_progress.visibility = View.GONE
+                    }
+                }
+                ItemModel().buyItem(id, 1, subscriber)
+                Log.d("TalkActivity", "User earned reward.")
+            }
+
+            override fun onRewardedAdFailedToShow(errorCode: Int) {
+                // Ad failed to display.
+                Log.d("TalkActivity", "Ad failed to display.")
+            }
+        }
+
     }
 
     private fun setListener() {
@@ -311,11 +369,11 @@ class TalkActivity : BaseActivity(), TalkContract.View {
                                         }
                                     }
 
-                                    if (gender == "F") {
-                                        mPresenter.setSendTalk(id, otherId, "", imageUri)
-                                    } else {
+//                                    if (gender == "F") {
+//                                        mPresenter.setSendTalk(id, otherId, "", imageUri)
+//                                    } else {
                                         mPresenter.getItemCheck(id, AppKeyValue.instance.itemIdTalk)
-                                    }
+//                                    }
                                 }
                             })
                     }
@@ -372,11 +430,11 @@ class TalkActivity : BaseActivity(), TalkContract.View {
                         }
                     }
 
-                    if (gender == "F") {
-                        mPresenter.setSendTalk(id, otherId, talkMessage, null)
-                    } else {
+//                    if (gender == "F") {
+//                        mPresenter.setSendTalk(id, otherId, talkMessage, null)
+//                    } else {
                         mPresenter.getItemCheck(id, AppKeyValue.instance.itemIdTalk)
-                    }
+//                    }
                     et_act_talk_content.text = null
                 }
             })
@@ -504,19 +562,24 @@ class TalkActivity : BaseActivity(), TalkContract.View {
 
             "N" -> {
                 mAdapter.removeItem(mAdapter.itemCount.minus(1))
-                Utility.instance.showTwoButtonAlert(
-                    this,
-                    resources.getString(R.string.app_name),
-                    String.format(
-                        resources.getString(R.string.msg_profile_item),
-                        resources.getString(R.string.msg_profile_item_talk)
-                    ),
-                    DialogInterface.OnClickListener { dialog, which ->
-                        if (which == DialogInterface.BUTTON_POSITIVE) {
-                            val talkDialog = ItemTalkDialog()
-                            talkDialog.show(supportFragmentManager, AppKeyValue.instance.tagItemTalkDlg)
+                this.let {
+                    val popup = CustomPopup(this, "이용권 구매", "이용권을 구매해서 아래 기능을 마음껏 이용해보세요!\n" +getString(R.string.msg_freepass_description), R.drawable.ic_talk_vivid, object: CustomDialogInterface{
+                        override fun onConfirm(v: View) {
+                            if (rewardVM.rewardedAd.isLoaded) {
+                                rewardVM.rewardedAd.show(it, rewardVM.adCallback)
+                            }
+                        }
+
+                        override fun onCancel(v: View) {
+                            val intent = Intent(it,MainActivity::class.java)
+                            intent.putExtra(AppKeyValue.instance.goToMarket, true)
+                            startActivity(intent)
                         }
                     })
+                    popup.popupVM.negativeText.value = "1개월 이용권\n구매하기"
+                    popup.popupVM.positiveText.value = "광고 시청 후\n이용권 받기"
+                    popup.show()
+                }
             }
         }
     }

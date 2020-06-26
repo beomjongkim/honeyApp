@@ -5,6 +5,8 @@ import android.net.Uri
 import com.dmonster.darling.honey.main.data.MainListData
 import com.dmonster.darling.honey.main.model.MainListModel
 import com.dmonster.darling.honey.notice.data.NoticeData
+import com.dmonster.darling.honey.point.data.CheckFreePassData
+import com.dmonster.darling.honey.point.model.ItemModel
 import com.dmonster.darling.honey.talk.data.TalkData
 import com.dmonster.darling.honey.util.AppKeyValue
 import com.dmonster.darling.honey.util.retrofit.BaseItem
@@ -183,6 +185,31 @@ class MainListPresenter: MainListContract.Presenter {
         mModel.requestItemCheck(id, itemId, subscriber)
         subscription.add(subscriber)
     }
+
+    override fun checkPass(id: String?,itemId: String?) {
+        val subscriber = object: DisposableObserver<ResultItem<CheckFreePassData>>() {
+            override fun onComplete() {
+
+            }
+
+            override fun onError(e: Throwable) {
+                mView.setPassNeed()
+                e.printStackTrace()
+            }
+
+            override fun onNext(item: ResultItem<CheckFreePassData>) {
+                item.let { it ->
+                    if(it.isSuccess)
+                        mView.setItemUseComplete(itemId,"Y")
+                    else
+                        mView.setPassNeed()
+                }
+            }
+        }
+        ItemModel().check_own_freepass(id,  subscriber)
+        subscription.add(subscriber)
+    }
+
 
     /*    아이템 사용    */
     override fun setItemUse(context: Context, id: String?, itemId: String?, mbNo: String?, otherId: String?) {

@@ -79,24 +79,23 @@ class PointViewModel(
 
             override fun onRewardedAdOpened() {
                 // Ad opened.
-                activity.let { Utility.instance.showToast(it, "Ad opened.") }
+                Log.d("RewardVM", "Ad opened.")
             }
 
             override fun onRewardedAdClosed() {
                 // Ad closed.
-                activity.let { Utility.instance.showToast(it, "Ad closed.") }
+                Log.d("RewardVM", "Ad closed.")
             }
 
             override fun onUserEarnedReward(@NonNull reward: RewardItem) {
                 // User earned reward.
-
                 activity.let { buyItem(1, it) }
                 Log.d("RewardVM", "User earned reward.")
             }
 
             override fun onRewardedAdFailedToShow(errorCode: Int) {
                 // Ad failed to display.
-                activity.let { Utility.instance.showToast(it, "Ad failed to display.") }
+                Log.d("RewardVM", "Ad failed to display.")
             }
         }
         if (user_nick.isNullOrEmpty()) {
@@ -258,7 +257,7 @@ class PointViewModel(
                     } else {
                         Utility.instance.showToast(context, "보유 포인트가 모자랍니다.")
                         if (itemCode == 2) {
-                            setReservePopup(50,context)
+                            setReservePopup(5000,context)
                         }
                         reservePaymentPopup.show()
                     }

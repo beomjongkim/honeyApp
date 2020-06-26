@@ -32,6 +32,7 @@ import com.dmonster.darling.honey.util.Utility
 import com.dmonster.darling.honey.util.common.EventBus
 import com.jakewharton.rxbinding2.view.RxView
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.fragment_main.*
 import java.util.*
 import java.util.concurrent.TimeUnit
@@ -185,23 +186,7 @@ class MainFragment : BaseFragment(), MainListContract.View {
                 }
             })
 
-        /*    내 프로필 위로 올리기    */
-//        disposeBag.add(RxView.clicks(tv_frag_main_refresh)
-//                .throttleFirst(1, TimeUnit.SECONDS)
-//                .subscribe {
-//                    activity?.let { it1 ->
-//                        dormantState = Utility.instance.UserData().getUserDormant() == AppKeyValue.instance.keyYes
-//                        profileState = Utility.instance.UserData().getUserProfile() == AppKeyValue.instance.keyYes
-//                        when {
-//                            dormantState -> setDormantDialog()
-//                            profileState -> {
-//                                ll_frag_main_progress.visibility = View.VISIBLE
-//                                mPresenter.setRefreshList(id)
-//                            }
-//                            else -> setProfileDialog()
-//                        }
-//                    }
-//                })
+
 
         /*    프로필    */
         mAdapter.itemClick = itemClickListener()
@@ -445,7 +430,8 @@ class MainFragment : BaseFragment(), MainListContract.View {
                     startActivity(intent)
                 } else {
                     ll_frag_main_progress.visibility = View.VISIBLE
-                    mPresenter.getItemCheck(id, AppKeyValue.instance.itemIdTalk)
+//                    mPresenter.getItemCheck(id, AppKeyValue.instance.itemIdTalk)
+                    mPresenter.checkPass(id,AppKeyValue.instance.itemIdTalk)
                 }
             }
         }
@@ -540,6 +526,26 @@ class MainFragment : BaseFragment(), MainListContract.View {
     override fun setTalkFailed(error: String?) {
         ll_frag_main_progress.visibility = View.GONE
         context?.let { Utility.instance.showToast(it, error) }
+    }
+
+    override fun setPassNeed() {
+        ll_frag_main_progress.visibility = View.GONE
+        context?.let {
+            val popup = CustomPopup(it, "이용권 구매", "이용권을 구매해서 아래 기능을 마음껏 이용해보세요!\n" +getString(R.string.msg_freepass_description), R.drawable.ic_talk_vivid, object: CustomDialogInterface{
+                override fun onConfirm(v: View) {
+                    val intent = Intent(it,MainActivity::class.java)
+                    intent.putExtra(AppKeyValue.instance.goToMarket, true)
+                    startActivity(intent)
+                }
+
+                override fun onCancel(v: View) {
+
+                }
+            })
+            popup.popupVM.positiveText.value = "구매하러 가기"
+            popup.show()
+        }
+
     }
 
     /*    회원정보 입력    */

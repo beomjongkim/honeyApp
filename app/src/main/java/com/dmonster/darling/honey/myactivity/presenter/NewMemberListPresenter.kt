@@ -4,6 +4,8 @@ import android.net.Uri
 import com.dmonster.darling.honey.myactivity.data.MemberData
 import com.dmonster.darling.honey.myactivity.data.SpouseAreaData
 import com.dmonster.darling.honey.myactivity.model.MyActModel
+import com.dmonster.darling.honey.point.data.CheckFreePassData
+import com.dmonster.darling.honey.point.model.ItemModel
 import com.dmonster.darling.honey.talk.data.TalkData
 import com.dmonster.darling.honey.util.retrofit.ResultItem
 import com.dmonster.darling.honey.util.retrofit.ResultListItem
@@ -117,11 +119,35 @@ class NewMemberListPresenter: NewMemberListContract.Presenter {
 
             override fun onNext(item: ResultItem<String>) {
                 item.let { it ->
-                    mView.setItemCheckComplete(it.item)
+                    mView.setItemCheckComplete(it.item, itemId)
                 }
             }
         }
         mModel.requestItemCheck(id, itemId, subscriber)
+        subscription.add(subscriber)
+    }
+
+    override fun checkPass(id: String?, itemId: String?) {
+        val subscriber = object: DisposableObserver<ResultItem<CheckFreePassData>>() {
+            override fun onComplete() {
+
+            }
+
+            override fun onError(e: Throwable) {
+                mView.setPassNeed()
+                e.printStackTrace()
+            }
+
+            override fun onNext(item: ResultItem<CheckFreePassData>) {
+                item.let { it ->
+                    if(it.isSuccess)
+                        mView.setItemCheckComplete("Y",itemId)
+                    else
+                        mView.setPassNeed()
+                }
+            }
+        }
+        ItemModel().check_own_freepass(id,  subscriber)
         subscription.add(subscriber)
     }
 

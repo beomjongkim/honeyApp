@@ -207,6 +207,7 @@ class AppKeyValue {
     val findID = "findID"
     val findPW = "findPW"
     val requestFindIDPW = 3000
+    val goToMarket = "goToMarket"
 
     val noMoreSeePromotion = "noMoreSeePromotion"
 
