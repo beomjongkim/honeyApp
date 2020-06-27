@@ -1,25 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".profile.view.ImageDetailActivity">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <RelativeLayout
+    <data>
+        <variable
+            name="bannerVM"
+            type="com.dmonster.darling.honey.ads.viewmodel.BannerVM" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
+        android:layout_height="match_parent"
+        tools:context=".profile.view.ImageDetailActivity">
         <com.dmonster.darling.honey.customview.CustomToolBar
-            android:id="@+id/ctb_act_image_detail_toolbar"
-            android:layout_width="match_parent"
+            android:id="@+id/ctb_act_image_detail"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            />
+
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_above="@+id/rl_act_image_detail_bottom_layout"
-            android:layout_below="@id/ctb_act_image_detail_toolbar"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/rl_act_image_detail_bottom_layout"
+            app:layout_constraintTop_toBottomOf="@id/ctb_act_image_detail"
             android:background="@color/color_black">
 
             <!-- 이미지 -->
@@ -48,12 +60,13 @@
                 android:layout_centerVertical="true"
                 android:background="@drawable/image_detail_next_btn" />
         </RelativeLayout>
-
         <RelativeLayout
             android:id="@+id/rl_act_image_detail_bottom_layout"
-            android:layout_width="match_parent"
+            android:layout_width="0dp"
             android:layout_height="@dimen/default_margin_50dp"
-            android:layout_alignParentBottom="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:background="@color/color_image_detail_bottom">
 
             <!-- 신고하기 -->
@@ -68,9 +81,9 @@
                 android:layout_marginBottom="@dimen/default_margin_10dp"
                 android:background="@color/color_image_detail_notify"
                 android:gravity="center"
-                android:textSize="@dimen/text_large"
                 android:text="@string/profile_notify"
                 android:textColor="@color/color_white"
+                android:textSize="@dimen/text_large"
                 tools:ignore="SpUsage" />
 
             <!-- 톡하기 -->
@@ -90,6 +103,18 @@
                 tools:ignore="SpUsage" />
         </RelativeLayout>
 
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/bn_act_image_detail"
+            setAdListener="@{bannerVM.adListener}"
+            setAdRequest="@{bannerVM.adRequest}"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:visibility="@{bannerVM.hasPass? View.GONE : View.VISIBLE}"
+            app:adSize="BANNER"
+            app:adUnitId="@string/banner_id"
+            app:layout_constraintBottom_toTopOf="@id/rl_act_image_detail_bottom_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
         <!-- 프로그래스바 -->
         <LinearLayout
             android:id="@+id/ll_act_image_detail_progress"
@@ -104,5 +129,5 @@
                 android:layout_width="@dimen/progress_size"
                 android:layout_height="@dimen/progress_size" />
         </LinearLayout>
-    </RelativeLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

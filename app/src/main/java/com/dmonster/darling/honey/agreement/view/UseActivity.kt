@@ -5,12 +5,18 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import android.view.View
+import androidx.databinding.DataBindingUtil
 import com.dmonster.darling.honey.R
+import com.dmonster.darling.honey.ads.viewmodel.BannerVM
 import com.dmonster.darling.honey.agreement.data.UseData
 import com.dmonster.darling.honey.agreement.presenter.UseContract
 import com.dmonster.darling.honey.agreement.presenter.UsePresenter
 import com.dmonster.darling.honey.agreement.view.adapter.UseAdapter
 import com.dmonster.darling.honey.base.BaseActivity
+import com.dmonster.darling.honey.databinding.ActivityServiceCenterBinding
+import com.dmonster.darling.honey.databinding.ActivityUseBinding
+import com.dmonster.darling.honey.util.AppKeyValue
+import com.dmonster.darling.honey.util.Utility
 import kotlinx.android.synthetic.main.activity_use.*
 
 class UseActivity : BaseActivity(), UseContract.View {
@@ -22,8 +28,11 @@ class UseActivity : BaseActivity(), UseContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_use)
-
+//        setContentView(R.layout.activity_use)
+        val binding : ActivityUseBinding = DataBindingUtil.setContentView(this,R.layout.activity_use)
+        binding.bannerVM =
+            BannerVM(Utility.instance.getPref(this, AppKeyValue.instance.savePrefID), lifecycle)
+        binding.lifecycleOwner = this
         init()
     }
 

@@ -1,4 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <variable
+            name="bannerVM"
+            type="com.dmonster.darling.honey.ads.viewmodel.BannerVM" />
+        <import type="android.view.View" />
+    </data>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -388,5 +395,17 @@
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/bn_act_talk"
+            setAdListener="@{bannerVM.adListener}"
+            setAdRequest="@{bannerVM.adRequest}"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_alignBottom="@+id/rv_act_talk_list"
+            android:visibility="@{bannerVM.hasPass? View.GONE : View.VISIBLE}"
+            app:adSize="BANNER"
+            app:adUnitId="@string/banner_id" />
     </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

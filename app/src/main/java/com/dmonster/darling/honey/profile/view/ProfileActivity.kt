@@ -267,9 +267,7 @@ class ProfileActivity : BaseActivity(), ProfileContract.View {
                         } else {
                             ll_act_profile_progress.visibility = View.VISIBLE
 //                            if (itemUseCheck || (gender == "F" && gender != otherGender)) {
-                            if (itemUseCheck || (gender != otherGender)){
-                            mPresenter.getProfile(this, id, mbNo)
-                            } else if (gender == otherGender) {
+                           if (gender == otherGender) {
                                 ll_act_profile_progress.visibility = View.GONE
                                 Utility.instance.showAlert(
                                     this,
@@ -285,31 +283,6 @@ class ProfileActivity : BaseActivity(), ProfileContract.View {
             }?.let { disposeBag.add(it) }
         }
 
-        /*    메인이미지    */
-//        disposeBag.add(RxView.clicks(civ_act_profile_image)
-//                .throttleFirst(1, TimeUnit.SECONDS)
-//                .subscribe {
-//                    if(gender == otherGender) {
-//                        Utility.instance.showAlert(this, resources.getString(R.string.app_name), resources.getString(R.string.msg_profile_error_good), DialogInterface.OnClickListener { dialog, which -> })
-//                    }
-//                    else {
-//                        val talkId = tv_act_profile_talk_id.text.toString()
-//                        val dataImg = mAdapter.dataImg
-//
-//                        val intent = Intent(this, ImageDetailActivity::class.java)
-//                        intent.putExtra(AppKeyValue.instance.profileDetailOtherId, otherId)
-//                        intent.putExtra(AppKeyValue.instance.profileDetailTalkId, talkId)
-//                        intent.putExtra(AppKeyValue.instance.profileDetailImagePosition, 0)
-//                        intent.putExtra(AppKeyValue.instance.profileDetailImage, dataImg)
-//                        if(gender != "F") {
-//                            intent.putExtra(AppKeyValue.instance.profileDetailItemCheck, itemUseCheck)
-//                        }
-//                        intent.putExtra(AppKeyValue.instance.profileMbNo, mbNo)
-//                        intent.putExtra(AppKeyValue.instance.profileDetailOtherArea, otherArea)
-//                        intent.putExtra(AppKeyValue.instance.profileDetailOtherAge, otherAge)
-//                        startActivity(intent)
-//                    }
-//                })
 
 //        차단하기, 신고하기
         disposeBag.add(RxView.clicks(btn_act_profile_three_dot)
@@ -524,14 +497,14 @@ class ProfileActivity : BaseActivity(), ProfileContract.View {
             }
 
 //            itemUseCheck || (gender == "F" && gender != otherGender) || position == 0 -> {
-            itemUseCheck || (gender != otherGender) || position == 0 -> {
+           (gender != otherGender) || position == 0 -> {
                 val intent = Intent(this, ImageDetailActivity::class.java)
                 intent.putExtra(AppKeyValue.instance.profileDetailOtherId, otherId)
                 intent.putExtra(AppKeyValue.instance.profileDetailTalkId, talkId)
                 intent.putExtra(AppKeyValue.instance.profileDetailImagePosition, position)
                 intent.putExtra(AppKeyValue.instance.profileDetailImage, dataImg)
 //                if (gender != "F") {
-                    intent.putExtra(AppKeyValue.instance.profileDetailItemCheck, itemUseCheck)
+                intent.putExtra(AppKeyValue.instance.profileDetailItemCheck, itemUseCheck)
 //                }
                 intent.putExtra(AppKeyValue.instance.profileMbNo, mbNo)
                 intent.putExtra(AppKeyValue.instance.profileDetailOtherArea, otherArea)
@@ -667,11 +640,11 @@ class ProfileActivity : BaseActivity(), ProfileContract.View {
         }
         mAdapter.notifyDataSetChanged()
 
-        itemUseCheck = AppKeyValue.instance.keyYes == itemUse
-        if (itemUseCheck) {
-            ll_act_profile_progress.visibility = View.VISIBLE
-            mPresenter.getProfile(this, this.id, mbNo)
-        }
+//        itemUseCheck = AppKeyValue.instance.keyYes == itemUse
+//        if (itemUseCheck) {
+//            ll_act_profile_progress.visibility = View.VISIBLE
+//            mPresenter.getProfile(this, this.id, mbNo)
+//        }
 
         mPresenter.getTalkCheck(this.id, otherId)
     }
@@ -819,7 +792,6 @@ class ProfileActivity : BaseActivity(), ProfileContract.View {
 
         ll_act_profile_progress.visibility = View.GONE
 
-        itemUseCheck = true
         mAdapter.setBlurView(false)
     }
 
@@ -871,6 +843,7 @@ class ProfileActivity : BaseActivity(), ProfileContract.View {
         var title: String = ""
         var imgId: Int = -1
         var talkId : String? = tv_act_profile_talk_id.text.toString()
+        itemUseCheck =true
         when (result) {
             "Y" -> {
                 when (type) {
@@ -1021,6 +994,7 @@ class ProfileActivity : BaseActivity(), ProfileContract.View {
     }
 
     override fun setPassNeed() {
+        itemUseCheck = false
         ll_act_profile_progress.visibility = View.GONE
 
         val popup = CustomPopup(this, "이용권 구매", "이용권을 구매해서 아래 기능을 마음껏 이용해보세요!\n" +getString(R.string.msg_freepass_description), R.drawable.ic_talk_vivid, object: CustomDialogInterface{

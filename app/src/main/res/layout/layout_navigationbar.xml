@@ -21,14 +21,14 @@
 
         <com.google.android.gms.ads.AdView
             xmlns:ads="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/kakao_banner"
+            android:id="@+id/bn_layout_navi"
             android:layout_width="0dp"
             android:layout_height="50dp"
             setAdRequest="@{bannerVM.adRequest}"
             setAdListener="@{bannerVM.adListener}"
             android:visibility="@{bannerVM.hasPass? View.GONE : View.VISIBLE}"
             ads:adSize="BANNER"
-            ads:adUnitId="ca-app-pub-3940256099942544/6300978111"
+            ads:adUnitId="@string/banner_id"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -46,7 +46,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/kakao_banner"
+            app:layout_constraintTop_toBottomOf="@id/bn_layout_navi"
             app:layout_constraintWidth_percent="0.11"  />
 
         <!-- 상점 -->
@@ -118,7 +118,7 @@
             android:visibility="@{naviVM.countTotal > 0 ? View.VISIBLE : View.GONE}"
             app:layout_constraintBottom_toBottomOf="@+id/iv_layout_navi_me"
             app:layout_constraintEnd_toEndOf="@id/iv_layout_navi_me"
-            app:layout_constraintTop_toBottomOf="@id/kakao_banner"
+            app:layout_constraintTop_toBottomOf="@id/bn_layout_navi"
             app:layout_constraintVertical_bias="0.18"
             tools:ignore="SpUsage" />
 

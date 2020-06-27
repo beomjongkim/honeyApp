@@ -79,6 +79,7 @@
 -keepclassmembers class com.dmonster.darling.honey.option.data.SimpleMyInfoData** {*;}
 -keepclassmembers class com.dmonster.darling.honey.profile.data.ProfilePictureData** {*;}
 
+-keep class androidx.renderscript** { *; }
 
 -keep public class * implements com.bumptech.glide.module.GlideModule
 -keep public class * extends com.bumptech.glide.module.AppGlideModule

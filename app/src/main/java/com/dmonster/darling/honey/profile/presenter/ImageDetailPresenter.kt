@@ -3,6 +3,8 @@ package com.dmonster.darling.honey.profile.presenter
 import android.content.Context
 import android.net.Uri
 import com.dmonster.darling.honey.R
+import com.dmonster.darling.honey.point.data.CheckFreePassData
+import com.dmonster.darling.honey.point.model.ItemModel
 import com.dmonster.darling.honey.profile.data.ProfileDetailData
 import com.dmonster.darling.honey.profile.data.ProfilePictureData
 import com.dmonster.darling.honey.profile.model.GoodModel
@@ -85,23 +87,27 @@ class ImageDetailPresenter: ImageDetailContract.Presenter {
 
     /*    아이템 보유 확인    */
     override fun getItemCheck(id: String?, itemId: String?) {
-        val subscriber = object: DisposableObserver<ResultItem<String>>() {
+        val subscriber = object: DisposableObserver<ResultItem<CheckFreePassData>>() {
             override fun onComplete() {
 
             }
 
             override fun onError(e: Throwable) {
-                mView.setItemUseFailed(e.message)
+                mView.setItemUseComplete(itemId, "N")
                 e.printStackTrace()
             }
 
-            override fun onNext(item: ResultItem<String>) {
+            override fun onNext(item: ResultItem<CheckFreePassData>) {
                 item.let { it ->
-                    mView.setItemUseComplete(itemId, it.item)
+                    if(it.isSuccess){
+                        mView.setItemUseComplete(itemId, "Y")
+                    }else{
+                        mView.setItemUseComplete(itemId, "N")
+                    }
                 }
             }
         }
-        mModel.requestItemCheck(id, itemId, subscriber)
+        ItemModel().check_own_freepass(id, subscriber)
         subscription.add(subscriber)
     }
 

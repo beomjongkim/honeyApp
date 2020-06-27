@@ -1,58 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".agreement.view.UseActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <RelativeLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+    <data>
 
-        <com.dmonster.darling.honey.customview.CustomToolBar
-            android:id="@+id/ctb_act_use_toolbar"
-            android:layout_width="match_parent"
+        <variable
+            name="bannerVM"
+            type="com.dmonster.darling.honey.ads.viewmodel.BannerVM" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".agreement.view.UseActivity">
+
+        <RelativeLayout
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.dmonster.darling.honey.customview.CustomToolBar
+                android:id="@+id/ctb_act_use_toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true" />
+
+            <!-- 목록 -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_act_use_list"
+                style="@style/RecyclerViewTheme"
+                android:layout_below="@+id/ctb_act_use_toolbar"
+                tools:listitem="@layout/item_use" />
+
+            <!-- 목록없음 -->
+            <TextView
+                android:id="@+id/tv_act_use_content"
+                style="@style/baseTextViewStyle"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_below="@+id/ctb_act_use_toolbar"
+                android:gravity="center"
+                android:text="@string/msg_app_no_list"
+                android:textSize="@dimen/text_xxlarge"
+                android:visibility="gone"
+                tools:ignore="SpUsage" />
+
+            <!-- 프로그래스바 -->
+            <LinearLayout
+                android:id="@+id/ll_act_use_progress"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="true"
+                android:focusable="true"
+                android:gravity="center"
+                android:visibility="gone">
+
+                <ProgressBar
+                    android:layout_width="@dimen/progress_size"
+                    android:layout_height="@dimen/progress_size" />
+            </LinearLayout>
+        </RelativeLayout>
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/bn_act_use"
+            setAdListener="@{bannerVM.adListener}"
+            setAdRequest="@{bannerVM.adRequest}"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_alignParentTop="true" />
-
-        <!-- 목록 -->
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_act_use_list"
-            style="@style/RecyclerViewTheme"
-            android:layout_below="@+id/ctb_act_use_toolbar"
-            tools:listitem="@layout/item_use" />
-
-        <!-- 목록없음 -->
-        <TextView
-            android:id="@+id/tv_act_use_content"
-            style="@style/baseTextViewStyle"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_below="@+id/ctb_act_use_toolbar"
-            android:gravity="center"
-            android:text="@string/msg_app_no_list"
-            android:textSize="@dimen/text_xxlarge"
-            android:visibility="gone"
-            tools:ignore="SpUsage" />
-
-        <!-- 프로그래스바 -->
-        <LinearLayout
-            android:id="@+id/ll_act_use_progress"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:clickable="true"
-            android:focusable="true"
-            android:gravity="center"
-            android:visibility="gone">
-
-            <ProgressBar
-                android:layout_width="@dimen/progress_size"
-                android:layout_height="@dimen/progress_size" />
-        </LinearLayout>
-    </RelativeLayout>
-</androidx.constraintlayout.widget.ConstraintLayout>
+            android:visibility="@{bannerVM.hasPass? View.GONE : View.VISIBLE}"
+            app:adSize="BANNER"
+            app:adUnitId="@string/banner_id"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -5,10 +5,13 @@ import android.util.Log
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.databinding.DataBindingUtil
 import com.dmonster.darling.honey.R
+import com.dmonster.darling.honey.ads.viewmodel.BannerVM
 import com.dmonster.darling.honey.alarm.presenter.AlarmContract
 import com.dmonster.darling.honey.alarm.presenter.AlarmPresenter
 import com.dmonster.darling.honey.base.BaseActivity
+import com.dmonster.darling.honey.databinding.ActivityAlarmBinding
 import com.dmonster.darling.honey.util.AppKeyValue
 import com.dmonster.darling.honey.util.Utility
 import com.jakewharton.rxbinding2.view.RxView
@@ -31,8 +34,11 @@ class AlarmActivity : BaseActivity(), CompoundButton.OnCheckedChangeListener, Vi
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_alarm)
-
+//        setContentView(R.layout.activity_alarm)
+        val binding : ActivityAlarmBinding = DataBindingUtil.setContentView(this,R.layout.activity_alarm)
+        binding.bannerVM =
+            BannerVM(Utility.instance.getPref(this, AppKeyValue.instance.savePrefID), lifecycle)
+        binding.lifecycleOwner = this
         init()
         setListener()
     }

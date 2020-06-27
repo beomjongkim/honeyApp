@@ -11,6 +11,7 @@
     </string>
     <string name="facebook_app_id">2267136000253752</string>
     <string name="fb_login_protocol_scheme">fb2267136000253752</string>
+    <string name="banner_id">ca-app-pub-3940256099942544/6300978111</string>
 
     <string name="app_channel_id">알림</string>
     <string name="app_phone_number">번호없음</string>

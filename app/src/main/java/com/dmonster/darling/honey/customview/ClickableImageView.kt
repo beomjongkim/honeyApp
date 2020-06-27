@@ -42,7 +42,6 @@ class ClickableImageView : androidx.appcompat.widget.AppCompatImageView {
                 MotionEvent.ACTION_UP -> {
                     v.scaleX = 1f
                     v.scaleY = 1f
-                    v.performClick()
                 }
             }
             false

@@ -8,9 +8,13 @@ import android.net.Uri
 import android.os.Bundle
 import androidx.core.app.ActivityCompat
 import android.view.View
+import androidx.databinding.DataBindingUtil
 import com.dmonster.darling.honey.R
+import com.dmonster.darling.honey.ads.viewmodel.BannerVM
 import com.dmonster.darling.honey.agreement.view.AgreementActivity
 import com.dmonster.darling.honey.base.BaseActivity
+import com.dmonster.darling.honey.databinding.ActivityMyInfoBinding
+import com.dmonster.darling.honey.databinding.ActivityServiceCenterBinding
 import com.dmonster.darling.honey.inquiry.view.InquiryMainActivity
 import com.dmonster.darling.honey.notice.view.NoticeActivity
 import com.dmonster.darling.honey.servicecenter.presenter.ServiceCenterContract
@@ -29,8 +33,11 @@ class ServiceCenterActivity: BaseActivity(), ServiceCenterContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_service_center)
-
+//        setContentView(R.layout.activity_service_center)
+        val binding : ActivityServiceCenterBinding = DataBindingUtil.setContentView(this,R.layout.activity_service_center)
+        binding.bannerVM =
+            BannerVM(Utility.instance.getPref(this, AppKeyValue.instance.savePrefID), lifecycle)
+        binding.lifecycleOwner = this
         init()
         setListener()
     }

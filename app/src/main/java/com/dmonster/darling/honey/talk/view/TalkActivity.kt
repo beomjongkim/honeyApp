@@ -15,13 +15,16 @@ import android.util.Log
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.annotation.NonNull
+import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.dmonster.darling.honey.R
+import com.dmonster.darling.honey.ads.viewmodel.BannerVM
 import com.dmonster.darling.honey.ads.viewmodel.RewardVM
 import com.dmonster.darling.honey.base.BaseActivity
 import com.dmonster.darling.honey.customview.CustomDialogInterface
 import com.dmonster.darling.honey.customview.CustomPopup
+import com.dmonster.darling.honey.databinding.ActivityTalkBinding
 import com.dmonster.darling.honey.dialog.ItemTalkDialog
 import com.dmonster.darling.honey.main.view.MainActivity
 import com.dmonster.darling.honey.point.model.ItemModel
@@ -66,11 +69,13 @@ class TalkActivity : BaseActivity(), TalkContract.View {
     private var imageUri: Uri? = null
     private var moreLayoutState: Boolean = false
     private var keyboardState: Boolean = false
+    private lateinit var binding : ActivityTalkBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_talk)
-
+//        setContentView(R.layout.activity_talk)
+        binding= DataBindingUtil.setContentView(this,R.layout.activity_talk)
+        setViewModel()
         init()
         setListener()
         setEventBusListener()
@@ -186,7 +191,11 @@ class TalkActivity : BaseActivity(), TalkContract.View {
         }
 
     }
-
+    private fun setViewModel(){
+        binding.bannerVM =
+            BannerVM(Utility.instance.getPref(this, AppKeyValue.instance.savePrefID), lifecycle)
+        binding.lifecycleOwner = this
+    }
     private fun setListener() {
         rv_act_talk_list.addOnScrollListener(object : androidx.recyclerview.widget.RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: androidx.recyclerview.widget.RecyclerView, newState: Int) {

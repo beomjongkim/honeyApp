@@ -8,12 +8,16 @@ import android.text.TextUtils
 import android.text.TextWatcher
 import android.view.View
 import android.widget.CheckBox
+import androidx.databinding.DataBindingUtil
 import com.dmonster.darling.honey.R
+import com.dmonster.darling.honey.ads.viewmodel.BannerVM
 import com.dmonster.darling.honey.base.BaseActivity
 import com.dmonster.darling.honey.customview.CustomArrayDialog
 import com.dmonster.darling.honey.customview.CustomDialogInterface
 import com.dmonster.darling.honey.customview.CustomPopup
 import com.dmonster.darling.honey.customview.DialogSelect
+import com.dmonster.darling.honey.databinding.ActivityBlockBinding
+import com.dmonster.darling.honey.databinding.ActivityMyInfoBinding
 import com.dmonster.darling.honey.dialog.DormantDialog
 import com.dmonster.darling.honey.dialog.SelectorMemberDialog
 import com.dmonster.darling.honey.dialog.WithdrawalDialog
@@ -58,8 +62,11 @@ class MyInfoActivity : BaseActivity(), MyInfoContract.View {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_my_info)
-
+//        setContentView(R.layout.activity_my_info)
+        val binding : ActivityMyInfoBinding = DataBindingUtil.setContentView(this,R.layout.activity_my_info)
+        binding.bannerVM =
+            BannerVM(Utility.instance.getPref(this, AppKeyValue.instance.savePrefID), lifecycle)
+        binding.lifecycleOwner = this
         init()
         setListener()
         setModifyMode()
