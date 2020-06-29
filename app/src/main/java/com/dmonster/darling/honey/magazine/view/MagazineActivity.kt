@@ -25,5 +25,8 @@ class MagazineActivity : BaseActivity() {
         binding.bannerVM = BannerVM(Utility.instance.getPref(this, AppKeyValue.instance.savePrefID),lifecycle)
         binding.magazineVM = MagazineVM(CustomAdapter(R.layout.item_magazine,this))
         binding.lifecycleOwner = this
+        binding.ctbActMagazine.setTitle("매거진")
     }
+
+
 }

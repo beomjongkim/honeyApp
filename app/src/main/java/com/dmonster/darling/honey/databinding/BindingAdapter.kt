@@ -181,6 +181,14 @@ object BindingAdapter {
             .into(view)
     }
 
+    @androidx.databinding.BindingAdapter("imgGlideStringSimple")
+    @JvmStatic
+    fun setImageViewSimpleString(view: ImageView, mPath: String?) {
+        Glide.with(view.context).load(mPath)
+            .apply(RequestOptions().placeholder(R.drawable.bg_color_white))
+            .into(view)
+    }
+
     @androidx.databinding.BindingAdapter("BaseEditRegexVM")
     @JvmStatic
     fun setEditRegexVM(editText: EditText, baseEditRegexVM: BaseEditRegexVM) {

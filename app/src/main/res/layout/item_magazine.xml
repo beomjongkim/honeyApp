@@ -4,6 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+        <import type="android.view.View"/>
         <variable
             name="magazineItemVM"
             type="com.dmonster.darling.honey.magazine.viewmodel.MagazineListItemVM" />
@@ -11,7 +12,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:onClick="@{(v)->magazineItemVM.onClickItem(v)}"
+        >
 
         <ImageView
             android:id="@+id/iv_item_magazine_platform"
@@ -22,7 +25,7 @@
             android:layout_marginTop="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/naver_icon" />
+            imgGlideSrcSimple="@{magazineItemVM.drawableId}" />
 
         <TextView
             android:id="@+id/tv_item_magazine_title"
@@ -31,7 +34,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:theme="@style/baseTextViewTitleStyle"
-            android:text="자기야 네이버 블로그"
+            android:text="@{magazineItemVM.platform}"
             app:layout_constraintBottom_toBottomOf="@+id/iv_item_magazine_platform"
             app:layout_constraintStart_toEndOf="@+id/iv_item_magazine_platform"
             app:layout_constraintTop_toTopOf="@+id/iv_item_magazine_platform" />
@@ -41,23 +44,28 @@
             android:theme="@style/baseTextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:visibility="@{magazineItemVM.link.length() >0 ? View.VISIBLE : View.GONE}"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
+            android:onClick="@{(v)->magazineItemVM.onClickContentLink(v)}"
             android:background="@drawable/bg_btn_yellow"
             android:textColor="@color/color_white"
-            android:text="블로그 가기"
+            android:text="@{magazineItemVM.goTo}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/iv_item_magazine_platform" />
 
         <ImageView
             android:id="@+id/iv_act_magazine_thumnail"
+            imgGlideUrl="@{magazineItemVM.thumnail}"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_height="0dp"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@id/tv_act_magazine_title"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_percent="0.65"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/btn_act_magazine_go"
-            app:srcCompat="@drawable/good_image04_btn" />
+            app:layout_constraintTop_toBottomOf="@+id/btn_act_magazine_go" />
 
         <TextView
             android:id="@+id/tv_act_magazine_title"
@@ -65,13 +73,22 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:text="새로 좋은글 - [고민은 10분을 넘기지마라]"
+            android:layout_marginBottom="8dp"
+            android:text="@{magazineItemVM.title}"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/iv_act_magazine_thumnail" />
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <View
+            android:id="@+id/dv_item_magazine"
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:background="?android:attr/listDivider"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

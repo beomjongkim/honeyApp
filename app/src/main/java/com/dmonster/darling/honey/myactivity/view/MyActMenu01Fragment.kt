@@ -18,12 +18,16 @@ import com.dmonster.darling.honey.myactivity.data.TalkListData
 import com.dmonster.darling.honey.myactivity.presenter.TalkListContract
 import com.dmonster.darling.honey.myactivity.presenter.TalkListPresenter
 import com.dmonster.darling.honey.myactivity.view.adapter.TalkListAdapter
+import com.dmonster.darling.honey.point.data.CheckFreePassData
+import com.dmonster.darling.honey.point.model.ItemModel
 import com.dmonster.darling.honey.talk.view.TalkActivity
 import com.dmonster.darling.honey.util.AppKeyValue
 import com.dmonster.darling.honey.util.common.EventBus
 import com.dmonster.darling.honey.util.Utility
+import com.dmonster.darling.honey.util.retrofit.ResultItem
 import com.jakewharton.rxbinding2.view.RxView
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.observers.DisposableObserver
 import io.reactivex.rxkotlin.addTo
 import kotlinx.android.synthetic.main.fragment_my_act_talk.*
 import java.util.concurrent.TimeUnit
@@ -160,27 +164,46 @@ class MyActMenu01Fragment: BaseFragment(), TalkListContract.View {
     }
 
     private fun itemClickListener() = View.OnClickListener {
-        val position = it.tag.toString().toInt()
-        mAdapter.data[position].apply {
-            val roomNo = idx
-            val mbNo = mbNo
-            val otherId = mbId
-            val talkId = mbNick
-            val area = mbAddr1
-            val age = mbAge
-            this.notRead = "0"
+        var model = ItemModel()
+        val subscription = CompositeDisposable()
+        var subscriber = object :DisposableObserver<ResultItem<CheckFreePassData>>(){
+            override fun onComplete() {
+            }
 
-            val intent = Intent(context, TalkActivity::class.java)
-            intent.putExtra(AppKeyValue.instance.talkRoomNo, roomNo)
-            intent.putExtra(AppKeyValue.instance.talkMbNo, mbNo)
-            intent.putExtra(AppKeyValue.instance.talkOtherId, otherId)
-            intent.putExtra(AppKeyValue.instance.talkOtherTalkId, talkId)
-            /*    상단 타이틀정보    */
-            intent.putExtra(AppKeyValue.instance.talkTitleName, talkId)
-            intent.putExtra(AppKeyValue.instance.talkTitleArea, area)
-            intent.putExtra(AppKeyValue.instance.talkTitleAge, age)
-            context?.startActivity(intent)
+            override fun onNext(t: ResultItem<CheckFreePassData>) {
+                if(t.isSuccess){
+                    val position = it.tag.toString().toInt()
+                    mAdapter.data[position].apply {
+                        val roomNo = idx
+                        val mbNo = mbNo
+                        val otherId = mbId
+                        val talkId = mbNick
+                        val area = mbAddr1
+                        val age = mbAge
+                        this.notRead = "0"
+
+                        val intent = Intent(context, TalkActivity::class.java)
+                        intent.putExtra(AppKeyValue.instance.talkRoomNo, roomNo)
+                        intent.putExtra(AppKeyValue.instance.talkMbNo, mbNo)
+                        intent.putExtra(AppKeyValue.instance.talkOtherId, otherId)
+                        intent.putExtra(AppKeyValue.instance.talkOtherTalkId, talkId)
+                        /*    상단 타이틀정보    */
+                        intent.putExtra(AppKeyValue.instance.talkTitleName, talkId)
+                        intent.putExtra(AppKeyValue.instance.talkTitleArea, area)
+                        intent.putExtra(AppKeyValue.instance.talkTitleAge, age)
+                        context?.startActivity(intent)
+                    }
+                }else{
+
+                }
+            }
+
+            override fun onError(e: Throwable) {
+            }
+
         }
+        model.check_own_freepass(context?.let { it1 -> Utility.instance.getPref(it1,AppKeyValue.instance.savePrefID) },subscriber)
+        subscription.add(subscriber)
     }
 
     /*    톡하기 목록    */

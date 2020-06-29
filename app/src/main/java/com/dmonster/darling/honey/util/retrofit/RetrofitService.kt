@@ -13,6 +13,7 @@ import com.dmonster.darling.honey.block_friends.data.ContactData
 import com.dmonster.darling.honey.join.data.JoinData
 import com.dmonster.darling.honey.login.data.FindIDPWData
 import com.dmonster.darling.honey.login.data.LoginData
+import com.dmonster.darling.honey.magazine.data.MagazineData
 import com.dmonster.darling.honey.main.data.BannerData
 import com.dmonster.darling.honey.main.data.MainListData
 import com.dmonster.darling.honey.main.data.NaviData
@@ -752,4 +753,10 @@ interface RetrofitService {
         @Field("name") name: String?,
         @Field("price") price: Int?
         ): Observable<ResultItem<String>>
+
+    @FormUrlEncoded
+    @POST("api/base.php")
+    fun readMagazine(
+        @Field("method") method: String?
+    ): Observable<ResultListItem<MagazineData>>
 }

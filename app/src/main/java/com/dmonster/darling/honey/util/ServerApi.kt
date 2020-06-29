@@ -78,4 +78,5 @@ class ServerApi {
     val readPoint = "point/read" //포인트 이용 내역 가져오기
     val reservePayment = "user/reserve_payment"
     val buyItem = "user/buy_item"//이용권 구매하기.
+    val readMagazine = "magazine/read"//매거진 내역 불러오기
 }
