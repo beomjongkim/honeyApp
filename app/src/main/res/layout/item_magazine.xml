@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="magazineItemVM"
+            type="com.dmonster.darling.honey.magazine.viewmodel.MagazineListItemVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/iv_item_magazine_platform"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginLeft="16dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/naver_icon" />
+
+        <TextView
+            android:id="@+id/tv_item_magazine_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:theme="@style/baseTextViewTitleStyle"
+            android:text="자기야 네이버 블로그"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_item_magazine_platform"
+            app:layout_constraintStart_toEndOf="@+id/iv_item_magazine_platform"
+            app:layout_constraintTop_toTopOf="@+id/iv_item_magazine_platform" />
+
+        <Button
+            android:id="@+id/btn_act_magazine_go"
+            android:theme="@style/baseTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:background="@drawable/bg_btn_yellow"
+            android:textColor="@color/color_white"
+            android:text="블로그 가기"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv_item_magazine_platform" />
+
+        <ImageView
+            android:id="@+id/iv_act_magazine_thumnail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btn_act_magazine_go"
+            app:srcCompat="@drawable/good_image04_btn" />
+
+        <TextView
+            android:id="@+id/tv_act_magazine_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginRight="8dp"
+            android:text="새로 좋은글 - [고민은 10분을 넘기지마라]"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv_act_magazine_thumnail" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

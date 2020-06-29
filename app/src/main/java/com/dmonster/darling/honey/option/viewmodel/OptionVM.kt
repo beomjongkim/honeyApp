@@ -16,9 +16,9 @@ import com.dmonster.darling.honey.block_friends.view.BlockFriendsActivity
 import com.dmonster.darling.honey.customview.CustomDialogInterface
 import com.dmonster.darling.honey.customview.CustomPopup
 import com.dmonster.darling.honey.dialog.DormantClearDialog
-import com.dmonster.darling.honey.dialog.WithdrawalDialog
 import com.dmonster.darling.honey.information.view.MyInfoActivity
 import com.dmonster.darling.honey.inquiry.view.InquiryMainActivity
+import com.dmonster.darling.honey.magazine.view.MagazineActivity
 import com.dmonster.darling.honey.point.view.ItemUseActivity
 import com.dmonster.darling.honey.myinformation.view.MyProfileActivity
 import com.dmonster.darling.honey.notice.view.NoticeActivity
@@ -211,13 +211,13 @@ class OptionVM(var fragmentManager: FragmentManager, lifecycle: Lifecycle, val i
     }
 
 
-    fun onClickWithdrawal(view: View) {
+    fun onClickMagazine(view: View) {
         dormantState = Utility.instance.UserData().getUserDormant() == AppKeyValue.instance.keyYes
         when {
             dormantState -> setDormantDialog()
             else -> {
-                val withdrawalDialog = WithdrawalDialog()
-                withdrawalDialog.show(fragmentManager, AppKeyValue.instance.tagWithdrawalDlg)
+                val intent = Intent(view.context, MagazineActivity::class.java)
+                startActivity(view.context, intent, null)
             }
         }
     }

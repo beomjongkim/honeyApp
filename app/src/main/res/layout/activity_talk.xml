@@ -401,7 +401,7 @@
             setAdListener="@{bannerVM.adListener}"
             setAdRequest="@{bannerVM.adRequest}"
             android:layout_width="match_parent"
-            android:layout_height="50dp"
+            android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/rv_act_talk_list"
             android:visibility="@{bannerVM.hasPass? View.GONE : View.VISIBLE}"
             app:adSize="BANNER"

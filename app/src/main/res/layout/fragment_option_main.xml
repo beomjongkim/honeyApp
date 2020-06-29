@@ -356,13 +356,17 @@
 
 
         <com.dmonster.darling.honey.customview.ClickableImageView
-            android:id="@+id/iv_option_main_withdrawal"
-            android:layout_width="@dimen/default_margin_0dp"
+            android:id="@+id/iv_option_main_magazine"
+            srcClickable="@{@drawable/ic_magazine}"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:onClick="@{(v)->optionVM.onClickWithdrawal(v)}"
-            srcClickable="@{@drawable/main_menu04_withdrawal_img}"
-            android:visibility="gone"
-            app:layout_constraintRight_toRightOf="@id/iv_option_main_service_center"
+            android:onClick="@{(v)->optionVM.onClickMagazine(v)}"
+            android:adjustViewBounds="true"
+            android:clickable="true"
+            android:focusable="true"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_option_main_logout"
+            app:layout_constraintEnd_toEndOf="@id/iv_option_main_service_center"
+            app:layout_constraintStart_toStartOf="@+id/iv_option_main_service_center"
             app:layout_constraintTop_toTopOf="@+id/iv_option_main_logout" />
 
         <com.dmonster.darling.honey.customview.ClickableImageView

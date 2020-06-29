@@ -4,7 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
+        <import type="android.view.View"/>
+        <variable
+            name="bannerVM"
+            type="com.dmonster.darling.honey.ads.viewmodel.BannerVM" />
         <variable
             name="certifyVM"
             type="com.dmonster.darling.honey.myinformation.viewmodel.MarriageCertVM" />
@@ -1349,5 +1352,18 @@
                 android:layout_width="@dimen/progress_size"
                 android:layout_height="@dimen/progress_size" />
         </LinearLayout>
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/bn_act_profile"
+            setAdListener="@{bannerVM.adListener}"
+            setAdRequest="@{bannerVM.adRequest}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_alignBottom="@+id/rv_act_talk_list"
+            android:visibility="@{bannerVM.hasPass? View.GONE : View.VISIBLE}"
+            app:adSize="BANNER"
+            app:adUnitId="@string/banner_id" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

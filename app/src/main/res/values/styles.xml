@@ -211,4 +211,9 @@
         <item name="android:textSize">@dimen/text_large</item>
         <item name="android:textColor">@color/color_text_main</item>
     </style>
+
+    <style name="buttonYellowStyle" parent="android:Widget.Button">
+        <item name="background">@drawable/bg_btn_yellow</item>
+        <item name="android:textColor">@color/color_white</item>
+    </style>>
 </resources>

@@ -18,6 +18,7 @@ import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.dmonster.darling.honey.R
+import com.dmonster.darling.honey.ads.viewmodel.BannerVM
 import com.dmonster.darling.honey.ads.viewmodel.RewardVM
 import com.dmonster.darling.honey.base.BaseActivity
 import com.dmonster.darling.honey.customview.CustomDialogInterface
@@ -91,6 +92,8 @@ class ProfileActivity : BaseActivity(), ProfileContract.View {
 
     private fun setViewModel() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_profile)
+        binding.bannerVM =
+            BannerVM(Utility.instance.getPref(this, AppKeyValue.instance.savePrefID), lifecycle)
         binding.certifyVM = MarriageCertVM().also {
             it.setFragmentManager(supportFragmentManager)
         }

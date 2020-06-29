@@ -27,26 +27,32 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning,Instantiatable">
-        <activity android:name=".intro.view.SlideActivity"
+        <activity android:name=".magazine.view.MagazineActivity"></activity>
+        <activity
+            android:name=".intro.view.SlideActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".block_friends.view.BlockFriendsActivity"
+        <activity
+            android:name=".block_friends.view.BlockFriendsActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.FACTORY_TEST" />
             </intent-filter>
         </activity>
-        <activity android:name=".test.view.TestActivity"
+        <activity
+            android:name=".test.view.TestActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.FACTORY_TEST" />
             </intent-filter>
         </activity>
-        <activity android:name=".join.view.SocialJoinActivity"
+        <activity
+            android:name=".join.view.SocialJoinActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.FACTORY_TEST" />
@@ -72,7 +78,6 @@
                 <action android:name="android.intent.action.FACTORY_TEST" />
             </intent-filter>
         </activity>
-
         <activity
             android:name=".login.view.LoginEmailActivity"
             android:screenOrientation="portrait">
@@ -218,7 +223,8 @@
             android:value="@string/facebook_app_id" />
         <meta-data
             android:name="com.google.android.gms.ads.APPLICATION_ID"
-            android:value="ca-app-pub-1643323183206572~7913155282"/>
+            android:value="ca-app-pub-1643323183206572~7913155282" />
+
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
