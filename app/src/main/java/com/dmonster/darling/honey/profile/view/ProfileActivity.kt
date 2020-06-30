@@ -1,5 +1,6 @@
 package com.dmonster.darling.honey.profile.view
 
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Color
@@ -93,7 +94,7 @@ class ProfileActivity : BaseActivity(), ProfileContract.View {
     private fun setViewModel() {
         binding = DataBindingUtil.setContentView(this, R.layout.activity_profile)
         binding.bannerVM =
-            BannerVM(Utility.instance.getPref(this, AppKeyValue.instance.savePrefID), lifecycle)
+            BannerVM(Utility.instance.getPref(this, AppKeyValue.instance.savePrefID), lifecycle,this)
         binding.certifyVM = MarriageCertVM().also {
             it.setFragmentManager(supportFragmentManager)
         }
@@ -500,7 +501,7 @@ class ProfileActivity : BaseActivity(), ProfileContract.View {
             }
 
 //            itemUseCheck || (gender == "F" && gender != otherGender) || position == 0 -> {
-           (gender != otherGender) || position == 0 -> {
+         position == 0  -> {
                 val intent = Intent(this, ImageDetailActivity::class.java)
                 intent.putExtra(AppKeyValue.instance.profileDetailOtherId, otherId)
                 intent.putExtra(AppKeyValue.instance.profileDetailTalkId, talkId)
@@ -517,7 +518,6 @@ class ProfileActivity : BaseActivity(), ProfileContract.View {
 
             else -> {
                 ll_act_profile_progress.visibility = View.VISIBLE
-//                mPresenter.getItemCheck(id, AppKeyValue.instance.itemIdProfile)
                 mPresenter.checkPass(id, AppKeyValue.instance.itemIdProfile)
             }
         }
@@ -1026,5 +1026,11 @@ class ProfileActivity : BaseActivity(), ProfileContract.View {
 
     fun customPopupDismiss() {
         customPopup?.dismiss()
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val pref = getSharedPreferences("Pref", Context.MODE_PRIVATE)
+        itemUseCheck = pref.getBoolean(AppKeyValue.instance.hasFreePass, false) == true
     }
 }

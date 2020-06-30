@@ -193,7 +193,7 @@ class TalkActivity : BaseActivity(), TalkContract.View {
     }
     private fun setViewModel(){
         binding.bannerVM =
-            BannerVM(Utility.instance.getPref(this, AppKeyValue.instance.savePrefID), lifecycle)
+            BannerVM(Utility.instance.getPref(this, AppKeyValue.instance.savePrefID), lifecycle,this)
         binding.lifecycleOwner = this
     }
     private fun setListener() {

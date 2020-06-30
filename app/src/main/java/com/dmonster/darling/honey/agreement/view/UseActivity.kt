@@ -31,7 +31,7 @@ class UseActivity : BaseActivity(), UseContract.View {
 //        setContentView(R.layout.activity_use)
         val binding : ActivityUseBinding = DataBindingUtil.setContentView(this,R.layout.activity_use)
         binding.bannerVM =
-            BannerVM(Utility.instance.getPref(this, AppKeyValue.instance.savePrefID), lifecycle)
+            BannerVM(Utility.instance.getPref(this, AppKeyValue.instance.savePrefID), lifecycle,this)
         binding.lifecycleOwner = this
         init()
     }

@@ -14,8 +14,13 @@
     tools:context=".information.view.MyInfoActivity">
 
     <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bn_act_my_info"
+        >
 
         <com.dmonster.darling.honey.customview.CustomToolBar
             android:id="@+id/ctb_act_my_info_toolbar"
@@ -589,16 +594,7 @@
                     tools:ignore="SpUsage" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
-        <com.google.android.gms.ads.AdView
-            android:id="@+id/bn_act_my_info"
-            setAdListener="@{bannerVM.adListener}"
-            setAdRequest="@{bannerVM.adRequest}"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:visibility="@{bannerVM.hasPass? View.GONE : View.VISIBLE}"
-            app:adSize="BANNER"
-            app:adUnitId="@string/banner_id"
-            android:layout_above="@id/btn_act_my_info_complete" />
+
         <!-- 수정완료 -->
         <Button
             android:id="@+id/btn_act_my_info_complete"
@@ -626,5 +622,17 @@
                 android:layout_height="@dimen/progress_size" />
         </LinearLayout>
     </RelativeLayout>
+    <com.google.android.gms.ads.AdView
+        android:id="@+id/bn_act_my_info"
+        setAdListener="@{bannerVM.adListener}"
+        setAdRequest="@{bannerVM.adRequest}"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:visibility="@{bannerVM.hasPass? View.GONE : View.VISIBLE}"
+        app:adSize="BANNER"
+        app:adUnitId="@string/banner_id"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

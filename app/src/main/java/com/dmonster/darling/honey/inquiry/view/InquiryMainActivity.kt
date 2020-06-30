@@ -5,8 +5,12 @@ import android.os.Handler
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Button
+import androidx.databinding.DataBindingUtil
 import com.dmonster.darling.honey.R
+import com.dmonster.darling.honey.ads.viewmodel.BannerVM
 import com.dmonster.darling.honey.base.BaseActivity
+import com.dmonster.darling.honey.databinding.ActivityInquiryMainBinding
+import com.dmonster.darling.honey.databinding.FragmentMyInfoMainBinding
 import com.dmonster.darling.honey.util.AppKeyValue
 import com.dmonster.darling.honey.util.Utility
 import com.dmonster.darling.honey.util.common.EventBus
@@ -27,8 +31,10 @@ class InquiryMainActivity: BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_inquiry_main)
-
+        val binding : ActivityInquiryMainBinding = DataBindingUtil.setContentView(this,R.layout.activity_inquiry_main)
+        binding.bannerVM =
+            BannerVM(Utility.instance.getPref(this, AppKeyValue.instance.savePrefID), lifecycle, this)
+        binding.lifecycleOwner = this
         init()
         setListener()
         setEventBusListener()

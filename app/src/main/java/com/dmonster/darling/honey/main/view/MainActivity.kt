@@ -82,7 +82,7 @@ class MainActivity : BaseActivity(){
             mb_id,
             lifecycle
         )
-        binding.bannerVM = BannerVM(mb_id,lifecycle)
+        binding.bannerVM = BannerVM(mb_id,lifecycle,this)
         binding.lifecycleOwner = this
         binding.naviVM?.fragmentReplace(fragMain)
     }

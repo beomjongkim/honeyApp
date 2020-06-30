@@ -30,7 +30,7 @@ class NoticeActivity: BaseActivity(), NoticeContract.View {
 //        setContentView(R.layout.activity_notice)
         val binding : ActivityNoticeBinding = DataBindingUtil.setContentView(this,R.layout.activity_notice)
         binding.bannerVM =
-            BannerVM(Utility.instance.getPref(this, AppKeyValue.instance.savePrefID), lifecycle)
+            BannerVM(Utility.instance.getPref(this, AppKeyValue.instance.savePrefID), lifecycle,this)
         binding.lifecycleOwner = this
         init()
     }

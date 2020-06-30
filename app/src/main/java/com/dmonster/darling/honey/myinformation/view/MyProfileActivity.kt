@@ -2,8 +2,13 @@ package com.dmonster.darling.honey.myinformation.view
 
 import android.os.Bundle
 import android.widget.Button
+import androidx.databinding.DataBindingUtil
 import com.dmonster.darling.honey.R
+import com.dmonster.darling.honey.ads.viewmodel.BannerVM
 import com.dmonster.darling.honey.base.BaseActivity
+import com.dmonster.darling.honey.databinding.ActivityNoticeBinding
+import com.dmonster.darling.honey.databinding.FragmentMyInfoMainBinding
+import com.dmonster.darling.honey.util.AppKeyValue
 import com.dmonster.darling.honey.util.Utility
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_my_info_main.*
@@ -19,12 +24,17 @@ class MyProfileActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val binding : FragmentMyInfoMainBinding = DataBindingUtil.setContentView(this,R.layout.fragment_my_info_main)
+        binding.bannerVM =
+            BannerVM(Utility.instance.getPref(this, AppKeyValue.instance.savePrefID), lifecycle, this)
+        binding.lifecycleOwner = this
         init()
+
     }
 
 
     private fun init() {
-        setContentView(R.layout.fragment_my_info_main)
+//        setContentView(R.layout.fragment_my_info_main)
         disposeBag = CompositeDisposable()
         ctb_frag_my_info_main.setTitle(getString(R.string.my_profile_title))
 

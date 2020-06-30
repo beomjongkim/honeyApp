@@ -7,6 +7,7 @@ import android.view.View
 import androidx.annotation.NonNull
 import androidx.lifecycle.LifecycleObserver
 import androidx.lifecycle.ViewModel
+import com.dmonster.darling.honey.R
 import com.dmonster.darling.honey.point.model.ItemModel
 import com.dmonster.darling.honey.point.viewmodel.PointViewModel
 import com.dmonster.darling.honey.util.Utility
@@ -20,7 +21,7 @@ import com.google.android.gms.ads.rewarded.RewardedAdLoadCallback
 import io.reactivex.observers.DisposableObserver
 
 class RewardVM(var activity : Activity) : ViewModel() , LifecycleObserver {
-    var rewardedAd = RewardedAd(activity,"ca-app-pub-3940256099942544/5224354917")
+    var rewardedAd = RewardedAd(activity,activity.getString(R.string.rewardAd_id))
     var model : ItemModel
     lateinit var adCallback : RewardedAdCallback
     init {

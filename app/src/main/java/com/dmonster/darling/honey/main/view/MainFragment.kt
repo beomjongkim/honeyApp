@@ -416,23 +416,23 @@ class MainFragment : BaseFragment(), MainListContract.View {
             }
 
             "N" -> {
-                if (gender == "F") {
-                    val intent = Intent(context, TalkActivity::class.java)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                    intent.putExtra(AppKeyValue.instance.talkRoomNo, roomNo)
-                    intent.putExtra(AppKeyValue.instance.talkMbNo, mbNo)
-                    intent.putExtra(AppKeyValue.instance.talkOtherId, otherId)
-                    intent.putExtra(AppKeyValue.instance.talkOtherTalkId, talkId)
-                    /*    상단 타이틀정보    */
-                    intent.putExtra(AppKeyValue.instance.talkTitleName, talkId)
-                    intent.putExtra(AppKeyValue.instance.talkTitleArea, otherArea)
-                    intent.putExtra(AppKeyValue.instance.talkTitleAge, otherAge)
-                    startActivity(intent)
-                } else {
+//                if (gender == "F") {
+//                    val intent = Intent(context, TalkActivity::class.java)
+//                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+//                    intent.putExtra(AppKeyValue.instance.talkRoomNo, roomNo)
+//                    intent.putExtra(AppKeyValue.instance.talkMbNo, mbNo)
+//                    intent.putExtra(AppKeyValue.instance.talkOtherId, otherId)
+//                    intent.putExtra(AppKeyValue.instance.talkOtherTalkId, talkId)
+//                    /*    상단 타이틀정보    */
+//                    intent.putExtra(AppKeyValue.instance.talkTitleName, talkId)
+//                    intent.putExtra(AppKeyValue.instance.talkTitleArea, otherArea)
+//                    intent.putExtra(AppKeyValue.instance.talkTitleAge, otherAge)
+//                    startActivity(intent)
+//                } else {
                     ll_frag_main_progress.visibility = View.VISIBLE
 //                    mPresenter.getItemCheck(id, AppKeyValue.instance.itemIdTalk)
                     mPresenter.checkPass(id,AppKeyValue.instance.itemIdTalk)
-                }
+//                }
             }
         }
     }

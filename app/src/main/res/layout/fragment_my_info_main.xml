@@ -1,40 +1,63 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                                   xmlns:app="http://schemas.android.com/apk/res-auto"
-                                                   xmlns:tools="http://schemas.android.com/tools"
-                                                   android:layout_width="match_parent"
-                                                   android:layout_height="match_parent"
-                                                   tools:context=".myinformation.view.MyProfileActivity">
-    <com.dmonster.darling.honey.customview.CustomToolBar
-        android:id="@+id/ctb_frag_my_info_main"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        />
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <FrameLayout
-        android:id="@+id/fl_frag_my_info_main_content_layout"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/ctb_frag_my_info_main" />
+    <data>
+        <import type="android.view.View" />
 
-    <LinearLayout
+        <variable
+            name="bannerVM"
+            type="com.dmonster.darling.honey.ads.viewmodel.BannerVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:clickable="true"
-        android:focusable="true"
-        android:gravity="center"
-        android:visibility="gone">
+        tools:context=".myinformation.view.MyProfileActivity">
 
-        <ProgressBar
-            android:layout_width="@dimen/progress_size"
-            android:layout_height="@dimen/progress_size" />
-    </LinearLayout>
+        <com.dmonster.darling.honey.customview.CustomToolBar
+            android:id="@+id/ctb_frag_my_info_main"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <FrameLayout
+            android:id="@+id/fl_frag_my_info_main_content_layout"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/bn_act_my_info"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ctb_frag_my_info_main" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:clickable="true"
+            android:focusable="true"
+            android:gravity="center"
+            android:visibility="gone">
+
+            <ProgressBar
+                android:layout_width="@dimen/progress_size"
+                android:layout_height="@dimen/progress_size" />
+        </LinearLayout>
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/bn_act_my_info"
+            setAdListener="@{bannerVM.adListener}"
+            setAdRequest="@{bannerVM.adRequest}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:visibility="@{bannerVM.hasPass? View.GONE : View.VISIBLE}"
+            app:adSize="BANNER"
+            app:adUnitId="@string/banner_id"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

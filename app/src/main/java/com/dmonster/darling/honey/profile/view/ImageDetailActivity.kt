@@ -174,7 +174,7 @@ class ImageDetailActivity : BaseActivity(), ImageDetailContract.View {
 
     private fun setViewModel() {
         binding.bannerVM =
-            BannerVM(Utility.instance.getPref(this, AppKeyValue.instance.savePrefID), lifecycle)
+            BannerVM(Utility.instance.getPref(this, AppKeyValue.instance.savePrefID), lifecycle,this)
         binding.lifecycleOwner = this
         rewardVM = RewardVM(this)
         rewardVM.adCallback = object : RewardedAdCallback() {

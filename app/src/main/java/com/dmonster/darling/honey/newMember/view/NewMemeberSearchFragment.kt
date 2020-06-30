@@ -1,6 +1,7 @@
 package com.dmonster.darling.honey.newMember.view
 
 import android.app.Activity
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Rect
@@ -45,7 +46,7 @@ class NewMemeberSearchFragment : BaseFragment(), NewMemberListContract.View {
     private lateinit var disposeBag: CompositeDisposable
     private lateinit var mPresenter: NewMemberListContract.Presenter
     private lateinit var mAdapter: NewMemberAdapter
-    private lateinit var rewardVM : RewardVM
+    private lateinit var rewardVM: RewardVM
 
     private var viewLayoutManager: androidx.recyclerview.widget.RecyclerView.LayoutManager? = null
     private var id: String? = null
@@ -139,7 +140,12 @@ class NewMemeberSearchFragment : BaseFragment(), NewMemberListContract.View {
                     override fun onNext(item: ResultItem<String>) {
                         item.let { it ->
                             if (it.isSuccess) {
-                                context?.let { it1 -> Utility.instance.showToast(it1, "성공적으로 이용권을 구매하였습니다.") }
+                                context?.let { it1 ->
+                                    Utility.instance.showToast(
+                                        it1,
+                                        "성공적으로 이용권을 구매하였습니다."
+                                    )
+                                }
                             }
                         }
                         ll_frag_my_act_new_member_progress.visibility = View.GONE
@@ -236,31 +242,50 @@ class NewMemeberSearchFragment : BaseFragment(), NewMemberListContract.View {
                 val talkId = mbNick
                 val type = mbChar
 
-                if(gender == otherGender) {
-                    Utility.instance.showAlert(it1, it1.resources.getString(R.string.app_name), it1.resources.getString(R.string.msg_profile_error_good), DialogInterface.OnClickListener { dialog, which -> })
-                }
-                else {
-                    val intent :Intent
-                    if(gender == "F") {
-                        intent = Intent(context, InterestActivity::class.java)
-                    }
-                    else {
-                        intent = Intent(context, GoodActivity::class.java)
-                    }
-                    Utility.instance.showTwoButtonAlert(it1, it1.getString(R.string.interest_title), talkId+it1.getString(R.string.interest_talk_id),object :CustomDialogInterface{
-                        override fun onConfirm(v: View) {
+                if (gender == otherGender) {
+                    Utility.instance.showAlert(
+                        it1,
+                        it1.resources.getString(R.string.app_name),
+                        it1.resources.getString(R.string.msg_profile_error_good),
+                        DialogInterface.OnClickListener { dialog, which -> })
+                } else {
+                    val pref = context?.getSharedPreferences("Pref", Context.MODE_PRIVATE)
+                    if (pref != null) {
+                        if (pref.getBoolean(AppKeyValue.instance.hasFreePass, false)) {
+                            val intent: Intent
+                            if (gender == "F") {
+                                intent = Intent(context, InterestActivity::class.java)
+                            } else {
+                                intent = Intent(context, GoodActivity::class.java)
+                            }
+                            Utility.instance.showTwoButtonAlert(
+                                it1,
+                                it1.getString(R.string.interest_title),
+                                talkId + it1.getString(R.string.interest_talk_id),
+                                object : CustomDialogInterface {
+                                    override fun onConfirm(v: View) {
 
-                            intent.putExtra(AppKeyValue.instance.goodOtherId, otherId)
-                            intent.putExtra(AppKeyValue.instance.goodOtherProfileImage, profileImage)
-                            intent.putExtra(AppKeyValue.instance.goodOtherTalkId, talkId)
-                            intent.putExtra(AppKeyValue.instance.goodOtherType, type)
-                            startActivity(intent)
+                                        intent.putExtra(AppKeyValue.instance.goodOtherId, otherId)
+                                        intent.putExtra(
+                                            AppKeyValue.instance.goodOtherProfileImage,
+                                            profileImage
+                                        )
+                                        intent.putExtra(
+                                            AppKeyValue.instance.goodOtherTalkId,
+                                            talkId
+                                        )
+                                        intent.putExtra(AppKeyValue.instance.goodOtherType, type)
+                                        startActivity(intent)
+                                    }
+
+                                    override fun onCancel(v: View) {
+                                    }
+
+                                })
+                        }else{
+                            setPassNeed()
                         }
-
-                        override fun onCancel(v: View) {
-                        }
-
-                    })
+                    }
                 }
             }
         }
@@ -357,8 +382,8 @@ class NewMemeberSearchFragment : BaseFragment(), NewMemberListContract.View {
 //                    intent.putExtra(AppKeyValue.instance.talkTitleAge, otherAge)
 //                    context?.startActivity(intent)
 //                } else {
-                    ll_frag_my_act_new_member_progress.visibility = View.VISIBLE
-                    mPresenter.checkPass(id, AppKeyValue.instance.itemIdTalk)
+                ll_frag_my_act_new_member_progress.visibility = View.VISIBLE
+                mPresenter.checkPass(id, AppKeyValue.instance.itemIdTalk)
 //                }
             }
         }
@@ -440,19 +465,25 @@ class NewMemeberSearchFragment : BaseFragment(), NewMemberListContract.View {
     override fun setPassNeed() {
         ll_frag_my_act_new_member_progress.visibility = View.GONE
         context?.let {
-            val popup = CustomPopup(it, "이용권 구매", "이용권을 구매해서 아래 기능을 마음껏 이용해보세요!\n" +getString(R.string.msg_freepass_description), R.drawable.ic_talk_vivid, object: CustomDialogInterface{
-                override fun onConfirm(v: View) {
-                    if (rewardVM.rewardedAd.isLoaded) {
-                        rewardVM.rewardedAd.show(activity, rewardVM.adCallback)
+            val popup = CustomPopup(
+                it,
+                "이용권 구매",
+                "이용권을 구매해서 아래 기능을 마음껏 이용해보세요!\n" + getString(R.string.msg_freepass_description),
+                R.drawable.ic_talk_vivid,
+                object : CustomDialogInterface {
+                    override fun onConfirm(v: View) {
+                        if (rewardVM.rewardedAd.isLoaded) {
+                            rewardVM.rewardedAd.show(activity, rewardVM.adCallback)
+                        }
                     }
-                }
 
-                override fun onCancel(v: View) {
-                    val intent = Intent(it, MainActivity::class.java)
-                    intent.putExtra(AppKeyValue.instance.goToMarket, true)
-                    startActivity(intent)
-                }
-            })
+                    override fun onCancel(v: View) {
+                        val intent = Intent(it, MainActivity::class.java)
+                        intent.putExtra(AppKeyValue.instance.goToMarket, true)
+                        startActivity(intent)
+
+                    }
+                })
             popup.popupVM.negativeText.value = "1개월 이용권\n구매하기"
             popup.popupVM.positiveText.value = "광고 시청 후\n이용권 받기"
             popup.show()

@@ -127,6 +127,7 @@ class AppKeyValue {
     val itemIdRecommend = "4"
     val itemIdLove = "11"
     val itemIdRefresh = "12"
+    val itemIdPicture = "13"
 
     val itemCoinProfile = "3000:5000:14000:27000"
     val itemCoinGood = "3000:4500:8000:15000"
@@ -212,5 +213,6 @@ class AppKeyValue {
     val noMoreSeePromotion = "noMoreSeePromotion"
 
     val phoneCert = "phoneCert"
+    val hasFreePass = "hasFreePass"
 
 }

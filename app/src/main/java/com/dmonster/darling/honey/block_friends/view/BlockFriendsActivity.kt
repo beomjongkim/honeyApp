@@ -14,6 +14,7 @@ import androidx.core.app.ActivityCompat
 import android.content.pm.PackageManager
 import androidx.core.content.ContextCompat
 import android.os.Build
+import com.dmonster.darling.honey.ads.viewmodel.BannerVM
 import com.dmonster.darling.honey.common.command.TwoBtnSwitch
 import com.dmonster.darling.honey.common.viewmodel.TwoBtnSwitchVM
 import com.dmonster.darling.honey.util.Utility
@@ -28,14 +29,15 @@ class BlockFriendsActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_block_friends)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_block_friends)
+        binding.bannerVM =
+            BannerVM(Utility.instance.getPref(this, AppKeyValue.instance.savePrefID), lifecycle, this)
         binding.lifecycleOwner = this
         val mb_id = Utility.instance.getPref(
             this@BlockFriendsActivity,
             AppKeyValue.instance.savePrefID
         )
 
-        binding.contactVM = object :
-            ContactVM(mb_id, CustomAdapter(R.layout.item_contact, this)) {
+        binding.contactVM = object : ContactVM(mb_id, CustomAdapter(R.layout.item_contact, this)) {
             override fun checkReadContactPermission() {
                 // OS가 Marshmallow 이상일 경우 권한체크를 해야 합니다.
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {

@@ -39,7 +39,7 @@ class BlockActivity : BaseActivity(), BlockContract.View {
 //        setContentView(R.layout.activity_block)
         val binding : ActivityBlockBinding = DataBindingUtil.setContentView(this,R.layout.activity_block)
         binding.bannerVM =
-            BannerVM(Utility.instance.getPref(this, AppKeyValue.instance.savePrefID), lifecycle)
+            BannerVM(Utility.instance.getPref(this, AppKeyValue.instance.savePrefID), lifecycle,this)
         binding.lifecycleOwner = this
         init()
         setListener()

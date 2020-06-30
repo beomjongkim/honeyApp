@@ -1,16 +1,18 @@
 package com.dmonster.darling.honey.ads.viewmodel
 
+import android.content.Context
 import android.util.Log
 import androidx.lifecycle.*
 import com.dmonster.darling.honey.point.data.CheckFreePassData
 import com.dmonster.darling.honey.point.model.ItemModel
+import com.dmonster.darling.honey.util.AppKeyValue
 import com.dmonster.darling.honey.util.Utility
 import com.dmonster.darling.honey.util.retrofit.ResultItem
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import io.reactivex.observers.DisposableObserver
 
-class BannerVM(var mb_id: String, var lifecycle: Lifecycle) : ViewModel(), LifecycleObserver {
+class BannerVM(var mb_id: String, var lifecycle: Lifecycle, var context: Context) : ViewModel(), LifecycleObserver {
     var adRequest: AdRequest = AdRequest.Builder().build()
     var adListener = object : AdListener() {
         override fun onAdLoaded() {
@@ -59,12 +61,20 @@ class BannerVM(var mb_id: String, var lifecycle: Lifecycle) : ViewModel(), Lifec
 
             override fun onError(e: Throwable) {
                 hasPass.value = false
-
+                val pref = context.getSharedPreferences("Pref", Context.MODE_PRIVATE)
+                val editor = pref.edit()
+                editor.putBoolean(AppKeyValue.instance.hasFreePass, false)
+                editor.apply()
             }
 
             override fun onNext(item: ResultItem<CheckFreePassData>) {
                 item.let { it ->
+                    val pref = context.getSharedPreferences("Pref", Context.MODE_PRIVATE)
+                    val editor = pref.edit()
+                    editor.putBoolean(AppKeyValue.instance.hasFreePass, item.isSuccess)
+                    editor.apply()
                     hasPass.value = it.isSuccess
+
                 }
             }
         }

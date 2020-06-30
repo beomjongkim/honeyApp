@@ -222,8 +222,12 @@ class PointViewModel(
     }
 
     fun onClickBuyHour() {
-        if (rewardVM.rewardedAd.isLoaded && (hasPass.value == false)) {
-            rewardVM.rewardedAd.show(activity, rewardVM.adCallback)
+        if (hasPass.value == false) {
+            if(rewardVM.rewardedAd.isLoaded ){
+                rewardVM.rewardedAd.show(activity, rewardVM.adCallback)
+            }else{
+                Utility.instance.showToast(activity, "광고를 불러오는 중입니다.")
+            }
         } else {
             Utility.instance.showToast(activity, "이용권 만료 후 광고 시청이 가능합니다.")
         }
@@ -231,7 +235,7 @@ class PointViewModel(
 
     fun onClickCharge(v : View){
         chargePoint.value?.let {
-            setReservePopup(it.toInt(),v.context)
+            setReservePopup(it.toInt()*100,v.context)
         }
         reservePaymentPopup.show()
     }

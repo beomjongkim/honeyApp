@@ -37,7 +37,7 @@ class AlarmActivity : BaseActivity(), CompoundButton.OnCheckedChangeListener, Vi
 //        setContentView(R.layout.activity_alarm)
         val binding : ActivityAlarmBinding = DataBindingUtil.setContentView(this,R.layout.activity_alarm)
         binding.bannerVM =
-            BannerVM(Utility.instance.getPref(this, AppKeyValue.instance.savePrefID), lifecycle)
+            BannerVM(Utility.instance.getPref(this, AppKeyValue.instance.savePrefID), lifecycle,this)
         binding.lifecycleOwner = this
         init()
         setListener()

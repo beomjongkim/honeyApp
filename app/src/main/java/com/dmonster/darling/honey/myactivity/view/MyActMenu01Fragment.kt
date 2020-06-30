@@ -1,5 +1,7 @@
 package com.dmonster.darling.honey.myactivity.view
 
+import android.app.Activity
+import android.content.Context
 import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Rect
@@ -11,9 +13,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CompoundButton
+import androidx.annotation.NonNull
 import com.dmonster.darling.honey.R
+import com.dmonster.darling.honey.ads.viewmodel.RewardVM
 import com.dmonster.darling.honey.base.BaseFragment
+import com.dmonster.darling.honey.customview.CustomDialogInterface
+import com.dmonster.darling.honey.customview.CustomPopup
 import com.dmonster.darling.honey.dialog.ItemLoveDialog
+import com.dmonster.darling.honey.main.view.MainActivity
 import com.dmonster.darling.honey.myactivity.data.TalkListData
 import com.dmonster.darling.honey.myactivity.presenter.TalkListContract
 import com.dmonster.darling.honey.myactivity.presenter.TalkListPresenter
@@ -25,10 +32,13 @@ import com.dmonster.darling.honey.util.AppKeyValue
 import com.dmonster.darling.honey.util.common.EventBus
 import com.dmonster.darling.honey.util.Utility
 import com.dmonster.darling.honey.util.retrofit.ResultItem
+import com.google.android.gms.ads.rewarded.RewardItem
+import com.google.android.gms.ads.rewarded.RewardedAdCallback
 import com.jakewharton.rxbinding2.view.RxView
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.rxkotlin.addTo
+import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.fragment_my_act_talk.*
 import java.util.concurrent.TimeUnit
 
@@ -37,6 +47,7 @@ class MyActMenu01Fragment: BaseFragment(), TalkListContract.View {
     private lateinit var disposeBag: CompositeDisposable
     private lateinit var mPresenter: TalkListContract.Presenter
     private lateinit var mAdapter: TalkListAdapter
+    private lateinit var rewardVM : RewardVM
 
     private var viewLayoutManager: androidx.recyclerview.widget.RecyclerView.LayoutManager? = null
     private var id: String? = null
@@ -73,6 +84,50 @@ class MyActMenu01Fragment: BaseFragment(), TalkListContract.View {
         id = context?.let { Utility.instance.getPref(it, AppKeyValue.instance.savePrefID) }
         mPresenter = TalkListPresenter()
         mPresenter.attachView(this)
+
+        rewardVM = RewardVM(activity as Activity)
+        rewardVM.adCallback = object : RewardedAdCallback() {
+
+            override fun onRewardedAdOpened() {
+                // Ad opened.
+                Log.d("ProfileActivity", "Ad opened.")
+            }
+
+            override fun onRewardedAdClosed() {
+                // Ad closed.
+                Log.d("ProfileActivity", "Ad closed.")
+            }
+
+            override fun onUserEarnedReward(@NonNull reward: RewardItem) {
+                ll_frag_my_act_talk_progress.visibility = View.VISIBLE
+                // User earned reward.
+                val subscriber = object : DisposableObserver<ResultItem<String>>() {
+                    override fun onComplete() {
+                        ll_frag_my_act_talk_progress.visibility = View.GONE
+                    }
+
+                    override fun onError(e: Throwable) {
+                        ll_frag_my_act_talk_progress.visibility = View.GONE
+                    }
+
+                    override fun onNext(item: ResultItem<String>) {
+                        item.let { it ->
+                            if (it.isSuccess) {
+                                context?.let { it1 -> Utility.instance.showToast(it1, "성공적으로 이용권을 구매하였습니다.") }
+                            }
+                        }
+                        ll_frag_my_act_talk_progress.visibility = View.GONE
+                    }
+                }
+                ItemModel().buyItem(id, 1, subscriber)
+                Log.d("ProfileActivity", "User earned reward.")
+            }
+
+            override fun onRewardedAdFailedToShow(errorCode: Int) {
+                // Ad failed to display.
+                Log.d("ProfileActivity", "Ad failed to display.")
+            }
+        }
     }
 
     private fun setListener() {
@@ -164,46 +219,56 @@ class MyActMenu01Fragment: BaseFragment(), TalkListContract.View {
     }
 
     private fun itemClickListener() = View.OnClickListener {
-        var model = ItemModel()
-        val subscription = CompositeDisposable()
-        var subscriber = object :DisposableObserver<ResultItem<CheckFreePassData>>(){
-            override fun onComplete() {
-            }
+        val pref = context?.getSharedPreferences("Pref", Context.MODE_PRIVATE)
+        if (pref != null) {
+            if(pref.getBoolean(AppKeyValue.instance.hasFreePass, false)){
+                val position = it.tag.toString().toInt()
+                mAdapter.data[position].apply {
+                    val roomNo = idx
+                    val mbNo = mbNo
+                    val otherId = mbId
+                    val talkId = mbNick
+                    val area = mbAddr1
+                    val age = mbAge
+                    this.notRead = "0"
 
-            override fun onNext(t: ResultItem<CheckFreePassData>) {
-                if(t.isSuccess){
-                    val position = it.tag.toString().toInt()
-                    mAdapter.data[position].apply {
-                        val roomNo = idx
-                        val mbNo = mbNo
-                        val otherId = mbId
-                        val talkId = mbNick
-                        val area = mbAddr1
-                        val age = mbAge
-                        this.notRead = "0"
+                    val intent = Intent(context, TalkActivity::class.java)
+                    intent.putExtra(AppKeyValue.instance.talkRoomNo, roomNo)
+                    intent.putExtra(AppKeyValue.instance.talkMbNo, mbNo)
+                    intent.putExtra(AppKeyValue.instance.talkOtherId, otherId)
+                    intent.putExtra(AppKeyValue.instance.talkOtherTalkId, talkId)
+                    /*    상단 타이틀정보    */
+                    intent.putExtra(AppKeyValue.instance.talkTitleName, talkId)
+                    intent.putExtra(AppKeyValue.instance.talkTitleArea, area)
+                    intent.putExtra(AppKeyValue.instance.talkTitleAge, age)
+                    context?.startActivity(intent)
+                }
+            }else{
 
-                        val intent = Intent(context, TalkActivity::class.java)
-                        intent.putExtra(AppKeyValue.instance.talkRoomNo, roomNo)
-                        intent.putExtra(AppKeyValue.instance.talkMbNo, mbNo)
-                        intent.putExtra(AppKeyValue.instance.talkOtherId, otherId)
-                        intent.putExtra(AppKeyValue.instance.talkOtherTalkId, talkId)
-                        /*    상단 타이틀정보    */
-                        intent.putExtra(AppKeyValue.instance.talkTitleName, talkId)
-                        intent.putExtra(AppKeyValue.instance.talkTitleArea, area)
-                        intent.putExtra(AppKeyValue.instance.talkTitleAge, age)
-                        context?.startActivity(intent)
+             context?.let { it1 ->
+                    CustomPopup(it1, "이용권 구매", "이용권을 구매해서 아래 기능을 마음껏 이용해보세요!\n" +getString(R.string.msg_freepass_description), R.drawable.ic_talk_vivid, object: CustomDialogInterface {
+                        override fun onConfirm(v: View) {
+                            if (rewardVM.rewardedAd.isLoaded) {
+                                rewardVM.rewardedAd.show(activity, rewardVM.adCallback)
+                            }
+                        }
+
+                        override fun onCancel(v: View) {
+                            val intent = Intent(it1, MainActivity::class.java)
+                            intent.putExtra(AppKeyValue.instance.goToMarket, true)
+                            startActivity(intent)
+                        }
+                    })
+                }.also {
+                    it?.let {
+                        it.popupVM.negativeText.value = "1개월 이용권\n구매하기"
+                        it.popupVM.positiveText.value = "광고 시청 후\n이용권 받기"
+                        it.show()
                     }
-                }else{
-
                 }
             }
-
-            override fun onError(e: Throwable) {
-            }
-
         }
-        model.check_own_freepass(context?.let { it1 -> Utility.instance.getPref(it1,AppKeyValue.instance.savePrefID) },subscriber)
-        subscription.add(subscriber)
+
     }
 
     /*    톡하기 목록    */
