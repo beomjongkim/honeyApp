@@ -85,4 +85,12 @@ class ItemModel {
             .unsubscribeOn(Schedulers.io())
             .subscribe(subscriber)
     }
+
+    fun rechargePoint(id : String?, point : Int? ,subscriber: DisposableObserver<ResultItem<String>>){
+        RetrofitProtocol().retrofit.rechargePoint(ServerApi.instance.rechargePoint, id, point)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .unsubscribeOn(Schedulers.io())
+            .subscribe(subscriber)
+    }
 }

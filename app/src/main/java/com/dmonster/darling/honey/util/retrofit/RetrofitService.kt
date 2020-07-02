@@ -744,6 +744,14 @@ interface RetrofitService {
         @Field("mb_id") id: String?,
         @Field("it_id") it_id: Int?
     ): Observable<ResultItem<String>>
+    /*   포인트 충전    */
+    @FormUrlEncoded
+    @POST("api/base.php")
+    fun rechargePoint(
+        @Field("method") method: String?,
+        @Field("mb_id") id: String?,
+        @Field("point") point: Int?
+    ): Observable<ResultItem<String>>
 
     @FormUrlEncoded
     @POST("api/base.php")
@@ -759,4 +767,6 @@ interface RetrofitService {
     fun readMagazine(
         @Field("method") method: String?
     ): Observable<ResultListItem<MagazineData>>
+
+
 }

@@ -1,5 +1,6 @@
 package com.dmonster.darling.honey.point.view
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -27,11 +28,12 @@ private const val ARG_PARAM2 = "param2"
  * Use the [PointFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class PointFragment : Fragment() , BillingProcessor.IBillingHandler {
+class PointFragment : Fragment(), BillingProcessor.IBillingHandler {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
     lateinit var binding: FragmentPointBinding
+    lateinit var bp: BillingProcessor
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,6 +41,9 @@ class PointFragment : Fragment() , BillingProcessor.IBillingHandler {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
+        bp = BillingProcessor(context, AppKeyValue.instance.inAppKey, this)
+
+        bp.initialize()
     }
 
     override fun onCreateView(
@@ -48,13 +53,14 @@ class PointFragment : Fragment() , BillingProcessor.IBillingHandler {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_point, container, false)
 
-            binding.pointViewModel = activity?.let { it ->
-                PointViewModel(
-                    Utility.instance.getPref(it, AppKeyValue.instance.savePrefID),lifecycle, it,
-                    ReservePaymentPopup(it, this), CustomAdapter(R.layout.layout_point_log, this)
-                )
-            }
-            binding.lifecycleOwner = this
+        binding.pointViewModel = activity?.let { it ->
+            PointViewModel(
+                Utility.instance.getPref(it, AppKeyValue.instance.savePrefID), lifecycle, it,
+                ReservePaymentPopup(it, this), CustomAdapter(R.layout.layout_point_log, this),
+                bp
+            )
+        }
+        binding.lifecycleOwner = this
 
         return binding.root
     }
@@ -86,8 +92,20 @@ class PointFragment : Fragment() , BillingProcessor.IBillingHandler {
     }
 
     override fun onProductPurchased(productId: String, details: TransactionDetails?) {
+        context?.let { binding?.pointViewModel?.rechargePoint(it,50) }
     }
 
     override fun onBillingError(errorCode: Int, error: Throwable?) {
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if (!bp.handleActivityResult(requestCode, resultCode, data)) {
+            super.onActivityResult(requestCode, resultCode, data);
+        }
+    }
+
+    override fun onDestroy() {
+        bp.release()
+        super.onDestroy()
     }
 }

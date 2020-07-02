@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.DialogInterface
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
@@ -13,10 +14,12 @@ import androidx.lifecycle.*
 import com.anjlab.android.iab.v3.BillingProcessor
 import com.anjlab.android.iab.v3.TransactionDetails
 import com.dmonster.darling.honey.BR
+import com.dmonster.darling.honey.R
 import com.dmonster.darling.honey.ads.viewmodel.RewardVM
 import com.dmonster.darling.honey.custom_recyclerview.model.RecyclerItemData
 import com.dmonster.darling.honey.custom_recyclerview.view.CustomAdapter
 import com.dmonster.darling.honey.customview.CustomDialogInterface
+import com.dmonster.darling.honey.customview.CustomPopup
 import com.dmonster.darling.honey.customview.ReservePaymentPopup
 import com.dmonster.darling.honey.point.data.CheckFreePassData
 import com.dmonster.darling.honey.point.data.PointData
@@ -36,8 +39,9 @@ class PointViewModel(
     lifecycle: Lifecycle,
     var activity: Activity,
     var reservePaymentPopup: ReservePaymentPopup,
-    var adapter: CustomAdapter
-) : ViewModel(), LifecycleObserver ,BillingProcessor.IBillingHandler {
+    var adapter: CustomAdapter,
+    var billingProcessor: BillingProcessor
+) : ViewModel(), LifecycleObserver {
     var itemModel = ItemModel()
     var pointModel = PointModel()
 
@@ -94,10 +98,9 @@ class PointViewModel(
         }
 
     }
-    var bp :BillingProcessor = BillingProcessor(activity, AppKeyValue.instance.inAppKey, this);
+
 
     init {
-        bp.initialize()
 
         lifecycle.addObserver(this)
 
@@ -127,7 +130,6 @@ class PointViewModel(
         if (user_nick.isNullOrEmpty()) {
             user_nick = "회원"
         }
-
     }
 
     fun onClickBuyView() {
@@ -261,7 +263,7 @@ class PointViewModel(
 
     fun onClickCharge(v: View) {
         chargePoint.value?.let {
-            setReservePopup(it.toInt() * 110, v.context)
+            showReservePopup(it.toInt() * 110, v.context)
         }
         reservePaymentPopup.show()
     }
@@ -288,9 +290,8 @@ class PointViewModel(
                     } else {
                         Utility.instance.showToast(context, "보유 포인트가 모자랍니다.")
                         if (itemCode == 2) {
-                            setReservePopup(5500, context)
+                            showPaymentMethod()
                         }
-                        reservePaymentPopup.show()
                     }
                 }
                 isProgressing.value = false
@@ -299,6 +300,33 @@ class PointViewModel(
         itemModel.buyItem(id, itemCode, subscriber)
     }
 
+    fun rechargePoint(context : Context, point : Int){
+        isProgressing.value = true
+        val subscriber = object : DisposableObserver<ResultItem<String>>() {
+            override fun onComplete() {
+                isProgressing.value = false
+                onResume()
+            }
+
+            override fun onError(e: Throwable) {
+                isProgressing.value = false
+                Utility.instance.showToast(context, "포인트 구매 과정 중 오류가 발생하였습니다.")
+            }
+
+            override fun onNext(item: ResultItem<String>) {
+                item.let { it ->
+                    if (it.isSuccess) {
+                        Utility.instance.showToast(context, "성공적으로 포인트를 구매하였습니다.")
+                        hasPass.value = true
+                    } else {
+                        Utility.instance.showToast(context, "포인트 구매 과정 중 오류가 발생하였습니다.")
+                    }
+                }
+                isProgressing.value = false
+            }
+        }
+        itemModel.rechargePoint(id, point, subscriber)
+    }
     private fun reservePayment(name: String, price: Int, context: Context) {
         isProgressing.value = true
         val subscriber = object : DisposableObserver<ResultItem<String>>() {
@@ -352,7 +380,7 @@ class PointViewModel(
         getPointLog()
     }
 
-    private fun setReservePopup(price: Int, context: Context) {
+    private fun showReservePopup(price: Int, context: Context) {
         reservePaymentPopup.reservePaymentPopupVM.let {
             it.price = price
             it.won.value = it.price.toString() + "원"
@@ -368,17 +396,22 @@ class PointViewModel(
 
             }
         }
+        reservePaymentPopup.show()
     }
 
-    override fun onBillingInitialized() {
-    }
+    private fun showPaymentMethod(){
+        var popup = CustomPopup(activity, "결제 수단", "결제방식을 선택해주세요", R.drawable.ic_talk_vivid, object :CustomDialogInterface{
+            override fun onConfirm(v: View) {
+                billingProcessor.purchase(activity,"freepass_month")
+            }
 
-    override fun onPurchaseHistoryRestored() {
-    }
+            override fun onCancel(v: View) {
+                showReservePopup(5500, activity)
+            }
 
-    override fun onProductPurchased(productId: String, details: TransactionDetails?) {
-    }
-
-    override fun onBillingError(errorCode: Int, error: Throwable?) {
+        })
+        popup.popupVM.negativeText.value = "무통장입금"
+        popup.popupVM.positiveText.value = "인앱결제"
+        popup.show()
     }
 }

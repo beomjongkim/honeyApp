@@ -3,7 +3,9 @@ package com.dmonster.darling.honey.intro.view
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.TextView
+import androidx.viewpager.widget.ViewPager
 import com.dmonster.darling.honey.R
 import com.dmonster.darling.honey.util.Utility
 
@@ -23,15 +25,16 @@ class SlideActivity : AppCompatActivity() {
         skip.setOnClickListener {
             onClickSkip()
         }
-        val banner : RollingBanner = findViewById(R.id.banner)
+        val banner : ViewPager  = findViewById(R.id.vp_slide)
         banner.setAdapter(object :SlideAdapter(this, arrayListOf(R.drawable.intro_page_slide01,R.drawable.intro_page_slide02,R.drawable.intro_page_slide03,R.drawable.intro_page_slide04)){
             override fun onTouchLast() {
                 onClickSkip()
             }
 
-            override fun onTouch() {
-                banner.moveNextPage(true)
+            override fun isViewFromObject(view: View, `object`: Any): Boolean {
+                return (view == `object` as View)
             }
+
         })
 
 
