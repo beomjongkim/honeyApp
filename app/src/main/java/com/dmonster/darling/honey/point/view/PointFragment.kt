@@ -6,9 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import com.anjlab.android.iab.v3.BillingProcessor
+import com.anjlab.android.iab.v3.TransactionDetails
 
 import com.dmonster.darling.honey.R
-import com.dmonster.darling.honey.common.command.TwoBtnSwitch
 import com.dmonster.darling.honey.custom_recyclerview.view.CustomAdapter
 import com.dmonster.darling.honey.customview.ReservePaymentPopup
 import com.dmonster.darling.honey.databinding.FragmentPointBinding
@@ -26,7 +27,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [PointFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class PointFragment : Fragment() {
+class PointFragment : Fragment() , BillingProcessor.IBillingHandler {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -76,5 +77,17 @@ class PointFragment : Fragment() {
                     putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    override fun onBillingInitialized() {
+    }
+
+    override fun onPurchaseHistoryRestored() {
+    }
+
+    override fun onProductPurchased(productId: String, details: TransactionDetails?) {
+    }
+
+    override fun onBillingError(errorCode: Int, error: Throwable?) {
     }
 }

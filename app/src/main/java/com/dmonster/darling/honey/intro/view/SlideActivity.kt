@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.widget.TextView
 import com.dmonster.darling.honey.R
 import com.dmonster.darling.honey.util.Utility
-import pyxis.uzuki.live.rollingbanner.RollingBanner
 
 class SlideActivity : AppCompatActivity() {
 

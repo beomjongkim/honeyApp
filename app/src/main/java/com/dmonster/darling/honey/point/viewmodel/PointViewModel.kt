@@ -4,10 +4,14 @@ import android.app.Activity
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
 import androidx.annotation.NonNull
 import androidx.lifecycle.*
+import com.anjlab.android.iab.v3.BillingProcessor
+import com.anjlab.android.iab.v3.TransactionDetails
 import com.dmonster.darling.honey.BR
 import com.dmonster.darling.honey.ads.viewmodel.RewardVM
 import com.dmonster.darling.honey.custom_recyclerview.model.RecyclerItemData
@@ -19,6 +23,7 @@ import com.dmonster.darling.honey.point.data.PointData
 import com.dmonster.darling.honey.point.data.PointLogData
 import com.dmonster.darling.honey.point.model.ItemModel
 import com.dmonster.darling.honey.point.model.PointModel
+import com.dmonster.darling.honey.util.AppKeyValue
 import com.dmonster.darling.honey.util.Utility
 import com.dmonster.darling.honey.util.retrofit.ResultItem
 import com.dmonster.darling.honey.util.retrofit.ResultListItem
@@ -32,7 +37,7 @@ class PointViewModel(
     var activity: Activity,
     var reservePaymentPopup: ReservePaymentPopup,
     var adapter: CustomAdapter
-) : ViewModel(), LifecycleObserver {
+) : ViewModel(), LifecycleObserver ,BillingProcessor.IBillingHandler {
     var itemModel = ItemModel()
     var pointModel = PointModel()
 
@@ -59,6 +64,10 @@ class PointViewModel(
         it.value = user_nick + "님의 포인트는 현재\n0 포인트입니다."
     }
 
+    var text_won_info = MutableLiveData<String>().also {
+        it.value = ""
+    }
+
     var isProgressing = MutableLiveData<Boolean>().also {
         it.value = true
     }
@@ -70,8 +79,25 @@ class PointViewModel(
     var chargePoint = MutableLiveData<String>().also {
         it.value = "0"
     }
+    var textWatcher = object : TextWatcher {
+        override fun afterTextChanged(p0: Editable?) {
+            chargePoint.value?.let {
+                if (it.isNotEmpty())
+                    text_won_info.value = (it.toInt().times(110)).toString() + "원 결제"
+            }
+        }
+
+        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+        }
+
+        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+        }
+
+    }
+    var bp :BillingProcessor = BillingProcessor(activity, AppKeyValue.instance.inAppKey, this);
 
     init {
+        bp.initialize()
 
         lifecycle.addObserver(this)
 
@@ -223,9 +249,9 @@ class PointViewModel(
 
     fun onClickBuyHour() {
         if (hasPass.value == false) {
-            if(rewardVM.rewardedAd.isLoaded ){
+            if (rewardVM.rewardedAd.isLoaded) {
                 rewardVM.rewardedAd.show(activity, rewardVM.adCallback)
-            }else{
+            } else {
                 Utility.instance.showToast(activity, "광고를 불러오는 중입니다.")
             }
         } else {
@@ -233,12 +259,13 @@ class PointViewModel(
         }
     }
 
-    fun onClickCharge(v : View){
+    fun onClickCharge(v: View) {
         chargePoint.value?.let {
-            setReservePopup(it.toInt()*100,v.context)
+            setReservePopup(it.toInt() * 110, v.context)
         }
         reservePaymentPopup.show()
     }
+
     fun buyItem(itemCode: Int, context: Context) {//결제 후 아이템 구매 기록 남기기
         isProgressing.value = true
         val subscriber = object : DisposableObserver<ResultItem<String>>() {
@@ -256,12 +283,12 @@ class PointViewModel(
                 item.let { it ->
                     if (it.isSuccess) {
                         Utility.instance.showToast(context, "성공적으로 이용권을 구매하였습니다.")
-                        if(itemCode==1 or 2)
+                        if (itemCode == 1 or 2)
                             hasPass.value = true
                     } else {
                         Utility.instance.showToast(context, "보유 포인트가 모자랍니다.")
                         if (itemCode == 2) {
-                            setReservePopup(5000,context)
+                            setReservePopup(5500, context)
                         }
                         reservePaymentPopup.show()
                     }
@@ -281,7 +308,7 @@ class PointViewModel(
 
             override fun onError(e: Throwable) {
                 isProgressing.value = false
-                Utility.instance.showToast(context,"무통장 입금 정보 전송에 실패했습니다.")
+                Utility.instance.showToast(context, "무통장 입금 정보 전송에 실패했습니다.")
             }
 
             override fun onNext(item: ResultItem<String>) {
@@ -291,20 +318,24 @@ class PointViewModel(
                             context,
                             "입금정보",
                             "아래 정보로 무통장 입금을 진행해주세요.\n기업은행 : 98602084704015\n입금자명 : " + name + "\n금액 : " + price + "원",
-                            object :CustomDialogInterface{
+                            object : CustomDialogInterface {
                                 override fun onConfirm(v: View) {
-                                    val clipboard = v.context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                                    val clip: ClipData = ClipData.newPlainText("simple text", "아래 정보로 무통장 입금을 진행해주세요.\n기업은행 : 98602084704015\n입금자명 : " + name + "\n금액 : " + price + "원")
+                                    val clipboard =
+                                        v.context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                                    val clip: ClipData = ClipData.newPlainText(
+                                        "simple text",
+                                        "아래 정보로 무통장 입금을 진행해주세요.\n기업은행 : 98602084704015\n입금자명 : " + name + "\n금액 : " + price + "원"
+                                    )
                                     clipboard.primaryClip = clip
-                                    Utility.instance.showToast(v.context,"복사되었습니다.")
+                                    Utility.instance.showToast(v.context, "복사되었습니다.")
                                 }
 
                                 override fun onCancel(v: View) {
                                 }
                             }
                         )
-                    }else{
-                        Utility.instance.showToast(context,"무통장 입금 정보 전송에 실패했습니다.")
+                    } else {
+                        Utility.instance.showToast(context, "무통장 입금 정보 전송에 실패했습니다.")
                     }
                 }
                 isProgressing.value = false
@@ -321,13 +352,13 @@ class PointViewModel(
         getPointLog()
     }
 
-    private fun setReservePopup(price : Int ,context:Context){
+    private fun setReservePopup(price: Int, context: Context) {
         reservePaymentPopup.reservePaymentPopupVM.let {
             it.price = price
             it.won.value = it.price.toString() + "원"
             it.twoBtnSwitch = object : CustomDialogInterface {
                 override fun onConfirm(v: View) {
-                    it.name.value?.let { it1 -> reservePayment(it1,it.price,context) }
+                    it.name.value?.let { it1 -> reservePayment(it1, it.price, context) }
                     reservePaymentPopup.dismiss()
                 }
 
@@ -337,5 +368,17 @@ class PointViewModel(
 
             }
         }
+    }
+
+    override fun onBillingInitialized() {
+    }
+
+    override fun onPurchaseHistoryRestored() {
+    }
+
+    override fun onProductPurchased(productId: String, details: TransactionDetails?) {
+    }
+
+    override fun onBillingError(errorCode: Int, error: Throwable?) {
     }
 }

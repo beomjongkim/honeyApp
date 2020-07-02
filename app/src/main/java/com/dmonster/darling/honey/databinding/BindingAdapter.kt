@@ -2,6 +2,8 @@ package com.dmonster.darling.honey.databinding
 
 import android.graphics.drawable.Drawable
 import android.net.Uri
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.View
 import android.widget.*
 import android.widget.AdapterView.OnItemSelectedListener
@@ -341,5 +343,12 @@ object BindingAdapter {
         adView.adListener = adListener
         adView.loadAd(adRequest)
     }
+
+    @androidx.databinding.BindingAdapter("addTextWatcher")
+    @JvmStatic
+    fun setEditTextListener(editText: EditText, textWatcher: TextWatcher) {
+        editText.addTextChangedListener(textWatcher)
+    }
+
 
 }

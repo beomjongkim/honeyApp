@@ -12,8 +12,8 @@ android {
         applicationId "com.dmonster.darling.honey"
         minSdkVersion 16
         targetSdkVersion 28
-        versionCode 39
-        versionName "1.2.13"
+        versionCode 40
+        versionName "1.2.14"
         setProperty("archivesBaseName", applicationId + "-v" + versionCode + "(" + versionName + ")")
         multiDexEnabled true
         renderscriptTargetApi 19
@@ -154,7 +154,7 @@ dependencies {
     implementation 'com.commit451:PhotoView:1.2.4'
 
 //    //이미지 슬라이더
-    implementation 'com.github.WindSekirun:RollingBanner:1.0.7-androidx'
+//    implementation 'com.github.WindSekirun:RollingBanner:1.0.7-androidx'
 
     // TedBottomPicker
     implementation 'gun0912.ted:tedbottompicker:1.1.0'
@@ -163,7 +163,7 @@ dependencies {
     implementation 'com.github.clans:fab:1.6.4'
 
 //    // InAppPurchase
-//    implementation 'com.anjlab.android.iab.v3:library:1.0.44'
+    implementation 'com.anjlab.android.iab.v3:library:1.0.44'
 
     // 네이버 로그인
     implementation 'com.naver.nid:naveridlogin-android-sdk:4.2.6'

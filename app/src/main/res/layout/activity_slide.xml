@@ -5,27 +5,16 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".intro.view.SlideActivity">
-
-    <pyxis.uzuki.live.rollingbanner.RollingBanner
-        android:id="@+id/banner"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vp_slide"
         android:layout_width="@dimen/default_margin_0dp"
         android:layout_height="@dimen/default_margin_0dp"
-        app:bottomMargin="@dimen/default_bottom_margin"
-        app:enableIndicator="false"
-        app:enableLooping="false"
-        app:enableRolling="false"
-        app:flingAble="true"
-        app:indicatorMargin="@dimen/default_indicator_margin"
-        app:indicatorRes="@drawable/default_indicator"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:rollingDelay="3000"
-        app:scrollingDelay="250"
-        app:smoothScroll="true">
+        />
 
-    </pyxis.uzuki.live.rollingbanner.RollingBanner>
 
 
     <TextView
