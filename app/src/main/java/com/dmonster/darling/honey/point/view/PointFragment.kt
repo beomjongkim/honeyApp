@@ -92,7 +92,8 @@ class PointFragment : Fragment(), BillingProcessor.IBillingHandler {
     }
 
     override fun onProductPurchased(productId: String, details: TransactionDetails?) {
-        context?.let { binding?.pointViewModel?.rechargePoint(it,50) }
+        bp.consumePurchase(productId)
+        context?.let { binding.pointViewModel?.buy_inApp(it,2) }
     }
 
     override fun onBillingError(errorCode: Int, error: Throwable?) {

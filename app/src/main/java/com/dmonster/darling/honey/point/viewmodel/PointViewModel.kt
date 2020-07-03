@@ -300,7 +300,7 @@ class PointViewModel(
         itemModel.buyItem(id, itemCode, subscriber)
     }
 
-    fun rechargePoint(context : Context, point : Int){
+    fun buy_inApp(context : Context, it_id : Int){
         isProgressing.value = true
         val subscriber = object : DisposableObserver<ResultItem<String>>() {
             override fun onComplete() {
@@ -310,20 +310,25 @@ class PointViewModel(
 
             override fun onError(e: Throwable) {
                 isProgressing.value = false
-                Utility.instance.showToast(context, "포인트 구매 과정 중 오류가 발생하였습니다.")
+                Utility.instance.showToast(context, "구매 과정 중 오류가 발생하였습니다.")
             }
 
             override fun onNext(item: ResultItem<String>) {
                 item.let { it ->
                     if (it.isSuccess) {
-                        Utility.instance.showToast(context, "성공적으로 포인트를 구매하였습니다.")
+//                        Utility.instance.showToast(context, "성공적으로 포인트를 구매하였습니다.")
                         hasPass.value = true
+                        buyItem(2,context)
                     } else {
-                        Utility.instance.showToast(context, "포인트 구매 과정 중 오류가 발생하였습니다.")
+                        Utility.instance.showToast(context, "구매 과정 중 오류가 발생하였습니다.")
                     }
                 }
                 isProgressing.value = false
             }
+        }
+        var point = 0
+        if(it_id==2){
+            point = 50
         }
         itemModel.rechargePoint(id, point, subscriber)
     }
@@ -403,6 +408,7 @@ class PointViewModel(
         var popup = CustomPopup(activity, "결제 수단", "결제방식을 선택해주세요", R.drawable.ic_talk_vivid, object :CustomDialogInterface{
             override fun onConfirm(v: View) {
                 billingProcessor.purchase(activity,"freepass_month")
+
             }
 
             override fun onCancel(v: View) {
