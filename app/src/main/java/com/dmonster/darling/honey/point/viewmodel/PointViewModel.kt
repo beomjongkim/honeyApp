@@ -9,10 +9,10 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.lifecycle.*
-import com.anjlab.android.iab.v3.BillingProcessor
-import com.anjlab.android.iab.v3.TransactionDetails
+import com.android.billingclient.api.*
 import com.dmonster.darling.honey.BR
 import com.dmonster.darling.honey.R
 import com.dmonster.darling.honey.ads.viewmodel.RewardVM
@@ -33,15 +33,26 @@ import com.dmonster.darling.honey.util.retrofit.ResultListItem
 import com.google.android.gms.ads.rewarded.RewardItem
 import com.google.android.gms.ads.rewarded.RewardedAdCallback
 import io.reactivex.observers.DisposableObserver
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class PointViewModel(
     var id: String?,
     lifecycle: Lifecycle,
     var activity: Activity,
     var reservePaymentPopup: ReservePaymentPopup,
-    var adapter: CustomAdapter,
-    var billingProcessor: BillingProcessor
-) : ViewModel(), LifecycleObserver {
+    var adapter: CustomAdapter
+) : ViewModel(), LifecycleObserver, PurchasesUpdatedListener {
+    private var billingClient: BillingClient
+    var consumeListener = object :  ConsumeResponseListener {
+        override fun onConsumeResponse(result: BillingResult, p1: String) {
+            if(result.responseCode == BillingClient.BillingResponseCode.OK){
+
+            }
+        }
+
+    }
+
     var itemModel = ItemModel()
     var pointModel = PointModel()
 
@@ -103,7 +114,21 @@ class PointViewModel(
     init {
 
         lifecycle.addObserver(this)
+        billingClient = BillingClient.newBuilder(activity).setListener(this).build()
+        billingClient.startConnection(object : BillingClientStateListener {
+            override fun onBillingSetupFinished(billingResult: BillingResult) {
+                if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
+                    // The BillingClient is ready. You can query purchases here.
+                    querySkuDetails()
+                }
+            }
 
+            override fun onBillingServiceDisconnected() {
+                // Try to restart the connection on the next request to
+                // Google Play by calling the startConnection() method.
+            }
+        }
+        )
         rewardVM.adCallback = object : RewardedAdCallback() {
 
             override fun onRewardedAdOpened() {
@@ -131,6 +156,33 @@ class PointViewModel(
             user_nick = "회원"
         }
     }
+    fun querySkuDetails() {
+        val skuList = ArrayList<String>()
+        var productId = "android.test.purchased"
+        skuList.add(productId)
+        val params = SkuDetailsParams.newBuilder()
+        params.setSkusList(skuList).setType(BillingClient.SkuType.INAPP)
+        billingClient.querySkuDetailsAsync(params.build()
+        ) { result, skuDetailsList ->
+            if (result.responseCode == BillingClient.BillingResponseCode.OK && skuDetailsList != null) {
+
+                for (skuDetails in skuDetailsList) {
+                    val sku = skuDetails.sku
+                    val price = skuDetails.price
+                    if (productId == sku) {
+                        //                            premiumUpgradePrice = price
+                    }
+                }
+
+            }
+        }
+    }
+
+    fun doBillingFlow(skuDetails: SkuDetails){
+        val flowParams : BillingFlowParams = BillingFlowParams.newBuilder().setSkuDetails(skuDetails).build()
+        val responseCode = billingClient.launchBillingFlow(activity,flowParams)
+    }
+
 
     fun onClickBuyView() {
         toggle.value = false
@@ -300,7 +352,7 @@ class PointViewModel(
         itemModel.buyItem(id, itemCode, subscriber)
     }
 
-    fun buy_inApp(context : Context, it_id : Int){
+    fun buy_inApp(context: Context, it_id: Int) {
         isProgressing.value = true
         val subscriber = object : DisposableObserver<ResultItem<String>>() {
             override fun onComplete() {
@@ -318,7 +370,7 @@ class PointViewModel(
                     if (it.isSuccess) {
 //                        Utility.instance.showToast(context, "성공적으로 포인트를 구매하였습니다.")
                         hasPass.value = true
-                        buyItem(2,context)
+                        buyItem(2, context)
                     } else {
                         Utility.instance.showToast(context, "구매 과정 중 오류가 발생하였습니다.")
                     }
@@ -327,11 +379,12 @@ class PointViewModel(
             }
         }
         var point = 0
-        if(it_id==2){
+        if (it_id == 2) {
             point = 50
         }
         itemModel.rechargePoint(id, point, subscriber)
     }
+
     private fun reservePayment(name: String, price: Int, context: Context) {
         isProgressing.value = true
         val subscriber = object : DisposableObserver<ResultItem<String>>() {
@@ -404,20 +457,56 @@ class PointViewModel(
         reservePaymentPopup.show()
     }
 
-    private fun showPaymentMethod(){
-        var popup = CustomPopup(activity, "결제 수단", "결제방식을 선택해주세요", R.drawable.ic_talk_vivid, object :CustomDialogInterface{
-            override fun onConfirm(v: View) {
-                billingProcessor.purchase(activity,"freepass_month")
-
+    private fun afterPurchase(purchase : Purchase){
+        val purchaseToken = purchase.purchaseToken
+        val consumeParams =
+            ConsumeParams.newBuilder()
+                .setPurchaseToken(purchaseToken)
+                .build()
+        billingClient.consumeAsync(consumeParams,object : ConsumeResponseListener{
+            override fun onConsumeResponse(result: BillingResult, outToken: String) {
+                if (result.responseCode == BillingClient.BillingResponseCode.OK) {
+                    // Handle the success of the consume operation.
+                    // For example, increase the number of coins inside the user's basket.
+                    buyItem(2,activity)
+                }
             }
-
-            override fun onCancel(v: View) {
-                showReservePopup(5500, activity)
-            }
-
         })
+
+    }
+
+    private fun showPaymentMethod() {
+        var popup = CustomPopup(
+            activity,
+            "결제 수단",
+            "결제방식을 선택해주세요",
+            R.drawable.ic_talk_vivid,
+            object : CustomDialogInterface {
+                override fun onConfirm(v: View) {
+                    var productId = "android.test.purchased"
+                    doBillingFlow(SkuDetails(productId))
+                }
+
+                override fun onCancel(v: View) {
+                    showReservePopup(5500, activity)
+                }
+
+            })
         popup.popupVM.negativeText.value = "무통장입금"
         popup.popupVM.positiveText.value = "인앱결제"
         popup.show()
+    }
+
+    override fun onPurchasesUpdated(result: BillingResult, purchases: MutableList<Purchase>?) {
+        if (result.responseCode == BillingClient.BillingResponseCode.OK
+            && purchases != null) {
+            for ( purchase in purchases) {
+                afterPurchase(purchase);
+            }
+        } else if (result.responseCode  == BillingClient.BillingResponseCode.USER_CANCELED) {
+            // Handle an error caused by a user cancelling the purchase flow.
+        } else {
+            // Handle any other error codes.
+        }
     }
 }

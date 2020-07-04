@@ -7,6 +7,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.*
 import com.dmonster.darling.honey.R
 import com.dmonster.darling.honey.dialog.DormantClearDialog
+import com.dmonster.darling.honey.magazine.view.MagazineFragment
 import com.dmonster.darling.honey.point.view.PointFragment
 import com.dmonster.darling.honey.newMember.view.NewMemberFragment
 import com.dmonster.darling.honey.point.view.ItemMainFragment
@@ -55,12 +56,16 @@ class NavigationVM(var fragmentManager: FragmentManager, var mb_id: String, life
     var isGray4 = MutableLiveData<Boolean>().also {
         it.value = false
     }
+    var isGray5 = MutableLiveData<Boolean>().also {
+        it.value = false
+    }
 
     private val fragMain = 0
     private val fragMarket = 1
     private val fragIdeal = 2
     private val fragMe = 3
-    private val fragOption = 4
+    private val fragMagazine = 4
+    private val fragOption = 5
 
     fun getCountData() {
         val subscriber = object : DisposableObserver<ResultItem<NaviData>>() {
@@ -159,6 +164,17 @@ class NavigationVM(var fragmentManager: FragmentManager, var mb_id: String, life
         }
     }
 
+    fun onClickMagazine(view: View){
+        dormantState = Utility.instance.UserData().getUserDormant() == AppKeyValue.instance.keyYes
+        when {
+            dormantState -> setDormantDialog()
+            newFragment !is MagazineFragment -> {
+                fragmentReplace(fragMagazine)
+                fragmentNumber.value = fragMagazine
+            }
+        }
+    }
+
 
     fun fragmentReplace(reqNewFragmentIndex: Int) {
         getCountData()
@@ -179,7 +195,8 @@ class NavigationVM(var fragmentManager: FragmentManager, var mb_id: String, life
             fragMarket -> newFragment = PointFragment()
 
             fragIdeal -> newFragment = NewMemberFragment()
-//            fragIdeal -> newFragment = MyProfileActivity()
+
+            fragMagazine -> newFragment = MagazineFragment()
 
             fragMe -> newFragment = MyActMainFragment()
 
@@ -218,6 +235,7 @@ class NavigationVM(var fragmentManager: FragmentManager, var mb_id: String, life
         isGray2.value = false
         isGray3.value = false
         isGray4.value = false
+        isGray5.value = false
 
         when (id) {
             fragMain -> isGray0.value = true
@@ -228,7 +246,9 @@ class NavigationVM(var fragmentManager: FragmentManager, var mb_id: String, life
 
             fragMe -> isGray3.value = true
 
-            fragOption -> isGray4.value = true
+            fragMagazine -> isGray4.value = true
+
+            fragOption -> isGray5.value = true
 
             else -> isGray0.value = true
         }

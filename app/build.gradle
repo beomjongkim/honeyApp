@@ -163,7 +163,8 @@ dependencies {
     implementation 'com.github.clans:fab:1.6.4'
 
 //    // InAppPurchase
-    implementation 'com.anjlab.android.iab.v3:library:1.0.44'
+    implementation 'com.android.billingclient:billing:3.0.0'
+    implementation 'com.android.billingclient:billing-ktx:3.0.0'
 
     // 네이버 로그인
     implementation 'com.naver.nid:naveridlogin-android-sdk:4.2.6'

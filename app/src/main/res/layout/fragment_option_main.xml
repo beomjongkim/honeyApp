@@ -356,22 +356,6 @@
 
 
         <com.dmonster.darling.honey.customview.ClickableImageView
-            android:id="@+id/iv_option_main_magazine"
-            srcClickable="@{@drawable/ic_magazine}"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:onClick="@{(v)->optionVM.onClickMagazine(v)}"
-            android:adjustViewBounds="true"
-            android:clickable="true"
-            android:focusable="true"
-            android:scaleX="1.2"
-            android:scaleY="1.2"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_option_main_logout"
-            app:layout_constraintEnd_toEndOf="@id/iv_option_main_service_center"
-            app:layout_constraintStart_toStartOf="@+id/iv_option_main_service_center"
-            app:layout_constraintTop_toTopOf="@+id/iv_option_main_logout" />
-
-        <com.dmonster.darling.honey.customview.ClickableImageView
             android:id="@+id/iv_option_main_dormant"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

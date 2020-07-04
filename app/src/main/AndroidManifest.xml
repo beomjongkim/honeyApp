@@ -28,7 +28,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning,Instantiatable">
-        <activity android:name=".magazine.view.MagazineActivity"></activity>
+        <activity android:name=".magazine.view.MagazineFragment"></activity>
         <activity
             android:name=".intro.view.SlideActivity"
             android:screenOrientation="portrait">

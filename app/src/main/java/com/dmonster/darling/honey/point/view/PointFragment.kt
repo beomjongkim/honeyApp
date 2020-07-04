@@ -7,8 +7,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import com.anjlab.android.iab.v3.BillingProcessor
-import com.anjlab.android.iab.v3.TransactionDetails
+import com.android.billingclient.api.*
 
 import com.dmonster.darling.honey.R
 import com.dmonster.darling.honey.custom_recyclerview.view.CustomAdapter
@@ -28,12 +27,11 @@ private const val ARG_PARAM2 = "param2"
  * Use the [PointFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class PointFragment : Fragment(), BillingProcessor.IBillingHandler {
+class PointFragment : Fragment(){
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
     lateinit var binding: FragmentPointBinding
-    lateinit var bp: BillingProcessor
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -41,10 +39,8 @@ class PointFragment : Fragment(), BillingProcessor.IBillingHandler {
             param1 = it.getString(ARG_PARAM1)
             param2 = it.getString(ARG_PARAM2)
         }
-        bp = BillingProcessor(context, AppKeyValue.instance.inAppKey, this)
-
-        bp.initialize()
     }
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,8 +52,7 @@ class PointFragment : Fragment(), BillingProcessor.IBillingHandler {
         binding.pointViewModel = activity?.let { it ->
             PointViewModel(
                 Utility.instance.getPref(it, AppKeyValue.instance.savePrefID), lifecycle, it,
-                ReservePaymentPopup(it, this), CustomAdapter(R.layout.layout_point_log, this),
-                bp
+                ReservePaymentPopup(it, this), CustomAdapter(R.layout.layout_point_log, this)
             )
         }
         binding.lifecycleOwner = this
@@ -85,28 +80,17 @@ class PointFragment : Fragment(), BillingProcessor.IBillingHandler {
             }
     }
 
-    override fun onBillingInitialized() {
-    }
-
-    override fun onPurchaseHistoryRestored() {
-    }
-
-    override fun onProductPurchased(productId: String, details: TransactionDetails?) {
-        bp.consumePurchase(productId)
-        context?.let { binding.pointViewModel?.buy_inApp(it,2) }
-    }
-
-    override fun onBillingError(errorCode: Int, error: Throwable?) {
-    }
-
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if (!bp.handleActivityResult(requestCode, resultCode, data)) {
-            super.onActivityResult(requestCode, resultCode, data);
-        }
-    }
-
-    override fun onDestroy() {
-        bp.release()
-        super.onDestroy()
-    }
+//
+//    override fun onPurchasesUpdated(billingResult: BillingResult, purchases: MutableList<Purchase>?) {
+//        if (billingResult.responseCode == BillingClient.BillingResponseCode.OK && purchases != null) {
+//            for (purchase in purchases) {
+//                billingClient.consumeAsync(ConsumeParams())
+//                context?.let { binding.pointViewModel?.buy_inApp(it,2) }
+//            }
+//        } else if (billingResult.responseCode == BillingClient.BillingResponseCode.USER_CANCELED) {
+//            // Handle an error caused by a user cancelling the purchase flow.
+//        } else {
+//            // Handle any other error codes.
+//        }
+//    }
 }

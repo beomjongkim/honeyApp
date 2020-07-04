@@ -18,7 +18,7 @@ import com.dmonster.darling.honey.customview.CustomPopup
 import com.dmonster.darling.honey.dialog.DormantClearDialog
 import com.dmonster.darling.honey.information.view.MyInfoActivity
 import com.dmonster.darling.honey.inquiry.view.InquiryMainActivity
-import com.dmonster.darling.honey.magazine.view.MagazineActivity
+import com.dmonster.darling.honey.magazine.view.MagazineFragment
 import com.dmonster.darling.honey.point.view.ItemUseActivity
 import com.dmonster.darling.honey.myinformation.view.MyProfileActivity
 import com.dmonster.darling.honey.notice.view.NoticeActivity
@@ -211,16 +211,6 @@ class OptionVM(var fragmentManager: FragmentManager, lifecycle: Lifecycle, val i
     }
 
 
-    fun onClickMagazine(view: View) {
-        dormantState = Utility.instance.UserData().getUserDormant() == AppKeyValue.instance.keyYes
-        when {
-            dormantState -> setDormantDialog()
-            else -> {
-                val intent = Intent(view.context, MagazineActivity::class.java)
-                startActivity(view.context, intent, null)
-            }
-        }
-    }
 
     fun onClickBlockFriends(view: View) {
         val intent = Intent(view.context, BlockFriendsActivity::class.java)
