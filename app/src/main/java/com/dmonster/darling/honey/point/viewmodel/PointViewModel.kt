@@ -44,15 +44,9 @@ class PointViewModel(
     var adapter: CustomAdapter
 ) : ViewModel(), LifecycleObserver, PurchasesUpdatedListener {
     private var billingClient: BillingClient
-    var consumeListener = object :  ConsumeResponseListener {
-        override fun onConsumeResponse(result: BillingResult, p1: String) {
-            if(result.responseCode == BillingClient.BillingResponseCode.OK){
+    var productId = "freepass_month"
 
-            }
-        }
-
-    }
-
+    lateinit var skuDetailPass: SkuDetails
     var itemModel = ItemModel()
     var pointModel = PointModel()
 
@@ -114,7 +108,8 @@ class PointViewModel(
     init {
 
         lifecycle.addObserver(this)
-        billingClient = BillingClient.newBuilder(activity).setListener(this).build()
+        billingClient =
+            BillingClient.newBuilder(activity).enablePendingPurchases().setListener(this).build()
         billingClient.startConnection(object : BillingClientStateListener {
             override fun onBillingSetupFinished(billingResult: BillingResult) {
                 if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
@@ -156,13 +151,14 @@ class PointViewModel(
             user_nick = "회원"
         }
     }
+
     fun querySkuDetails() {
         val skuList = ArrayList<String>()
-        var productId = "android.test.purchased"
         skuList.add(productId)
         val params = SkuDetailsParams.newBuilder()
         params.setSkusList(skuList).setType(BillingClient.SkuType.INAPP)
-        billingClient.querySkuDetailsAsync(params.build()
+        billingClient.querySkuDetailsAsync(
+            params.build()
         ) { result, skuDetailsList ->
             if (result.responseCode == BillingClient.BillingResponseCode.OK && skuDetailsList != null) {
 
@@ -170,7 +166,7 @@ class PointViewModel(
                     val sku = skuDetails.sku
                     val price = skuDetails.price
                     if (productId == sku) {
-                        //                            premiumUpgradePrice = price
+                        skuDetailPass = skuDetails
                     }
                 }
 
@@ -178,9 +174,10 @@ class PointViewModel(
         }
     }
 
-    fun doBillingFlow(skuDetails: SkuDetails){
-        val flowParams : BillingFlowParams = BillingFlowParams.newBuilder().setSkuDetails(skuDetails).build()
-        val responseCode = billingClient.launchBillingFlow(activity,flowParams)
+    fun doBillingFlow(skuDetails: SkuDetails) {
+        val flowParams: BillingFlowParams =
+            BillingFlowParams.newBuilder().setSkuDetails(skuDetails).build()
+        val responseCode = billingClient.launchBillingFlow(activity, flowParams)
     }
 
 
@@ -457,18 +454,20 @@ class PointViewModel(
         reservePaymentPopup.show()
     }
 
-    private fun afterPurchase(purchase : Purchase){
+    private fun afterPurchase(purchase: Purchase) {
         val purchaseToken = purchase.purchaseToken
         val consumeParams =
             ConsumeParams.newBuilder()
                 .setPurchaseToken(purchaseToken)
                 .build()
-        billingClient.consumeAsync(consumeParams,object : ConsumeResponseListener{
+        billingClient.consumeAsync(consumeParams, object : ConsumeResponseListener {
             override fun onConsumeResponse(result: BillingResult, outToken: String) {
                 if (result.responseCode == BillingClient.BillingResponseCode.OK) {
                     // Handle the success of the consume operation.
                     // For example, increase the number of coins inside the user's basket.
-                    buyItem(2,activity)
+                    if(purchase.sku == productId){
+                        buy_inApp(activity,2)
+                    }
                 }
             }
         })
@@ -483,8 +482,7 @@ class PointViewModel(
             R.drawable.ic_talk_vivid,
             object : CustomDialogInterface {
                 override fun onConfirm(v: View) {
-                    var productId = "android.test.purchased"
-                    doBillingFlow(SkuDetails(productId))
+                    doBillingFlow(skuDetailPass)
                 }
 
                 override fun onCancel(v: View) {
@@ -499,11 +497,13 @@ class PointViewModel(
 
     override fun onPurchasesUpdated(result: BillingResult, purchases: MutableList<Purchase>?) {
         if (result.responseCode == BillingClient.BillingResponseCode.OK
-            && purchases != null) {
-            for ( purchase in purchases) {
-                afterPurchase(purchase);
+            && purchases != null
+        ) {
+            for (purchase in purchases) {
+                if (purchase.sku == productId)
+                    afterPurchase(purchase)
             }
-        } else if (result.responseCode  == BillingClient.BillingResponseCode.USER_CANCELED) {
+        } else if (result.responseCode == BillingClient.BillingResponseCode.USER_CANCELED) {
             // Handle an error caused by a user cancelling the purchase flow.
         } else {
             // Handle any other error codes.
