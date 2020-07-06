@@ -4,18 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-        <import type="android.view.View"/>
+
+        <import type="android.view.View" />
+
         <variable
             name="pointViewModel"
             type="com.dmonster.darling.honey.point.viewmodel.PointViewModel" />
 
+        <variable
+            name="spinnerVM"
+            type="com.dmonster.darling.honey.point.viewmodel.PointSpinnerVM" />
     </data>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/cl_frag_market_layout"
                 android:layout_width="match_parent"
@@ -80,12 +88,12 @@
                 </LinearLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recyclerView2"
+                    android:id="@+id/rv_frag_point"
                     CustomAdapter="@{pointViewModel.adapter}"
                     layoutType='@{"vertical"}'
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="4dp"
                     android:background="@color/color_gray70"
                     android:visibility="@{pointViewModel.toggle ? View.VISIBLE : View.GONE}"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -94,6 +102,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_frag_market_notice"
                     app:layout_constraintWidth_percent="0.9" />
+
                 <TextView
                     style="@style/baseTextViewStyle"
                     android:layout_width="wrap_content"
@@ -111,8 +120,8 @@
 
 
                 <Button
-                    style="@style/baseTextViewStyle"
                     android:id="@+id/btn_freepass_month"
+                    style="@style/baseTextViewStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -129,16 +138,16 @@
                     app:layout_constraintWidth_percent="0.38" />
 
                 <Button
-                    style="@style/baseTextViewStyle"
                     android:id="@+id/btn_freepass_hour"
+                    style="@style/baseTextViewStyle"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
                     android:background="@{pointViewModel.hasPass? @drawable/bg_btn_gray:@drawable/bg_btn_yellow}"
+                    android:onClick="@{()->pointViewModel.onClickBuyHour()}"
                     android:padding="3dp"
                     android:text="@string/market_item_hour"
                     android:textColor="@color/color_white"
                     android:textSize="@dimen/text_large"
-                    android:onClick="@{()->pointViewModel.onClickBuyHour()}"
                     android:visibility="@{pointViewModel.toggle ? View.GONE : View.VISIBLE}"
                     app:layout_constraintBottom_toBottomOf="@+id/btn_freepass_month"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -160,7 +169,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_item_pass_title"
                     tools:ignore="SpUsage" />
-
 
 
                 <!-- 프로그래스바 -->
@@ -203,12 +211,11 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="6dp"
                     android:gravity="center"
-                    android:visibility="@{pointViewModel.toggle ? View.GONE : View.VISIBLE}"
                     android:text="@{pointViewModel.text_left_date}"
+                    android:visibility="@{pointViewModel.toggle ? View.GONE : View.VISIBLE}"
                     app:layout_constraintBottom_toTopOf="@+id/tv_frag_market_left_day"
                     app:layout_constraintEnd_toEndOf="@+id/tv_frag_market_left_day"
                     app:layout_constraintStart_toStartOf="@+id/tv_frag_market_left_day" />
-
 
 
                 <androidx.constraintlayout.widget.Guideline
@@ -254,62 +261,38 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/dv_second" />
 
-                <EditText
-                    android:id="@+id/et_point_recharge"
+                <Spinner
+                    android:id="@+id/sp_point_recharge"
                     style="@style/baseTextViewStyle"
-                    addTextWatcher="@{pointViewModel.textWatcher}"
+                    SpinnerVM="@{spinnerVM}"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="32dp"
-                    android:layout_marginLeft="32dp"
                     android:layout_marginTop="8dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginRight="8dp"
                     android:layout_marginBottom="8dp"
-                    android:ems="10"
-                    android:maxLength="4"
-                    android:gravity="right"
-                    android:hint="0"
-                    android:inputType="number"
-                    android:text="@={pointViewModel.chargePoint}"
-                    android:textSize="@dimen/text_normal"
-                    android:visibility="@{pointViewModel.toggle ? View.GONE : View.VISIBLE}"
-                    app:layout_constraintBottom_toTopOf="@+id/tv_frag_market_using"
-                    app:layout_constraintEnd_toStartOf="@+id/tv_frag_point"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_point_title" />
-
-                <TextView
-                    android:id="@+id/tv_frag_point"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginEnd="32dp"
-                    android:layout_marginRight="32dp"
-                    android:layout_marginBottom="8dp"
-                    android:text="포인트"
                     android:textSize="@dimen/text_normal"
                     android:visibility="@{pointViewModel.toggle ? View.GONE : View.VISIBLE}"
                     app:layout_constraintBottom_toTopOf="@+id/tv_frag_market_using"
                     app:layout_constraintEnd_toStartOf="@+id/guideline3"
-                    app:layout_constraintTop_toBottomOf="@+id/tv_point_title" />
+                    app:layout_constraintStart_toStartOf="@+id/dv_second"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_point_title"
+                    app:layout_constraintVertical_bias="0.0" />
 
                 <Button
                     android:id="@+id/bt_point_recharge"
                     style="@style/baseTextViewStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="0dp"
-                    android:layout_marginEnd="32dp"
-                    android:layout_marginRight="32dp"
                     android:background="@drawable/bg_btn_yellow"
                     android:onClick="@{(v)->pointViewModel.onClickCharge(v)}"
                     android:text="충전하기"
                     android:textColor="@color/color_white"
                     android:textSize="@dimen/text_small"
                     android:visibility="@{pointViewModel.toggle ? View.GONE : View.VISIBLE}"
-                    app:layout_constraintBottom_toBottomOf="@+id/et_point_recharge"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/et_point_recharge" />
+                    app:layout_constraintBottom_toBottomOf="@+id/sp_point_recharge"
+                    app:layout_constraintEnd_toEndOf="@+id/dv_second"
+                    app:layout_constraintTop_toTopOf="@+id/sp_point_recharge" />
 
                 <View
                     android:id="@+id/dv_first"
@@ -337,20 +320,20 @@
                     app:layout_constraintTop_toBottomOf="@+id/dv_first" />
 
                 <TextView
-                    style="@style/baseTextViewStyle"
                     android:id="@+id/tv_title_video_chat_pass"
+                    style="@style/baseTextViewStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:visibility="@{pointViewModel.toggle ? View.GONE : View.GONE}"
                     android:text="2. 톡하기 : 화상 채팅 이용권"
+                    android:visibility="@{pointViewModel.toggle ? View.GONE : View.GONE}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/btn_freepass_month" />
 
                 <Button
-                    style="@style/baseTextViewStyle"
                     android:id="@+id/btn_video_chat_recharge"
+                    style="@style/baseTextViewStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
@@ -365,14 +348,14 @@
                     app:layout_constraintTop_toBottomOf="@+id/tv_title_video_chat_pass" />
 
                 <TextView
-                    style="@style/baseTextViewStyle"
                     android:id="@+id/tv_info_point"
+                    style="@style/baseTextViewStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    android:gravity="center"
                     android:text="@{pointViewModel.text_point_info}"
                     android:visibility="@{pointViewModel.toggle ? View.GONE : View.VISIBLE}"
-                    android:gravity="center"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/ll_frag_my_act_main_top_layout" />
@@ -381,15 +364,17 @@
                     android:id="@+id/tv_frag_point_won"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@{pointViewModel.text_won_info}"
+                    android:text="@{spinnerVM.won}"
                     android:textColor="@color/accent"
                     android:textSize="@dimen/text_xsmall"
                     android:theme="@style/baseTextViewStyle"
                     android:visibility="@{pointViewModel.toggle ? View.GONE : View.VISIBLE}"
-                    app:layout_constraintBottom_toBottomOf="@+id/tv_frag_point"
+                    app:layout_constraintBottom_toBottomOf="@+id/sp_point_recharge"
                     app:layout_constraintEnd_toStartOf="@+id/bt_point_recharge"
-                    app:layout_constraintStart_toEndOf="@+id/tv_frag_point"
-                    app:layout_constraintTop_toTopOf="@+id/tv_frag_point" />
+                    app:layout_constraintStart_toEndOf="@+id/sp_point_recharge"
+                    app:layout_constraintTop_toTopOf="@+id/sp_point_recharge" />
+
+
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </ScrollView>

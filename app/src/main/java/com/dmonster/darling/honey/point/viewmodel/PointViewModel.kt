@@ -4,12 +4,8 @@ import android.app.Activity
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
-import android.content.DialogInterface
-import android.text.Editable
-import android.text.TextWatcher
 import android.util.Log
 import android.view.View
-import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.lifecycle.*
 import com.android.billingclient.api.*
@@ -26,15 +22,12 @@ import com.dmonster.darling.honey.point.data.PointData
 import com.dmonster.darling.honey.point.data.PointLogData
 import com.dmonster.darling.honey.point.model.ItemModel
 import com.dmonster.darling.honey.point.model.PointModel
-import com.dmonster.darling.honey.util.AppKeyValue
 import com.dmonster.darling.honey.util.Utility
 import com.dmonster.darling.honey.util.retrofit.ResultItem
 import com.dmonster.darling.honey.util.retrofit.ResultListItem
 import com.google.android.gms.ads.rewarded.RewardItem
 import com.google.android.gms.ads.rewarded.RewardedAdCallback
 import io.reactivex.observers.DisposableObserver
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
 
 class PointViewModel(
     var id: String?,
@@ -44,11 +37,13 @@ class PointViewModel(
     var adapter: CustomAdapter
 ) : ViewModel(), LifecycleObserver, PurchasesUpdatedListener {
     private var billingClient: BillingClient
-        var productId = "freepass_month"
-//    var productId = "android.test.purchased"
-    var tag = "PointViewModel"
+    var productId = "freepass_month"
 
-    lateinit var skuDetailPass: SkuDetails
+    //    var productId = "android.test.purchased"
+    var tag = "PointViewModel"
+    var inappType = 0
+
+    var skuDetailList = ArrayList<SkuDetails>()
     var itemModel = ItemModel()
     var pointModel = PointModel()
 
@@ -75,8 +70,8 @@ class PointViewModel(
         it.value = user_nick + "님의 포인트는 현재\n0 포인트입니다."
     }
 
-    var text_won_info = MutableLiveData<String>().also {
-        it.value = ""
+    var price_won = MutableLiveData<Int>().also {
+        it.value = 0
     }
 
     var isProgressing = MutableLiveData<Boolean>().also {
@@ -90,41 +85,26 @@ class PointViewModel(
     var chargePoint = MutableLiveData<String>().also {
         it.value = "0"
     }
-    var textWatcher = object : TextWatcher {
-        override fun afterTextChanged(p0: Editable?) {
-            chargePoint.value?.let {
-                if (it.isNotEmpty())
-                    text_won_info.value = (it.toInt().times(110)).toString() + "원 결제"
-            }
-        }
-
-        override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-        }
-
-        override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-        }
-
-    }
 
 
     init {
-        Log.d(tag,"init")
+        Log.d(tag, "init")
         lifecycle.addObserver(this)
         billingClient =
             BillingClient.newBuilder(activity).enablePendingPurchases().setListener(this).build()
         billingClient.startConnection(object : BillingClientStateListener {
             override fun onBillingSetupFinished(billingResult: BillingResult) {
 
-                Log.d(tag,"onBillingSetupFinished")
+                Log.d(tag, "onBillingSetupFinished")
                 if (billingResult.responseCode == BillingClient.BillingResponseCode.OK) {
-                    Log.d(tag,"BillingResponseCode.OK")
+                    Log.d(tag, "BillingResponseCode.OK")
                     // The BillingClient is ready. You can query purchases here.
                     querySkuDetails()
                 }
             }
 
             override fun onBillingServiceDisconnected() {
-                Log.d(tag,"billingServiceDisconnected")
+                Log.d(tag, "billingServiceDisconnected")
 
                 // Try to restart the connection on the next request to
                 // Google Play by calling the startConnection() method.
@@ -160,9 +140,13 @@ class PointViewModel(
     }
 
     fun querySkuDetails() {
-        Log.d(tag,"querySkuDetails")
+        Log.d(tag, "querySkuDetails")
         val skuList = ArrayList<String>()
-        skuList.add(productId)
+        skuList.add("point50")
+        skuList.add("point100")
+        skuList.add("point150")
+        skuList.add("freepass_month")
+
         val params = SkuDetailsParams.newBuilder()
         params.setSkusList(skuList).setType(BillingClient.SkuType.INAPP)
         billingClient.querySkuDetailsAsync(
@@ -173,9 +157,7 @@ class PointViewModel(
                 for (skuDetails in skuDetailsList) {
                     val sku = skuDetails.sku
                     val price = skuDetails.price
-                    if (productId == sku) {
-                        skuDetailPass = skuDetails
-                    }
+                    skuDetailList.add(skuDetails)
                 }
 
             }
@@ -183,7 +165,7 @@ class PointViewModel(
     }
 
     fun doBillingFlow(skuDetails: SkuDetails) {
-        Log.d(tag,"doBillingFlow")
+        Log.d(tag, "doBillingFlow")
 
         val flowParams: BillingFlowParams =
             BillingFlowParams.newBuilder().setSkuDetails(skuDetails).build()
@@ -321,14 +303,15 @@ class PointViewModel(
     }
 
     fun onClickCharge(v: View) {
-        chargePoint.value?.let {
-            showReservePopup(it.toInt() * 110, v.context)
-        }
-        reservePaymentPopup.show()
+        showPaymentMethod()
+//        chargePoint.value?.let {
+//            showReservePopup(it.toInt() * 110, v.context)
+//        }
+//        reservePaymentPopup.show()
     }
 
     fun buyItem(itemCode: Int, context: Context) {//결제 후 아이템 구매 기록 남기기
-        Log.d(tag,"buyItem")
+        Log.d(tag, "buyItem")
         isProgressing.value = true
         val subscriber = object : DisposableObserver<ResultItem<String>>() {
             override fun onComplete() {
@@ -350,6 +333,7 @@ class PointViewModel(
                     } else {
                         Utility.instance.showToast(context, "보유 포인트가 모자랍니다.")
                         if (itemCode == 2) {
+                            inappType = -1
                             showPaymentMethod()
                         }
                     }
@@ -361,7 +345,7 @@ class PointViewModel(
     }
 
     fun buy_inApp(context: Context, it_id: Int) {
-        Log.d(tag,"buy_inApp")
+        Log.d(tag, "buy_inApp")
 
         isProgressing.value = true
         val subscriber = object : DisposableObserver<ResultItem<String>>() {
@@ -378,7 +362,7 @@ class PointViewModel(
             override fun onNext(item: ResultItem<String>) {
                 item.let { it ->
                     if (it.isSuccess) {
-                        Log.d(tag,"rechargePoint success")
+                        Log.d(tag, "rechargePoint success")
 //                        Utility.instance.showToast(context, "성공적으로 포인트를 구매하였습니다.")
                         hasPass.value = true
                         buyItem(2, context)
@@ -395,6 +379,44 @@ class PointViewModel(
         }
         itemModel.rechargePoint(id, point, subscriber)
     }
+
+    private fun rechargePoint(context: Context, type: Int) {
+
+        isProgressing.value = true
+        val subscriber = object : DisposableObserver<ResultItem<String>>() {
+            override fun onComplete() {
+                isProgressing.value = false
+                onResume()
+            }
+
+            override fun onError(e: Throwable) {
+                isProgressing.value = false
+                Utility.instance.showToast(context, "구매 과정 중 오류가 발생하였습니다.")
+            }
+
+            override fun onNext(item: ResultItem<String>) {
+                item.let { it ->
+                    if (it.isSuccess) {
+                        Log.d(tag, "rechargePoint success")
+                        Utility.instance.showToast(context, "성공적으로 포인트를 구매하였습니다.")
+
+                    } else {
+                        Utility.instance.showToast(context, "구매 과정 중 오류가 발생하였습니다.")
+                    }
+                }
+                isProgressing.value = false
+            }
+        }
+        var point = when (type) {
+            0 -> 50
+            1 -> 100
+            2 -> 150
+            else -> 0
+        }
+
+        itemModel.rechargePoint(id, point, subscriber)
+    }
+
 
     private fun reservePayment(name: String, price: Int, context: Context) {
         isProgressing.value = true
@@ -469,7 +491,7 @@ class PointViewModel(
     }
 
     private fun afterPurchase(purchase: Purchase) {
-        Log.d(tag,"afterPurchase")
+        Log.d(tag, "afterPurchase")
         val purchaseToken = purchase.purchaseToken
         val consumeParams =
             ConsumeParams.newBuilder()
@@ -478,11 +500,14 @@ class PointViewModel(
         billingClient.consumeAsync(consumeParams, object : ConsumeResponseListener {
             override fun onConsumeResponse(result: BillingResult, outToken: String) {
                 if (result.responseCode == BillingClient.BillingResponseCode.OK) {
-                    Log.d(tag,"consumeResponse")
+                    Log.d(tag, "consumeResponse")
                     // Handle the success of the consume operation.
                     // For example, increase the number of coins inside the user's basket.
-                    if (purchase.sku == productId) {
-                        buy_inApp(activity, 2)
+                    when (purchase.sku) {
+                        "freepass_month" -> buy_inApp(activity, 2)
+                        "point50" ->rechargePoint(activity,0)
+                        "point100" ->rechargePoint(activity,1)
+                        "point150" ->rechargePoint(activity,2)
                     }
                 }
             }
@@ -498,11 +523,19 @@ class PointViewModel(
             R.drawable.ic_talk_vivid,
             object : CustomDialogInterface {
                 override fun onConfirm(v: View) {
-                    doBillingFlow(skuDetailPass)
+                    var skuDetail: SkuDetails
+                    when (inappType) {
+                        0 -> skuDetail = skuDetailList[3]
+                        1 -> skuDetail = skuDetailList[1]
+                        2 -> skuDetail = skuDetailList[2]
+                        else -> skuDetail = skuDetailList[0]
+                    }
+                    Utility.instance.showToast(v.context,skuDetail.sku)
+                    doBillingFlow(skuDetail)
                 }
 
                 override fun onCancel(v: View) {
-                    showReservePopup(5500, activity)
+                    showReservePopup(price_won.value!!, activity)
                 }
 
             })
@@ -513,17 +546,17 @@ class PointViewModel(
 
     override fun onPurchasesUpdated(result: BillingResult, purchases: MutableList<Purchase>?) {
         if (result.responseCode == BillingClient.BillingResponseCode.OK && purchases != null) {
-            Log.d(tag,"onPurchasesUpdated")
+            Log.d(tag, "onPurchasesUpdated")
 
             for (purchase in purchases) {
                 afterPurchase(purchase)
             }
         } else if (result.responseCode == BillingClient.BillingResponseCode.USER_CANCELED) {
-            Log.d(tag,"USER_CANCELED")
+            Log.d(tag, "USER_CANCELED")
 
             // Handle an error caused by a user cancelling the purchase flow.
         } else {
-            Log.e(tag,result.debugMessage)
+            Log.e(tag, result.debugMessage)
             // Handle any other error codes.
         }
     }

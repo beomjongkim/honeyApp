@@ -6,13 +6,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
 import com.android.billingclient.api.*
 
 import com.dmonster.darling.honey.R
+import com.dmonster.darling.honey.common.command.SpinnerInterface
+import com.dmonster.darling.honey.common.viewmodel.SpinnerVM
 import com.dmonster.darling.honey.custom_recyclerview.view.CustomAdapter
 import com.dmonster.darling.honey.customview.ReservePaymentPopup
 import com.dmonster.darling.honey.databinding.FragmentPointBinding
+import com.dmonster.darling.honey.point.viewmodel.PointSpinnerVM
 import com.dmonster.darling.honey.point.viewmodel.PointViewModel
 import com.dmonster.darling.honey.util.AppKeyValue
 import com.dmonster.darling.honey.util.Utility
@@ -27,7 +31,7 @@ private const val ARG_PARAM2 = "param2"
  * Use the [PointFragment.newInstance] factory method to
  * create an instance of this fragment.
  */
-class PointFragment : Fragment(){
+class PointFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var param1: String? = null
     private var param2: String? = null
@@ -55,6 +59,29 @@ class PointFragment : Fragment(){
                 ReservePaymentPopup(it, this), CustomAdapter(R.layout.layout_point_log, this)
             )
         }
+        binding.spinnerVM = PointSpinnerVM(
+            ArrayAdapter<String>(
+                context,
+                R.layout.support_simple_spinner_dropdown_item
+            ).also {
+                it.addAll(listOf("50포인트", "100포인트", "150포인트"))
+            },
+            object : SpinnerInterface {
+                override fun onItemSelected() {
+                    binding.pointViewModel?.let { pointViewModel ->
+                        binding.spinnerVM?.let { pointSpinnerVM ->
+                            pointViewModel.chargePoint.value = pointSpinnerVM.price.value.toString()
+                            pointViewModel.inappType = pointSpinnerVM.position.value!!
+                            pointViewModel.price_won.value = pointSpinnerVM.price.value?.times(110)
+                        }
+                    }
+                }
+
+                override fun onNothingSelected() {
+                }
+
+            }
+        )
         binding.lifecycleOwner = this
 
         return binding.root

@@ -207,27 +207,11 @@ object BindingAdapter {
     fun setSpinnerVM(spinner: Spinner, spinnerVM: SpinnerVM?) {
         //viewModel을 통해서 가져온 adapter를 스피너에 세팅해주고, 스피너와 에딧텍스트의 기본적인 행동을 정의해준다.
         //ex)아이템 클릭 시 텍스트뷰에 세팅해주고 아무것도 선택안하면 초기화해주는 것...
-
-        spinner.adapter = spinnerVM?.arrayAdapter
-        spinner.onItemSelectedListener = object : OnItemSelectedListener {
-            override fun onNothingSelected(parent: AdapterView<*>?) {
-
-                spinnerVM?.let {
-                    it.text.value = ""
-                }
-            }
-
-            override fun onItemSelected(
-                parent: AdapterView<*>?,
-                view: View?,
-                position: Int,
-                id: Long
-            ) {
-                spinnerVM?.let {
-                    it.text.value = it.arrayAdapter.getItem(position)
-                }
-            }
+        spinnerVM?.let {
+            spinner.adapter = it.arrayAdapter
+            spinner.onItemSelectedListener = it.itemSelectedListener
         }
+
     }
 
     @androidx.databinding.BindingAdapter("UpperSpinner", "UpperSpinnerVM", "LowerSpinnerVM")
@@ -349,6 +333,5 @@ object BindingAdapter {
     fun setEditTextListener(editText: EditText, textWatcher: TextWatcher) {
         editText.addTextChangedListener(textWatcher)
     }
-
 
 }
