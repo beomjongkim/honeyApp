@@ -211,6 +211,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="6dp"
                     android:gravity="center"
+                    android:textSize="@dimen/text_xsmall"
                     android:text="@{pointViewModel.text_left_date}"
                     android:visibility="@{pointViewModel.toggle ? View.GONE : View.VISIBLE}"
                     app:layout_constraintBottom_toTopOf="@+id/tv_frag_market_left_day"

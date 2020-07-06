@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.ClipData
 import android.content.ClipboardManager
 import android.content.Context
+import android.content.DialogInterface
 import android.util.Log
 import android.view.View
 import androidx.annotation.NonNull
@@ -183,30 +184,38 @@ class PointViewModel(
 
     private fun checkPass() {
         isProgressing.value = true
-        text_available.value = user_nick + "님은 현재 이용권 사용"
+        text_available.value = user_nick + "님은 현재 이용 중인 이용권이 없습니다."
         val subscriber = object : DisposableObserver<ResultItem<CheckFreePassData>>() {
             override fun onComplete() {
                 isProgressing.value = false
             }
 
             override fun onError(e: Throwable) {
-                text_available.value = text_available.value + " 만료되었습니다."
+                text_available.value = user_nick + "님은 현재 이용 중인 이용권이 없습니다."
                 hasPass.value = false
                 isProgressing.value = false
             }
 
             override fun onNext(item: ResultItem<CheckFreePassData>) {
-                item.let { it ->
-                    if (it.isSuccess) {
+                item.let { resultItem ->
+                    if (resultItem.isSuccess) {
                         hasPass.value = true
-                        text_available.value = text_available.value + " 중 입니다."
-                        val day = it.item?.minutes_left?.toInt()?.div(1440)
-                        val dueDate = Utility.instance.transformDateTime(it.item?.due_date!!)
-                        text_left_date.value =
-                            dueDate[0].toString() + "년 " + dueDate[1].toString() + "월 " + dueDate[2].toString() + "일 까지 사용 가능합니다.\n잔여일 : " + day + "일"
+                        text_available.value = ""
+                        val day = resultItem.item?.minutes_left?.toInt()?.div(1440)
+                        day?.let {
+                            if(day >0){
+                                text_left_date.value ="월간 이용권 사용중 | "+
+                                        resultItem.item.due_date?.split(" ")!![0]+"까지 사용 가능 | 잔여일 : " + day + "일"
+                            }else{
+                                text_left_date.value ="1시간 이용권 사용중 | "+
+                                        resultItem.item.due_date?.split(" ")!![1]+"까지 사용 가능 | 잔여시간 : " + resultItem.item.minutes_left?.toInt() + "분"
+                            }
+                        }
+
+
                     } else {
                         hasPass.value = false
-                        text_available.value = text_available.value + " 만료되었습니다."
+                        text_available.value = user_nick + "님은 현재 이용 중인 이용권이 없습니다."
                     }
                 }
             }
@@ -333,7 +342,8 @@ class PointViewModel(
                     } else {
                         Utility.instance.showToast(context, "보유 포인트가 모자랍니다.")
                         if (itemCode == 2) {
-                            inappType = -1
+                            inappType = 3
+                            price_won.value = 5500
                             showPaymentMethod()
                         }
                     }
@@ -433,17 +443,34 @@ class PointViewModel(
             override fun onNext(item: ResultItem<String>) {
                 item.let { it ->
                     if (it.isSuccess) {
+                        Utility.instance.showTwoButtonAlert(context,
+                            "입금정보",
+                            "아래 정보로 무통장 입금을 진행해주세요.\n입금자명 : " + name + "\n금액 : " + price + "원\n" + "기업은행 | 98602084704015 | 주식회사 상현",
+                            "닫기",
+                            "계좌번호복사",
+                            DialogInterface.OnClickListener { p0, p1 ->
+                                val clipboard =
+                                    context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                                val clip: ClipData = ClipData.newPlainText(
+                                    "simple text",
+                                    "입금자명 : " + name + "\n금액 : " + price + "원\n" + "기업은행 | 98602084704015 | 주식회사 상현"
+                                )
+                                clipboard.primaryClip = clip
+                                Utility.instance.showToast(context, "복사되었습니다.")
+                            }
+                        )
+
                         Utility.instance.showAlert(
                             context,
                             "입금정보",
-                            "아래 정보로 무통장 입금을 진행해주세요.\n기업은행 : 98602084704015\n입금자명 : " + name + "\n금액 : " + price + "원",
+                            "아래 정보로 무통장 입금을 진행해주세요.\n입금자명 : " + name + "\n금액 : " + price + "원\n" + "기업은행 | 98602084704015 | 주식회사 상현",
                             object : CustomDialogInterface {
                                 override fun onConfirm(v: View) {
                                     val clipboard =
                                         v.context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
                                     val clip: ClipData = ClipData.newPlainText(
                                         "simple text",
-                                        "아래 정보로 무통장 입금을 진행해주세요.\n기업은행 : 98602084704015\n입금자명 : " + name + "\n금액 : " + price + "원"
+                                        "입금자명 : " + name + "\n금액 : " + price + "원\n" + "기업은행 | 98602084704015 | 주식회사 상현"
                                     )
                                     clipboard.primaryClip = clip
                                     Utility.instance.showToast(v.context, "복사되었습니다.")
@@ -505,9 +532,9 @@ class PointViewModel(
                     // For example, increase the number of coins inside the user's basket.
                     when (purchase.sku) {
                         "freepass_month" -> buy_inApp(activity, 2)
-                        "point50" ->rechargePoint(activity,0)
-                        "point100" ->rechargePoint(activity,1)
-                        "point150" ->rechargePoint(activity,2)
+                        "point50" -> rechargePoint(activity, 0)
+                        "point100" -> rechargePoint(activity, 1)
+                        "point150" -> rechargePoint(activity, 2)
                     }
                 }
             }
@@ -530,7 +557,7 @@ class PointViewModel(
                         2 -> skuDetail = skuDetailList[2]
                         else -> skuDetail = skuDetailList[0]
                     }
-                    Utility.instance.showToast(v.context,skuDetail.sku)
+                    Utility.instance.showToast(v.context, skuDetail.sku)
                     doBillingFlow(skuDetail)
                 }
 
