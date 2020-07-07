@@ -1,6 +1,5 @@
 package com.dmonster.darling.honey.point.view
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,13 +7,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import androidx.databinding.DataBindingUtil
-import com.android.billingclient.api.*
 
 import com.dmonster.darling.honey.R
 import com.dmonster.darling.honey.common.command.SpinnerInterface
-import com.dmonster.darling.honey.common.viewmodel.SpinnerVM
 import com.dmonster.darling.honey.custom_recyclerview.view.CustomAdapter
-import com.dmonster.darling.honey.customview.ReservePaymentPopup
+import com.dmonster.darling.honey.dialog.ReservePaymentPopup
 import com.dmonster.darling.honey.databinding.FragmentPointBinding
 import com.dmonster.darling.honey.point.viewmodel.PointSpinnerVM
 import com.dmonster.darling.honey.point.viewmodel.PointViewModel

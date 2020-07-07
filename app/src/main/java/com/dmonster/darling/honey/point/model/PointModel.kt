@@ -29,7 +29,7 @@ class PointModel {
             .subscribe(subscriber)
     }
 
-    fun reserve_payment(id: String?, name :String?, price : Int?, subscriber: DisposableObserver<ResultItem<String>>){
+    fun reserve_payment(id: String?, name :String?, price : Int?, receiptType : String?, receiptInfo : String?,subscriber: DisposableObserver<ResultItem<String>>){
         RetrofitProtocol().retrofit.reservePayment(ServerApi.instance.reservePayment, id, name, price)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

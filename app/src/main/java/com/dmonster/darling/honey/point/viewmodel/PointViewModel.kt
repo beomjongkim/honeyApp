@@ -17,7 +17,7 @@ import com.dmonster.darling.honey.custom_recyclerview.model.RecyclerItemData
 import com.dmonster.darling.honey.custom_recyclerview.view.CustomAdapter
 import com.dmonster.darling.honey.customview.CustomDialogInterface
 import com.dmonster.darling.honey.customview.CustomPopup
-import com.dmonster.darling.honey.customview.ReservePaymentPopup
+import com.dmonster.darling.honey.dialog.ReservePaymentPopup
 import com.dmonster.darling.honey.point.data.CheckFreePassData
 import com.dmonster.darling.honey.point.data.PointData
 import com.dmonster.darling.honey.point.data.PointLogData

@@ -760,6 +760,8 @@ interface RetrofitService {
         @Field("mb_id") id: String?,
         @Field("name") name: String?,
         @Field("price") price: Int?
+
+
         ): Observable<ResultItem<String>>
 
     @FormUrlEncoded

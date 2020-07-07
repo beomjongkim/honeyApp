@@ -7,6 +7,9 @@
 
         <import type="android.view.View" />
 
+        <variable
+            name="spinnerVM"
+            type="com.dmonster.darling.honey.dialog.viewmodel.ReservePaymentSpinnerVM" />
 
         <variable
             name="registerPaymentVM"
@@ -48,6 +51,7 @@
                 android:background="@drawable/bg_round_gray"
                 android:backgroundTint="@color/warm_grey"
                 android:gravity="center"
+                android:onClick="@{(v)->registerPaymentVM.twoBtnSwitch.onCancel(v)}"
                 android:text="취소"
                 android:textColor="@color/color_white"
                 android:textSize="@dimen/text_large"
@@ -57,7 +61,6 @@
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_weight="1"
                 app:layout_constraintStart_toStartOf="parent"
-                android:onClick="@{(v)->registerPaymentVM.twoBtnSwitch.onCancel(v)}"
                 tools:ignore="SpUsage" />
 
             <Button
@@ -73,6 +76,7 @@
                 android:background="@drawable/bg_round_gray"
                 android:backgroundTint="@color/accent"
                 android:gravity="center"
+                android:onClick="@{(v)->registerPaymentVM.twoBtnSwitch.onConfirm(v)}"
                 android:text="결제하기"
                 android:textColor="@color/color_white"
                 android:textSize="@dimen/text_large"
@@ -82,7 +86,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintHorizontal_weight="1"
-                android:onClick="@{(v)->registerPaymentVM.twoBtnSwitch.onConfirm(v)}"
                 app:layout_constraintStart_toEndOf="@+id/btn_popup_register_payment_cancel"
                 tools:ignore="SpUsage" />
 
@@ -112,9 +115,9 @@
                 android:layout_marginEnd="16dp"
                 android:layout_marginRight="16dp"
                 android:hint="  최대 6자리  "
-                android:text="@={registerPaymentVM.name}"
                 android:inputType="textPersonName"
                 android:maxLength="6"
+                android:text="@={registerPaymentVM.name}"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/text_xlarge"
                 android:textStyle="bold"
@@ -157,30 +160,123 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:textAlignment="center"
+                android:gravity="center_horizontal"
                 android:text="입금자명이 다를 경우 \n처리가 늦어질 수 있으니 유의해주세요."
+                android:textAlignment="center"
                 android:textColor="@color/color_black"
                 android:textSize="@dimen/text_normal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_popup_register_payment_price_title"
-                android:gravity="center_horizontal" />
+                app:layout_constraintTop_toBottomOf="@+id/dv_reserve_popup" />
 
             <CheckBox
                 android:id="@+id/cb_reserve_payment"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
                 style="@style/baseTextViewStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:layout_marginLeft="8dp"
                 android:layout_marginTop="16dp"
-                android:checked="@={registerPaymentVM.isChecked}"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
                 android:layout_marginBottom="16dp"
+                android:checked="@={registerPaymentVM.isChecked}"
                 android:text="결제정보를 확인하였으며, 구매진행에 동의합니다."
+                android:textSize="@dimen/text_xsmall"
                 app:layout_constraintBottom_toTopOf="@+id/btn_popup_register_payment_cancel"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_popup_register_payment_guide"
-                />
+                app:layout_constraintTop_toBottomOf="@+id/tv_popup_register_payment_guide" />
 
+            <RadioGroup
+                android:id="@+id/rg_reserve_popup"
+                onCheckedChangeListener="@{registerPaymentVM.radioGroupListener}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:layout_marginRight="8dp"
+                android:orientation="horizontal"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_reserve_popup_receipt"
+                app:layout_constraintTop_toBottomOf="@+id/tv_reserve_popup_receipt">
+
+                <RadioButton
+                    android:id="@+id/rb_reserve_popup1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/baseTextViewStyle"
+                    android:textSize="@dimen/text_xxsmall"
+                    android:checked="true"
+                    android:text="신청안함" />
+
+                <RadioButton
+                    android:id="@+id/rb_reserve_popup2"
+                    android:textSize="@dimen/text_xxsmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:theme="@style/baseTextViewStyle"
+                    android:text="소득공제용" />
+
+                <RadioButton
+                    android:id="@+id/rb_reserve_popup3"
+                    android:layout_width="wrap_content"
+                    android:theme="@style/baseTextViewStyle"
+                    android:textSize="@dimen/text_xxsmall"
+                    android:layout_height="wrap_content"
+                    android:text="지출증빙용" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/tv_reserve_popup_receipt"
+                style="@style/baseTextViewStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="현금영수증"
+                android:textColor="@color/color_black"
+                android:textSize="@dimen/text_xlarge"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/tv_popup_register_payment_price_title"
+                app:layout_constraintTop_toBottomOf="@+id/tv_popup_register_payment_price_title" />
+
+            <View
+                android:id="@+id/dv_reserve_popup"
+                android:layout_width="0dp"
+                android:layout_height="1dp"
+                android:layout_marginTop="8dp"
+                android:background="?android:attr/listDivider"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sp_reserve_popup_receipt_title" />
+
+
+            <Spinner
+                android:id="@+id/sp_reserve_popup_receipt_title"
+                SpinnerVM="@{spinnerVM}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:theme="@style/baseTextViewStyle"
+                android:visibility='@{registerPaymentVM.needReceipt == "" ? View.GONE : View.VISIBLE}'
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rg_reserve_popup" />
+
+            <EditText
+                android:id="@+id/editTextNumber"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@color/color_white"
+                android:ems="10"
+                android:hint="'-'없이 숫자만 입력"
+                android:inputType="number"
+                android:visibility='@{registerPaymentVM.needReceipt == "" ? View.GONE : View.VISIBLE}'
+                android:textSize="@dimen/text_normal"
+                android:theme="@style/baseTextViewStyle"
+                app:layout_constraintBottom_toBottomOf="@+id/sp_reserve_popup_receipt_title"
+                app:layout_constraintEnd_toEndOf="@+id/rg_reserve_popup"
+                app:layout_constraintStart_toEndOf="@+id/sp_reserve_popup_receipt_title"
+                app:layout_constraintTop_toTopOf="@+id/sp_reserve_popup_receipt_title" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>

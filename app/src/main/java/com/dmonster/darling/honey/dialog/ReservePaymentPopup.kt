@@ -1,4 +1,4 @@
-package com.dmonster.darling.honey.customview
+package com.dmonster.darling.honey.dialog
 
 import android.app.Dialog
 import android.content.Context
@@ -6,6 +6,9 @@ import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
 import android.view.*
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.RadioGroup
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
@@ -15,7 +18,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.OnLifecycleEvent
 import com.dmonster.darling.honey.BR
 import com.dmonster.darling.honey.R
-import com.dmonster.darling.honey.common.command.TwoBtnSwitch
+import com.dmonster.darling.honey.dialog.viewmodel.ReservePaymentSpinnerVM
 import com.dmonster.darling.honey.point.viewmodel.ReservePaymentPopupVM
 
 class ReservePaymentPopup(context: Context,var lifecycleOwner: LifecycleOwner) : Dialog(context), LifecycleObserver{
@@ -34,7 +37,58 @@ class ReservePaymentPopup(context: Context,var lifecycleOwner: LifecycleOwner) :
             null,
             false
         )
-        binding.setVariable(BR.registerPaymentVM, reservePaymentPopupVM)
+
+        val arrayAdapter = ArrayAdapter<String>(
+            context,
+            R.layout.custom_dropdown
+        )
+        binding.setVariable(BR.registerPaymentVM, reservePaymentPopupVM.also {
+            it.radioGroupListener= object : RadioGroup.OnCheckedChangeListener{
+                override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
+                    when (checkedId) {
+                        R.id.rb_reserve_popup2 -> {
+                            it.needReceipt.value = "private"
+                            arrayAdapter.clear()
+                            arrayAdapter.addAll("휴대폰 번호","주민등록번호")
+                        }
+                        R.id.rb_reserve_popup3 -> {
+                            it.needReceipt.value = "business"
+                            arrayAdapter.clear()
+                            arrayAdapter.addAll("사업자등록번호")
+                        }
+                        else -> {it.needReceipt.value = ""  }
+                    }
+                }
+            }
+        })
+        binding.setVariable(BR.spinnerVM,ReservePaymentSpinnerVM(arrayAdapter).also {
+          it.itemSelectedListener = object : AdapterView.OnItemSelectedListener{
+              override fun onNothingSelected(parent: AdapterView<*>?) {
+              }
+
+              override fun onItemSelected(
+                  parent: AdapterView<*>?,
+                  view: View?,
+                  position: Int,
+                  id: Long
+              ) {
+                  when( reservePaymentPopupVM.needReceipt.value ){
+                      "private"->{
+                          //정보 저장
+                      }
+                      "business"->{
+                          //정보 저장
+                      }
+                      else->{
+                          //정보 비우기
+                      }
+                  }
+
+              }
+
+          }
+        })
+
         binding.lifecycleOwner = lifecycleOwner
         binding.executePendingBindings()
         super.addContentView(
@@ -48,7 +102,7 @@ class ReservePaymentPopup(context: Context,var lifecycleOwner: LifecycleOwner) :
         val lp = WindowManager.LayoutParams()
         this.window.let { it1 ->
             lp.copyFrom(it1.attributes)
-            lp.width = (context.resources.displayMetrics.widthPixels * 0.78f).toInt()
+            lp.width = (context.resources.displayMetrics.widthPixels * 0.95f).toInt()
             lp.height = ConstraintLayout.LayoutParams.WRAP_CONTENT
             lp.gravity = Gravity.CENTER
             it1.attributes = lp

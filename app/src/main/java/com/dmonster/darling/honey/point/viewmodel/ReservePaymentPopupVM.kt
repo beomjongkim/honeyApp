@@ -1,7 +1,9 @@
 package com.dmonster.darling.honey.point.viewmodel
 
+import android.widget.RadioGroup
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.dmonster.darling.honey.R
 import com.dmonster.darling.honey.common.command.TwoBtnSwitch
 import com.dmonster.darling.honey.customview.CustomDialogInterface
 
@@ -18,6 +20,16 @@ class ReservePaymentPopupVM()  : ViewModel() {
 
     var isChecked = MutableLiveData<Boolean>().also{
         it.value = false
+    }
+    var needReceipt = MutableLiveData<String>().also {
+        it.value = ""
+    }
+
+    var radioGroupListener = object : RadioGroup.OnCheckedChangeListener{
+        override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
+
+        }
+
     }
 
 }
