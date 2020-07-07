@@ -428,7 +428,7 @@ class PointViewModel(
     }
 
 
-    private fun reservePayment(name: String, price: Int, context: Context) {
+    private fun reservePayment(name: String, price: Int, receiptType : String?, receiptInfo : String?,context: Context) {
         isProgressing.value = true
         val subscriber = object : DisposableObserver<ResultItem<String>>() {
             override fun onComplete() {
@@ -487,7 +487,7 @@ class PointViewModel(
                 isProgressing.value = false
             }
         }
-        pointModel.reserve_payment(id, name, price, subscriber)
+        pointModel.reserve_payment(id, name, price,receiptType, receiptInfo , subscriber)
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
@@ -504,7 +504,7 @@ class PointViewModel(
             it.won.value = it.price.toString() + "원"
             it.twoBtnSwitch = object : CustomDialogInterface {
                 override fun onConfirm(v: View) {
-                    it.name.value?.let { it1 -> reservePayment(it1, it.price, context) }
+                    it.name.value?.let { it1 -> reservePayment(it1, it.price,it.receipt_type.value,it.receipt_info.value, context) }
                     reservePaymentPopup.dismiss()
                 }
 

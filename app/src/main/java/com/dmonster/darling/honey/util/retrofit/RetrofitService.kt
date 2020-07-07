@@ -759,7 +759,9 @@ interface RetrofitService {
         @Field("method") method: String?,
         @Field("mb_id") id: String?,
         @Field("name") name: String?,
-        @Field("price") price: Int?
+        @Field("price") price: Int?,
+        @Field("receipt_type") receipt_type: String?,
+        @Field("receipt_info") receipt_info: String?
 
 
         ): Observable<ResultItem<String>>

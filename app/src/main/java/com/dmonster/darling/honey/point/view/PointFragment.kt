@@ -70,6 +70,7 @@ class PointFragment : Fragment() {
                             pointViewModel.chargePoint.value = pointSpinnerVM.price.value.toString()
                             pointViewModel.inappType = pointSpinnerVM.position.value!!
                             pointViewModel.price_won.value = pointSpinnerVM.price.value?.times(110)
+
                         }
                     }
                 }

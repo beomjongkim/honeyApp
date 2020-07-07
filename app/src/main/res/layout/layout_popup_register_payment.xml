@@ -270,6 +270,7 @@
                 android:ems="10"
                 android:hint="'-'없이 숫자만 입력"
                 android:inputType="number"
+                android:text="@={registerPaymentVM.receipt_info}"
                 android:visibility='@{registerPaymentVM.needReceipt == "" ? View.GONE : View.VISIBLE}'
                 android:textSize="@dimen/text_normal"
                 android:theme="@style/baseTextViewStyle"

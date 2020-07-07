@@ -20,12 +20,15 @@ import com.dmonster.darling.honey.BR
 import com.dmonster.darling.honey.R
 import com.dmonster.darling.honey.dialog.viewmodel.ReservePaymentSpinnerVM
 import com.dmonster.darling.honey.point.viewmodel.ReservePaymentPopupVM
+import com.dmonster.darling.honey.util.Utility
 
-class ReservePaymentPopup(context: Context,var lifecycleOwner: LifecycleOwner) : Dialog(context), LifecycleObserver{
+class ReservePaymentPopup(context: Context, var lifecycleOwner: LifecycleOwner) : Dialog(context),
+    LifecycleObserver {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         init()
     }
+
     var reservePaymentPopupVM = ReservePaymentPopupVM()
     fun init() {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -43,50 +46,58 @@ class ReservePaymentPopup(context: Context,var lifecycleOwner: LifecycleOwner) :
             R.layout.custom_dropdown
         )
         binding.setVariable(BR.registerPaymentVM, reservePaymentPopupVM.also {
-            it.radioGroupListener= object : RadioGroup.OnCheckedChangeListener{
+            it.radioGroupListener = object : RadioGroup.OnCheckedChangeListener {
                 override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
                     when (checkedId) {
                         R.id.rb_reserve_popup2 -> {
                             it.needReceipt.value = "private"
                             arrayAdapter.clear()
-                            arrayAdapter.addAll("휴대폰 번호","주민등록번호")
+                            arrayAdapter.addAll("휴대폰번호", "주민등록번호")
+                            reservePaymentPopupVM.receipt_type.value = "휴대폰번호"
                         }
                         R.id.rb_reserve_popup3 -> {
                             it.needReceipt.value = "business"
                             arrayAdapter.clear()
                             arrayAdapter.addAll("사업자등록번호")
+                            reservePaymentPopupVM.receipt_type.value = "사업자등록번호"
                         }
-                        else -> {it.needReceipt.value = ""  }
+                        else -> {
+                            it.needReceipt.value = ""
+                        }
                     }
                 }
             }
         })
-        binding.setVariable(BR.spinnerVM,ReservePaymentSpinnerVM(arrayAdapter).also {
-          it.itemSelectedListener = object : AdapterView.OnItemSelectedListener{
-              override fun onNothingSelected(parent: AdapterView<*>?) {
-              }
+        binding.setVariable(BR.spinnerVM, ReservePaymentSpinnerVM(arrayAdapter).also {
+            it.itemSelectedListener = object : AdapterView.OnItemSelectedListener {
+                override fun onNothingSelected(parent: AdapterView<*>?) {
+                }
 
-              override fun onItemSelected(
-                  parent: AdapterView<*>?,
-                  view: View?,
-                  position: Int,
-                  id: Long
-              ) {
-                  when( reservePaymentPopupVM.needReceipt.value ){
-                      "private"->{
-                          //정보 저장
-                      }
-                      "business"->{
-                          //정보 저장
-                      }
-                      else->{
-                          //정보 비우기
-                      }
-                  }
+                override fun onItemSelected(
+                    parent: AdapterView<*>?,
+                    view: View?,
+                    position: Int,
+                    id: Long
+                ) {
+                    reservePaymentPopupVM.receipt_type.value = arrayAdapter.getItem(position)
+                    when (reservePaymentPopupVM.needReceipt.value) {
+                        "private" -> {
+                            //정보 저장
+                            Utility.instance.showToast(context,reservePaymentPopupVM.receipt_type.value)
+                        }
+                        "business" -> {
+                            //정보 저장
+                            Utility.instance.showToast(context,reservePaymentPopupVM.receipt_type.value)
+                        }
+                        else -> {
+                            //정보 비우기
+                            Utility.instance.showToast(context,reservePaymentPopupVM.receipt_type.value)
+                        }
+                    }
 
-              }
+                }
 
-          }
+            }
         })
 
         binding.lifecycleOwner = lifecycleOwner
@@ -114,6 +125,7 @@ class ReservePaymentPopup(context: Context,var lifecycleOwner: LifecycleOwner) :
         super.onBackPressed()
         hide()
     }
+
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
     fun onPause() {
         dismiss()
