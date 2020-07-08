@@ -24,10 +24,10 @@ class ReservePaymentPopupVM()  : ViewModel() {
     var needReceipt = MutableLiveData<String>().also {
         it.value = ""
     }
-    var receipt_info = MutableLiveData<String>().also {
+    var receiptInfo = MutableLiveData<String>().also {
         it.value = ""
     }
-    var receipt_type = MutableLiveData<String>().also {
+    var receiptType = MutableLiveData<String>().also {
         it.value = ""
     }
 

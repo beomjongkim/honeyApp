@@ -263,21 +263,21 @@
                 app:layout_constraintTop_toBottomOf="@+id/rg_reserve_popup" />
 
             <EditText
-                android:id="@+id/editTextNumber"
+                android:id="@+id/et_reserve_popup_receipt_info"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:background="@color/color_white"
-                android:ems="10"
                 android:hint="'-'없이 숫자만 입력"
                 android:inputType="number"
-                android:text="@={registerPaymentVM.receipt_info}"
+                android:text="@={registerPaymentVM.receiptInfo}"
                 android:visibility='@{registerPaymentVM.needReceipt == "" ? View.GONE : View.VISIBLE}'
                 android:textSize="@dimen/text_normal"
                 android:theme="@style/baseTextViewStyle"
                 app:layout_constraintBottom_toBottomOf="@+id/sp_reserve_popup_receipt_title"
                 app:layout_constraintEnd_toEndOf="@+id/rg_reserve_popup"
                 app:layout_constraintStart_toEndOf="@+id/sp_reserve_popup_receipt_title"
-                app:layout_constraintTop_toTopOf="@+id/sp_reserve_popup_receipt_title" />
+                app:layout_constraintTop_toTopOf="@+id/sp_reserve_popup_receipt_title"
+/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>

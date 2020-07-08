@@ -9,6 +9,8 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.dmonster.darling.honey.customview.CustomDialogInterface
+import com.dmonster.darling.honey.main.view.MainActivity
+import com.dmonster.darling.honey.util.AppKeyValue
 
 
 class PopupVM(var title: String, var subTitle: String?, var dialogInterface: CustomDialogInterface? = null, var subTitleTwo: String = "", var link : String = "", val lifecycleOwner: LifecycleOwner? = null) : ViewModel(), LifecycleObserver {
@@ -20,11 +22,23 @@ class PopupVM(var title: String, var subTitle: String?, var dialogInterface: Cus
     }
 
     fun onClickLink(v : View, url : String){
-        val i = Intent(Intent.ACTION_VIEW)
-        i.data = Uri.parse(url)
-        v.context.startActivity(i)
+        if(url.contains("http")){
+            val i = Intent(Intent.ACTION_VIEW,Uri.parse(url))
+            v.context.startActivity(i)
+        }else if(url.contains("market")){
+            val i = Intent(v.context,MainActivity::class.java)
+            i.putExtra(AppKeyValue.instance.goToMarket,true)
+            v.context.startActivity(i)
+        }else if(url.contains("magazine")){
+            val i = Intent(v.context,MainActivity::class.java)
+            i.putExtra(AppKeyValue.instance.goToMagazine,true)
+            v.context.startActivity(i)
+        }else if(url.contains("mailBox")){
+            val i = Intent(v.context,MainActivity::class.java)
+            i.putExtra(AppKeyValue.instance.goToMailBox,true)
+            v.context.startActivity(i)
+        }
+
     }
-
-
 
 }

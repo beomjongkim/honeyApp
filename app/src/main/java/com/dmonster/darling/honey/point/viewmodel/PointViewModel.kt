@@ -504,7 +504,7 @@ class PointViewModel(
             it.won.value = it.price.toString() + "원"
             it.twoBtnSwitch = object : CustomDialogInterface {
                 override fun onConfirm(v: View) {
-                    it.name.value?.let { it1 -> reservePayment(it1, it.price,it.receipt_type.value,it.receipt_info.value, context) }
+                    it.name.value?.let { it1 -> reservePayment(it1, it.price,it.receiptType.value,it.receiptInfo.value, context) }
                     reservePaymentPopup.dismiss()
                 }
 

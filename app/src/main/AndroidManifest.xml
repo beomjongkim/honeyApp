@@ -77,6 +77,9 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.FACTORY_TEST" />
+                <data
+                    android:host="main"
+                    android:scheme="honey" />
             </intent-filter>
         </activity>
         <activity

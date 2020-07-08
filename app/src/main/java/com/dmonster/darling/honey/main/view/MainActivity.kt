@@ -53,8 +53,9 @@ class MainActivity : BaseActivity(){
     private val fragMain = 0
     private val fragMarket = 1
     private val fragIdeal = 2
-    private val fragMe = 3
-    private val fragOption = 4
+    private val fragMailBox = 3
+    private val fragMagazine = 4
+    private val fragOption = 5
 
     private var arrMenus: ArrayList<FloatingActionButton>? = null
     private var arrMenusPress: Int = 3
@@ -91,6 +92,7 @@ class MainActivity : BaseActivity(){
         disposeBag = CompositeDisposable()
 //        billingProcessor = BillingProcessor(this, AppKeyValue.instance.inAppKey, this)
 //        billingProcessor?.initialize()
+
 
         val notificationType = intent.getStringExtra(AppKeyValue.instance.pushNotificationType)
 
@@ -157,8 +159,15 @@ class MainActivity : BaseActivity(){
             }
         }
 
+
         if(intent.getBooleanExtra(AppKeyValue.instance.goToMarket,false)){
-            fragmentReplace(fragMarket)
+            binding.naviVM?.fragmentReplace(fragMarket)
+        }
+        if(intent.getBooleanExtra(AppKeyValue.instance.goToMailBox, false)){
+            binding.naviVM?.fragmentReplace(fragMailBox)
+        }
+        if(intent.getBooleanExtra(AppKeyValue.instance.goToMagazine, false)){
+            binding.naviVM?.fragmentReplace(fragMagazine)
         }
     }
 
@@ -248,15 +257,7 @@ class MainActivity : BaseActivity(){
         }
     }
 
-    private fun fragmentReplace(reqNewFragmentIndex: Int) {
-        newFragment = getFragment(reqNewFragmentIndex)
 
-        val transaction = supportFragmentManager.beginTransaction()
-        newFragment?.let { transaction.replace(R.id.fl_act_main_content_layout, it) }
-        transaction.commit()
-
-        Utility.instance.hideSoftKeyboard(this)
-    }
 
     private fun fragmentBundleReplace(reqNewFragmentIndex: Int, bundle: Bundle?) {
         newFragment = getFragment(reqNewFragmentIndex)
@@ -279,7 +280,7 @@ class MainActivity : BaseActivity(){
 
             fragIdeal -> newFragment = NewMemberFragment()
 
-            fragMe -> newFragment = MyActMainFragment()
+            fragMailBox -> newFragment = MyActMainFragment()
 
             fragOption -> newFragment = OptionFragment()
         }
@@ -325,8 +326,7 @@ class MainActivity : BaseActivity(){
                                     resources.getString(R.string.push_notification_type_message), resources.getString(
                                         R.string.push_notification_type_good
                                     ) -> {
-                                        fragmentReplace(fragMe)
-                                        binding.naviVM?.selectView(fragMe)
+                                        binding.naviVM?.fragmentReplace(fragMailBox)
                                         val intent =
                                             Intent(this@MainActivity, TalkActivity::class.java)
                                         intent.putExtra(AppKeyValue.instance.talkRoomNo, roomNo)
@@ -438,8 +438,7 @@ class MainActivity : BaseActivity(){
             newFragment !is MainFragment -> {
                 arrMenusPress = 3
                 setPress(arrMenusPress)
-                fragmentReplace(fragMain)
-                binding.naviVM?.selectView(fragMain)
+                binding.naviVM?.fragmentReplace(fragMain)
             }
 
             else -> Utility.instance.showTwoButtonAlert(
@@ -459,7 +458,7 @@ class MainActivity : BaseActivity(){
         val seeDayLater = "seeDayLater"
         val thatDay = Utility.instance.getPref(this, seeDayLater)
 
-        if (Utility.instance.isDayLater(thatDay,1)){
+        if (Utility.instance.isDayLater(thatDay,1)||true){
             val df = SimpleDateFormat("yyMMdd", Locale.getDefault())
             val nowTime = System.currentTimeMillis()
             val today = Date(nowTime)

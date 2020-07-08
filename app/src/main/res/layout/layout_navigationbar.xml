@@ -44,7 +44,7 @@
 
         <com.dmonster.darling.honey.customview.ClickableImageView
             android:id="@+id/iv_layout_navi_home"
-            srcClickable="@{naviVM.fragmentNumber == 0 ? @drawable/main_navi_home_on :@drawable/main_navi_home_off}"
+            srcClickable="@{naviVM.isGray0 == false ? @drawable/main_navi_home_on :@drawable/main_navi_home_off}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
@@ -61,7 +61,7 @@
 
         <com.dmonster.darling.honey.customview.ClickableImageView
             android:id="@+id/iv_layout_navi_market"
-            srcClickable="@{naviVM.fragmentNumber == 1 ? @drawable/main_navi_market_on :@drawable/main_navi_market_off}"
+            srcClickable="@{naviVM.isGray1 == false ? @drawable/main_navi_market_on :@drawable/main_navi_market_off}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
@@ -76,7 +76,7 @@
         <!--        신입회원-->
         <com.dmonster.darling.honey.customview.ClickableImageView
             android:id="@+id/iv_layout_navi_ideal"
-            srcClickable="@{naviVM.fragmentNumber == 2 ? @drawable/main_navi_ideal_on :@drawable/main_navi_ideal_off}"
+            srcClickable="@{naviVM.isGray2 == false ? @drawable/main_navi_ideal_on :@drawable/main_navi_ideal_off}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
@@ -91,7 +91,7 @@
         <!--        나의 인기-->
         <com.dmonster.darling.honey.customview.ClickableImageView
             android:id="@+id/iv_layout_navi_me"
-            srcClickable="@{naviVM.fragmentNumber == 3 ? @drawable/main_navi_me_on :@drawable/main_navi_me_off}"
+            srcClickable="@{naviVM.isGray3 == false ? @drawable/main_navi_me_on :@drawable/main_navi_me_off}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
@@ -135,7 +135,7 @@
         <!--  매거진-->
         <com.dmonster.darling.honey.customview.ClickableImageView
             android:id="@+id/iv_layout_navi_magazine"
-            srcClickable="@{naviVM.fragmentNumber == 4 ? @drawable/main_navi_magazine_on :@drawable/main_navi_magazine_off}"
+            srcClickable="@{naviVM.isGray4 == false ? @drawable/main_navi_magazine_on :@drawable/main_navi_magazine_off}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
@@ -149,7 +149,7 @@
         <!--        설정-->
         <com.dmonster.darling.honey.customview.ClickableImageView
             android:id="@+id/iv_layout_navi_option"
-            srcClickable="@{naviVM.fragmentNumber == 5 ? @drawable/main_navi_option_on :@drawable/main_navi_option_off}"
+            srcClickable="@{naviVM.isGray5 == false ? @drawable/main_navi_option_on :@drawable/main_navi_option_off}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"

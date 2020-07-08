@@ -53,13 +53,13 @@ class ReservePaymentPopup(context: Context, var lifecycleOwner: LifecycleOwner) 
                             it.needReceipt.value = "private"
                             arrayAdapter.clear()
                             arrayAdapter.addAll("휴대폰번호", "주민등록번호")
-                            reservePaymentPopupVM.receipt_type.value = "휴대폰번호"
+                            reservePaymentPopupVM.receiptType.value = "휴대폰번호"
                         }
                         R.id.rb_reserve_popup3 -> {
                             it.needReceipt.value = "business"
                             arrayAdapter.clear()
                             arrayAdapter.addAll("사업자등록번호")
-                            reservePaymentPopupVM.receipt_type.value = "사업자등록번호"
+                            reservePaymentPopupVM.receiptType.value = "사업자등록번호"
                         }
                         else -> {
                             it.needReceipt.value = ""
@@ -79,19 +79,19 @@ class ReservePaymentPopup(context: Context, var lifecycleOwner: LifecycleOwner) 
                     position: Int,
                     id: Long
                 ) {
-                    reservePaymentPopupVM.receipt_type.value = arrayAdapter.getItem(position)
+                    reservePaymentPopupVM.receiptType.value = arrayAdapter.getItem(position)
                     when (reservePaymentPopupVM.needReceipt.value) {
                         "private" -> {
                             //정보 저장
-                            Utility.instance.showToast(context,reservePaymentPopupVM.receipt_type.value)
+                            Utility.instance.showToast(context,reservePaymentPopupVM.receiptType.value)
                         }
                         "business" -> {
                             //정보 저장
-                            Utility.instance.showToast(context,reservePaymentPopupVM.receipt_type.value)
+                            Utility.instance.showToast(context,reservePaymentPopupVM.receiptType.value)
                         }
                         else -> {
                             //정보 비우기
-                            Utility.instance.showToast(context,reservePaymentPopupVM.receipt_type.value)
+                            Utility.instance.showToast(context,reservePaymentPopupVM.receiptType.value)
                         }
                     }
 

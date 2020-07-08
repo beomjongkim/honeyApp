@@ -230,27 +230,27 @@ class NavigationVM(var fragmentManager: FragmentManager, var mb_id: String, life
     }
 
     fun selectView(id: Int) {
-        isGray0.value = false
-        isGray1.value = false
-        isGray2.value = false
-        isGray3.value = false
-        isGray4.value = false
-        isGray5.value = false
+        isGray0.value = true
+        isGray1.value = true
+        isGray2.value = true
+        isGray3.value = true
+        isGray4.value = true
+        isGray5.value = true
 
         when (id) {
-            fragMain -> isGray0.value = true
+            fragMain -> isGray0.value = false
 
-            fragMarket -> isGray1.value = true
+            fragMarket -> isGray1.value = false
 
-            fragIdeal -> isGray2.value = true
+            fragIdeal -> isGray2.value = false
 
-            fragMe -> isGray3.value = true
+            fragMe -> isGray3.value = false
 
-            fragMagazine -> isGray4.value = true
+            fragMagazine -> isGray4.value = false
 
-            fragOption -> isGray5.value = true
+            fragOption -> isGray5.value = false
 
-            else -> isGray0.value = true
+            else -> isGray0.value = false
         }
     }
 
