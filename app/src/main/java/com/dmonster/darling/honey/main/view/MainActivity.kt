@@ -458,7 +458,7 @@ class MainActivity : BaseActivity(){
         val seeDayLater = "seeDayLater"
         val thatDay = Utility.instance.getPref(this, seeDayLater)
 
-        if (Utility.instance.isDayLater(thatDay,1)||true){
+        if (Utility.instance.isDayLater(thatDay,1)){
             val df = SimpleDateFormat("yyMMdd", Locale.getDefault())
             val nowTime = System.currentTimeMillis()
             val today = Date(nowTime)

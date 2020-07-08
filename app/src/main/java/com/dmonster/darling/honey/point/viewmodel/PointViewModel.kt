@@ -460,26 +460,6 @@ class PointViewModel(
                             }
                         )
 
-                        Utility.instance.showAlert(
-                            context,
-                            "입금정보",
-                            "아래 정보로 무통장 입금을 진행해주세요.\n입금자명 : " + name + "\n금액 : " + price + "원\n" + "기업은행 | 98602084704015 | 주식회사 상현",
-                            object : CustomDialogInterface {
-                                override fun onConfirm(v: View) {
-                                    val clipboard =
-                                        v.context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                                    val clip: ClipData = ClipData.newPlainText(
-                                        "simple text",
-                                        "입금자명 : " + name + "\n금액 : " + price + "원\n" + "기업은행 | 98602084704015 | 주식회사 상현"
-                                    )
-                                    clipboard.primaryClip = clip
-                                    Utility.instance.showToast(v.context, "복사되었습니다.")
-                                }
-
-                                override fun onCancel(v: View) {
-                                }
-                            }
-                        )
                     } else {
                         Utility.instance.showToast(context, "무통장 입금 정보 전송에 실패했습니다.")
                     }
@@ -557,7 +537,7 @@ class PointViewModel(
                         2 -> skuDetail = skuDetailList[2]
                         else -> skuDetail = skuDetailList[0]
                     }
-                    Utility.instance.showToast(v.context, skuDetail.sku)
+//                    Utility.instance.showToast(v.context, skuDetail.sku)
                     doBillingFlow(skuDetail)
                 }
 

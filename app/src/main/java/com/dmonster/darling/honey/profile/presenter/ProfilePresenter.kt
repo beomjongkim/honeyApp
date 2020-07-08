@@ -157,74 +157,7 @@ class ProfilePresenter: ProfileContract.Presenter {
         mView.setProfileComplete(sucTalkId, sucArea, sucGenderStr, sucType, sucName, sucAge, sucBirth, sucIncome, sucSibling, sucHometown, sucJob,
             sucFortune, sucEducation, sucCar, sucReligion, sucParents, sucMarryPlan, sucDivorce, sucDivorceYear, sucChildren, sucHeight, sucWeight,
             sucDrinking, sucSmoking, sucBlood, sucCharacter, sucHobby, sucMyStyle, sucDateStyle, sucIntroduce, sucFamily, sucProfilePicture,sucMarryPicture, sucProfilePicCnt, sucRoute)
-//        val subscriber = object: DisposableObserver<ResultItem<ProfileDetailData>>() {
-//            override fun onComplete() {
-//
-//            }
-//
-//            override fun onError(e: Throwable) {
-//                mView.setProfileFailed(e.message)
-//                e.printStackTrace()
-//            }
-//
-//            override fun onNext(item: ResultItem<ProfileDetailData>) {
-//                item.let { it ->
-//                    if(it.isSuccess) {
-//                        it.item?.let {
-//                            val sucTalkId = it.mbNick
-//                            val sucArea = String.format(context.resources.getString(R.string.arrow), it.mbAddr1, it.mbAddr2)
-//                            val sucGenderStr = it.mbSexKor
-//                            val sucType = it.mbChar
-//                            val sucName = it.mbName
-//                            val sucAge = it.mbAge
-//                            val sucBirth = it.mbBirth
-//                            val sucIncome = it.mbIncome
-//                            val sucSibling = it.mbBrother
-//                            val sucHometown = String.format(context.resources.getString(R.string.arrow), it.mbAddr3, it.mbAddr4)
-//                            val sucJob = it.mbJobs
-//                            val sucFortune = it.mbProperty
-//                            val sucEducation = it.mbEduLevel
-//                            val sucCar = it.mbCar
-//                            val sucReligion = it.mbReligion
-//                            val sucParents = it.mbParents
-//                            val sucMarryPlan = it.mbPlanMarry
-//                            val sucDivorce = it.mbDivorce
-//                            val sucDivorceYear = it.mbDivorceAge
-//                            val sucChildren = it.mbBaby
-//                            val sucHeight = it.mbTall
-//                            val sucWeight = it.mbWeight
-//                            val sucDrinking = if(it.mbDrink != context.resources.getString(R.string.key_information_drinking_not)) {
-//                                String.format(context.resources.getString(R.string.arrow), it.mbDrink, it.mbDrinkNum)
-//                            }
-//                            else {
-//                                it.mbDrink
-//                            }
-//                            val sucSmoking = it.mbCigarette
-//                            val sucBlood = it.mbBlood
-//                            val sucCharacter = it.mbCharacter
-//                            val sucHobby = it.mbHobby
-//                            val sucMyStyle = it.mbStyle
-//                            val sucDateStyle = it.mbStyledate
-//                            val sucIntroduce = it.mbProfile
-//                            val sucFamily = it.mbFamily
-//                            val sucProfilePicture = it.mbImg
-//                            val sucMarryPicture = it.mbMarryImg
-//                            val sucProfilePicCnt = it.mbImgCnt
-//                            val sucRoute = it.mbJoinroute
-//
-//                            mView.setProfileComplete(sucTalkId, sucArea, sucGenderStr, sucType, sucName, sucAge, sucBirth, sucIncome, sucSibling, sucHometown, sucJob,
-//                                    sucFortune, sucEducation, sucCar, sucReligion, sucParents, sucMarryPlan, sucDivorce, sucDivorceYear, sucChildren, sucHeight, sucWeight,
-//                                    sucDrinking, sucSmoking, sucBlood, sucCharacter, sucHobby, sucMyStyle, sucDateStyle, sucIntroduce, sucFamily, sucProfilePicture,sucMarryPicture, sucProfilePicCnt, sucRoute)
-//                        }
-//                    }
-//                    else {
-//                        mView.setProfileFailed(it.message)
-//                    }
-//                }
-//            }
-//        }
-//        mModel.requestProfile(id, mbNo, subscriber)
-//        subscription.add(subscriber)
+
     }
 
     /*    채팅방여부 확인    */

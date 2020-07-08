@@ -12,7 +12,9 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toTopOf="@+id/gl_option_main_middle"
+        app:layout_constraintTop_toTopOf="@+id/gl_option_main_middle">
 
 
         <!-- 알림설정 -->
@@ -80,126 +82,48 @@
             android:layout_marginTop="32dp"
             android:alpha="0.9"
             android:tint="@color/color_gray"
-            android:visibility="invisible"
+            app:layout_constraintBottom_toTopOf="@+id/iv_option_main_alarm"
             app:layout_constraintEnd_toStartOf="@id/gl_option_main_end"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toEndOf="@id/gl_option_main_start"
-            app:layout_constraintTop_toBottomOf="@id/iv_option_main_profile"
+            app:layout_constraintTop_toBottomOf="@+id/iv_option_main_profile"
             app:layout_constraintWidth_percent="0.82"
             app:srcCompat="@drawable/bg_border_round_btn" />
 
-        <TextView
-            android:id="@+id/tv_option_main_coin_title"
-            style="@style/baseTextViewStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:alpha="0.75"
-            android:letterSpacing="-0.02"
-            android:text="코인"
-            android:textColor="@color/color_main"
-            android:textSize="@dimen/text_normal"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_option_main_info_bg"
-            app:layout_constraintEnd_toEndOf="@+id/iv_option_main_info_bg"
-            app:layout_constraintHorizontal_bias="0.09"
-            app:layout_constraintStart_toStartOf="@+id/gl_option_main_start"
-            app:layout_constraintTop_toTopOf="@+id/iv_option_main_info_bg"
-            tools:ignore="SpUsage" />
 
         <TextView
             android:id="@+id/tv_option_main_coin"
             style="@style/baseTextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
             android:alpha="0.9"
             android:letterSpacing="-0.03"
-            android:text="@{optionVM.mb_coin}"
+            android:text="@{optionVM.mb_point}"
             android:textColor="@color/color_main"
             android:textSize="@dimen/text_normal"
             android:textStyle="bold"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_option_main_info_bg"
-            app:layout_constraintStart_toEndOf="@+id/tv_option_main_coin_title"
-            app:layout_constraintTop_toTopOf="@+id/iv_option_main_info_bg"
-            tools:ignore="SpUsage" />
-
-        <TextView
-            android:id="@+id/tv_option_main_usage"
-            style="@style/baseTextViewStyle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:alpha="0.75"
-            android:letterSpacing="-0.02"
-            android:onClick="@{(v)->optionVM.onClickItemUse(v)}"
-            android:text="이용내역"
-            android:textColor="@color/color_main"
-            android:textSize="@dimen/text_normal"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_option_main_info_bg"
-            app:layout_constraintEnd_toStartOf="@+id/gl_option_main_end"
-            app:layout_constraintHorizontal_bias="0.43"
-            app:layout_constraintStart_toStartOf="@+id/iv_option_main_info_bg"
-            app:layout_constraintTop_toTopOf="@+id/iv_option_main_info_bg"
-            tools:ignore="SpUsage" />
-
-        <ImageButton
-            android:id="@+id/ib_option_main_usage"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginLeft="4dp"
-            android:background="@color/color_transparent"
-            android:onClick="@{(v)->optionVM.onClickItemUse(v)}"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_option_main_info_bg"
-            app:layout_constraintStart_toEndOf="@+id/tv_option_main_usage"
-            app:layout_constraintTop_toTopOf="@+id/iv_option_main_info_bg"
-            app:srcCompat="@drawable/notice_down_arrow_img" />
-
-        <View
-            android:id="@+id/v_option_main_divider"
-            android:layout_width="1dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
-            android:alpha="0.2"
-            android:background="@color/warm_grey"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="@+id/iv_option_main_info_bg"
-            app:layout_constraintEnd_toStartOf="@+id/iv_option_main_charge"
-            app:layout_constraintStart_toEndOf="@+id/ib_option_main_usage"
-            app:layout_constraintTop_toTopOf="@+id/iv_option_main_info_bg" />
-
-        <ImageView
-            android:id="@+id/iv_option_main_charge"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="4dp"
-            android:layout_marginRight="4dp"
-            android:onClick="@{(v)->optionVM.onClickCharge(v)}"
-            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/iv_option_main_info_bg"
             app:layout_constraintEnd_toStartOf="@+id/tv_option_main_charge"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="@+id/gl_option_main_start"
             app:layout_constraintTop_toTopOf="@+id/iv_option_main_info_bg"
-            app:srcCompat="@drawable/ic_charge" />
+            tools:ignore="SpUsage" />
 
         <TextView
             android:id="@+id/tv_option_main_charge"
             style="@style/baseTextViewStyle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="16dp"
-            android:layout_marginRight="16dp"
             android:alpha="0.75"
             android:letterSpacing="-0.03"
             android:onClick="@{(v)->optionVM.onClickCharge(v)}"
             android:text="@string/item_charge"
             android:textColor="@color/color_main"
             android:textSize="@dimen/text_normal"
-            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/iv_option_main_info_bg"
             app:layout_constraintEnd_toStartOf="@+id/gl_option_main_end"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/tv_option_main_coin"
             app:layout_constraintTop_toTopOf="@+id/iv_option_main_info_bg"
             tools:ignore="SpUsage" />
 
@@ -215,37 +139,45 @@
             liveUrlCircleImg="@{optionVM.profileImg}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"            android:clickable="true"
+            android:adjustViewBounds="true"
+            android:clickable="true"
             android:focusable="true"
             android:minHeight="150dp"
+            app:layout_constraintBottom_toTopOf="@+id/iv_option_main_info_bg"
             app:layout_constraintStart_toStartOf="@+id/gl_option_main_start"
             app:layout_constraintTop_toTopOf="@+id/gl_option_main_top"
+            app:layout_constraintVertical_bias="0"
+            app:layout_constraintVertical_chainStyle="packed"
             app:layout_constraintWidth_percent="0.24"
             tools:srcCompat="@tools:sample/avatars" />
 
         <com.dmonster.darling.honey.customview.ClickableImageView
             android:id="@+id/iv_option_main_alarm"
+            srcClickable="@{@drawable/option_alarm_off}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:adjustViewBounds="true"            android:clickable="true"
+            android:layout_marginTop="32dp"
+            android:adjustViewBounds="true"
+            android:clickable="true"
             android:focusable="true"
             android:onClick="@{(v)->optionVM.onClickAlarm(v)}"
-            srcClickable="@{@drawable/option_alarm_off}"
+            app:layout_constraintBottom_toTopOf="@+id/iv_option_main_use"
             app:layout_constraintEnd_toStartOf="@+id/iv_option_main_invitation"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintHorizontal_chainStyle="spread_inside"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintStart_toStartOf="@+id/gl_option_main_start"
             app:layout_constraintTop_toBottomOf="@+id/iv_option_main_info_bg"
-            app:layout_constraintWidth_percent="0.17"
-           />
+            app:layout_constraintWidth_percent="0.17" />
 
         <com.dmonster.darling.honey.customview.ClickableImageView
             android:id="@+id/iv_option_main_invitation"
+            srcClickable="@{@drawable/option_invite_off}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"            android:clickable="true"
+            android:adjustViewBounds="true"
+            android:clickable="true"
             android:focusable="true"
-            srcClickable="@{@drawable/option_invite_off}"
             android:onClick="@{(v)->optionVM.onClickInvitation(v)}"
             app:layout_constraintBottom_toBottomOf="@+id/iv_option_main_alarm"
             app:layout_constraintEnd_toStartOf="@+id/iv_option_main_block"
@@ -256,12 +188,13 @@
         <!-- 친구초대 -->
         <com.dmonster.darling.honey.customview.ClickableImageView
             android:id="@+id/iv_option_main_block"
+            srcClickable="@{@drawable/option_block_off}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"            android:clickable="true"
+            android:adjustViewBounds="true"
+            android:clickable="true"
             android:focusable="true"
             android:onClick="@{(v)->optionVM.onClickBlock(v)}"
-            srcClickable="@{@drawable/option_block_off}"
             app:layout_constraintBottom_toBottomOf="@+id/iv_option_main_invitation"
             app:layout_constraintEnd_toStartOf="@+id/iv_option_main_my_info"
             app:layout_constraintLeft_toRightOf="@id/iv_option_main_invitation"
@@ -271,39 +204,42 @@
 
         <!-- 차단회원 -->
 
-<!--        <ImageView-->
-<!--            android:id="@+id/iv_option_main_inquiry"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:onClick="@{(v)->optionVM.onClickInquiry(v)}"-->
-<!--            android:src="@drawable/main_menu04_inquiry_img"-->
-<!--            android:visibility="gone"-->
-<!--            app:layout_constraintStart_toStartOf="@+id/gl_option_main_start"-->
-<!--            tools:layout_editor_absoluteY="419dp" />-->
+        <!--        <ImageView-->
+        <!--            android:id="@+id/iv_option_main_inquiry"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:onClick="@{(v)->optionVM.onClickInquiry(v)}"-->
+        <!--            android:src="@drawable/main_menu04_inquiry_img"-->
+        <!--            android:visibility="gone"-->
+        <!--            app:layout_constraintStart_toStartOf="@+id/gl_option_main_start"-->
+        <!--            tools:layout_editor_absoluteY="419dp" />-->
 
         <com.dmonster.darling.honey.customview.ClickableImageView
             android:id="@+id/iv_option_main_use"
+            srcClickable="@{@drawable/option_howtouse_off}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            srcClickable="@{@drawable/option_howtouse_off}"
             android:layout_marginTop="16dp"
-            android:adjustViewBounds="true"            android:clickable="true"
+            android:adjustViewBounds="true"
+            android:clickable="true"
             android:focusable="true"
             android:onClick="@{(v)->optionVM.onClickUse(v)}"
+            app:layout_constraintBottom_toTopOf="@+id/iv_option_main_dormant"
             app:layout_constraintEnd_toEndOf="@+id/iv_option_main_alarm"
-            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="@+id/iv_option_main_alarm"
             app:layout_constraintTop_toBottomOf="@+id/iv_option_main_alarm"
             app:layout_constraintWidth_percent="0.17" />
 
         <com.dmonster.darling.honey.customview.ClickableImageView
             android:id="@+id/iv_option_main_service_center"
+            srcClickable="@{@drawable/option_service_center_off}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"            android:clickable="true"
+            android:adjustViewBounds="true"
+            android:clickable="true"
             android:focusable="true"
             android:onClick="@{(v)->optionVM.onClickServiceCenter(v)}"
-            srcClickable="@{@drawable/option_service_center_off}"
             app:layout_constraintEnd_toEndOf="@+id/iv_option_main_block"
             app:layout_constraintStart_toStartOf="@+id/iv_option_main_block"
             app:layout_constraintTop_toTopOf="@+id/iv_option_main_use"
@@ -312,12 +248,13 @@
         <!-- 1:1 문의 -->
         <com.dmonster.darling.honey.customview.ClickableImageView
             android:id="@+id/iv_option_main_my_info"
+            srcClickable="@{@drawable/option_information_off}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"            android:clickable="true"
+            android:adjustViewBounds="true"
+            android:clickable="true"
             android:focusable="true"
             android:onClick="@{(v)->optionVM.onClickMyInfo(v)}"
-            srcClickable="@{@drawable/option_information_off}"
             app:layout_constraintBottom_toBottomOf="@+id/iv_option_main_block"
             app:layout_constraintEnd_toStartOf="@+id/gl_option_main_end"
             app:layout_constraintStart_toEndOf="@+id/iv_option_main_block"
@@ -326,12 +263,13 @@
 
         <com.dmonster.darling.honey.customview.ClickableImageView
             android:id="@+id/iv_option_main_question"
+            srcClickable="@{@drawable/option_notice_off}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"            android:clickable="true"
+            android:adjustViewBounds="true"
+            android:clickable="true"
             android:focusable="true"
             android:onClick="@{(v)->optionVM.onClickNotice(v)}"
-            srcClickable="@{@drawable/option_notice_off}"
             app:layout_constraintBottom_toBottomOf="@+id/iv_option_main_use"
             app:layout_constraintEnd_toEndOf="@+id/iv_option_main_invitation"
             app:layout_constraintStart_toStartOf="@+id/iv_option_main_invitation"
@@ -341,13 +279,13 @@
 
         <com.dmonster.darling.honey.customview.ClickableImageView
             android:id="@+id/iv_option_main_logout"
+            srcClickable="@{@drawable/option_logout_off}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:adjustViewBounds="true"
             android:clickable="true"
             android:focusable="true"
             android:onClick="@{(v)->optionVM.onClickLogOut(v)}"
-            srcClickable="@{@drawable/option_logout_off}"
             app:layout_constraintBottom_toBottomOf="@+id/iv_option_main_dormant"
             app:layout_constraintEnd_toEndOf="@+id/iv_option_main_question"
             app:layout_constraintStart_toStartOf="@+id/iv_option_main_question"
@@ -357,32 +295,36 @@
 
         <com.dmonster.darling.honey.customview.ClickableImageView
             android:id="@+id/iv_option_main_dormant"
+            srcClickable="@{@drawable/option_dormant_off}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            srcClickable="@{@drawable/option_dormant_off}"
-            android:adjustViewBounds="true"            android:clickable="true"
+            android:adjustViewBounds="true"
+            android:clickable="true"
             android:focusable="true"
             android:onClick="@{(v)->optionVM.onClickDormant(v)}"
             android:visibility="visible"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/iv_option_main_use"
             app:layout_constraintTop_toBottomOf="@+id/iv_option_main_use"
             app:layout_constraintWidth_percent="0.17" />
 
         <com.dmonster.darling.honey.customview.ClickableImageView
             android:id="@+id/iv_option_main_block_friends"
+            srcClickable="@{@drawable/option_block_friend_off}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:adjustViewBounds="true"            android:clickable="true"
+            android:adjustViewBounds="true"
+            android:clickable="true"
             android:focusable="true"
             android:onClick="@{(v)->optionVM.onClickBlockFriends(v)}"
-            srcClickable="@{@drawable/option_block_friend_off}"
             app:layout_constraintBottom_toBottomOf="@+id/iv_option_main_service_center"
             app:layout_constraintEnd_toEndOf="@+id/iv_option_main_my_info"
             app:layout_constraintLeft_toRightOf="@id/iv_option_main_invitation"
             app:layout_constraintStart_toStartOf="@+id/iv_option_main_my_info"
             app:layout_constraintTop_toTopOf="@+id/iv_option_main_service_center"
             app:layout_constraintWidth_percent="0.17" />
+
 
         <!-- 기본정보 -->
 

@@ -59,7 +59,7 @@ class PointFragment : Fragment() {
         binding.spinnerVM = PointSpinnerVM(
             ArrayAdapter<String>(
                 context,
-                R.layout.support_simple_spinner_dropdown_item
+                R.layout.custom_dropdown
             ).also {
                 it.addAll(listOf("50포인트", "100포인트", "150포인트"))
             },

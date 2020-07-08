@@ -15,6 +15,8 @@
     <string name="banner_id_test">ca-app-pub-3940256099942544/6300978111</string>
     <string name="rewardAd_id">ca-app-pub-1643323183206572/5359578900</string>
     <string name="rewardAd_id_test">ca-app-pub-3940256099942544/5224354917</string>
+    <string name="interstitialAd_id_test">ca-app-pub-3940256099942544/1033173712</string>
+    <string name="interstitialAd_id">ca-app-pub-1643323183206572/6803570823</string>
 
     <string name="app_channel_id">알림</string>
     <string name="app_phone_number">번호없음</string>
