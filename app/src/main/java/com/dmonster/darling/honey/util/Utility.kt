@@ -59,7 +59,7 @@ class Utility private constructor() {
     }
 
     private var userMb: String? = null    // 회원번호
-    private var userNick : String? = null // 회원닉네임
+    private var userNick: String? = null // 회원닉네임
     private var userGender: String? = null    // 성별
     private var userProfile: String? = null    // 프로필 등록여부
     private var userDormant: String? = null    // 휴면여부
@@ -77,6 +77,7 @@ class Utility private constructor() {
         fun getUserNick(): String? {
             return userNick
         }
+
         fun setUserNick(userNick: String?) {
             this@Utility.userNick = userNick
         }
@@ -155,18 +156,33 @@ class Utility private constructor() {
         context: Context,
         title: String,
         message: String,
-        subMessage : String,
-        link : String
+        subMessage: String,
+        link: String
     ) {
-        var popup = CustomPopup(context, title, message, subMessage, link, null)
+
+        var popup = CustomPopup(context, title, message, subMessage, link, null).also {
+            it.mCustomDialogInterface = object : CustomDialogInterface {
+                override fun onConfirm(v: View) {
+                    it.dismiss()
+                }
+
+                override fun onCancel(v: View) {
+                    it.dismiss()
+                }
+
+            }
+        }
+
         popup.show()
     }
 
 
-    fun showAlert(   context: Context,
-                     title: String,
-                     message : String,
-                     onClickListener: CustomDialogInterface){
+    fun showAlert(
+        context: Context,
+        title: String,
+        message: String,
+        onClickListener: CustomDialogInterface
+    ) {
         var popup = CustomPopup(context, title, message, R.drawable.ic_talk_vivid, onClickListener)
         popup.popupVM.negativeText.value = ""
         popup.show()
@@ -441,7 +457,7 @@ class Utility private constructor() {
         }
     }
 
-    fun isDayLater(compareDate: String?, _days : Int): Boolean {
+    fun isDayLater(compareDate: String?, _days: Int): Boolean {
         //특정 시간보다 몇일 뒤의 시간인지 계산하는 메소드
         if (!compareDate.isNullOrBlank()) {
             val df = SimpleDateFormat("yyMMdd", Locale.getDefault())
@@ -903,18 +919,24 @@ class Utility private constructor() {
         return area02Array
     }
 
-    fun transformDateTime(date :String) :Array<Int>{
-        date.let{
+    fun transformDateTime(date: String): Array<Int> {
+        date.let {
             val dateTimeArr = date.split(" ")
-            val dateArr =  dateTimeArr[0].split("-")
-            val timeArr  = dateTimeArr[1].split(":")
-            val resArr = arrayOf(dateArr[0].toInt(),dateArr[1].toInt(),dateArr[2].toInt(),timeArr[0].toInt(),timeArr[1].toInt(),timeArr[2].toInt())
+            val dateArr = dateTimeArr[0].split("-")
+            val timeArr = dateTimeArr[1].split(":")
+            val resArr = arrayOf(
+                dateArr[0].toInt(),
+                dateArr[1].toInt(),
+                dateArr[2].toInt(),
+                timeArr[0].toInt(),
+                timeArr[1].toInt(),
+                timeArr[2].toInt()
+            )
 
             return resArr
         }
 
     }
-
 
 
 }

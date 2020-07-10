@@ -203,12 +203,12 @@ class PointViewModel(
                         text_available.value = ""
                         val day = resultItem.item?.minutes_left?.toInt()?.div(1440)
                         day?.let {
-                            if(day >0){
-                                text_left_date.value ="월간 이용권 사용중 | "+
-                                        resultItem.item.due_date?.split(" ")!![0]+"까지 사용 가능 | 잔여일 : " + day + "일"
-                            }else{
-                                text_left_date.value ="1시간 이용권 사용중 | "+
-                                        resultItem.item.due_date?.split(" ")!![1]+"까지 사용 가능 | 잔여시간 : " + resultItem.item.minutes_left?.toInt() + "분"
+                            if (day > 0) {
+                                text_left_date.value = "월간 이용권 사용중 | " +
+                                        resultItem.item.due_date?.split(" ")!![0] + "까지 사용 가능 | 잔여일 : " + day + "일"
+                            } else {
+                                text_left_date.value = "1시간 이용권 사용중 | " +
+                                        resultItem.item.due_date?.split(" ")!![1] + "까지 사용 가능 | 잔여시간 : " + resultItem.item.minutes_left?.toInt() + "분"
                             }
                         }
 
@@ -428,7 +428,13 @@ class PointViewModel(
     }
 
 
-    private fun reservePayment(name: String, price: Int, receiptType : String?, receiptInfo : String?,context: Context) {
+    private fun reservePayment(
+        name: String,
+        price: Int,
+        receiptType: String?,
+        receiptInfo: String?,
+        context: Context
+    ) {
         isProgressing.value = true
         val subscriber = object : DisposableObserver<ResultItem<String>>() {
             override fun onComplete() {
@@ -467,7 +473,7 @@ class PointViewModel(
                 isProgressing.value = false
             }
         }
-        pointModel.reserve_payment(id, name, price,receiptType, receiptInfo , subscriber)
+        pointModel.reserve_payment(id, name, price, receiptType, receiptInfo, subscriber)
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
@@ -484,7 +490,15 @@ class PointViewModel(
             it.won.value = it.price.toString() + "원"
             it.twoBtnSwitch = object : CustomDialogInterface {
                 override fun onConfirm(v: View) {
-                    it.name.value?.let { it1 -> reservePayment(it1, it.price,it.receiptType.value,it.receiptInfo.value, context) }
+                    it.name.value?.let { it1 ->
+                        reservePayment(
+                            it1,
+                            it.price,
+                            it.receiptType.value,
+                            it.receiptInfo.value,
+                            context
+                        )
+                    }
                     reservePaymentPopup.dismiss()
                 }
 
@@ -504,21 +518,21 @@ class PointViewModel(
             ConsumeParams.newBuilder()
                 .setPurchaseToken(purchaseToken)
                 .build()
-        billingClient.consumeAsync(consumeParams, object : ConsumeResponseListener {
-            override fun onConsumeResponse(result: BillingResult, outToken: String) {
-                if (result.responseCode == BillingClient.BillingResponseCode.OK) {
-                    Log.d(tag, "consumeResponse")
-                    // Handle the success of the consume operation.
-                    // For example, increase the number of coins inside the user's basket.
-                    when (purchase.sku) {
-                        "freepass_month" -> buy_inApp(activity, 2)
-                        "point50" -> rechargePoint(activity, 0)
-                        "point100" -> rechargePoint(activity, 1)
-                        "point150" -> rechargePoint(activity, 2)
-                    }
+        billingClient.consumeAsync(
+            consumeParams
+        ) { result, outToken ->
+            if (result.responseCode == BillingClient.BillingResponseCode.OK) {
+                Log.d(tag, "consumeResponse")
+                // Handle the success of the consume operation.
+                // For example, increase the number of coins inside the user's basket.
+                when (purchase.sku) {
+                    "freepass_month" -> buy_inApp(activity, 2)
+                    "point50" -> rechargePoint(activity, 0)
+                    "point100" -> rechargePoint(activity, 1)
+                    "point150" -> rechargePoint(activity, 2)
                 }
             }
-        })
+        }
 
     }
 
@@ -562,9 +576,28 @@ class PointViewModel(
             Log.d(tag, "USER_CANCELED")
 
             // Handle an error caused by a user cancelling the purchase flow.
-        } else {
+        } else if (purchases != null) {
             Log.e(tag, result.debugMessage)
+            for (purchase in purchases) {
+                val purchaseToken = purchase.purchaseToken
+                val consumeParams =
+                    ConsumeParams.newBuilder()
+                        .setPurchaseToken(purchaseToken)
+                        .build()
+                billingClient.consumeAsync(
+                    consumeParams
+                ) { result, outToken ->
+                    if (result.responseCode == BillingClient.BillingResponseCode.OK) {
+                        Log.d(tag, "consumeResponse")
+                        // Handle the success of the consume operation.
+                        // For example, increase the number of coins inside the user's basket.
+                    }
+                }
+            }
             // Handle any other error codes.
+        } else {
+            Log.e(tag, "ResponseCode is " + result.responseCode)
+            Log.e(tag, result.debugMessage)
         }
     }
 }

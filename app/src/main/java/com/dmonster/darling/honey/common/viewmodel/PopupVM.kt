@@ -10,6 +10,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.dmonster.darling.honey.customview.CustomDialogInterface
 import com.dmonster.darling.honey.main.view.MainActivity
+import com.dmonster.darling.honey.notice.view.NoticeActivity
 import com.dmonster.darling.honey.util.AppKeyValue
 
 
@@ -37,6 +38,11 @@ class PopupVM(var title: String, var subTitle: String?, var dialogInterface: Cus
             val i = Intent(v.context,MainActivity::class.java)
             i.putExtra(AppKeyValue.instance.goToMailBox,true)
             v.context.startActivity(i)
+        }else if(url.contains("notice")){
+            val i = Intent(v.context,NoticeActivity::class.java)
+            v.context.startActivity(i)
+        }else{
+            dialogInterface?.onConfirm(v)
         }
 
     }

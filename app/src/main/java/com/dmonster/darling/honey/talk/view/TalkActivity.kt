@@ -29,6 +29,7 @@ import com.dmonster.darling.honey.dialog.ItemTalkDialog
 import com.dmonster.darling.honey.main.view.MainActivity
 import com.dmonster.darling.honey.point.model.ItemModel
 import com.dmonster.darling.honey.profile.view.ProfileActivity
+import com.dmonster.darling.honey.servicecenter.view.ServiceCenterActivity
 import com.dmonster.darling.honey.talk.data.TalkData
 import com.dmonster.darling.honey.talk.presenter.TalkContract
 import com.dmonster.darling.honey.talk.presenter.TalkPresenter
@@ -480,10 +481,15 @@ class TalkActivity : BaseActivity(), TalkContract.View {
     }
 
     private fun itemClickListener() = View.OnClickListener {
-        val intent = Intent(this, ProfileActivity::class.java)
-        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-        intent.putExtra(AppKeyValue.instance.profileMbNo, mbNo)
-        startActivity(intent)
+        if(mbNo!="1"){
+            val intent = Intent(this, ProfileActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+            intent.putExtra(AppKeyValue.instance.profileMbNo, mbNo)
+            startActivity(intent)
+        }else{
+            val intent = Intent(this, ServiceCenterActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     /*    채팅내역    */
