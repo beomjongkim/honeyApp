@@ -74,7 +74,9 @@ class BannerVM(var mb_id: String, var lifecycle: Lifecycle, var context: Context
                     editor.putBoolean(AppKeyValue.instance.hasFreePass, item.isSuccess)
                     editor.apply()
                     hasPass.value = it.isSuccess
+                    if(it.isSuccess){
 
+                    }
                 }
             }
         }

@@ -320,12 +320,14 @@ object BindingAdapter {
             .into(imageView)
     }
 
-    @androidx.databinding.BindingAdapter("setAdRequest","setAdListener")
+    @androidx.databinding.BindingAdapter("setAdRequest","setAdListener","hasPass")
     @JvmStatic
-    fun setAdView(adView: AdView, adRequest : AdRequest, adListener: AdListener) {
+    fun setAdView(adView: AdView, adRequest : AdRequest, adListener: AdListener, hasPass: Boolean) {
         MobileAds.initialize(adView.context)
         adView.adListener = adListener
-        adView.loadAd(adRequest)
+        if(!hasPass){
+            adView.loadAd(adRequest)
+        }
     }
 
     @androidx.databinding.BindingAdapter("addTextWatcher")

@@ -107,6 +107,7 @@
             android:id="@+id/bn_act_image_detail"
             setAdListener="@{bannerVM.adListener}"
             setAdRequest="@{bannerVM.adRequest}"
+            hasPass="@{bannerVM.hasPass}"
             android:layout_width="0dp"
             android:layout_height="50dp"
             android:visibility="@{bannerVM.hasPass? View.GONE : View.VISIBLE}"

@@ -11,8 +11,8 @@
     </string>
     <string name="facebook_app_id">2267136000253752</string>
     <string name="fb_login_protocol_scheme">fb2267136000253752</string>
-    <string name="banner_id">ca-app-pub-1643323183206572/2469256911</string>
-    <string name="banner_id_test">ca-app-pub-3940256099942544/6300978111</string>
+    <string name="banner_id_test">ca-app-pub-1643323183206572/2469256911</string>
+    <string name="banner_id">ca-app-pub-3940256099942544/6300978111</string>
     <string name="rewardAd_id">ca-app-pub-1643323183206572/5359578900</string>
     <string name="rewardAd_id_test">ca-app-pub-3940256099942544/5224354917</string>
 

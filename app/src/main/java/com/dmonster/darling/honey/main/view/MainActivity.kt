@@ -93,9 +93,7 @@ class MainActivity : BaseActivity(){
 //        billingProcessor = BillingProcessor(this, AppKeyValue.instance.inAppKey, this)
 //        billingProcessor?.initialize()
 
-
         val notificationType = intent.getStringExtra(AppKeyValue.instance.pushNotificationType)
-
 
         profileState = Utility.instance.UserData().getUserProfile() == AppKeyValue.instance.keyYes
 

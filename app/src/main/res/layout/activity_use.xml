@@ -71,6 +71,7 @@
             android:id="@+id/bn_act_use"
             setAdListener="@{bannerVM.adListener}"
             setAdRequest="@{bannerVM.adRequest}"
+            hasPass="@{bannerVM.hasPass}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:visibility="@{bannerVM.hasPass? View.GONE : View.VISIBLE}"
