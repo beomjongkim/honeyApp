@@ -7,7 +7,9 @@
         <variable
             name="bannerVM"
             type="com.dmonster.darling.honey.ads.viewmodel.BannerVM" />
-
+        <variable
+            name="fullScreenVM"
+            type="com.dmonster.darling.honey.ads.viewmodel.FullScreenVM" />
         <import type="android.view.View" />
     </data>
 

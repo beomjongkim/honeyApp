@@ -18,12 +18,14 @@ import com.dmonster.darling.honey.customview.CustomPopup
 import com.dmonster.darling.honey.dialog.DormantClearDialog
 import com.dmonster.darling.honey.information.view.MyInfoActivity
 import com.dmonster.darling.honey.inquiry.view.InquiryMainActivity
-import com.dmonster.darling.honey.magazine.view.MagazineFragment
+import com.dmonster.darling.honey.main.view.MainActivity
 import com.dmonster.darling.honey.point.view.ItemUseActivity
 import com.dmonster.darling.honey.myinformation.view.MyProfileActivity
 import com.dmonster.darling.honey.notice.view.NoticeActivity
 import com.dmonster.darling.honey.option.data.SimpleMyInfoData
 import com.dmonster.darling.honey.option.model.OptionModel
+import com.dmonster.darling.honey.point.data.PointData
+import com.dmonster.darling.honey.point.model.PointModel
 import com.dmonster.darling.honey.servicecenter.view.ServiceCenterActivity
 import com.dmonster.darling.honey.util.AppKeyValue
 import com.dmonster.darling.honey.util.ServerApi
@@ -51,8 +53,8 @@ class OptionVM(var fragmentManager: FragmentManager, lifecycle: Lifecycle, val i
     var mb_nick = MutableLiveData<String>().also {
         it.value = "-"
     }
-    var mb_coin = MutableLiveData<String>().also {
-        it.value = "0개"
+    var mb_point = MutableLiveData<String>().also {
+        it.value = "0 포인트"
     }
 
     init {
@@ -63,6 +65,7 @@ class OptionVM(var fragmentManager: FragmentManager, lifecycle: Lifecycle, val i
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun onResume() {
         getData()
+        getPointData()
     }
 
     fun onClickAlarm(view: View) {
@@ -166,11 +169,14 @@ class OptionVM(var fragmentManager: FragmentManager, lifecycle: Lifecycle, val i
     }
 
     fun onClickCharge(view: View) {
-
+        val intent = Intent(view.context, MainActivity::class.java)
+        intent.putExtra(AppKeyValue.instance.goToMarket,true)
+        startActivity(view.context, intent, null)
     }
 
     fun onClickItemUse(view: View) {
-        val intent = Intent(view.context, ItemUseActivity::class.java)
+        val intent = Intent(view.context, MainActivity::class.java)
+        intent.putExtra(AppKeyValue.instance.goToMarket,true)
         startActivity(view.context, intent, null)
     }
 
@@ -292,7 +298,6 @@ class OptionVM(var fragmentManager: FragmentManager, lifecycle: Lifecycle, val i
                 item.let { it ->
                     if (it.isSuccess) {
                         it.item?.let { it ->
-                            mb_coin.value = it.coin + "개"
                             mb_nick.value = it.mbNick
                             it.mbImg?.let {
                                 if (it.mbImg?.isNotEmpty()!!)
@@ -309,6 +314,25 @@ class OptionVM(var fragmentManager: FragmentManager, lifecycle: Lifecycle, val i
         }
         mModel.requestSimpleMyInfo(id, Utility.instance.UserData().getUserMb(), subscriber)
         subscription.add(subscriber)
+    }
+
+    private fun getPointData(){
+        val model = PointModel()
+        val subscriber =object : DisposableObserver<ResultItem<PointData>>(){
+            override fun onComplete() {
+            }
+
+            override fun onNext(t: ResultItem<PointData>) {
+                if(t.isSuccess){
+                    mb_point.value = t.item?.point + " 포인트"
+                }
+            }
+
+            override fun onError(e: Throwable) {
+            }
+        }
+
+        model.read_point(id,subscriber)
     }
 
     private fun setDormantDialog() {

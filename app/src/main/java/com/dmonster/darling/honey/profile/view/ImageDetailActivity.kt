@@ -10,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import com.bumptech.glide.Glide
 import com.dmonster.darling.honey.R
 import com.dmonster.darling.honey.ads.viewmodel.BannerVM
+import com.dmonster.darling.honey.ads.viewmodel.FullScreenVM
 import com.dmonster.darling.honey.ads.viewmodel.RewardVM
 import com.dmonster.darling.honey.base.BaseActivity
 import com.dmonster.darling.honey.customview.CustomDialogInterface
@@ -105,6 +106,7 @@ class ImageDetailActivity : BaseActivity(), ImageDetailContract.View {
                     position?.let { it1 ->
                         if (it1 < 0) {
                             position = imageArray?.size?.minus(1)
+
                         }
                     }
                     position?.let { it1 -> setPress(it1) }
@@ -120,7 +122,8 @@ class ImageDetailActivity : BaseActivity(), ImageDetailContract.View {
                     if (position == imageArray?.size) {
                         position = 0
                     }
-                    position?.let { it1 -> setPress(it1) }
+                    position?.let { it1 -> setPress(it1)
+                    }
                 }
             })
 
@@ -168,6 +171,9 @@ class ImageDetailActivity : BaseActivity(), ImageDetailContract.View {
         imageArray?.let { it ->
             imagePosition?.let { it1 ->
                 Glide.with(this).load(it[it1]).into(iv_act_image_detail_picture)
+                if(position==1){
+                    binding.fullScreenVM?.showAd()
+                }
             }
         }
     }
@@ -176,6 +182,7 @@ class ImageDetailActivity : BaseActivity(), ImageDetailContract.View {
         binding.bannerVM =
             BannerVM(Utility.instance.getPref(this, AppKeyValue.instance.savePrefID), lifecycle,this)
         binding.lifecycleOwner = this
+        binding.fullScreenVM = id?.let { FullScreenVM(this, it) }
         rewardVM = RewardVM(this)
         rewardVM.adCallback = object : RewardedAdCallback() {
 
@@ -219,6 +226,7 @@ class ImageDetailActivity : BaseActivity(), ImageDetailContract.View {
                 Log.d(tag, "Ad failed to display.")
             }
         }
+
     }
 
     /*    채팅방여부 확인    */

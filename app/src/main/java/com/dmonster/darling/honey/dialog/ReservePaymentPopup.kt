@@ -46,8 +46,8 @@ class ReservePaymentPopup(context: Context, var lifecycleOwner: LifecycleOwner) 
             R.layout.custom_dropdown
         )
         binding.setVariable(BR.registerPaymentVM, reservePaymentPopupVM.also {
-            it.radioGroupListener = object : RadioGroup.OnCheckedChangeListener {
-                override fun onCheckedChanged(group: RadioGroup?, checkedId: Int) {
+            it.radioGroupListener =
+                RadioGroup.OnCheckedChangeListener { group, checkedId ->
                     when (checkedId) {
                         R.id.rb_reserve_popup2 -> {
                             it.needReceipt.value = "private"
@@ -66,8 +66,8 @@ class ReservePaymentPopup(context: Context, var lifecycleOwner: LifecycleOwner) 
                         }
                     }
                 }
-            }
         })
+
         binding.setVariable(BR.spinnerVM, ReservePaymentSpinnerVM(arrayAdapter).also {
             it.itemSelectedListener = object : AdapterView.OnItemSelectedListener {
                 override fun onNothingSelected(parent: AdapterView<*>?) {
@@ -80,23 +80,7 @@ class ReservePaymentPopup(context: Context, var lifecycleOwner: LifecycleOwner) 
                     id: Long
                 ) {
                     reservePaymentPopupVM.receiptType.value = arrayAdapter.getItem(position)
-                    when (reservePaymentPopupVM.needReceipt.value) {
-                        "private" -> {
-                            //정보 저장
-                            Utility.instance.showToast(context,reservePaymentPopupVM.receiptType.value)
-                        }
-                        "business" -> {
-                            //정보 저장
-                            Utility.instance.showToast(context,reservePaymentPopupVM.receiptType.value)
-                        }
-                        else -> {
-                            //정보 비우기
-                            Utility.instance.showToast(context,reservePaymentPopupVM.receiptType.value)
-                        }
-                    }
-
                 }
-
             }
         })
 
