@@ -28,6 +28,9 @@ import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
 import com.google.android.gms.ads.MobileAds
+import com.google.android.youtube.player.YouTubePlayer
+import com.google.android.youtube.player.YouTubePlayerView
+import kotlinx.android.synthetic.main.activity_youtube.*
 
 
 object BindingAdapter {
@@ -322,10 +325,12 @@ object BindingAdapter {
 
     @androidx.databinding.BindingAdapter("setAdRequest","setAdListener","hasPass")
     @JvmStatic
-    fun setAdView(adView: AdView, adRequest : AdRequest, adListener: AdListener, hasPass: Boolean) {
+    fun setAdView(adView: AdView, adRequest : AdRequest, adListener: AdListener, hasPass: MutableLiveData<Boolean>) {
         MobileAds.initialize(adView.context)
         adView.adListener = adListener
-        if(!hasPass){
+        if(hasPass.value!!){
+            adView.destroy()
+        }else{
             adView.loadAd(adRequest)
         }
     }
@@ -334,6 +339,13 @@ object BindingAdapter {
     @JvmStatic
     fun setEditTextListener(editText: EditText, textWatcher: TextWatcher) {
         editText.addTextChangedListener(textWatcher)
+    }
+
+    @androidx.databinding.BindingAdapter("setApiKey", "onInitializedListener")
+    @JvmStatic
+    fun initYoutubePlayer(youTubePlayerView: YouTubePlayerView, apiKey: String, onInitializedListener: YouTubePlayer.OnInitializedListener){
+        youTubePlayerView.initialize(apiKey, onInitializedListener)
+
     }
 
 }

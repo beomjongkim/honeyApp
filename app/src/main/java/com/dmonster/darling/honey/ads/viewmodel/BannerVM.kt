@@ -43,7 +43,7 @@ class BannerVM(var mb_id: String, var lifecycle: Lifecycle, var context: Context
         }
     }
     var hasPass = MutableLiveData<Boolean>().also {
-        it.value = false
+        it.value = true
     }
 
     var itemModel = ItemModel()
@@ -74,7 +74,7 @@ class BannerVM(var mb_id: String, var lifecycle: Lifecycle, var context: Context
                     editor.putBoolean(AppKeyValue.instance.hasFreePass, item.isSuccess)
                     editor.apply()
                     if(Integer.parseInt(item.item?.minutes_left) >  60)
-                    hasPass.value = it.isSuccess
+                        hasPass.value = it.isSuccess
                     else
                         hasPass.value = false
                 }

@@ -495,7 +495,7 @@ class PointViewModel(
                             it1,
                             it.price,
                             it.receiptType.value,
-                            it.receiptInfo.value,
+                            it.receiptNumber.value,
                             context
                         )
                     }
@@ -537,7 +537,7 @@ class PointViewModel(
     }
 
     private fun showPaymentMethod() {
-        var popup = CustomPopup(
+        val popup = CustomPopup(
             activity,
             "결제 수단",
             "결제방식을 선택해주세요",

@@ -28,7 +28,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning,Instantiatable">
-        <activity android:name=".magazine.view.MagazineFragment"></activity>
+        <activity android:name=".youtube.view.YoutubePlayerActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.FACTORY_TEST" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".magazine.view.MagazineFragment" />
         <activity
             android:name=".intro.view.SlideActivity"
             android:screenOrientation="portrait">
@@ -77,6 +82,7 @@
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.FACTORY_TEST" />
+
                 <data
                     android:host="main"
                     android:scheme="honey" />

@@ -36,7 +36,6 @@ class MagazineFragment : BaseFragment() {
 
     private fun setViewModel(){
         context?.let {
-            binding.bannerVM = BannerVM(Utility.instance.getPref(it, AppKeyValue.instance.savePrefID),lifecycle,it)
             binding.magazineVM = MagazineVM(CustomAdapter(R.layout.item_magazine,this))
             binding.lifecycleOwner = this
             binding.ctbActMagazine.setTitle("매거진")

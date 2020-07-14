@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="playerVM"
+            type="com.dmonster.darling.honey.youtube.viewmodel.YoutubePlayerVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/color_black"
+        tools:context=".youtube.view.YoutubePlayerActivity">
+
+
+        <TextView
+            android:id="@+id/tv_act_youtube_second"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
+            android:onClick="@{(v)->playerVM.onClickSkip(v)}"
+            android:text="@{playerVM.spentSec >0 ? @string/youtube_left_second(playerVM.spentSec) : @string/youtube_skip}"
+            android:textColor="@color/color_white"
+            android:textSize="@dimen/text_xlarge"
+            android:theme="@style/baseTextViewTitleStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <fragment
+            android:id="@+id/fragment"
+            android:name="com.dmonster.darling.honey.youtube.view.YoutubeFragment"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_act_youtube_second" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
