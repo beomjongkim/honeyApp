@@ -25,7 +25,15 @@ class CustomPopup : Dialog {
         mTitle = title
         mSubTitle = subTitle
         mLifecycleOwner = lifecycleOwner
-        popupVM = PopupVM(mTitle, mSubTitle)
+        popupVM = PopupVM(mTitle, mSubTitle, object : CustomDialogInterface {
+            override fun onConfirm(v: View) {
+                dismiss()
+            }
+
+            override fun onCancel(v: View) {
+                dismiss()
+            }
+        })
         init()
     }
 
@@ -89,16 +97,23 @@ class CustomPopup : Dialog {
         context: Context,
         title: String,
         subTitle: String,
-       subTitleTwo :String , link : String , customDialogInterface: CustomDialogInterface ? =null,
+       subTitleTwo :String , link : String ,
         lifecycleOwner: LifecycleOwner? = null
     ) : super(context) {
         mTitle = title
         mSubTitle = subTitle
         mImgId = -1
         mLifecycleOwner = lifecycleOwner
-
         mCustomDialogInterface = null
-        popupVM = PopupVM(mTitle, mSubTitle, mCustomDialogInterface, subTitleTwo, link)
+
+        popupVM = PopupVM(mTitle, mSubTitle, object : CustomDialogInterface{
+            override fun onConfirm(v: View) {
+                dismiss()
+            }
+
+            override fun onCancel(v: View) {
+            }
+        }, subTitleTwo, link)
         init()
     }
 

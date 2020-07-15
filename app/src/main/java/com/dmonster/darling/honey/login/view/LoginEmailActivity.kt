@@ -173,6 +173,7 @@ class LoginEmailActivity : BaseActivity(), LoginContract.View {
         mbNo: String?,
         recommend: String?,
         gender: String?,
+        mbNick : String?,
         dormantState: String?,
         profileState: String?
     ) {
@@ -183,6 +184,7 @@ class LoginEmailActivity : BaseActivity(), LoginContract.View {
             setUserMb(mbNo)
             setUserRecommend(recommend)
             setUserGender(gender)
+            setUserNick(mbNick)
             setUserDormant(dormantState)
             setUserProfile(profileState)
         }
@@ -360,6 +362,7 @@ class LoginEmailActivity : BaseActivity(), LoginContract.View {
         mbNo: String?,
         recommend: String?,
         gender: String?,
+        nick : String?,
         dormantState: String?,
         profileState: String?
     ) {
@@ -368,6 +371,7 @@ class LoginEmailActivity : BaseActivity(), LoginContract.View {
             setUserMb(mbNo)
             setUserRecommend(recommend)
             setUserGender(gender)
+            setUserNick(nick)
             setUserDormant(dormantState)
             setUserProfile(profileState)
         }

@@ -146,7 +146,6 @@ class PointViewModel(
         skuList.add("point50")
         skuList.add("point100")
         skuList.add("point150")
-        skuList.add("freepass_month")
 
         val params = SkuDetailsParams.newBuilder()
         params.setSkusList(skuList).setType(BillingClient.SkuType.INAPP)
@@ -342,7 +341,7 @@ class PointViewModel(
                     } else {
                         Utility.instance.showToast(context, "보유 포인트가 모자랍니다.")
                         if (itemCode == 2) {
-                            inappType = 3
+                            inappType = 0
                             price_won.value = 5500
                             showPaymentMethod()
                         }
@@ -354,41 +353,41 @@ class PointViewModel(
         itemModel.buyItem(id, itemCode, subscriber)
     }
 
-    fun buy_inApp(context: Context, it_id: Int) {
-        Log.d(tag, "buy_inApp")
-
-        isProgressing.value = true
-        val subscriber = object : DisposableObserver<ResultItem<String>>() {
-            override fun onComplete() {
-                isProgressing.value = false
-                onResume()
-            }
-
-            override fun onError(e: Throwable) {
-                isProgressing.value = false
-                Utility.instance.showToast(context, "구매 과정 중 오류가 발생하였습니다.")
-            }
-
-            override fun onNext(item: ResultItem<String>) {
-                item.let { it ->
-                    if (it.isSuccess) {
-                        Log.d(tag, "rechargePoint success")
-//                        Utility.instance.showToast(context, "성공적으로 포인트를 구매하였습니다.")
-                        hasPass.value = true
-                        buyItem(2, context)
-                    } else {
-                        Utility.instance.showToast(context, "구매 과정 중 오류가 발생하였습니다.")
-                    }
-                }
-                isProgressing.value = false
-            }
-        }
-        var point = 0
-        if (it_id == 2) {
-            point = 50
-        }
-        itemModel.rechargePoint(id, point, subscriber)
-    }
+//    fun buy_inApp(context: Context, it_id: Int) {
+//        Log.d(tag, "buy_inApp")
+//
+//        isProgressing.value = true
+//        val subscriber = object : DisposableObserver<ResultItem<String>>() {
+//            override fun onComplete() {
+//                isProgressing.value = false
+//                onResume()
+//            }
+//
+//            override fun onError(e: Throwable) {
+//                isProgressing.value = false
+//                Utility.instance.showToast(context, "구매 과정 중 오류가 발생하였습니다.")
+//            }
+//
+//            override fun onNext(item: ResultItem<String>) {
+//                item.let { it ->
+//                    if (it.isSuccess) {
+//                        Log.d(tag, "rechargePoint success")
+////                        Utility.instance.showToast(context, "성공적으로 포인트를 구매하였습니다.")
+//                        hasPass.value = true
+//                        buyItem(2, context)
+//                    } else {
+//                        Utility.instance.showToast(context, "구매 과정 중 오류가 발생하였습니다.")
+//                    }
+//                }
+//                isProgressing.value = false
+//            }
+//        }
+//        var point = 0
+//        if (it_id == 2) {
+//            point = 50
+//        }
+//        itemModel.rechargePoint(id, point, subscriber)
+//    }
 
     private fun rechargePoint(context: Context, type: Int) {
 
@@ -443,37 +442,47 @@ class PointViewModel(
 
             override fun onError(e: Throwable) {
                 isProgressing.value = false
-                Utility.instance.showToast(context, "무통장 입금 정보 전송에 실패했습니다.")
+                Utility.instance.showToast(context, "모든 정보를 입력해주세요")
             }
 
             override fun onNext(item: ResultItem<String>) {
                 item.let { it ->
                     if (it.isSuccess) {
+                        val message =
+                            "기업은행 98602084704015 주식회사 상현\n입금자명 : " + name + ", 입금금액 : " + price + "원"
                         Utility.instance.showTwoButtonAlert(context,
                             "입금정보",
-                            "아래 정보로 무통장 입금을 진행해주세요.\n입금자명 : " + name + "\n금액 : " + price + "원\n" + "기업은행 | 98602084704015 | 주식회사 상현",
-                            "닫기",
+                            "아래 정보로 무통장 입금을 진행해주세요.\n$message",
                             "계좌번호복사",
-                            DialogInterface.OnClickListener { p0, p1 ->
-                                val clipboard =
-                                    context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
-                                val clip: ClipData = ClipData.newPlainText(
-                                    "simple text",
-                                    "입금자명 : " + name + "\n금액 : " + price + "원\n" + "기업은행 | 98602084704015 | 주식회사 상현"
-                                )
-                                clipboard.primaryClip = clip
-                                Utility.instance.showToast(context, "복사되었습니다.")
+                            "닫기",
+                            DialogInterface.OnClickListener { dialog, which ->
+                                if (which == DialogInterface.BUTTON_POSITIVE) {
+                                    val clipboard =
+                                        context.getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+                                    val clip: ClipData = ClipData.newPlainText(
+                                        "simple text",
+                                        message
+                                    )
+                                    clipboard.primaryClip = clip
+                                    Utility.instance.showToast(context, "복사되었습니다.")
+                                }
+                                dialog.dismiss()
                             }
                         )
 
                     } else {
-                        Utility.instance.showToast(context, "무통장 입금 정보 전송에 실패했습니다.")
+                        Utility.instance.showToast(context, "모든 정보를 입력해주세요")
                     }
                 }
                 isProgressing.value = false
             }
         }
-        pointModel.reserve_payment(id, name, price, receiptType, receiptInfo, subscriber)
+        if (receiptType.isNullOrBlank() && !receiptInfo.isNullOrBlank() || receiptInfo.isNullOrBlank() && !receiptType.isNullOrBlank()) {
+            Utility.instance.showToast(context, "모든 정보를 입력해주세요")
+            isProgressing.value = false
+        } else {
+            pointModel.reserve_payment(id, name, price, receiptType, receiptInfo, subscriber)
+        }
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
@@ -491,15 +500,19 @@ class PointViewModel(
             it.twoBtnSwitch = object : CustomDialogInterface {
                 override fun onConfirm(v: View) {
                     it.name.value?.let { it1 ->
-                        reservePayment(
-                            it1,
-                            it.price,
-                            it.receiptType.value,
-                            it.receiptNumber.value,
-                            context
-                        )
+                        if (it.isChecked.value!!) {
+                            reservePayment(
+                                it1,
+                                it.price,
+                                it.receiptType.value,
+                                it.receiptNumber.value,
+                                context
+                            )
+                            reservePaymentPopup.dismiss()
+                        } else {
+                            Utility.instance.showToast(context, "구매진행에 동의해주세요")
+                        }
                     }
-                    reservePaymentPopup.dismiss()
                 }
 
                 override fun onCancel(v: View) {
@@ -526,7 +539,6 @@ class PointViewModel(
                 // Handle the success of the consume operation.
                 // For example, increase the number of coins inside the user's basket.
                 when (purchase.sku) {
-                    "freepass_month" -> buy_inApp(activity, 2)
                     "point50" -> rechargePoint(activity, 0)
                     "point100" -> rechargePoint(activity, 1)
                     "point150" -> rechargePoint(activity, 2)
@@ -544,12 +556,17 @@ class PointViewModel(
             R.drawable.ic_talk_vivid,
             object : CustomDialogInterface {
                 override fun onConfirm(v: View) {
-                    var skuDetail: SkuDetails
+                    var skuDetail= skuDetailList[0]
+                    var name = ""
                     when (inappType) {
-                        0 -> skuDetail = skuDetailList[3]
-                        1 -> skuDetail = skuDetailList[1]
-                        2 -> skuDetail = skuDetailList[2]
-                        else -> skuDetail = skuDetailList[0]
+                        0 -> name = "point50"
+                        1 -> name = "point100"
+                        2 -> name = "point150"
+                        else -> name = "point50"
+                    }
+                    for (skuDetails in skuDetailList) {
+                        if (skuDetails.sku == name)
+                            skuDetail = skuDetails
                     }
 //                    Utility.instance.showToast(v.context, skuDetail.sku)
                     doBillingFlow(skuDetail)

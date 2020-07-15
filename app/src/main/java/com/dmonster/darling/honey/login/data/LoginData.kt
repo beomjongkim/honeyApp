@@ -14,6 +14,9 @@ class LoginData {
     @SerializedName("mb_id")
     var mbId: String? = null
 
+    @SerializedName("mb_nick")
+    var mbNick: String? = null
+
     @SerializedName("mb_password")
     var mbPassword: String? = null
 

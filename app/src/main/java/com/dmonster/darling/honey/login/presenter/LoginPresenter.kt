@@ -38,7 +38,8 @@ class LoginPresenter: LoginContract.Presenter {
                 item.let { it ->
                     if(it.isSuccess) {
                         it.item?.let {
-                            mView.setLoginComplete(it.mbId, it.mbNo, it.mbSn, it.mbSex, it.mbSleep, it.mbProfileState)
+
+                            mView.setLoginComplete(it.mbId, it.mbNo, it.mbSn, it.mbSex,it.mbNick, it.mbSleep, it.mbProfileState)
                         }
                     }
                     else {
@@ -66,7 +67,7 @@ class LoginPresenter: LoginContract.Presenter {
                 item.let { it ->
                     if(it.isSuccess) {
                         it.item?.let {
-                            mView.setSocialLoginComplete(it.mbId, it.mbNo, it.mbSn, it.mbSex, it.mbSleep, it.mbProfileState)
+                            mView.setSocialLoginComplete(it.mbId, it.mbNo, it.mbSn, it.mbSex, it.mbNick, it.mbSleep, it.mbProfileState)
                         }
                     }
                     else {

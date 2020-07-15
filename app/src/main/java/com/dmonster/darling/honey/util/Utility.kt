@@ -160,18 +160,7 @@ class Utility private constructor() {
         link: String
     ) {
 
-        var popup = CustomPopup(context, title, message, subMessage, link, null).also {
-            it.mCustomDialogInterface = object : CustomDialogInterface {
-                override fun onConfirm(v: View) {
-                    it.dismiss()
-                }
-
-                override fun onCancel(v: View) {
-                    it.dismiss()
-                }
-
-            }
-        }
+        var popup = CustomPopup(context, title, message, subMessage, link, null)
 
         popup.show()
     }

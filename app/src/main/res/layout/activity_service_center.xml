@@ -70,6 +70,38 @@
                         android:layout_marginTop="28dp">
 
                         <TextView
+                            style="@style/baseTextViewStyle"
+                            android:layout_width="@dimen/default_margin_120dp"
+                            android:layout_height="wrap_content"
+                            android:text="버전"
+                            android:textSize="@dimen/text_large"
+                            android:textColor="@color/color_main"
+                            android:letterSpacing="-0.03"
+                            android:alpha="0.9"
+                            android:textStyle="bold"
+                            tools:ignore="SpUsage" />
+
+                        <TextView
+                            style="@style/baseTextViewStyle"
+                            android:id="@+id/tv_act_service_center_version"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/default_margin_10dp"
+                            android:singleLine="true"
+                            android:textSize="@dimen/text_normal"
+                            android:textColor="@color/color_main"
+                            android:letterSpacing="-0.03"
+                            android:alpha="0.75"
+                            tools:ignore="SpUsage" />
+                    </LinearLayout>
+
+                    <!-- 이메일 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp">
+
+                        <TextView
                                 style="@style/baseTextViewStyle"
                             android:layout_width="@dimen/default_margin_120dp"
                             android:layout_height="wrap_content"

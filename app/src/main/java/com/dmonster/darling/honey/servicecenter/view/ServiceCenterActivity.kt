@@ -26,7 +26,7 @@ import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.activity_service_center.*
 import java.util.concurrent.TimeUnit
 
-class ServiceCenterActivity: BaseActivity(), ServiceCenterContract.View {
+class ServiceCenterActivity : BaseActivity(), ServiceCenterContract.View {
 
     private lateinit var disposeBag: CompositeDisposable
     private lateinit var mPresenter: ServiceCenterContract.Presenter
@@ -34,9 +34,14 @@ class ServiceCenterActivity: BaseActivity(), ServiceCenterContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_service_center)
-        val binding : ActivityServiceCenterBinding = DataBindingUtil.setContentView(this,R.layout.activity_service_center)
+        val binding: ActivityServiceCenterBinding =
+            DataBindingUtil.setContentView(this, R.layout.activity_service_center)
         binding.bannerVM =
-            BannerVM(Utility.instance.getPref(this, AppKeyValue.instance.savePrefID), lifecycle,this)
+            BannerVM(
+                Utility.instance.getPref(this, AppKeyValue.instance.savePrefID),
+                lifecycle,
+                this
+            )
         binding.lifecycleOwner = this
         init()
         setListener()
@@ -55,53 +60,76 @@ class ServiceCenterActivity: BaseActivity(), ServiceCenterContract.View {
     private fun setListener() {
         /*    이용약관    */
         disposeBag.add(RxView.clicks(tv_act_service_center_agreement)
-                .throttleFirst(1, TimeUnit.SECONDS)
-                .subscribe {
-                    val intent = Intent(this, AgreementActivity::class.java)
-                    intent.putExtra(AppKeyValue.instance.intentAgreement, AppKeyValue.instance.typesAgreement)
-                    startActivity(intent)
-                })
+            .throttleFirst(1, TimeUnit.SECONDS)
+            .subscribe {
+                val intent = Intent(this, AgreementActivity::class.java)
+                intent.putExtra(
+                    AppKeyValue.instance.intentAgreement,
+                    AppKeyValue.instance.typesAgreement
+                )
+                startActivity(intent)
+            })
 
         /*    개인정보처리방침    */
         disposeBag.add(RxView.clicks(tv_act_service_center_personal)
-                .throttleFirst(1, TimeUnit.SECONDS)
-                .subscribe {
-                    val intent = Intent(this, AgreementActivity::class.java)
-                    intent.putExtra(AppKeyValue.instance.intentAgreement, AppKeyValue.instance.typesPersonal)
-                    startActivity(intent)
-                })
+            .throttleFirst(1, TimeUnit.SECONDS)
+            .subscribe {
+                val intent = Intent(this, AgreementActivity::class.java)
+                intent.putExtra(
+                    AppKeyValue.instance.intentAgreement,
+                    AppKeyValue.instance.typesPersonal
+                )
+                startActivity(intent)
+            })
 
         /*    공지사항    */
         disposeBag.add(RxView.clicks(tv_act_service_center_inquiry)
-                .throttleFirst(1, TimeUnit.SECONDS)
-                .subscribe {
-                    val intent = Intent(this, InquiryMainActivity::class.java)
-                    startActivity(intent)
-                })
+            .throttleFirst(1, TimeUnit.SECONDS)
+            .subscribe {
+                val intent = Intent(this, InquiryMainActivity::class.java)
+                startActivity(intent)
+            })
 
         /*    고객센터 전화걸기    */
         disposeBag.add(RxView.clicks(btn_act_service_center_call)
-                .throttleFirst(1, TimeUnit.SECONDS)
-                .subscribe {
-                    Utility.instance.showTwoButtonAlert(this, resources.getString(R.string.app_name), resources.getString(R.string.msg_app_call), DialogInterface.OnClickListener { dialog, which ->
-                        if(which == DialogInterface.BUTTON_POSITIVE) {
-                            if(ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            .throttleFirst(1, TimeUnit.SECONDS)
+            .subscribe {
+                Utility.instance.showTwoButtonAlert(
+                    this,
+                    resources.getString(R.string.app_name),
+                    resources.getString(R.string.msg_app_call),
+                    DialogInterface.OnClickListener { dialog, which ->
+                        if (which == DialogInterface.BUTTON_POSITIVE) {
+                            if (ActivityCompat.checkSelfPermission(
+                                    this,
+                                    Manifest.permission.CALL_PHONE
+                                ) != PackageManager.PERMISSION_GRANTED
+                            ) {
                                 return@OnClickListener
                             }
-                            val callNumber = String.format(resources.getString(R.string.service_center_call_tel), tv_act_service_center_phone.text)
+                            val callNumber = String.format(
+                                resources.getString(R.string.service_center_call_tel),
+                                tv_act_service_center_phone.text
+                            )
                             startActivity(Intent(Intent.ACTION_CALL, Uri.parse(callNumber)))
                         }
                     })
-                })
+            })
     }
 
     /*    앱정보    */
-    override fun setAppInfo(email: String?, phone: String?, communication: String?, business: String?) {
+    override fun setAppInfo(
+        email: String?,
+        phone: String?,
+        communication: String?,
+        business: String?
+    ) {
         tv_act_service_center_email.text = email
         tv_act_service_center_phone.text = phone
         tv_act_service_center_communication.text = communication
         tv_act_service_center_business.text = business
-
+        tv_act_service_center_version.text =
+            packageManager.getPackageInfo(packageName, 0).versionName
         ll_act_service_center_progress.visibility = View.GONE
     }
 
