@@ -22,6 +22,7 @@
             android:layout_width="0dp"
             android:layout_height="50dp"
             setGlideGifId ="@{bannerVM.selfBannerId}"
+            android:onClick="@{(v)->bannerVM.onClickSelfBanner(v)}"
             android:visibility="@{bannerVM.isSelfBannerShown? View.VISIBLE : View.GONE}"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

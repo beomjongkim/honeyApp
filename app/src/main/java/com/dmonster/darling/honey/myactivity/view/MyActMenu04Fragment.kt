@@ -89,6 +89,9 @@ class MyActMenu04Fragment: BaseFragment(), ProfileListContract.View {
             mPresenter.getProfileList(false, AppKeyValue.instance.listStartCnt, AppKeyValue.instance.listLimitCnt, id, AppKeyValue.instance.profileListVisit)
         }
 
+        cb_frag_my_act_profile_all_check.setOnCheckedChangeListener { buttonView, isChecked ->
+            mAdapter.setAllChecked(isChecked)
+        }
         rv_frag_my_act_profile_list.addOnScrollListener(object: RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
                 super.onScrollStateChanged(recyclerView, newState)

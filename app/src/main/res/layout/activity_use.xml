@@ -67,7 +67,17 @@
             </LinearLayout>
         </RelativeLayout>
 
-        <com.google.android.gms.ads.AdView
+        <ImageView
+            android:id="@+id/iv_act_use_self_banner"
+            setGlideGifId="@{bannerVM.selfBannerId}"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:onClick="@{(v)->bannerVM.onClickSelfBanner(v)}"
+            android:visibility="@{bannerVM.isSelfBannerShown? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@+id/bn_act_use"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+<com.google.android.gms.ads.AdView
             android:id="@+id/bn_act_use"
             setAdListener="@{bannerVM.adListener}"
             setAdRequest="@{bannerVM.adRequest}"

@@ -1,12 +1,18 @@
 package com.dmonster.darling.honey.ads.viewmodel
 
 import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.*
+import com.dmonster.darling.honey.ads.view.FullScreenActivity
 import com.dmonster.darling.honey.point.data.CheckFreePassData
 import com.dmonster.darling.honey.point.model.ItemModel
 import com.dmonster.darling.honey.util.AppKeyValue
 import com.dmonster.darling.honey.util.retrofit.ResultItem
+import com.dmonster.darling.honey.youtube.data.YoutubeData
+import com.dmonster.darling.honey.youtube.model.YoutubeModel
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.base.R
@@ -51,12 +57,28 @@ class BannerVM(var mb_id: String, var lifecycle: Lifecycle, var context: Context
     var isSelfBannerShown  = MutableLiveData<Boolean>().also {
         it.value = false
     }
+    var link : String? = ""
 
     var itemModel = ItemModel()
 
     init {
         lifecycle.addObserver(this)
+        YoutubeModel().also {
+            it.getYoutubePlayKey(object : DisposableObserver<ResultItem<YoutubeData>>(){
+                override fun onComplete() {
+                }
 
+                override fun onNext(t: ResultItem<YoutubeData>) {
+                    if(t.isSuccess){
+                        link = t.item?.link
+                    }
+                }
+
+                override fun onError(e: Throwable) {
+                }
+
+            })
+        }
     }
 
     private fun checkOwnFreepass() {
@@ -90,8 +112,11 @@ class BannerVM(var mb_id: String, var lifecycle: Lifecycle, var context: Context
         itemModel.check_own_freepass(mb_id, subscriber)
     }
 
-    fun onClickSelfBanner(){
-
+    fun onClickSelfBanner(v : View){
+        link?.let{
+            val i = Intent(Intent.ACTION_VIEW, Uri.parse(it))
+            v.context.startActivity(i)
+        }
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)

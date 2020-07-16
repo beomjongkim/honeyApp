@@ -73,7 +73,7 @@ class IdealVM(
                             areaVM.text.value = it.mbHopeAddr
                             val tallArr = it.mbHopeTall?.split("~")
                             tallArr?.let { it1 ->
-                                if (it1.size>1) {
+                                if (it1.size > 1) {
                                     heigthVM.textMin.value = tallArr[0]
                                     heigthVM.textMax.value = tallArr[1]
                                 }
@@ -97,7 +97,20 @@ class IdealVM(
         subscription.add(subscriber)
     }
 
-    fun saveIdeal(view : View) {
+    fun initIdeal(view: View) {
+        ageVM.text.value = ""
+        ageVM.text.value = ""
+        areaVM.text.value = ""
+        incomeVM.text.value = ""
+        eduVM.text.value = ""
+        heigthVM.textMax.value = ""
+        heigthVM.textMin.value = ""
+        styleVM.text.value = ""
+        religionVM.text.value = ""
+        bloodVM.text.value = ""
+    }
+
+    fun saveIdeal(view: View) {
         val mModel = IdealTypeModel()
         val subscription = CompositeDisposable()
 
@@ -114,9 +127,9 @@ class IdealVM(
             override fun onNext(item: BaseItem) {
                 item.let { it ->
                     if (it.isSuccess) {
-                        Utility.instance.showToast(view.context,"수정 되었습니다.")
+                        Utility.instance.showToast(view.context, "수정 되었습니다.")
                     } else {
-                        Utility.instance.showToast(view.context,"인터넷 환경을 점검해주세요.")
+                        Utility.instance.showToast(view.context, "인터넷 환경을 점검해주세요.")
 //                        mView.setIdealTypeEditFailed(it.message)
                     }
                 }

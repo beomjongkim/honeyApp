@@ -11,10 +11,14 @@ import com.dmonster.darling.honey.youtube.viewmodel.YoutubePlayerVM
 import com.google.android.youtube.player.YouTubeBaseActivity
 
 class YoutubePlayerActivity : YouTubeBaseActivity() {
-
+    lateinit var binding: ActivityYoutubeBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val binding: ActivityYoutubeBinding = DataBindingUtil.setContentView(this,R.layout.activity_youtube)
+         binding = DataBindingUtil.setContentView(this,R.layout.activity_youtube)
         binding.playerVM = YoutubePlayerVM(this,findViewById(R.id.tv_act_youtube_second))
+    }
+
+    override fun onPause() {
+        super.onPause()
     }
 }

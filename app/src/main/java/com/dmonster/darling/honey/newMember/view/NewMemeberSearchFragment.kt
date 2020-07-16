@@ -242,6 +242,7 @@ class NewMemeberSearchFragment : BaseFragment(), NewMemberListContract.View {
                 val profileImage = mbImgThumb
                 val talkId = mbNick
                 val type = mbChar
+                otherId = mbId
 
                 if (gender == otherGender) {
                     Utility.instance.showAlert(
@@ -395,7 +396,7 @@ class NewMemeberSearchFragment : BaseFragment(), NewMemberListContract.View {
         ll_frag_my_act_new_member_progress.visibility = View.GONE
 
         context?.let {
-            when (result) {
+            when (type) {
                 "Y" -> {
                     customPopup = CustomPopup(
                         it,

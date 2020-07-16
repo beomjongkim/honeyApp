@@ -133,7 +133,8 @@
         </androidx.recyclerview.widget.RecyclerView>
 
         <TextView
-                                style="@style/baseTextViewStyle"
+            android:id="@+id/textView"
+            style="@style/baseTextViewStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginLeft="32dp"
@@ -156,7 +157,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-        <com.google.android.gms.ads.AdView
+
+        <ImageView
+            android:id="@+id/iv_act_block_friends_self_banner"
+            setGlideGifId="@{bannerVM.selfBannerId}"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:onClick="@{(v)->bannerVM.onClickSelfBanner(v)}"
+            android:visibility="@{bannerVM.isSelfBannerShown? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@+id/bn_act_my_info"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+<com.google.android.gms.ads.AdView
             android:id="@+id/bn_act_my_info"
             setAdListener="@{bannerVM.adListener}"
             setAdRequest="@{bannerVM.adRequest}"

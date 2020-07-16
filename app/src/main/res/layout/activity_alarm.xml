@@ -382,7 +382,17 @@
         </RelativeLayout>
 
 
-        <com.google.android.gms.ads.AdView
+        <ImageView
+            android:id="@+id/iv_act_alarm_self_banner"
+            setGlideGifId="@{bannerVM.selfBannerId}"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:onClick="@{(v)->bannerVM.onClickSelfBanner(v)}"
+            android:visibility="@{bannerVM.isSelfBannerShown? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@+id/bn_act_talk"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+<com.google.android.gms.ads.AdView
             android:id="@+id/bn_act_talk"
             setAdListener="@{bannerVM.adListener}"
             setAdRequest="@{bannerVM.adRequest}"

@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -10,9 +12,7 @@
             type="com.dmonster.darling.honey.ads.viewmodel.BannerVM" />
     </data>
 
-    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/cl_act_block_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -143,7 +143,17 @@
                             android:layout_height="@dimen/progress_size" />
                     </LinearLayout>
 
-                    <com.google.android.gms.ads.AdView
+                    <ImageView
+                        android:id="@+id/iv_act_block_self_banner"
+                        setGlideGifId="@{bannerVM.selfBannerId}"
+                        android:layout_width="0dp"
+                        android:layout_height="50dp"
+                        android:onClick="@{(v)->bannerVM.onClickSelfBanner(v)}"
+                        android:visibility="@{bannerVM.isSelfBannerShown? View.VISIBLE : View.GONE}"
+                        app:layout_constraintBottom_toTopOf="@+id/bn_act_talk"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent" />
+<com.google.android.gms.ads.AdView
                         android:id="@+id/bn_act_talk"
                         setAdListener="@{bannerVM.adListener}"
                         setAdRequest="@{bannerVM.adRequest}"

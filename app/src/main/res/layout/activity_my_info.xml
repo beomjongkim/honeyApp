@@ -14,13 +14,13 @@
     tools:context=".information.view.MyInfoActivity">
 
     <RelativeLayout
+        android:id="@+id/relativeLayout"
         android:layout_width="0dp"
         android:layout_height="0dp"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/iv_act_my_info_self_banner"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/bn_act_my_info"
-        >
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
         <com.dmonster.darling.honey.customview.CustomToolBar
             android:id="@+id/ctb_act_my_info_toolbar"
@@ -49,7 +49,7 @@
 
                     <!-- 이메일 Title -->
                     <TextView
-                                style="@style/baseTextViewStyle"
+                        style="@style/baseTextViewStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:alpha="0.9"
@@ -66,8 +66,8 @@
                         android:layout_marginTop="10dp">
 
                         <TextView
-                                style="@style/baseTextViewStyle"
                             android:id="@+id/tv_act_my_info_email"
+                            style="@style/baseTextViewStyle"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_alignParentLeft="true"
@@ -89,8 +89,8 @@
 
                         <!-- 로그아웃 -->
                         <TextView
-                                style="@style/baseTextViewStyle"
                             android:id="@+id/tv_act_my_info_logout"
+                            style="@style/baseTextViewStyle"
                             android:layout_width="@dimen/default_margin_100dp"
                             android:layout_height="@dimen/default_margin_30dp"
                             android:layout_alignParentRight="true"
@@ -115,7 +115,7 @@
 
                     <!-- 비밀번호 Title -->
                     <TextView
-                                style="@style/baseTextViewStyle"
+                        style="@style/baseTextViewStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:alpha="0.9"
@@ -136,8 +136,8 @@
 
                         <!-- 기존 비밀번호 입력 -->
                         <EditText
-                                style="@style/baseTextViewStyle"
                             android:id="@+id/et_act_my_info_password"
+                            style="@style/baseTextViewStyle"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
 
@@ -166,8 +166,8 @@
 
                         <!-- 새 비밀번호 입력 -->
                         <EditText
-                                style="@style/baseTextViewStyle"
                             android:id="@+id/et_act_my_info_new_password"
+                            style="@style/baseTextViewStyle"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/bg_border_round"
@@ -195,8 +195,8 @@
 
                         <!-- 새 비밀번호 입력 -->
                         <EditText
-                                style="@style/baseTextViewStyle"
                             android:id="@+id/et_act_my_info_new_password_check"
+                            style="@style/baseTextViewStyle"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/bg_border_round"
@@ -224,7 +224,7 @@
 
                     <!-- 대화명 Title -->
                     <TextView
-                                style="@style/baseTextViewStyle"
+                        style="@style/baseTextViewStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:letterSpacing="-0.03"
@@ -243,8 +243,8 @@
 
                         <!-- 대화명 입력 -->
                         <EditText
-                                style="@style/baseTextViewStyle"
                             android:id="@+id/et_act_my_info_talk_id"
+                            style="@style/baseTextViewStyle"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:background="@drawable/bg_border_round"
@@ -271,7 +271,7 @@
 
                     <!-- 나이 Title -->
                     <TextView
-                                style="@style/baseTextViewStyle"
+                        style="@style/baseTextViewStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:letterSpacing="-0.03"
@@ -283,8 +283,8 @@
 
                     <!-- 나이 입력 -->
                     <TextView
-                                style="@style/baseTextViewStyle"
                         android:id="@+id/tv_act_my_info_age"
+                        style="@style/baseTextViewStyle"
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/default_margin_40dp"
                         android:layout_marginTop="10dp"
@@ -307,7 +307,7 @@
 
                     <!-- 회원유형 Title -->
                     <TextView
-                                style="@style/baseTextViewStyle"
+                        style="@style/baseTextViewStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:letterSpacing="-0.03"
@@ -368,7 +368,7 @@
 
                     <!-- 지역 Title -->
                     <TextView
-                                style="@style/baseTextViewStyle"
+                        style="@style/baseTextViewStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:letterSpacing="-0.03"
@@ -393,13 +393,13 @@
                             android:layout_weight="1">
 
                             <TextView
-                                style="@style/baseTextViewStyle"
                                 android:id="@+id/tv_act_my_info_area01"
+                                style="@style/baseTextViewStyle"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_alignParentLeft="true"
-                                android:layout_centerVertical="true"
                                 android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
                                 android:alpha="0.5"
                                 android:ellipsize="end"
                                 android:gravity="center"
@@ -431,13 +431,13 @@
                             android:layout_weight="1">
 
                             <TextView
-                                style="@style/baseTextViewStyle"
                                 android:id="@+id/tv_act_my_info_area02"
+                                style="@style/baseTextViewStyle"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:layout_alignParentLeft="true"
-                                android:layout_centerVertical="true"
                                 android:layout_alignParentRight="true"
+                                android:layout_centerVertical="true"
                                 android:alpha="0.5"
                                 android:ellipsize="end"
                                 android:gravity="center"
@@ -468,7 +468,7 @@
 
                     <!-- 핸드폰 번호 변경 Title -->
                     <TextView
-                                style="@style/baseTextViewStyle"
+                        style="@style/baseTextViewStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:letterSpacing="-0.03"
@@ -485,8 +485,8 @@
 
                         <!-- 휴대폰번호 -->
                         <TextView
-                                style="@style/baseTextViewStyle"
                             android:id="@+id/tv_act_my_info_phone"
+                            style="@style/baseTextViewStyle"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginRight="@dimen/default_margin_10dp"
@@ -504,8 +504,8 @@
 
                         <!-- 전번 인증 -->
                         <TextView
-                                style="@style/baseTextViewStyle"
                             android:id="@+id/tv_act_my_info_phone_edit"
+                            style="@style/baseTextViewStyle"
                             android:layout_width="@dimen/default_margin_100dp"
                             android:layout_height="@dimen/default_margin_30dp"
                             android:layout_alignParentRight="true"
@@ -539,16 +539,16 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:src="@drawable/ic_dormant"
-                            android:tint="@color/accent"/>
+                            android:tint="@color/accent" />
 
                         <TextView
-                                style="@style/baseTextViewStyle"
+                            style="@style/baseTextViewStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingStart="8dp"
+                            android:paddingLeft="8dp"
                             android:text="@string/main_more_menu_dormant"
                             android:textSize="@dimen/text_normal"
-                            android:paddingLeft="8dp"
                             tools:ignore="SpUsage" />
                     </LinearLayout>
 
@@ -563,24 +563,24 @@
                         <ImageView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:tint="@color/accent"
-                            android:src="@drawable/ic_withdrawal" />
+                            android:src="@drawable/ic_withdrawal"
+                            android:tint="@color/accent" />
 
                         <TextView
-                                style="@style/baseTextViewStyle"
+                            style="@style/baseTextViewStyle"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:paddingStart="8dp"
-                            android:textSize="@dimen/text_normal"
-                            android:text="@string/main_more_menu_withdrawal"
                             android:paddingLeft="8dp"
+                            android:text="@string/main_more_menu_withdrawal"
+                            android:textSize="@dimen/text_normal"
                             tools:ignore="SpUsage" />
                     </LinearLayout>
 
                 </LinearLayout>
 
                 <TextView
-                                style="@style/baseTextViewStyle"
+                    style="@style/baseTextViewStyle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -622,7 +622,18 @@
                 android:layout_height="@dimen/progress_size" />
         </LinearLayout>
     </RelativeLayout>
-    <com.google.android.gms.ads.AdView
+
+    <ImageView
+        android:id="@+id/iv_act_my_info_self_banner"
+        setGlideGifId="@{bannerVM.selfBannerId}"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:onClick="@{(v)->bannerVM.onClickSelfBanner(v)}"
+        android:visibility="@{bannerVM.isSelfBannerShown? View.VISIBLE : View.GONE}"
+        app:layout_constraintBottom_toTopOf="@+id/bn_act_my_info"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+<com.google.android.gms.ads.AdView
         android:id="@+id/bn_act_my_info"
         setAdListener="@{bannerVM.adListener}"
         setAdRequest="@{bannerVM.adRequest}"

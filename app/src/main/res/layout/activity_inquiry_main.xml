@@ -21,7 +21,7 @@
             android:id="@+id/fl_act_inquiry_main_content_layout"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/bn_act_my_info"
+            app:layout_constraintBottom_toTopOf="@+id/iv_act_inquiry_self_banner"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
@@ -94,6 +94,16 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/iv_act_inquiry_self_banner"
+            setGlideGifId="@{bannerVM.selfBannerId}"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:onClick="@{(v)->bannerVM.onClickSelfBanner(v)}"
+            android:visibility="@{bannerVM.isSelfBannerShown? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@+id/bn_act_my_info"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
         <com.google.android.gms.ads.AdView
             android:id="@+id/bn_act_my_info"
             setAdListener="@{bannerVM.adListener}"

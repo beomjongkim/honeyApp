@@ -30,13 +30,6 @@
                 android:layout_height="match_parent"
                 tools:context=".point.view.MarketActivity">
 
-                <com.dmonster.darling.honey.customview.CustomToolBar
-                    android:id="@+id/ctb_frag_market_toolbar"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
 
                 <LinearLayout
                     android:id="@+id/ll_frag_my_act_main_top_layout"
@@ -46,7 +39,7 @@
                     android:orientation="horizontal"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ctb_frag_market_toolbar">
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <!-- 나의톡 -->
                     <Button
@@ -102,22 +95,6 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_frag_market_notice"
                     app:layout_constraintWidth_percent="0.9" />
-
-                <TextView
-                    style="@style/baseTextViewStyle"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="@string/market_title"
-                    android:textColor="@color/color_white"
-                    android:textSize="@dimen/text_large"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toBottomOf="@+id/ctb_frag_market_toolbar"
-                    app:layout_constraintEnd_toEndOf="@+id/ctb_frag_market_toolbar"
-                    app:layout_constraintStart_toStartOf="@+id/ctb_frag_market_toolbar"
-                    app:layout_constraintTop_toTopOf="@+id/ctb_frag_market_toolbar"
-                    tools:ignore="SpUsage" />
-
 
                 <Button
                     android:id="@+id/btn_freepass_month"

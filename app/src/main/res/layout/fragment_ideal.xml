@@ -149,6 +149,27 @@
                         tools:ignore="SpUsage" />
 
                     <TextView
+                        android:id="@+id/btn_ideal_init"
+                        style="@style/baseTextViewStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="24dp"
+                        android:background="@drawable/bg_border_round_accent_2dp"
+                        android:focusable="false"
+                        android:onClick="@{(v)->idealVM.initIdeal(v)}"
+                        android:padding="5dp"
+                        android:paddingStart="15dp"
+                        android:paddingLeft="15dp"
+                        android:paddingEnd="15dp"
+                        android:paddingRight="15dp"
+                        android:layout_marginRight="16dp"
+                        android:text="@string/information_ideal_type_select_init"
+                        android:textColor="@color/colorAccent"
+                        android:textSize="@dimen/text_normal"
+                        app:layout_constraintEnd_toStartOf="@+id/btn_ideal_save"
+                        app:layout_constraintTop_toBottomOf="@+id/tv_selector_multi_blood"
+                        tools:ignore="SpUsage" />
+                    <TextView
                                 style="@style/baseTextViewStyle"
                         android:id="@+id/tv_selector_multi_blood"
                         android:layout_width="wrap_content"

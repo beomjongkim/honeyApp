@@ -38,7 +38,6 @@ class MagazineFragment : BaseFragment() {
         context?.let {
             binding.magazineVM = MagazineVM(CustomAdapter(R.layout.item_magazine,this))
             binding.lifecycleOwner = this
-            binding.ctbActMagazine.setTitle("매거진")
         }
     }
 
