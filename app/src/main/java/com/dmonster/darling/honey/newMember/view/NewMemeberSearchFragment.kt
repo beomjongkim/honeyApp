@@ -32,6 +32,7 @@ import com.dmonster.darling.honey.util.AppKeyValue
 import com.dmonster.darling.honey.util.Utility
 import com.dmonster.darling.honey.util.common.EventBus
 import com.dmonster.darling.honey.util.retrofit.ResultItem
+import com.dmonster.darling.honey.youtube.view.YoutubePlayerActivity
 import com.google.android.gms.ads.rewarded.RewardItem
 import com.google.android.gms.ads.rewarded.RewardedAdCallback
 import com.jakewharton.rxbinding2.view.RxView
@@ -282,7 +283,7 @@ class NewMemeberSearchFragment : BaseFragment(), NewMemberListContract.View {
                                     }
 
                                 })
-                        }else{
+                        } else {
                             setPassNeed()
                         }
                     }
@@ -472,9 +473,7 @@ class NewMemeberSearchFragment : BaseFragment(), NewMemberListContract.View {
                 R.drawable.ic_talk_vivid,
                 object : CustomDialogInterface {
                     override fun onConfirm(v: View) {
-                        if (rewardVM.rewardedAd.isLoaded) {
-                            rewardVM.rewardedAd.show(activity, rewardVM.adCallback)
-                        }
+                        rewardVM.rewardedAd.show(activity, rewardVM.adCallBackBase)
                     }
 
                     override fun onCancel(v: View) {

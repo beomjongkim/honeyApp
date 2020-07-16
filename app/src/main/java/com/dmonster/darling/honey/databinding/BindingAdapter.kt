@@ -119,7 +119,6 @@ object BindingAdapter {
         view.setOnCheckedChangeListener(listener)
     }
 
-
     @androidx.databinding.BindingAdapter("imgGlideSrc")
     @JvmStatic
     fun setImageView(view: ImageView, id: Int?) {
@@ -127,7 +126,13 @@ object BindingAdapter {
             .apply(RequestOptions().centerCrop().placeholder(R.drawable.bg_color_white))
             .into(view)
     }
-
+    @androidx.databinding.BindingAdapter("setGlideGifId")
+    @JvmStatic
+    fun setImageViewAsGif(view: ImageView, id: Int?) {
+        Glide.with(view.context).asGif().load(id).apply(
+            RequestOptions().centerCrop().placeholder(R.color.color_black)
+        ).into(view)
+    }
     @androidx.databinding.BindingAdapter("imgGlideUrl")
     @JvmStatic
     fun setImageView(view: ImageView, path: String?) {

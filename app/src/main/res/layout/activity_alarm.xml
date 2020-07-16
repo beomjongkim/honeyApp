@@ -381,6 +381,7 @@
 
         </RelativeLayout>
 
+
         <com.google.android.gms.ads.AdView
             android:id="@+id/bn_act_talk"
             setAdListener="@{bannerVM.adListener}"

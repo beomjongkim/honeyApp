@@ -27,6 +27,7 @@ import com.dmonster.darling.honey.util.AppKeyValue
 import com.dmonster.darling.honey.util.Utility
 import com.dmonster.darling.honey.util.common.EventBus
 import com.dmonster.darling.honey.util.retrofit.ResultItem
+import com.dmonster.darling.honey.youtube.view.YoutubePlayerActivity
 import com.google.android.gms.ads.rewarded.RewardItem
 import com.google.android.gms.ads.rewarded.RewardedAdCallback
 import com.jakewharton.rxbinding2.view.RxView
@@ -290,9 +291,8 @@ class ImageDetailActivity : BaseActivity(), ImageDetailContract.View {
             "N" -> {
                 val popup = CustomPopup(this, "이용권 구매", "이용권을 구매해서 아래 기능을 마음껏 이용해보세요!\n" +getString(R.string.msg_freepass_description), R.drawable.ic_talk_vivid, object: CustomDialogInterface{
                     override fun onConfirm(v: View) {
-                        if (rewardVM.rewardedAd.isLoaded) {
-                            rewardVM.rewardedAd.show(this@ImageDetailActivity, rewardVM.adCallback)
-                        }
+                            rewardVM.rewardedAd.show(this@ImageDetailActivity, rewardVM.adCallBackBase)
+
                     }
 
                     override fun onCancel(v: View) {

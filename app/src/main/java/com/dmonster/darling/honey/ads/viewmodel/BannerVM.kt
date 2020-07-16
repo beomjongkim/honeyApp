@@ -6,14 +6,15 @@ import androidx.lifecycle.*
 import com.dmonster.darling.honey.point.data.CheckFreePassData
 import com.dmonster.darling.honey.point.model.ItemModel
 import com.dmonster.darling.honey.util.AppKeyValue
-import com.dmonster.darling.honey.util.Utility
 import com.dmonster.darling.honey.util.retrofit.ResultItem
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
+import com.google.android.gms.base.R
 import io.reactivex.observers.DisposableObserver
 
 class BannerVM(var mb_id: String, var lifecycle: Lifecycle, var context: Context) : ViewModel(), LifecycleObserver {
     var adRequest: AdRequest = AdRequest.Builder().build()
+    var selfBannerId = com.dmonster.darling.honey.R.raw.ad_banner
     var adListener = object : AdListener() {
         override fun onAdLoaded() {
             // Code to be executed when an ad finishes loading.
@@ -21,6 +22,8 @@ class BannerVM(var mb_id: String, var lifecycle: Lifecycle, var context: Context
 
         override fun onAdFailedToLoad(errorCode: Int) {
             // Code to be executed when an ad request fails.
+            hasPass.value = true
+            isSelfBannerShown.value = true
         }
 
         override fun onAdOpened() {
@@ -44,6 +47,9 @@ class BannerVM(var mb_id: String, var lifecycle: Lifecycle, var context: Context
     }
     var hasPass = MutableLiveData<Boolean>().also {
         it.value = true
+    }
+    var isSelfBannerShown  = MutableLiveData<Boolean>().also {
+        it.value = false
     }
 
     var itemModel = ItemModel()
@@ -82,6 +88,10 @@ class BannerVM(var mb_id: String, var lifecycle: Lifecycle, var context: Context
         }
 
         itemModel.check_own_freepass(mb_id, subscriber)
+    }
+
+    fun onClickSelfBanner(){
+
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)

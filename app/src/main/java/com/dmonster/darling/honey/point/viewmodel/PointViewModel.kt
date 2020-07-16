@@ -1,10 +1,7 @@
 package com.dmonster.darling.honey.point.viewmodel
 
 import android.app.Activity
-import android.content.ClipData
-import android.content.ClipboardManager
-import android.content.Context
-import android.content.DialogInterface
+import android.content.*
 import android.util.Log
 import android.view.View
 import androidx.annotation.NonNull
@@ -26,6 +23,7 @@ import com.dmonster.darling.honey.point.model.PointModel
 import com.dmonster.darling.honey.util.Utility
 import com.dmonster.darling.honey.util.retrofit.ResultItem
 import com.dmonster.darling.honey.util.retrofit.ResultListItem
+import com.dmonster.darling.honey.youtube.view.YoutubePlayerActivity
 import com.google.android.gms.ads.rewarded.RewardItem
 import com.google.android.gms.ads.rewarded.RewardedAdCallback
 import io.reactivex.observers.DisposableObserver
@@ -300,11 +298,8 @@ class PointViewModel(
 
     fun onClickBuyHour() {
         if (hasPass.value == false) {
-            if (rewardVM.rewardedAd.isLoaded) {
-                rewardVM.rewardedAd.show(activity, rewardVM.adCallback)
-            } else {
-                Utility.instance.showToast(activity, "광고를 불러오는 중입니다.")
-            }
+            rewardVM.rewardedAd.show(activity, rewardVM.adCallBackBase)
+
         } else {
             Utility.instance.showToast(activity, "이용권 만료 후 광고 시청이 가능합니다.")
         }
@@ -556,7 +551,7 @@ class PointViewModel(
             R.drawable.ic_talk_vivid,
             object : CustomDialogInterface {
                 override fun onConfirm(v: View) {
-                    var skuDetail= skuDetailList[0]
+                    var skuDetail = skuDetailList[0]
                     var name = ""
                     when (inappType) {
                         0 -> name = "point50"

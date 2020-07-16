@@ -30,6 +30,7 @@ import com.dmonster.darling.honey.profile.data.ProfileDetailData
 import com.dmonster.darling.honey.question.data.QuestionData
 import com.dmonster.darling.honey.servicecenter.data.AppInfoData
 import com.dmonster.darling.honey.talk.data.TalkData
+import com.dmonster.darling.honey.youtube.data.YoutubeData
 import io.reactivex.Observable
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
@@ -771,6 +772,12 @@ interface RetrofitService {
     fun readMagazine(
         @Field("method") method: String?
     ): Observable<ResultListItem<MagazineData>>
+
+    @FormUrlEncoded
+    @POST("api/base.php")
+    fun readYoutube(
+        @Field("method") method: String?
+    ): Observable<ResultItem<YoutubeData>>
 
 
 }

@@ -9,6 +9,7 @@
     <string name="app_shared_female">https://play.google.com/store/apps/details?id=com.dmonster.darling.honey\n\n추천인
         회원번호 : %s
     </string>
+    <string name="app_error">일시적인 오류가 발생하였습니다. 잠시 후 다시 시도해주세요.</string>
     <string name="facebook_app_id">2267136000253752</string>
     <string name="fb_login_protocol_scheme">fb2267136000253752</string>
     <string name="banner_id">ca-app-pub-1643323183206572/2469256911</string>

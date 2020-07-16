@@ -80,4 +80,5 @@ class ServerApi {
     val buyItem = "user/buy_item"//이용권 구매하기.
     val readMagazine = "magazine/read"//매거진 내역 불러오기
     val rechargePoint = "user/recharge_point"//포인트 충전하기
+    val readYoutube = "youtube/read"//포인트 충전하기
 }

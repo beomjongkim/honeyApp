@@ -28,6 +28,11 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning,Instantiatable">
+        <activity android:name=".ads.view.FullScreenActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.FACTORY_TEST" />
+            </intent-filter>
+        </activity>
         <activity android:name=".youtube.view.YoutubePlayerActivity">
             <intent-filter>
                 <action android:name="android.intent.action.FACTORY_TEST" />

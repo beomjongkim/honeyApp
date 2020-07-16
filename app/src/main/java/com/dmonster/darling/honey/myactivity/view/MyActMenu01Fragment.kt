@@ -6,13 +6,10 @@ import android.content.DialogInterface
 import android.content.Intent
 import android.graphics.Rect
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CompoundButton
 import androidx.annotation.NonNull
 import com.dmonster.darling.honey.R
 import com.dmonster.darling.honey.ads.viewmodel.RewardVM
@@ -25,7 +22,6 @@ import com.dmonster.darling.honey.myactivity.data.TalkListData
 import com.dmonster.darling.honey.myactivity.presenter.TalkListContract
 import com.dmonster.darling.honey.myactivity.presenter.TalkListPresenter
 import com.dmonster.darling.honey.myactivity.view.adapter.TalkListAdapter
-import com.dmonster.darling.honey.point.data.CheckFreePassData
 import com.dmonster.darling.honey.point.model.ItemModel
 import com.dmonster.darling.honey.talk.view.TalkActivity
 import com.dmonster.darling.honey.util.AppKeyValue
@@ -38,7 +34,6 @@ import com.jakewharton.rxbinding2.view.RxView
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
 import io.reactivex.rxkotlin.addTo
-import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.fragment_my_act_talk.*
 import java.util.concurrent.TimeUnit
 
@@ -248,9 +243,8 @@ class MyActMenu01Fragment: BaseFragment(), TalkListContract.View {
              context?.let { it1 ->
                     CustomPopup(it1, "이용권 구매", "이용권을 구매해서 아래 기능을 마음껏 이용해보세요!\n" +getString(R.string.msg_freepass_description), R.drawable.ic_talk_vivid, object: CustomDialogInterface {
                         override fun onConfirm(v: View) {
-                            if (rewardVM.rewardedAd.isLoaded) {
-                                rewardVM.rewardedAd.show(activity, rewardVM.adCallback)
-                            }
+                                rewardVM.rewardedAd.show(activity, rewardVM.adCallBackBase)
+
                         }
 
                         override fun onCancel(v: View) {

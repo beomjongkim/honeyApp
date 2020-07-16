@@ -39,6 +39,7 @@ import com.dmonster.darling.honey.util.common.EventBus
 import com.dmonster.darling.honey.util.Utility
 import com.dmonster.darling.honey.util.common.SoftKeyboard
 import com.dmonster.darling.honey.util.retrofit.ResultItem
+import com.dmonster.darling.honey.youtube.view.YoutubePlayerActivity
 import com.google.android.gms.ads.rewarded.RewardItem
 import com.google.android.gms.ads.rewarded.RewardedAdCallback
 import com.jakewharton.rxbinding2.view.RxView
@@ -580,9 +581,8 @@ class TalkActivity : BaseActivity(), TalkContract.View {
                 this.let {
                     val popup = CustomPopup(this, "이용권 구매", "이용권을 구매해서 아래 기능을 마음껏 이용해보세요!\n" +getString(R.string.msg_freepass_description), R.drawable.ic_talk_vivid, object: CustomDialogInterface{
                         override fun onConfirm(v: View) {
-                            if (rewardVM.rewardedAd.isLoaded) {
-                                rewardVM.rewardedAd.show(it, rewardVM.adCallback)
-                            }
+                                rewardVM.rewardedAd.show(it, rewardVM.adCallBackBase)
+
                         }
 
                         override fun onCancel(v: View) {
