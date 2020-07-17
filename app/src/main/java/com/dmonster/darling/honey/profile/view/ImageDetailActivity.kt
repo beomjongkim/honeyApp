@@ -125,6 +125,8 @@ class ImageDetailActivity : BaseActivity(), ImageDetailContract.View {
                     }
                     position?.let { it1 -> setPress(it1)
                     }
+                }else{
+                    Utility.instance.showToast(this,"프로필 열람 후 이용하실 수 있습니다.")
                 }
             })
 

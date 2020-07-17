@@ -167,6 +167,9 @@ class MainActivity : BaseActivity(){
         if(intent.getBooleanExtra(AppKeyValue.instance.goToMagazine, false)){
             binding.naviVM?.fragmentReplace(fragMagazine)
         }
+        if(intent.getBooleanExtra(AppKeyValue.instance.goToOption, false)){
+            binding.naviVM?.fragmentReplace(fragOption)
+        }
     }
 
 

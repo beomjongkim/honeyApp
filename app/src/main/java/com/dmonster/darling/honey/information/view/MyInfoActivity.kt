@@ -16,11 +16,8 @@ import com.dmonster.darling.honey.customview.CustomArrayDialog
 import com.dmonster.darling.honey.customview.CustomDialogInterface
 import com.dmonster.darling.honey.customview.CustomPopup
 import com.dmonster.darling.honey.customview.DialogSelect
-import com.dmonster.darling.honey.databinding.ActivityBlockBinding
 import com.dmonster.darling.honey.databinding.ActivityMyInfoBinding
-import com.dmonster.darling.honey.dialog.DormantDialog
 import com.dmonster.darling.honey.dialog.SelectorMemberDialog
-import com.dmonster.darling.honey.dialog.WithdrawalDialog
 import com.dmonster.darling.honey.dialog.WithdrawalReDialog
 import com.dmonster.darling.honey.information.data.MyInfoData
 import com.dmonster.darling.honey.information.presenter.MyInfoContract

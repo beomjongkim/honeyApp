@@ -16,9 +16,10 @@ import com.dmonster.darling.honey.common.viewmodel.TwoBtnSwitchVM
 import com.dmonster.darling.honey.customview.CustomDialogInterface
 import com.dmonster.darling.honey.customview.CustomPopup
 import com.dmonster.darling.honey.main.view.MainActivity
+import com.dmonster.darling.honey.util.AppKeyValue
 import com.dmonster.darling.honey.util.Utility
 
-abstract class BlockFriendsVM(val id: String, context: Context) : ViewModel() {
+abstract class BlockFriendsVM(val id: String, val isInProcessJoin : Boolean = false) : ViewModel() {
 
     var toolbar_title = MutableLiveData<String>().also {
         it.value = ""
@@ -66,7 +67,12 @@ abstract class BlockFriendsVM(val id: String, context: Context) : ViewModel() {
     }
 
     fun onClickBackButton(view: View) {
-        view.context.startActivity(Intent(view.context, MainActivity::class.java))
+        val intent = Intent(view.context, MainActivity::class.java)
+        if(!isInProcessJoin){
+            intent.putExtra(AppKeyValue.instance.goToOption,true)
+        }
+        view.context.startActivity(intent)
+
     }
 
     abstract fun getContactInfo()

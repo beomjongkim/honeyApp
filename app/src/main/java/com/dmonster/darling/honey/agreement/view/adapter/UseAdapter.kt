@@ -30,7 +30,6 @@ class UseAdapter : androidx.recyclerview.widget.RecyclerView.Adapter<UseAdapter.
 
         var titleText: TextView = view.findViewById(R.id.tv_item_use_title)
         var contentText: TextView = view.findViewById(R.id.tv_item_use_content)
-        var useImg: ImageView = view.findViewById(R.id.iv_item_use_image)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -40,13 +39,6 @@ class UseAdapter : androidx.recyclerview.widget.RecyclerView.Adapter<UseAdapter.
             items.apply {
                 holder.titleText.text = coSubject
                 holder.contentText.text = coContent
-
-                val useImg = coFile
-                if (!TextUtils.isEmpty(useImg)) {
-
-                        Glide.with(it).load(useImg).apply(RequestOptions().fitCenter())
-                            .thumbnail(0.5f).into(holder.useImg)
-                }
             }
         }
     }

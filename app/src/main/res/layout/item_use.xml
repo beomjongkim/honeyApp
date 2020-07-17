@@ -28,43 +28,24 @@
 
     <!-- 내용 -->
     <TextView
-                                style="@style/baseTextViewStyle"
         android:id="@+id/tv_item_use_content"
+        style="@style/baseTextViewStyle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
-        android:layout_marginEnd="30dp"
-        android:layout_marginRight="30dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginRight="32dp"
         android:layout_marginBottom="32dp"
         android:alpha="0.75"
         android:letterSpacing="-0.03"
         android:textColor="@color/color_main"
         android:textSize="@dimen/text_large"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/ll_item_use_image"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@+id/tv_item_use_title"
         app:layout_constraintTop_toBottomOf="@+id/tv_item_use_title"
         tools:ignore="SpUsage" />
 
-    <LinearLayout
-        android:id="@+id/ll_item_use_image"
-        android:layout_width="66dp"
-        android:layout_height="66dp"
-        android:layout_marginEnd="32dp"
-        android:layout_marginRight="32dp"
-        android:background="@drawable/bg_circle_white"
-        android:elevation="3dp"
-        android:gravity="center"
-        android:padding="@dimen/default_margin_15dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_item_use_content">
-
-        <ImageView
-            android:id="@+id/iv_item_use_image"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-    </LinearLayout>
-    <!-- 이미지 -->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

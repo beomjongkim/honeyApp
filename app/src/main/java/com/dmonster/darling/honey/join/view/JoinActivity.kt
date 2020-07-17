@@ -587,7 +587,9 @@ class JoinActivity : BaseActivity(), JoinContract.View {
             DialogInterface.OnClickListener { dialog, which ->
                 if (which == DialogInterface.BUTTON_POSITIVE) {
                     startActivity(
-                        Intent(this@JoinActivity, BlockFriendsActivity::class.java)
+                        Intent(this@JoinActivity, BlockFriendsActivity::class.java).also {
+                            it.putExtra("fromJoinActivity",true)
+                        }
                     )
                 } else {
                     val intent = Intent(this, MainActivity::class.java)

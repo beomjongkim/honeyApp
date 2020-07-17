@@ -211,6 +211,7 @@ class AppKeyValue {
     val goToMarket = "goToMarket"
     val goToMagazine = "goToMagazine"
     val goToMailBox ="goToMailBox"
+    val goToOption ="goToOption"
 
     val noMoreSeePromotion = "noMoreSeePromotion"
 

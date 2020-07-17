@@ -170,13 +170,13 @@ class OptionVM(var fragmentManager: FragmentManager, lifecycle: Lifecycle, val i
 
     fun onClickCharge(view: View) {
         val intent = Intent(view.context, MainActivity::class.java)
-        intent.putExtra(AppKeyValue.instance.goToMarket,true)
+        intent.putExtra(AppKeyValue.instance.goToMarket, true)
         startActivity(view.context, intent, null)
     }
 
     fun onClickItemUse(view: View) {
         val intent = Intent(view.context, MainActivity::class.java)
-        intent.putExtra(AppKeyValue.instance.goToMarket,true)
+        intent.putExtra(AppKeyValue.instance.goToMarket, true)
         startActivity(view.context, intent, null)
     }
 
@@ -185,23 +185,22 @@ class OptionVM(var fragmentManager: FragmentManager, lifecycle: Lifecycle, val i
         when {
             dormantState -> setDormantDialog()
             else -> {
-                if (popup == null) {
-                    popup = CustomPopup(
-                        view.context,
-                        view.context.getString(R.string.main_more_menu_logout),
-                        view.context.getString(R.string.popup_logout_notice),
-                        R.drawable.ic_logout_vivid,
-                        object : CustomDialogInterface {
-                            override fun onConfirm(v: View) {
-                                onConfirm(v.context)
-                            }
+                popup = CustomPopup(
+                    view.context,
+                    view.context.getString(R.string.main_more_menu_logout),
+                    view.context.getString(R.string.popup_logout_notice),
+                    R.drawable.ic_logout_vivid,
+                    object : CustomDialogInterface {
+                        override fun onConfirm(v: View) {
+                            onConfirm(v.context)
+                        }
 
-                            override fun onCancel(v: View) {
-                                onCancel()
-                            }
+                        override fun onCancel(v: View) {
+                            onCancel()
+                        }
 
-                        })
-                }
+                    })
+
                 popup?.show()
             }
         }
@@ -209,13 +208,12 @@ class OptionVM(var fragmentManager: FragmentManager, lifecycle: Lifecycle, val i
 
     private fun onConfirm(context: Context) {
         Utility.instance.setLogout(context)
-        popup?.hide()
+        popup?.dismiss()
     }
 
     private fun onCancel() {
-        popup?.hide()
+        popup?.dismiss()
     }
-
 
 
     fun onClickBlockFriends(view: View) {
@@ -229,45 +227,64 @@ class OptionVM(var fragmentManager: FragmentManager, lifecycle: Lifecycle, val i
         when {
             dormantState -> setDormantDialog()
             profileState -> {
-                view.context.let {context->
-                    Utility.instance.showTwoButtonAlert(context, context.getString(R.string.main_more_menu_dormant), context.getString(R.string.msg_main_dormant),object : CustomDialogInterface{
-                        override fun onConfirm(v: View) {
-                            val subscriber = object: DisposableObserver<ResultItem<BaseItem>>() {
-                                override fun onComplete() {
+                view.context.let { context ->
+                    Utility.instance.showTwoButtonAlert(
+                        context,
+                        context.getString(R.string.main_more_menu_dormant),
+                        context.getString(R.string.msg_main_dormant),
+                        object : CustomDialogInterface {
+                            override fun onConfirm(v: View) {
+                                val subscriber =
+                                    object : DisposableObserver<ResultItem<BaseItem>>() {
+                                        override fun onComplete() {
 
-                                }
+                                        }
 
-                                override fun onError(e: Throwable) {
-                                    e.printStackTrace()
-                                }
+                                        override fun onError(e: Throwable) {
+                                            e.printStackTrace()
+                                        }
 
-                                override fun onNext(item: ResultItem<BaseItem>) {
-                                    item.let {
-                                        if(it.isSuccess) {
-                                            context?.let { it1 ->
-                                                Utility.instance.showAlert(it1, it1.getString(R.string.app_name), it1.getString(R.string.msg_main_dormant_complete), DialogInterface.OnClickListener { dialog, which ->
-                                                    /*Utility.instance.savePref(it1, AppKeyValue.instance.savePrefDormant, AppKeyValue.instance.keyYes)*/
-                                                    FirebaseAnalytics.getInstance(it1).logEvent("setDormant",
-                                                        Bundle().also { it2 -> it2.putString("user_id", id)})
-                                                    Utility.instance.setLogout(it1)
-                                                })
+                                        override fun onNext(item: ResultItem<BaseItem>) {
+                                            item.let {
+                                                if (it.isSuccess) {
+                                                    context?.let { it1 ->
+                                                        Utility.instance.showAlert(
+                                                            it1,
+                                                            it1.getString(R.string.app_name),
+                                                            it1.getString(R.string.msg_main_dormant_complete),
+                                                            DialogInterface.OnClickListener { dialog, which ->
+                                                                /*Utility.instance.savePref(it1, AppKeyValue.instance.savePrefDormant, AppKeyValue.instance.keyYes)*/
+                                                                FirebaseAnalytics.getInstance(it1)
+                                                                    .logEvent("setDormant",
+                                                                        Bundle().also { it2 ->
+                                                                            it2.putString(
+                                                                                "user_id",
+                                                                                id
+                                                                            )
+                                                                        })
+                                                                Utility.instance.setLogout(it1)
+                                                            })
+                                                    }
+                                                }
                                             }
                                         }
                                     }
-                                }
+
+                                RetrofitProtocol().retrofit.requestDormant(
+                                    ServerApi.instance.dormantMethod,
+                                    id,
+                                    AppKeyValue.instance.keyYes
+                                )
+                                    .subscribeOn(Schedulers.io())
+                                    .observeOn(AndroidSchedulers.mainThread())
+                                    .unsubscribeOn(Schedulers.io())
+                                    .subscribe(subscriber)
                             }
 
-                            RetrofitProtocol().retrofit.requestDormant(ServerApi.instance.dormantMethod, id, AppKeyValue.instance.keyYes)
-                                .subscribeOn(Schedulers.io())
-                                .observeOn(AndroidSchedulers.mainThread())
-                                .unsubscribeOn(Schedulers.io())
-                                .subscribe(subscriber)
-                        }
+                            override fun onCancel(v: View) {
+                            }
 
-                        override fun onCancel(v: View) {
-                        }
-
-                    })
+                        })
                 }
 
             }
@@ -316,14 +333,14 @@ class OptionVM(var fragmentManager: FragmentManager, lifecycle: Lifecycle, val i
         subscription.add(subscriber)
     }
 
-    private fun getPointData(){
+    private fun getPointData() {
         val model = PointModel()
-        val subscriber =object : DisposableObserver<ResultItem<PointData>>(){
+        val subscriber = object : DisposableObserver<ResultItem<PointData>>() {
             override fun onComplete() {
             }
 
             override fun onNext(t: ResultItem<PointData>) {
-                if(t.isSuccess){
+                if (t.isSuccess) {
                     mb_point.value = t.item?.point + " 포인트"
                 }
             }
@@ -332,7 +349,7 @@ class OptionVM(var fragmentManager: FragmentManager, lifecycle: Lifecycle, val i
             }
         }
 
-        model.read_point(id,subscriber)
+        model.read_point(id, subscriber)
     }
 
     private fun setDormantDialog() {

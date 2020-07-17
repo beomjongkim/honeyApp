@@ -17,10 +17,11 @@ import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.base.R
 import io.reactivex.observers.DisposableObserver
+import java.util.*
 
 class BannerVM(var mb_id: String, var lifecycle: Lifecycle, var context: Context) : ViewModel(), LifecycleObserver {
     var adRequest: AdRequest = AdRequest.Builder().build()
-    var selfBannerId = com.dmonster.darling.honey.R.raw.ad_banner
+    var selfBannerId = -1
     var adListener = object : AdListener() {
         override fun onAdLoaded() {
             // Code to be executed when an ad finishes loading.
@@ -52,7 +53,7 @@ class BannerVM(var mb_id: String, var lifecycle: Lifecycle, var context: Context
         }
     }
     var hasPass = MutableLiveData<Boolean>().also {
-        it.value = true
+        it.value = false
     }
     var isSelfBannerShown  = MutableLiveData<Boolean>().also {
         it.value = false
@@ -79,6 +80,9 @@ class BannerVM(var mb_id: String, var lifecycle: Lifecycle, var context: Context
 
             })
         }
+
+        val selfBannerList = arrayOf(com.dmonster.darling.honey.R.raw.ad_banner1,com.dmonster.darling.honey.R.raw.ad_banner2)
+        selfBannerId = selfBannerList[Random().nextInt(2)]
     }
 
     private fun checkOwnFreepass() {
@@ -121,6 +125,7 @@ class BannerVM(var mb_id: String, var lifecycle: Lifecycle, var context: Context
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun onResume() {
+        isSelfBannerShown.value = false
         checkOwnFreepass()
     }
 
