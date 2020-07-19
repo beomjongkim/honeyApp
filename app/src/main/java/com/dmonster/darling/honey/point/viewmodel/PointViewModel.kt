@@ -472,12 +472,8 @@ class PointViewModel(
                 isProgressing.value = false
             }
         }
-        if (receiptType.isNullOrBlank() && !receiptInfo.isNullOrBlank() || receiptInfo.isNullOrBlank() && !receiptType.isNullOrBlank()) {
-            Utility.instance.showToast(context, "모든 정보를 입력해주세요")
-            isProgressing.value = false
-        } else {
+
             pointModel.reserve_payment(id, name, price, receiptType, receiptInfo, subscriber)
-        }
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
@@ -496,14 +492,18 @@ class PointViewModel(
                 override fun onConfirm(v: View) {
                     it.name.value?.let { it1 ->
                         if (it.isChecked.value!!) {
-                            reservePayment(
-                                it1,
-                                it.price,
-                                it.receiptType.value,
-                                it.receiptNumber.value,
-                                context
-                            )
-                            reservePaymentPopup.dismiss()
+                            if ((reservePaymentPopup.reservePaymentPopupVM.needReceipt.value != "") && (it.receiptType.value!!.isEmpty() || it.receiptNumber.value!!.isEmpty())||it1.isEmpty()) {
+                                Utility.instance.showToast(context,"모든 정보를 입력해주세요")
+                            }else{
+                                reservePayment(
+                                    it1,
+                                    it.price,
+                                    it.receiptType.value,
+                                    it.receiptNumber.value,
+                                    context
+                                )
+                                reservePaymentPopup.dismiss()
+                            }
                         } else {
                             Utility.instance.showToast(context, "구매진행에 동의해주세요")
                         }
