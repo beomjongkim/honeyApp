@@ -4,6 +4,7 @@ import android.content.Context
 import android.net.Uri
 import android.text.TextUtils
 import com.dmonster.darling.honey.R
+import com.dmonster.darling.honey.myactivity.data.ProfileData
 import com.dmonster.darling.honey.myinformation.data.PictureMarryData
 import com.dmonster.darling.honey.point.data.CheckFreePassData
 import com.dmonster.darling.honey.point.model.ItemModel
@@ -18,51 +19,51 @@ import com.dmonster.darling.honey.util.retrofit.ResultItem
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
 
-class ProfilePresenter: ProfileContract.Presenter {
+class ProfilePresenter : ProfileContract.Presenter {
 
     private lateinit var mModel: ProfileModel
     private lateinit var mView: ProfileContract.View
     private lateinit var subscription: CompositeDisposable
 
-    var sucId  : String? = null
-    var sucGender : String? = null
-    var sucTalkId : String? = null
-    var sucArea  : String? = null
-    var sucGenderStr  : String? = null
-    var sucType : String? = null
-    var sucName  : String? = null
-    var sucAge  : String? = null
-    var sucBirth : String? = null
-    var sucCar  : String? = null
-    var sucMyStyle  : String? = null
-    var sucIntroduce  : String? = null
-    var sucFamily : String? = null
-    var sucProfilePicture  : ProfilePictureData? = null
-    var sucMarryPicture  : PictureMarryData? = null
-    var sucItemUse : String? = null
-    var sucProfilePicCnt  : String? = null
+    var sucId: String? = null
+    var sucGender: String? = null
+    var sucTalkId: String? = null
+    var sucArea: String? = null
+    var sucGenderStr: String? = null
+    var sucType: String? = null
+    var sucName: String? = null
+    var sucAge: String? = null
+    var sucBirth: String? = null
+    var sucCar: String? = null
+    var sucMyStyle: String? = null
+    var sucIntroduce: String? = null
+    var sucFamily: String? = null
+    var sucProfilePicture: ProfilePictureData? = null
+    var sucMarryPicture: PictureMarryData? = null
+    var sucItemUse: String? = null
+    var sucProfilePicCnt: String? = null
 
-    var sucIncome: String ? = null
-    var sucSibling : String ? = null
-    var sucHometown: String ? = null
-    var sucJob : String ? = null
-    var sucFortune : String ? = null
-    var sucEducation: String ? = null
-    var sucReligion: String ? = null
-    var sucParents : String ? = null
-    var sucMarryPlan : String ? = null
-    var sucDivorce : String ? = null
-    var sucDivorceYear : String ? = null
-    var sucChildren: String ? = null
-    var sucHeight: String ? = null
-    var sucWeight : String ? = null
-    var sucDrinking: String ? = null
-    var sucSmoking: String ? = null
-    var sucBlood : String ? = null
-    var sucCharacter : String ? = null
-    var sucHobby : String ? = null
-    var sucDateStyle : String ? = null
-      var sucRoute : String ? = null
+    var sucIncome: String? = null
+    var sucSibling: String? = null
+    var sucHometown: String? = null
+    var sucJob: String? = null
+    var sucFortune: String? = null
+    var sucEducation: String? = null
+    var sucReligion: String? = null
+    var sucParents: String? = null
+    var sucMarryPlan: String? = null
+    var sucDivorce: String? = null
+    var sucDivorceYear: String? = null
+    var sucChildren: String? = null
+    var sucHeight: String? = null
+    var sucWeight: String? = null
+    var sucDrinking: String? = null
+    var sucSmoking: String? = null
+    var sucBlood: String? = null
+    var sucCharacter: String? = null
+    var sucHobby: String? = null
+    var sucDateStyle: String? = null
+    var sucRoute: String? = null
 
     override fun attachView(view: ProfileContract.View) {
         this.mView = view
@@ -76,7 +77,7 @@ class ProfilePresenter: ProfileContract.Presenter {
 
     /*    프로필 열람전 정보    */
     override fun getProfileSample(context: Context, id: String?, mbNo: String?) {
-        val subscriber = object: DisposableObserver<ResultItem<ProfileDetailData>>() {
+        val subscriber = object : DisposableObserver<ResultItem<ProfileData>>() {
             override fun onComplete() {
 
             }
@@ -86,83 +87,170 @@ class ProfilePresenter: ProfileContract.Presenter {
                 e.printStackTrace()
             }
 
+            override fun onNext(item: ResultItem<ProfileData>) {
+                item.let { it ->
+                    if (it.isSuccess) {
+                        it.item?.let {
+                            sucId = it.mbId
+                            sucGender = it.mbSex
+                            sucGenderStr = it.mbSexKor
+                            sucTalkId = it.mbNick
+                            sucArea = String.format(
+                                context.resources.getString(R.string.arrow),
+                                it.mbAddr1,
+                                it.mbAddr2
+                            )
+                            sucType = it.mbChar
+                            sucAge = it.mbAge
+                            sucProfilePicture = it.mbImg
+                            sucName = it.mbName
+                            sucBirth = it.mbBirth
+                            sucProfilePicCnt = it.mbImgCnt
+                            sucItemUse = it.itemUse
+
+                            mView.setProfileSampleComplete(
+                                sucId,
+                                sucGender,
+                                sucTalkId,
+                                sucArea,
+                                sucGenderStr,
+                                sucType,
+                                sucName,
+                                sucAge,
+                                sucBirth,
+                                sucCar,
+                                sucMyStyle,
+                                sucIntroduce,
+                                sucFamily,
+                                sucProfilePicture,
+                                sucMarryPicture,
+                                sucProfilePicCnt,
+                                sucItemUse
+                            )
+                        }
+                    } else {
+                        mView.setProfileSampleFailed(it.message)
+                    }
+                }
+            }
+        }
+        mModel.requestProfileBasic(id, mbNo, subscriber)
+        subscription.add(subscriber)
+    }
+
+    /*    프로필 열람후 모든정보    */
+    override fun getProfile(context: Context, id: String?, mbNo: String?) {
+
+        val subscriber = object : DisposableObserver<ResultItem<ProfileDetailData>>() {
+            override fun onComplete() {
+
+            }
+
+            override fun onError(e: Throwable) {
+                mView.setProfileFailed(e.message)
+                e.printStackTrace()
+            }
+
             override fun onNext(item: ResultItem<ProfileDetailData>) {
                 item.let { it ->
-                    if(it.isSuccess) {
+                    if (it.isSuccess) {
                         it.item?.let {
-                             sucId = it.mbId
-                             sucGender = it.mbSex
-                             sucTalkId = it.mbNick
-                             sucArea = String.format(context.resources.getString(R.string.arrow), it.mbAddr1, it.mbAddr2)
-                             sucGenderStr = it.mbSexKor
-                             sucType = it.mbChar
-                             sucName = it.mbName
-                             sucAge = it.mbAge
-                             sucBirth = it.mbBirth
-                             sucCar = it.mbCar
-                             sucMyStyle = it.mbStyle
-                             sucIntroduce = it.mbProfile
-                             sucFamily = it.mbFamily
-                             sucProfilePicture = it.mbImg
-                             sucMarryPicture = it.mbMarryImg
-                             sucItemUse = it.itemUseChkProfile
-                             sucProfilePicCnt = it.mbImgCnt
+                            sucTalkId = it.mbNick
+                            sucArea = String.format(
+                                context.resources.getString(R.string.arrow),
+                                it.mbAddr1,
+                                it.mbAddr2
+                            )
+                            sucGender = it.mbSex
+                            sucGenderStr = it.mbSexKor
+                            sucType = it.mbChar
+                            sucName = it.mbName
+                            sucAge = it.mbAge
+                            sucBirth = it.mbBirth
+                            sucIncome = it.mbIncome
+                            sucSibling = it.mbBrother
+                            sucHometown= it.mbAddr3
+                            sucJob =it.mbJobs
+                            sucFortune = it.mbProperty
+                            sucEducation = it.mbEduLevel
+                            sucCar = it.mbCar
+                            sucReligion = it.mbReligion
+                            sucParents = it.mbParents
+                            sucMarryPlan  = it.mbPlanMarry
+                            sucDivorce = it.mbDivorce
+                            sucDivorceYear = it.mbDivorceAge
+                            sucChildren = it.mbBaby
+                            sucHeight = it.mbTall
+                            sucWeight = it.mbWeight
+                            sucDrinking = it.mbDrink
+                            sucSmoking = it.mbCigarette
+                            sucBlood = it.mbBlood
+                            sucCharacter = it.mbCharacter
+                            sucHobby = it.mbHobby
+                            sucMyStyle = it.mbStyle
+                            sucDateStyle = it.mbStyledate
+                            sucIntroduce = it.mbProfile
+                            sucFamily = it.mbFamily
+                            sucProfilePicture = it.mbImg
+                            sucMarryPicture = it.mbMarryImg
+                            sucProfilePicCnt = it.mbImgCnt
+                            sucRoute = it.mbJoinroute
 
+                            sucId = it.mbId
 
-                             sucIncome = it.mbIncome
-                             sucSibling = it.mbBrother
-                             sucHometown = String.format(context.resources.getString(R.string.arrow), it.mbAddr3, it.mbAddr4)
-                             sucJob = it.mbJobs
-                             sucFortune = it.mbProperty
-                             sucEducation = it.mbEduLevel
-                             sucReligion = it.mbReligion
-                             sucParents = it.mbParents
-                             sucMarryPlan = it.mbPlanMarry
-                             sucDivorce = it.mbDivorce
-                             sucDivorceYear = it.mbDivorceAge
-                             sucChildren = it.mbBaby
-                             sucHeight = it.mbTall
-                             sucWeight = it.mbWeight
-                             sucDrinking = if(it.mbDrink != context.resources.getString(R.string.key_information_drinking_not)) {
-                                String.format(context.resources.getString(R.string.arrow), it.mbDrink, it.mbDrinkNum)
-                            }
-                            else {
-                                it.mbDrink
-                            }
-                             sucSmoking = it.mbCigarette
-                             sucBlood = it.mbBlood
-                             sucCharacter = it.mbCharacter
-                             sucHobby = it.mbHobby
-
-                             sucDateStyle = it.mbStyledate
-                             sucRoute = it.mbJoinroute
-
-
-                            mView.setProfileSampleComplete(sucId, sucGender, sucTalkId, sucArea, sucGenderStr, sucType, sucName,
-                                    sucAge, sucBirth, sucCar, sucMyStyle, sucIntroduce, sucFamily, sucProfilePicture, sucMarryPicture,sucProfilePicCnt,sucItemUse)
+                            mView.setProfileComplete(
+                                sucTalkId,
+                                sucArea,
+                                sucGenderStr,
+                                sucType,
+                                sucName,
+                                sucAge,
+                                sucBirth,
+                                sucIncome,
+                                sucSibling,
+                                sucHometown,
+                                sucJob,
+                                sucFortune,
+                                sucEducation,
+                                sucCar,
+                                sucReligion,
+                                sucParents,
+                                sucMarryPlan,
+                                sucDivorce,
+                                sucDivorceYear,
+                                sucChildren,
+                                sucHeight,
+                                sucWeight,
+                                sucDrinking,
+                                sucSmoking,
+                                sucBlood,
+                                sucCharacter,
+                                sucHobby,
+                                sucMyStyle,
+                                sucDateStyle,
+                                sucIntroduce,
+                                sucFamily,
+                                sucProfilePicture,
+                                sucMarryPicture,
+                                sucProfilePicCnt,
+                                sucRoute
+                            )
                         }
-                    }
-                    else {
-                        mView.setProfileSampleFailed(it.message)
+                    } else {
+                        mView.setProfileFailed(it.message)
                     }
                 }
             }
         }
         mModel.requestProfile(id, mbNo, subscriber)
         subscription.add(subscriber)
-    }
 
-    /*    프로필 열람후 모든정보    */
-    override fun getProfile(context: Context, id: String?, mbNo: String?) {
-        mView.setProfileComplete(sucTalkId, sucArea, sucGenderStr, sucType, sucName, sucAge, sucBirth, sucIncome, sucSibling, sucHometown, sucJob,
-            sucFortune, sucEducation, sucCar, sucReligion, sucParents, sucMarryPlan, sucDivorce, sucDivorceYear, sucChildren, sucHeight, sucWeight,
-            sucDrinking, sucSmoking, sucBlood, sucCharacter, sucHobby, sucMyStyle, sucDateStyle, sucIntroduce, sucFamily, sucProfilePicture,sucMarryPicture, sucProfilePicCnt, sucRoute)
 
     }
 
     /*    채팅방여부 확인    */
     override fun getTalkCheck(id: String?, otherId: String?) {
-        val subscriber = object: DisposableObserver<ResultItem<ArrayList<String>>>() {
+        val subscriber = object : DisposableObserver<ResultItem<ArrayList<String>>>() {
             override fun onComplete() {
 
             }
@@ -185,7 +273,7 @@ class ProfilePresenter: ProfileContract.Presenter {
 
     /*    톡하기    */
     override fun getTalk(id: String?, otherId: String?, message: String?, talkImage: Uri?) {
-        val subscriber = object: DisposableObserver<ResultItem<TalkData>>() {
+        val subscriber = object : DisposableObserver<ResultItem<TalkData>>() {
             override fun onComplete() {
 
             }
@@ -197,10 +285,9 @@ class ProfilePresenter: ProfileContract.Presenter {
 
             override fun onNext(item: ResultItem<TalkData>) {
                 item.let { it ->
-                    if(it.isSuccess) {
+                    if (it.isSuccess) {
                         mView.setTalkComplete()
-                    }
-                    else {
+                    } else {
                         mView.setTalkFailed(it.message)
                     }
                 }
@@ -212,7 +299,7 @@ class ProfilePresenter: ProfileContract.Presenter {
 
     /*    아이템 보유 확인    */
     override fun getItemCheck(id: String?, itemId: String?) {
-        val subscriber = object: DisposableObserver<ResultItem<String>>() {
+        val subscriber = object : DisposableObserver<ResultItem<String>>() {
             override fun onComplete() {
 
             }
@@ -233,8 +320,14 @@ class ProfilePresenter: ProfileContract.Presenter {
     }
 
     /*    아이템 사용    */
-    override fun setItemUse(context: Context, id: String?, itemId: String?, mbNo: String?, otherId: String?) {
-        val subscriber = object: DisposableObserver<ResultItem<String>>() {
+    override fun setItemUse(
+        context: Context,
+        id: String?,
+        itemId: String?,
+        mbNo: String?,
+        otherId: String?
+    ) {
+        val subscriber = object : DisposableObserver<ResultItem<String>>() {
             override fun onComplete() {
 
             }
@@ -246,13 +339,12 @@ class ProfilePresenter: ProfileContract.Presenter {
 
             override fun onNext(item: ResultItem<String>) {
                 item.let { it ->
-                    if(it.isSuccess) {
-                        when(itemId) {
+                    if (it.isSuccess) {
+                        when (itemId) {
                             AppKeyValue.instance.itemIdProfile -> getProfile(context, id, mbNo)
                             AppKeyValue.instance.itemIdTalk -> getTalk(id, otherId, "", null)
                         }
-                    }
-                    else {
+                    } else {
                         mView.setItemUseFailed(it.message)
                     }
                 }
@@ -264,7 +356,7 @@ class ProfilePresenter: ProfileContract.Presenter {
 
     /*    차단하기    */
     override fun setBlock(id: String?, mbNo: String?, type: String?) {
-        val subscriber = object: DisposableObserver<BaseItem>() {
+        val subscriber = object : DisposableObserver<BaseItem>() {
             override fun onComplete() {
 
             }
@@ -276,10 +368,9 @@ class ProfilePresenter: ProfileContract.Presenter {
 
             override fun onNext(item: BaseItem) {
                 item.let { it ->
-                    if(it.isSuccess) {
+                    if (it.isSuccess) {
                         mView.setBlockComplete(it.message)
-                    }
-                    else {
+                    } else {
                         mView.setBlockFailed(it.message)
                     }
                 }
@@ -289,8 +380,8 @@ class ProfilePresenter: ProfileContract.Presenter {
         subscription.add(subscriber)
     }
 
-    override fun checkPass(id: String?,itemId: String?) {
-        val subscriber = object: DisposableObserver<ResultItem<CheckFreePassData>>() {
+    override fun checkPass(id: String?, itemId: String?) {
+        val subscriber = object : DisposableObserver<ResultItem<CheckFreePassData>>() {
             override fun onComplete() {
 
             }
@@ -302,14 +393,14 @@ class ProfilePresenter: ProfileContract.Presenter {
 
             override fun onNext(item: ResultItem<CheckFreePassData>) {
                 item.let { it ->
-                    if(it.isSuccess)
-                        mView.setItemUseComplete(itemId,"Y")
+                    if (it.isSuccess)
+                        mView.setItemUseComplete(itemId, "Y")
                     else
                         mView.setPassNeed()
                 }
             }
         }
-        ItemModel().check_own_freepass(id,  subscriber)
+        ItemModel().check_own_freepass(id, subscriber)
         subscription.add(subscriber)
     }
 

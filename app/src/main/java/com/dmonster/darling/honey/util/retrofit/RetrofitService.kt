@@ -445,6 +445,15 @@ interface RetrofitService {
         @Field("receiver_id") otherId: String?
     ): Observable<ResultItem<MarketBuyData>>
 
+    /*    프로필 기본보기    */
+    @FormUrlEncoded
+    @POST("json/proc_json.php")
+    fun requestProfileBasic(
+        @Field("method") method: String?,
+        @Field("mb_id") id: String?,
+        @Field("mb_no") mbNo: String?
+    ): Observable<ResultItem<ProfileData>>
+
     /*    프로필 상세보기    */
     @FormUrlEncoded
     @POST("json/proc_json.php")

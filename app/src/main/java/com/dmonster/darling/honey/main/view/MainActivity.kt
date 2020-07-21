@@ -60,9 +60,6 @@ class MainActivity : BaseActivity(){
     private var arrMenus: ArrayList<FloatingActionButton>? = null
     private var arrMenusPress: Int = 3
     private var profileState: Boolean = true
-    private var dormantState: Boolean = false
-//    private var billingProcessor: BillingProcessor? = null
-    private var coin: String? = null
     private lateinit var binding: ActivityMainBinding
 
 
@@ -90,8 +87,6 @@ class MainActivity : BaseActivity(){
 
     private fun init() {
         disposeBag = CompositeDisposable()
-//        billingProcessor = BillingProcessor(this, AppKeyValue.instance.inAppKey, this)
-//        billingProcessor?.initialize()
 
         val notificationType = intent.getStringExtra(AppKeyValue.instance.pushNotificationType)
 
@@ -182,24 +177,6 @@ class MainActivity : BaseActivity(){
             if (it == AppKeyValue.instance.eventBusProfile) {
                 startActivity(Intent(this, MyProfileActivity::class.java))
             }
-        }.addTo(disposeBag)
-
-        EventBus.subjectProductId.subscribe {
-            when (it) {
-                AppKeyValue.instance.inAppItem01 -> coin = AppKeyValue.instance.inAppItemCoin01
-                AppKeyValue.instance.inAppItem02 -> coin = AppKeyValue.instance.inAppItemCoin02
-                AppKeyValue.instance.inAppItem03 -> coin = AppKeyValue.instance.inAppItemCoin03
-                AppKeyValue.instance.inAppItem04 -> coin = AppKeyValue.instance.inAppItemCoin04
-                AppKeyValue.instance.inAppItem05 -> coin = AppKeyValue.instance.inAppItemCoin05
-                AppKeyValue.instance.inAppItem06 -> coin = AppKeyValue.instance.inAppItemCoin06
-            }
-
-//            billingProcessor?.let { it1 ->
-//                if (it1.isPurchased(it)) {
-//                    it1.consumePurchase(it)
-//                }
-//                it1.purchase(this, it)
-//            }
         }.addTo(disposeBag)
 
         EventBus.subjectMainFrag.subscribe {
@@ -368,8 +345,6 @@ class MainActivity : BaseActivity(){
                                         startActivity(intent)
                                     }
                                 }
-                            } else {
-//                                fab_act_main_logout.visibility = View.VISIBLE
                             }
                         }
                     }

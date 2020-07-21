@@ -45,6 +45,7 @@ class ServerApi {
     val myItemUseMethod = "proc_use_member_item"    // 내아이템 사용
     val marketListMethod = "proc_list_product"    // 마켓 상품목록
     val marketBuyMethod = "proc_add_member_product"    // 마켓 상품구매, 선물
+    val profileDetailBasicMethod = "proc_detail_member_basic"    // 프로필 상세보기
     val profileDetailMethod = "proc_detail_member"    // 프로필 상세보기
     val goodMethod = "proc_add_msg_hogam"    // 호감표현하기, 관심표현하기
     val notifyMethod = "proc_add_singo"    // 신고하기

@@ -91,7 +91,8 @@ abstract class FilterVM(var id: String) : ViewModel() {
     }
 
     var refreshListener = SwipeRefreshLayout.OnRefreshListener {
-        initFilter()
+        search()
+//        initFilter()
         isRefreshing.value = false
     }
 
@@ -143,7 +144,7 @@ abstract class FilterVM(var id: String) : ViewModel() {
 
                     override fun afterClickInit() {
                         isMarryFIltered.value = false
-                        searchMarry = AppKeyValue.instance.keyYes
+                        searchMarry = ""
                         dialog?.hide()
                     }
 
