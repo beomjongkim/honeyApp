@@ -40,7 +40,7 @@ class AppKeyValue {
     val keyTypeSocial = "sns"
 
     val listStartCnt = "0"
-    val listLimitCnt = "25"
+    val listLimitCnt = "10"
     val talkLimitCnt = "10"
 
     val profileListOpen = "open"

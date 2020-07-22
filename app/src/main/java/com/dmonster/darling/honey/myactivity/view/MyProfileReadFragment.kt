@@ -25,7 +25,7 @@ import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_my_act_profile.*
 import java.util.concurrent.TimeUnit
 
-class MyActMenu03Fragment : BaseFragment(), ProfileListContract.View {
+class MyProfileReadFragment : BaseFragment(), ProfileListContract.View {
 
     private lateinit var disposeBag: CompositeDisposable
     private lateinit var mPresenter: ProfileListContract.Presenter
@@ -43,9 +43,9 @@ class MyActMenu03Fragment : BaseFragment(), ProfileListContract.View {
 
     private var customPopup: CustomPopup? = null
     override fun onCreateView(
-            inflater: LayoutInflater,
-            container: ViewGroup?,
-            savedInstanceState: Bundle?
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
     ): View? {
         return inflater.inflate(R.layout.fragment_my_act_profile, container, false)
     }
@@ -66,10 +66,10 @@ class MyActMenu03Fragment : BaseFragment(), ProfileListContract.View {
 
             addItemDecoration(object : androidx.recyclerview.widget.RecyclerView.ItemDecoration() {
                 override fun getItemOffsets(
-                        outRect: Rect,
-                        view: View,
-                        parent: androidx.recyclerview.widget.RecyclerView,
-                        state: androidx.recyclerview.widget.RecyclerView.State
+                    outRect: Rect,
+                    view: View,
+                    parent: androidx.recyclerview.widget.RecyclerView,
+                    state: androidx.recyclerview.widget.RecyclerView.State
                 ) {
                     super.getItemOffsets(outRect, view, parent, state)
                     view.layoutParams.width = -1
@@ -86,11 +86,11 @@ class MyActMenu03Fragment : BaseFragment(), ProfileListContract.View {
         mPresenter = ProfileListPresenter()
         mPresenter.attachView(this)
         mPresenter.getProfileList(
-                false,
-                AppKeyValue.instance.listStartCnt,
-                AppKeyValue.instance.listLimitCnt,
-                id,
-                AppKeyValue.instance.profileListOpen
+            false,
+            AppKeyValue.instance.listStartCnt,
+            AppKeyValue.instance.listLimitCnt,
+            id,
+            AppKeyValue.instance.profileListOpen
         )
     }
 
@@ -98,42 +98,42 @@ class MyActMenu03Fragment : BaseFragment(), ProfileListContract.View {
         /*    새로고침    */
         srl_frag_my_act_profile_layout.setOnRefreshListener {
             mPresenter.getProfileList(
-                    false,
-                    AppKeyValue.instance.listStartCnt,
-                    AppKeyValue.instance.listLimitCnt,
-                    id,
-                    AppKeyValue.instance.profileListOpen
+                false,
+                AppKeyValue.instance.listStartCnt,
+                AppKeyValue.instance.listLimitCnt,
+                id,
+                AppKeyValue.instance.profileListOpen
             )
         }
 
         rv_frag_my_act_profile_list.addOnScrollListener(object :
-                androidx.recyclerview.widget.RecyclerView.OnScrollListener() {
+            androidx.recyclerview.widget.RecyclerView.OnScrollListener() {
             override fun onScrollStateChanged(
-                    recyclerView: androidx.recyclerview.widget.RecyclerView,
-                    newState: Int
+                recyclerView: androidx.recyclerview.widget.RecyclerView,
+                newState: Int
             ) {
                 super.onScrollStateChanged(recyclerView, newState)
                 srl_frag_my_act_profile_layout.isEnabled =
-                        cl_frag_my_act_profile_layout.getChildAt(0).top == 0
+                    cl_frag_my_act_profile_layout.getChildAt(0).top == 0
             }
 
             override fun onScrolled(
-                    recyclerView: androidx.recyclerview.widget.RecyclerView,
-                    dx: Int,
-                    dy: Int
+                recyclerView: androidx.recyclerview.widget.RecyclerView,
+                dx: Int,
+                dy: Int
             ) {
                 super.onScrolled(recyclerView, dx, dy)
                 val lastVisibleItemPosition =
-                        (recyclerView.layoutManager as androidx.recyclerview.widget.LinearLayoutManager).findLastCompletelyVisibleItemPosition()
-                                .plus(1)
+                    (recyclerView.layoutManager as androidx.recyclerview.widget.LinearLayoutManager).findLastCompletelyVisibleItemPosition()
+                        .plus(1)
                 val itemTotalCount = recyclerView.adapter?.itemCount
                 if (lastVisibleItemPosition == itemTotalCount && itemTotalCount >= (AppKeyValue.instance.listLimitCnt.toInt())) {
                     mPresenter.getProfileList(
-                            true,
-                            lastVisibleItemPosition.toString(),
-                            AppKeyValue.instance.listLimitCnt,
-                            id,
-                            AppKeyValue.instance.profileListOpen
+                        true,
+                        lastVisibleItemPosition.toString(),
+                        AppKeyValue.instance.listLimitCnt,
+                        id,
+                        AppKeyValue.instance.profileListOpen
                     )
                 }
             }
@@ -146,41 +146,41 @@ class MyActMenu03Fragment : BaseFragment(), ProfileListContract.View {
 
         /*    선택삭제    */
         disposeBag.add(RxView.clicks(tv_frag_my_act_profile_edit)
-                .throttleFirst(1, TimeUnit.SECONDS)
-                .subscribe {
-                    if (mAdapter.data.size > 0) {
-                        context?.let { it1 ->
-                            mAdapter.checkArray?.size?.let { it2 ->
-                                if (it2 > 0) {
-                                    Utility.instance.showTwoButtonAlert(
-                                            it1,
-                                            it1.resources.getString(R.string.app_name),
-                                            it1.resources.getString(R.string.msg_my_activity_profile_delete),
-                                            DialogInterface.OnClickListener { dialog, which ->
-                                                if (which == DialogInterface.BUTTON_POSITIVE) {
-                                                    ll_frag_my_act_profile_progress.visibility =
-                                                            View.VISIBLE
+            .throttleFirst(1, TimeUnit.SECONDS)
+            .subscribe {
+                if (mAdapter.data.size > 0) {
+                    context?.let { it1 ->
+                        mAdapter.checkArray?.size?.let { it2 ->
+                            if (it2 > 0) {
+                                Utility.instance.showTwoButtonAlert(
+                                    it1,
+                                    it1.resources.getString(R.string.app_name),
+                                    it1.resources.getString(R.string.msg_my_activity_profile_delete),
+                                    DialogInterface.OnClickListener { dialog, which ->
+                                        if (which == DialogInterface.BUTTON_POSITIVE) {
+                                            ll_frag_my_act_profile_progress.visibility =
+                                                View.VISIBLE
 
-                                                    mAdapter.checkArray?.indices?.let { it3 ->
-                                                        for (i in it3) {
-                                                            val selectItem = mAdapter.checkArray?.get(i)
-                                                            val idx =
-                                                                    selectItem?.let { it4 -> mAdapter.data[it4].idx }
-                                                            mPresenter.setProfileDelete(id, "open", idx)
-                                                        }
-                                                    }
+                                            mAdapter.checkArray?.indices?.let { it3 ->
+                                                for (i in it3) {
+                                                    val selectItem = mAdapter.checkArray?.get(i)
+                                                    val idx =
+                                                        selectItem?.let { it4 -> mAdapter.data[it4].idx }
+                                                    mPresenter.setProfileDelete(id, "open", idx)
                                                 }
-                                            })
-                                } else {
-                                    Utility.instance.showToast(
-                                            it1,
-                                            it1.resources.getString(R.string.msg_my_activity_select_profile)
-                                    )
-                                }
+                                            }
+                                        }
+                                    })
+                            } else {
+                                Utility.instance.showToast(
+                                    it1,
+                                    it1.resources.getString(R.string.msg_my_activity_select_profile)
+                                )
                             }
                         }
                     }
-                })
+                }
+            })
 
         /*    프로필    */
         mAdapter.itemClick = itemClickListener()
@@ -212,10 +212,10 @@ class MyActMenu03Fragment : BaseFragment(), ProfileListContract.View {
 
             if (gender == otherGender) {
                 Utility.instance.showAlert(
-                        it1,
-                        it1.resources.getString(R.string.app_name),
-                        it1.resources.getString(R.string.msg_profile_error_gender),
-                        DialogInterface.OnClickListener { dialog, which -> })
+                    it1,
+                    it1.resources.getString(R.string.app_name),
+                    it1.resources.getString(R.string.msg_profile_error_gender),
+                    DialogInterface.OnClickListener { dialog, which -> })
             } else {
                 ll_frag_my_act_profile_progress.visibility = View.VISIBLE
                 mPresenter.getTalkCheck(id, otherId)
@@ -282,20 +282,8 @@ class MyActMenu03Fragment : BaseFragment(), ProfileListContract.View {
             }
 
             "N" -> {
-                if (gender == "F") {
-                    val intent = Intent(context, TalkActivity::class.java)
-                    intent.putExtra(AppKeyValue.instance.talkMbNo, mbNo)
-                    intent.putExtra(AppKeyValue.instance.talkOtherId, otherId)
-                    intent.putExtra(AppKeyValue.instance.talkOtherTalkId, otherTalkId)
-                    /*    상단 타이틀정보    */
-                    intent.putExtra(AppKeyValue.instance.talkTitleName, otherTalkId)
-                    intent.putExtra(AppKeyValue.instance.talkTitleArea, otherArea)
-                    intent.putExtra(AppKeyValue.instance.talkTitleAge, otherAge)
-                    context?.startActivity(intent)
-                } else {
-                    ll_frag_my_act_profile_progress.visibility = View.VISIBLE
-                    mPresenter.getItemCheck(id, AppKeyValue.instance.itemIdTalk)
-                }
+                ll_frag_my_act_profile_progress.visibility = View.VISIBLE
+                mPresenter.getItemCheck(id, AppKeyValue.instance.itemIdTalk)
             }
         }
     }
@@ -311,26 +299,26 @@ class MyActMenu03Fragment : BaseFragment(), ProfileListContract.View {
                 "Y" -> {
 
                     customPopup = CustomPopup(
-                            it,
-                            "톡하기",
-                            resources.getString(R.string.msg_profile_talk_item_use),
-                            R.drawable.ic_talk_vivid,
-                            object : CustomDialogInterface {
-                                override fun onCancel(v: View) {
-                                    customPopupDismiss()
-                                }
+                        it,
+                        "톡하기",
+                        resources.getString(R.string.msg_profile_talk_item_use),
+                        R.drawable.ic_talk_vivid,
+                        object : CustomDialogInterface {
+                            override fun onCancel(v: View) {
+                                customPopupDismiss()
+                            }
 
-                                override fun onConfirm(v: View) {
-                                    ll_frag_my_act_profile_progress.visibility = View.VISIBLE
-                                    mPresenter.setItemUse(
-                                            id,
-                                            AppKeyValue.instance.itemIdTalk,
-                                            mbNo,
-                                            otherId
-                                    )
-                                    customPopupDismiss()
-                                }
-                            })
+                            override fun onConfirm(v: View) {
+                                ll_frag_my_act_profile_progress.visibility = View.VISIBLE
+                                mPresenter.setItemUse(
+                                    id,
+                                    AppKeyValue.instance.itemIdTalk,
+                                    mbNo,
+                                    otherId
+                                )
+                                customPopupDismiss()
+                            }
+                        })
                     customPopup?.popupVM?.let { it1 ->
                         it1.positiveText.value = "보내기"
                         it1.negativeText.value = "취소"
@@ -341,24 +329,24 @@ class MyActMenu03Fragment : BaseFragment(), ProfileListContract.View {
 
                 "N" -> {
                     val content = String.format(
-                            it.resources.getString(R.string.msg_profile_item),
-                            it.resources.getString(R.string.msg_profile_item_talk)
+                        it.resources.getString(R.string.msg_profile_item),
+                        it.resources.getString(R.string.msg_profile_item_talk)
                     )
                     Utility.instance.showTwoButtonAlert(
-                            it,
-                            it.resources.getString(R.string.app_name),
-                            content,
-                            DialogInterface.OnClickListener { dialog, which ->
-                                if (which == DialogInterface.BUTTON_POSITIVE) {
-                                    val talkDialog = ItemTalkDialog()
-                                    activity?.supportFragmentManager?.let { it1 ->
-                                        talkDialog.show(
-                                                it1,
-                                                AppKeyValue.instance.tagItemTalkDlg
-                                        )
-                                    }
+                        it,
+                        it.resources.getString(R.string.app_name),
+                        content,
+                        DialogInterface.OnClickListener { dialog, which ->
+                            if (which == DialogInterface.BUTTON_POSITIVE) {
+                                val talkDialog = ItemTalkDialog()
+                                activity?.supportFragmentManager?.let { it1 ->
+                                    talkDialog.show(
+                                        it1,
+                                        AppKeyValue.instance.tagItemTalkDlg
+                                    )
                                 }
-                            })
+                            }
+                        })
                 }
                 else -> return
             }

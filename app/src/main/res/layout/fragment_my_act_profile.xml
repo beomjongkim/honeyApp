@@ -4,7 +4,7 @@
     android:id="@+id/cl_frag_my_act_profile_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".myactivity.view.MyActMenu03Fragment">
+    tools:context=".myactivity.view.MyProfileReadFragment">
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/srl_frag_my_act_profile_layout"

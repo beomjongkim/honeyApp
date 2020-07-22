@@ -25,7 +25,7 @@ class TalkListPresenter: TalkListContract.Presenter {
     }
 
     /*    톡하기 목록    */
-    override fun getTalkList(isScroll: Boolean, id: String?, limitCnt: String?) {
+    override fun getTalkList(isScroll: Boolean, id: String?,startCnt : String?, limitCnt: String?) {
         val subscriber = object: DisposableObserver<ResultListItem<TalkListData>>() {
             override fun onComplete() {
 
@@ -51,7 +51,7 @@ class TalkListPresenter: TalkListContract.Presenter {
                 }
             }
         }
-        mModel.requestMyTalkList(id, limitCnt, subscriber)
+        mModel.requestMyTalkList(id, startCnt, limitCnt, subscriber)
         subscription.add(subscriber)
     }
 

@@ -27,7 +27,7 @@ import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.fragment_my_act_profile.*
 import java.util.concurrent.TimeUnit
 
-class MyActMenu04Fragment: BaseFragment(), ProfileListContract.View {
+class MyProfileFragment: BaseFragment(), ProfileListContract.View {
 
     private lateinit var disposeBag: CompositeDisposable
     private lateinit var mPresenter: ProfileListContract.Presenter

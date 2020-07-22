@@ -37,7 +37,7 @@ import io.reactivex.rxkotlin.addTo
 import kotlinx.android.synthetic.main.fragment_my_act_talk.*
 import java.util.concurrent.TimeUnit
 
-class MyActMenu01Fragment: BaseFragment(), TalkListContract.View {
+class MyTalkFragment: BaseFragment(), TalkListContract.View {
 
     private lateinit var disposeBag: CompositeDisposable
     private lateinit var mPresenter: TalkListContract.Presenter
@@ -46,7 +46,7 @@ class MyActMenu01Fragment: BaseFragment(), TalkListContract.View {
 
     private var viewLayoutManager: androidx.recyclerview.widget.RecyclerView.LayoutManager? = null
     private var id: String? = null
-
+    private var totalNotRead = 0
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.fragment_my_act_talk, container, false)
     }
@@ -128,7 +128,7 @@ class MyActMenu01Fragment: BaseFragment(), TalkListContract.View {
     private fun setListener() {
         /*    새로고침    */
         srl_frag_my_act_talk_layout.setOnRefreshListener {
-            mPresenter.getTalkList(false, id, AppKeyValue.instance.listLimitCnt)
+            mPresenter.getTalkList(false, id, AppKeyValue.instance.listStartCnt,AppKeyValue.instance.listLimitCnt)
         }
 
         rv_frag_my_act_talk_list.addOnScrollListener(object: androidx.recyclerview.widget.RecyclerView.OnScrollListener() {
@@ -142,7 +142,7 @@ class MyActMenu01Fragment: BaseFragment(), TalkListContract.View {
                 val lastVisibleItemPosition = (recyclerView.layoutManager as androidx.recyclerview.widget.LinearLayoutManager).findLastCompletelyVisibleItemPosition().plus(1)
                 val itemTotalCount = recyclerView.adapter?.itemCount
                 if(lastVisibleItemPosition == itemTotalCount && itemTotalCount >= (AppKeyValue.instance.listLimitCnt.toInt())) {
-                    mPresenter.getTalkList(true, id, AppKeyValue.instance.listLimitCnt)
+                    mPresenter.getTalkList(true, id, lastVisibleItemPosition.toString(), AppKeyValue.instance.listLimitCnt)
                 }
             }
         })
@@ -208,7 +208,7 @@ class MyActMenu01Fragment: BaseFragment(), TalkListContract.View {
     private fun setEventBusListener() {
         EventBus.subjectTalkDelete.subscribe {
             if(it == AppKeyValue.instance.eventBusTalkDelete) {
-                mPresenter.getTalkList(false, id, AppKeyValue.instance.listLimitCnt)
+                mPresenter.getTalkList(false, id,AppKeyValue.instance.listStartCnt, AppKeyValue.instance.listLimitCnt)
             }
         }.addTo(disposeBag)
     }
@@ -270,7 +270,7 @@ class MyActMenu01Fragment: BaseFragment(), TalkListContract.View {
         rv_frag_my_act_talk_list.visibility = View.VISIBLE
         tv_frag_my_act_talk_content.visibility = View.GONE
         srl_frag_my_act_talk_layout.isRefreshing = false
-        var totalNotRead = 0
+
         for(item in data){
             totalNotRead += item.notRead?.toInt() ?: 0
         }
@@ -349,7 +349,7 @@ class MyActMenu01Fragment: BaseFragment(), TalkListContract.View {
 
     override fun onResume() {
         super.onResume()
-        mPresenter.getTalkList(false, id, AppKeyValue.instance.listLimitCnt)
+        mPresenter.getTalkList(false, id, AppKeyValue.instance.listStartCnt, AppKeyValue.instance.listLimitCnt)
         mAdapter.notifyDataSetChanged()
     }
 

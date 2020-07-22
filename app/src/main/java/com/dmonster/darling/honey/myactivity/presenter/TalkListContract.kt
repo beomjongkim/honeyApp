@@ -21,7 +21,7 @@ interface TalkListContract {
     }
 
     interface Presenter: BasePresenter<View> {
-        fun getTalkList(isScroll: Boolean, id: String?, limitCnt: String?)    // 톡하기 목록 불러오기
+        fun getTalkList(isScroll: Boolean, id: String?, startCnt : String?, limitCnt: String?)    // 톡하기 목록 불러오기
 
         fun setTalkDelete(id: String?, idx: String?)    // 톡하기 삭제
 

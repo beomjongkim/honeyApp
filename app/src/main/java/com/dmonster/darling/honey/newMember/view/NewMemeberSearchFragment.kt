@@ -45,7 +45,7 @@ import java.util.concurrent.TimeUnit
 class NewMemeberSearchFragment : BaseFragment(), NewMemberListContract.View {
 
     private lateinit var disposeBag: CompositeDisposable
-    private lateinit var mPresenter: NewMemberListContract.Presenter
+    lateinit var mPresenter: NewMemberListContract.Presenter
     private lateinit var mAdapter: NewMemberAdapter
     private lateinit var rewardVM: RewardVM
 
@@ -344,14 +344,13 @@ class NewMemeberSearchFragment : BaseFragment(), NewMemberListContract.View {
 
     /*    신규회원 목록 호출실패    */
     override fun setNewMemberListFailed(error: String?) {
-        if (mAdapter.data.size == 0) {
-            rv_frag_my_act_new_member_list.visibility = View.GONE
-            tv_frag_my_act_new_member_content.visibility = View.VISIBLE
-            ll_frag_my_act_new_member_progress.visibility = View.GONE
-            srl_frag_my_act_new_member_layout.isRefreshing = false
+        mAdapter.data.clear()
+        rv_frag_my_act_new_member_list.visibility = View.GONE
+        tv_frag_my_act_new_member_content.visibility = View.VISIBLE
+        /*context?.let { Utility.instance.showToast(it, error) }*/
+        ll_frag_my_act_new_member_progress.visibility = View.GONE
+        srl_frag_my_act_new_member_layout.isRefreshing = false
 
-            /*context?.let { Utility.instance.showToast(it, error) }*/
-        }
     }
 
     /*    채팅방여부 확인    */
@@ -373,17 +372,6 @@ class NewMemeberSearchFragment : BaseFragment(), NewMemberListContract.View {
             }
 
             "N" -> {
-//                if (gender == "F") {
-//                    val intent = Intent(context, TalkActivity::class.java)
-//                    intent.putExtra(AppKeyValue.instance.talkMbNo, mbNo)
-//                    intent.putExtra(AppKeyValue.instance.talkOtherId, otherId)
-//                    intent.putExtra(AppKeyValue.instance.talkOtherTalkId, otherTalkId)
-//                    /*    상단 타이틀정보    */
-//                    intent.putExtra(AppKeyValue.instance.talkTitleName, otherTalkId)
-//                    intent.putExtra(AppKeyValue.instance.talkTitleArea, otherArea)
-//                    intent.putExtra(AppKeyValue.instance.talkTitleAge, otherAge)
-//                    context?.startActivity(intent)
-//                } else {
                 ll_frag_my_act_new_member_progress.visibility = View.VISIBLE
                 mPresenter.checkPass(id, AppKeyValue.instance.itemIdTalk)
 //                }

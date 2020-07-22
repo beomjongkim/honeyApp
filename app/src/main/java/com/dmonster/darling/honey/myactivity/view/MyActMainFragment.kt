@@ -1,7 +1,6 @@
 package com.dmonster.darling.honey.myactivity.view
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -103,13 +102,11 @@ class MyActMainFragment: BaseFragment() {
         var newFragment: androidx.fragment.app.Fragment? = null
 
         when(idx) {
-            fragTalk -> newFragment = MyActMenu01Fragment()
+            fragTalk -> newFragment = MyTalkFragment()
 
-//            fragNewMember -> newFragment = NewMemeberSearchFragment()
+            fragReading -> newFragment = MyProfileReadFragment()
 
-            fragReading -> newFragment = MyActMenu03Fragment()
-
-            fragProfile -> newFragment = MyActMenu04Fragment()
+            fragProfile -> newFragment = MyProfileFragment()
         }
 
         return newFragment

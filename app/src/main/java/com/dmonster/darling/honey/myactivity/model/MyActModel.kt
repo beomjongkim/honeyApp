@@ -22,8 +22,8 @@ import java.io.File
 class MyActModel {
 
     /*    나의톡 목록    */
-    fun requestMyTalkList(id: String?, limitCnt: String?, subscriber: DisposableObserver<ResultListItem<TalkListData>>) {
-        RetrofitProtocol().retrofit.requestMyTalkList(ServerApi.instance.myTalkListMethod, id, limitCnt)
+    fun requestMyTalkList(id: String?,startCnt: String?, limitCnt: String?, subscriber: DisposableObserver<ResultListItem<TalkListData>>) {
+        RetrofitProtocol().retrofit.requestMyTalkList(ServerApi.instance.myTalkListMethod, id,startCnt, limitCnt)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .unsubscribeOn(Schedulers.io())

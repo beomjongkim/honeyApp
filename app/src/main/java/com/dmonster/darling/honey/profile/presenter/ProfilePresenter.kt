@@ -8,6 +8,7 @@ import com.dmonster.darling.honey.myactivity.data.ProfileData
 import com.dmonster.darling.honey.myinformation.data.PictureMarryData
 import com.dmonster.darling.honey.point.data.CheckFreePassData
 import com.dmonster.darling.honey.point.model.ItemModel
+import com.dmonster.darling.honey.profile.data.ProfileBasicData
 import com.dmonster.darling.honey.profile.data.ProfileDetailData
 import com.dmonster.darling.honey.profile.data.ProfilePictureData
 import com.dmonster.darling.honey.profile.model.GoodModel
@@ -77,7 +78,7 @@ class ProfilePresenter : ProfileContract.Presenter {
 
     /*    프로필 열람전 정보    */
     override fun getProfileSample(context: Context, id: String?, mbNo: String?) {
-        val subscriber = object : DisposableObserver<ResultItem<ProfileData>>() {
+        val subscriber = object : DisposableObserver<ResultItem<ProfileBasicData>>() {
             override fun onComplete() {
 
             }
@@ -87,7 +88,7 @@ class ProfilePresenter : ProfileContract.Presenter {
                 e.printStackTrace()
             }
 
-            override fun onNext(item: ResultItem<ProfileData>) {
+            override fun onNext(item: ResultItem<ProfileBasicData>) {
                 item.let { it ->
                     if (it.isSuccess) {
                         it.item?.let {

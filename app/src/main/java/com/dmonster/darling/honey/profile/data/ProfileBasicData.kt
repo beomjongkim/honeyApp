@@ -1,10 +1,8 @@
-package com.dmonster.darling.honey.myactivity.data
-
-import com.dmonster.darling.honey.profile.data.ProfilePictureData
+package com.dmonster.darling.honey.profile.data
 import com.google.gson.annotations.SerializedName
 
-/*    프로필 열람    */
-class ProfileData {
+class ProfileBasicData {
+
 
     @SerializedName("idx")
     var idx: String? = null
@@ -25,7 +23,7 @@ class ProfileData {
     var mbName: String? = null
 
     @SerializedName("mb_img")
-    var mbImg: String? = null
+    var mbImg: ProfilePictureData? = null
 
     @SerializedName("mb_img_thumb")
     var mbImgThumb: String? = null
@@ -72,5 +70,5 @@ class ProfileData {
 
 
     var isChecked: Boolean = false
-
 }
+

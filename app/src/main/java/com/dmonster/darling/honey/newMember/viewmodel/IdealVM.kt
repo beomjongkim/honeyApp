@@ -10,11 +10,13 @@ import com.dmonster.darling.honey.common.viewmodel.SpinnerRangeVM
 import com.dmonster.darling.honey.newMember.view.NewMemeberSearchFragment
 import com.dmonster.darling.honey.myinformation.data.MyInformationData
 import com.dmonster.darling.honey.myinformation.model.IdealTypeModel
+import com.dmonster.darling.honey.util.AppKeyValue
 import com.dmonster.darling.honey.util.Utility
 import com.dmonster.darling.honey.util.retrofit.BaseItem
 import com.dmonster.darling.honey.util.retrofit.ResultItem
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
+import kotlinx.android.synthetic.main.fragment_my_act_new_member.*
 
 class IdealVM(
     var fragmentManager: FragmentManager,
@@ -32,10 +34,9 @@ class IdealVM(
     var isTabChanged = MutableLiveData<Boolean>().also {
         it.value = false
     }
-
+    val newFragment = NewMemeberSearchFragment()
 
     init {
-        val newFragment = NewMemeberSearchFragment()
         val transaction = fragmentManager.beginTransaction()
         newFragment.let { transaction.replace(R.id.fl_frag_ideal, it) }
         transaction.commit()
@@ -44,6 +45,13 @@ class IdealVM(
 
     fun onClickSearch() {
         isTabChanged.value = false
+        getIdeal()
+        newFragment.mPresenter.getNewMemberList(
+            false,
+            AppKeyValue.instance.listStartCnt,
+            AppKeyValue.instance.listLimitCnt,
+            id
+        )
     }
 
     fun onClickOption() {
@@ -84,6 +92,7 @@ class IdealVM(
                             eduVM.text.value = it.mbHopeLevel
                             religionVM.text.value = it.mbHopeReligion
                             bloodVM.text.value = it.mbHopeBlood
+
 
 //                            mView.setIdealTypeComplete(sucAge, sucArea, sucHeight, sucWeight, sucStyle, sucIncome, sucEducation, sucReligion, sucBlood)
                         }

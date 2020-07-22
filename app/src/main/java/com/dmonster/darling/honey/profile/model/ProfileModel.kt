@@ -2,6 +2,7 @@ package com.dmonster.darling.honey.profile.model
 
 import android.net.Uri
 import com.dmonster.darling.honey.myactivity.data.ProfileData
+import com.dmonster.darling.honey.profile.data.ProfileBasicData
 import com.dmonster.darling.honey.profile.data.ProfileDetailData
 import com.dmonster.darling.honey.talk.data.TalkData
 import com.dmonster.darling.honey.util.ServerApi
@@ -18,7 +19,7 @@ import java.io.File
 
 class ProfileModel {
     /*    프로필 기본보기    */
-    fun requestProfileBasic(id: String?, mbNo: String?, subscriber: DisposableObserver<ResultItem<ProfileData>>) {
+    fun requestProfileBasic(id: String?, mbNo: String?, subscriber: DisposableObserver<ResultItem<ProfileBasicData>>) {
         RetrofitProtocol().retrofit.requestProfileBasic(ServerApi.instance.profileDetailBasicMethod, id, mbNo)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())

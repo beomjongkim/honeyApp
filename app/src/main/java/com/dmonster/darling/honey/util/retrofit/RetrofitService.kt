@@ -26,6 +26,7 @@ import com.dmonster.darling.honey.myinformation.data.MyInformationData
 import com.dmonster.darling.honey.myinformation.data.RecommendData
 import com.dmonster.darling.honey.notice.data.NoticeData
 import com.dmonster.darling.honey.option.data.SimpleMyInfoData
+import com.dmonster.darling.honey.profile.data.ProfileBasicData
 import com.dmonster.darling.honey.profile.data.ProfileDetailData
 import com.dmonster.darling.honey.question.data.QuestionData
 import com.dmonster.darling.honey.servicecenter.data.AppInfoData
@@ -202,6 +203,7 @@ interface RetrofitService {
     fun requestMyTalkList(
         @Field("method") method: String?,
         @Field("mb_id") id: String?,
+        @Field("item_count") startCnt: String?,
         @Field("limit_count") limitCnt: String?
     ): Observable<ResultListItem<TalkListData>>
 
@@ -452,7 +454,7 @@ interface RetrofitService {
         @Field("method") method: String?,
         @Field("mb_id") id: String?,
         @Field("mb_no") mbNo: String?
-    ): Observable<ResultItem<ProfileData>>
+    ): Observable<ResultItem<ProfileBasicData>>
 
     /*    프로필 상세보기    */
     @FormUrlEncoded
