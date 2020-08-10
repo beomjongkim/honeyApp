@@ -17,14 +17,12 @@ import com.dmonster.darling.honey.ads.viewmodel.RewardVM
 import com.dmonster.darling.honey.base.BaseFragment
 import com.dmonster.darling.honey.customview.CustomDialogInterface
 import com.dmonster.darling.honey.customview.CustomPopup
-import com.dmonster.darling.honey.dialog.ItemTalkDialog
 import com.dmonster.darling.honey.main.view.MainActivity
 import com.dmonster.darling.honey.myactivity.data.MemberData
 import com.dmonster.darling.honey.myactivity.presenter.NewMemberListContract
 import com.dmonster.darling.honey.myactivity.presenter.NewMemberListPresenter
 import com.dmonster.darling.honey.myactivity.view.adapter.NewMemberAdapter
 import com.dmonster.darling.honey.point.model.ItemModel
-import com.dmonster.darling.honey.profile.view.GoodActivity
 import com.dmonster.darling.honey.profile.view.InterestActivity
 import com.dmonster.darling.honey.profile.view.ProfileActivity
 import com.dmonster.darling.honey.talk.view.TalkActivity
@@ -32,13 +30,11 @@ import com.dmonster.darling.honey.util.AppKeyValue
 import com.dmonster.darling.honey.util.Utility
 import com.dmonster.darling.honey.util.common.EventBus
 import com.dmonster.darling.honey.util.retrofit.ResultItem
-import com.dmonster.darling.honey.youtube.view.YoutubePlayerActivity
 import com.google.android.gms.ads.rewarded.RewardItem
 import com.google.android.gms.ads.rewarded.RewardedAdCallback
 import com.jakewharton.rxbinding2.view.RxView
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
-import kotlinx.android.synthetic.main.activity_profile.*
 import kotlinx.android.synthetic.main.fragment_my_act_new_member.*
 import java.util.concurrent.TimeUnit
 
@@ -254,12 +250,8 @@ class NewMemeberSearchFragment : BaseFragment(), NewMemberListContract.View {
                     val pref = context?.getSharedPreferences("Pref", Context.MODE_PRIVATE)
                     if (pref != null) {
                         if (pref.getBoolean(AppKeyValue.instance.hasFreePass, false)) {
-                            val intent: Intent
-                            if (gender == "F") {
-                                intent = Intent(context, InterestActivity::class.java)
-                            } else {
-                                intent = Intent(context, GoodActivity::class.java)
-                            }
+                            val intent = Intent(context, InterestActivity::class.java)
+
                             Utility.instance.showTwoButtonAlert(
                                 it1,
                                 it1.getString(R.string.interest_title),
@@ -344,13 +336,13 @@ class NewMemeberSearchFragment : BaseFragment(), NewMemberListContract.View {
 
     /*    신규회원 목록 호출실패    */
     override fun setNewMemberListFailed(error: String?) {
-        mAdapter.data.clear()
-        rv_frag_my_act_new_member_list.visibility = View.GONE
-        tv_frag_my_act_new_member_content.visibility = View.VISIBLE
-        /*context?.let { Utility.instance.showToast(it, error) }*/
-        ll_frag_my_act_new_member_progress.visibility = View.GONE
-        srl_frag_my_act_new_member_layout.isRefreshing = false
-
+        if (mAdapter.data.size == 0) {
+            rv_frag_my_act_new_member_list.visibility = View.GONE
+            tv_frag_my_act_new_member_content.visibility = View.VISIBLE
+            /*context?.let { Utility.instance.showToast(it, error) }*/
+            ll_frag_my_act_new_member_progress.visibility = View.GONE
+            srl_frag_my_act_new_member_layout.isRefreshing = false
+        }
     }
 
     /*    채팅방여부 확인    */

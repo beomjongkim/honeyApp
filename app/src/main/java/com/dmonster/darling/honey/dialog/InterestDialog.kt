@@ -4,18 +4,15 @@ import android.content.Intent
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import androidx.fragment.app.DialogFragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.Window
 import com.dmonster.darling.honey.R
-import com.dmonster.darling.honey.profile.view.GoodActivity
 import com.dmonster.darling.honey.profile.view.InterestActivity
 import com.dmonster.darling.honey.util.AppKeyValue
 import com.jakewharton.rxbinding2.view.RxView
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.android.synthetic.main.dialog_good.*
 import kotlinx.android.synthetic.main.dialog_interest.*
 import java.util.concurrent.TimeUnit
 

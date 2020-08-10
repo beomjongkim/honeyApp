@@ -534,89 +534,88 @@ class ProfileActivity : BaseActivity(), ProfileContract.View {
         mbImgCnt: String?,
         itemUse: String?
     ) {
-        if (itemUse == "1") {
-            mPresenter.setItemUse(this, id, AppKeyValue.instance.itemIdProfile, mbNo, otherId)
-        } else {
-            marryData?.mbImg?.let {
-                if (it.size > 0) {
-                    binding.certifyVM?.imgUri?.value = Uri.parse(marryData.mbImgThumb!![0])
-                }
+        marryData?.mbImg?.let {
+            if (it.size > 0) {
+                binding.certifyVM?.imgUri?.value = Uri.parse(marryData.mbImgThumb!![0])
             }
-            binding.certifyVM?.pictureMarryData?.value = marryData
-            otherId = id
-            otherGender = gender
-            otherProfileImage = data?.mbImgThumb?.get(0)
-            otherType = type
+        }
+        binding.certifyVM?.pictureMarryData?.value = marryData
+        otherId = id
+        otherGender = gender
+        otherProfileImage = data?.mbImgThumb?.get(0)
+        otherType = type
 
-            tv_act_profile_marry.text = type
-            if (otherType == resources.getString(R.string.information_member_marry)) {
-                tv_act_profile_marry.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.color_main_type_marry
-                    )
-                )
-                tv_act_profile_marry.background =
-                    ContextCompat.getDrawable(this, R.drawable.bg_border_round_marry)
-            } else {
-                tv_act_profile_marry.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.color_main_type_remarry
-                    )
-                )
-                tv_act_profile_marry.background =
-                    ContextCompat.getDrawable(this, R.drawable.bg_border_round_remarry)
-            }
-
-            val areaArray =
-                area?.split(" > ".toRegex())?.dropLastWhile { it.isEmpty() }?.toTypedArray()
-            val area01 = areaArray?.get(0)
-            otherArea = area01
-            val nowTime = System.currentTimeMillis()
-            val date = Date(nowTime)
-            val dateFormat = SimpleDateFormat(resources.getString(R.string.utility_date_year))
-            val getYear = dateFormat.format(date)
-            val getYearFormer = birth?.toInt()?.minus(1)?.let { getYear.toInt().minus(it) }
-            otherAge = String.format(resources.getString(R.string.age), getYearFormer?.toString())
-
-            ctb_act_profile_toolbar.setTitle(
-                String.format(
-                    resources.getString(R.string.profile_title_talk),
-                    talkId
+        tv_act_profile_marry.text = type
+        if (otherType == resources.getString(R.string.information_member_marry)) {
+            tv_act_profile_marry.setTextColor(
+                ContextCompat.getColor(
+                    this,
+                    R.color.color_main_type_marry
                 )
             )
-            tv_act_profile_talk_id.text = talkId
-            tv_act_profile_area.text = area
-            tv_act_profile_name.text = name
-            tv_act_profile_age.text =
-                String.format(resources.getString(R.string.age_birth), age, birth)
-            tv_act_profile_car.text = car
+            tv_act_profile_marry.background =
+                ContextCompat.getDrawable(this, R.drawable.bg_border_round_marry)
+        } else {
+            tv_act_profile_marry.setTextColor(
+                ContextCompat.getColor(
+                    this,
+                    R.color.color_main_type_remarry
+                )
+            )
+            tv_act_profile_marry.background =
+                ContextCompat.getDrawable(this, R.drawable.bg_border_round_remarry)
+        }
 
-            tv_act_profile_introduce.text = introduce
-            tv_act_profile_introduce.text = introduce
-            tv_act_profile_family.text = family
+        val areaArray =
+            area?.split(" > ".toRegex())?.dropLastWhile { it.isEmpty() }?.toTypedArray()
+        val area01 = areaArray?.get(0)
+        otherArea = area01
+        val nowTime = System.currentTimeMillis()
+        val date = Date(nowTime)
+        val dateFormat = SimpleDateFormat(resources.getString(R.string.utility_date_year))
+        val getYear = dateFormat.format(date)
+        val getYearFormer = birth?.toInt()?.minus(1)?.let { getYear.toInt().minus(it) }
+        otherAge = String.format(resources.getString(R.string.age), getYearFormer?.toString())
 
-            mAdapter.dataImg.clear()
-            mAdapter.dataThumb.clear()
+        ctb_act_profile_toolbar.setTitle(
+            String.format(
+                resources.getString(R.string.profile_title_talk),
+                talkId
+            )
+        )
+        tv_act_profile_talk_id.text = talkId
+        tv_act_profile_area.text = area
+        tv_act_profile_name.text = name
+        tv_act_profile_age.text =
+            String.format(resources.getString(R.string.age_birth), age, birth)
+        tv_act_profile_car.text = car
 
-            data?.mbImg?.let {
-                for (i in 0..it.size.minus(1)) {
-                    mAdapter.dataImg.add(it[i])
-                }
-                Glide.with(applicationContext).load(it[0]).into(iv_act_profile_member_info)
+        tv_act_profile_introduce.text = introduce
+        tv_act_profile_introduce.text = introduce
+        tv_act_profile_family.text = family
+
+        mAdapter.dataImg.clear()
+        mAdapter.dataThumb.clear()
+
+        data?.mbImg?.let {
+            for (i in 0..it.size.minus(1)) {
+                mAdapter.dataImg.add(it[i])
             }
+            Glide.with(applicationContext).load(it[0]).into(iv_act_profile_member_info)
+        }
 
-            tv_act_profile_member_pic_size.text = mbImgCnt
+        tv_act_profile_member_pic_size.text = mbImgCnt
 
-            data?.mbImgThumb?.let {
-                for (i in 0..it.size.minus(1)) {
-                    mAdapter.dataThumb.add(it[i])
-                }
+        data?.mbImgThumb?.let {
+            for (i in 0..it.size.minus(1)) {
+                mAdapter.dataThumb.add(it[i])
             }
-            mAdapter.notifyDataSetChanged()
-            mPresenter.getTalkCheck(this.id, otherId)
+        }
+        mAdapter.notifyDataSetChanged()
+        mPresenter.getTalkCheck(this.id, otherId)
 
+        if (itemUse == "1") {
+            mPresenter.setItemUse(this, id, AppKeyValue.instance.itemIdProfile, mbNo, otherId)
         }
     }
 
@@ -864,7 +863,7 @@ class ProfileActivity : BaseActivity(), ProfileContract.View {
                             override fun onConfirm(v: View) {
                                 if (type == AppKeyValue.instance.itemIdGood) {
                                     val intent =
-                                        Intent(this@ProfileActivity, GoodActivity::class.java)
+                                        Intent(this@ProfileActivity, InterestActivity::class.java)
                                     intent.putExtra(AppKeyValue.instance.goodOtherId, otherId)
                                     intent.putExtra(
                                         AppKeyValue.instance.goodOtherProfileImage,
@@ -873,7 +872,6 @@ class ProfileActivity : BaseActivity(), ProfileContract.View {
                                     intent.putExtra(AppKeyValue.instance.goodOtherTalkId, talkId)
                                     intent.putExtra(AppKeyValue.instance.goodOtherType, otherType)
                                     startActivity(intent)
-
                                 } else {
                                     ll_act_profile_progress.visibility = View.VISIBLE
                                     mPresenter.setItemUse(v.context, id, itemId, mbNo, otherId)

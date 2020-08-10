@@ -3,7 +3,6 @@ package com.dmonster.darling.honey.main.view
 import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
 import android.text.TextUtils
 import android.util.Log
 import androidx.databinding.DataBindingUtil
@@ -14,7 +13,6 @@ import com.dmonster.darling.honey.databinding.ActivityMainBinding
 import com.dmonster.darling.honey.dialog.LoveDialog
 import com.dmonster.darling.honey.newMember.view.NewMemberFragment
 import com.dmonster.darling.honey.information.view.MyInfoActivity
-import com.dmonster.darling.honey.point.view.ItemMainFragment
 import com.dmonster.darling.honey.login.data.LoginData
 import com.dmonster.darling.honey.login.view.LoginEmailActivity
 import com.dmonster.darling.honey.main.data.NoticePopupData
@@ -187,25 +185,6 @@ class MainActivity : BaseActivity(){
             }
         }.addTo(disposeBag)
 
-        EventBus.subjectCoinCharge.subscribe {
-            if (it == AppKeyValue.instance.eventBusCoinCharge) {
-                if (newFragment !is ItemMainFragment) {
-                    Handler().postDelayed({
-                        arrMenusPress = 2
-                        setPress(arrMenusPress)
-
-                        val bundle = Bundle()
-                        bundle.putString(
-                            AppKeyValue.instance.itemBundleCoin,
-                            AppKeyValue.instance.itemBundleCoin
-                        )
-                        fragmentBundleReplace(fragMarket, bundle)
-                        binding.naviVM?.selectView(fragMarket)
-
-                    }, 100)
-                }
-            }
-        }.addTo(disposeBag)
 
         EventBus.subjectIdealType.subscribe {
             if (it == AppKeyValue.instance.eventBusIdealType) {

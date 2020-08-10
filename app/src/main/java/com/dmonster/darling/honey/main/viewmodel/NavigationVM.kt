@@ -10,7 +10,6 @@ import com.dmonster.darling.honey.dialog.DormantClearDialog
 import com.dmonster.darling.honey.magazine.view.MagazineFragment
 import com.dmonster.darling.honey.point.view.PointFragment
 import com.dmonster.darling.honey.newMember.view.NewMemberFragment
-import com.dmonster.darling.honey.point.view.ItemMainFragment
 import com.dmonster.darling.honey.main.data.NaviData
 import com.dmonster.darling.honey.main.model.MainModel
 import com.dmonster.darling.honey.main.view.MainFragment
@@ -143,11 +142,9 @@ class NavigationVM(var fragmentManager: FragmentManager, var mb_id: String, life
         when {
             dormantState -> setDormantDialog()
             profileState -> {
-                if (newFragment !is ItemMainFragment) {
                     fragmentReplace(fragMe)
                     fragmentNumber.value = fragMe
 
-                }
             }
             else -> setProfileDialog(view.context)
         }

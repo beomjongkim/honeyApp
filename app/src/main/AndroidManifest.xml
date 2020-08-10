@@ -124,10 +124,7 @@
         <activity
             android:name=".profile.view.ImageDetailActivity"
             android:screenOrientation="portrait" />
-        <activity
-            android:name=".profile.view.GoodActivity"
-            android:screenOrientation="portrait"
-            android:windowSoftInputMode="adjustResize|stateHidden" />
+
         <activity
             android:name=".profile.view.InterestActivity"
             android:screenOrientation="portrait"
