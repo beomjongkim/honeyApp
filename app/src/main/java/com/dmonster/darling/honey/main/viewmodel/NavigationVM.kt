@@ -35,7 +35,7 @@ class NavigationVM(var fragmentManager: FragmentManager, var mb_id: String, life
         it.value = fragMain
     }
 
-    private var newFragment: androidx.fragment.app.Fragment? = null
+    var newFragment: androidx.fragment.app.Fragment? = null
 
     private var dormantState: Boolean = false
     private var profileState: Boolean = true

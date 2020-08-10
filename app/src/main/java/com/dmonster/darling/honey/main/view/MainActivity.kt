@@ -390,7 +390,7 @@ class MainActivity : BaseActivity(){
 //                setPress(arrMenusPress)
 //            }
 
-            newFragment !is MainFragment -> {
+            binding.naviVM?.newFragment !is MainFragment -> {
                 arrMenusPress = 3
                 setPress(arrMenusPress)
                 binding.naviVM?.fragmentReplace(fragMain)
