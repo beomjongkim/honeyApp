@@ -167,7 +167,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             getSystemService(Activity.NOTIFICATION_SERVICE) as NotificationManager
         val isAppToRun = isAppTopRun(this, MainActivity::class.java.name.toString())
 
-        intent = Intent(this, MainActivity::class.java)
+        intent = Intent(this, IntroActivity::class.java)
         intent.putExtra(AppKeyValue.instance.pushNotificationType, notificationType)
         intent.putExtra(AppKeyValue.instance.pushRoomNo, roomNo)
         intent.putExtra(AppKeyValue.instance.pushMbNo, mbNo)

@@ -1,5 +1,6 @@
 package com.dmonster.darling.honey.databinding
 
+import android.annotation.SuppressLint
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.text.TextWatcher
@@ -22,6 +23,7 @@ import com.dmonster.darling.honey.common.viewmodel.BaseEditRegexVM
 import com.dmonster.darling.honey.common.viewmodel.SpinnerVM
 import com.dmonster.darling.honey.custom_recyclerview.view.CustomAdapter
 import com.dmonster.darling.honey.customview.ClickableImageView
+import com.dmonster.darling.honey.js.JSHandler
 import com.dmonster.darling.honey.main.data.MainListData
 import com.dmonster.darling.honey.main.view.adapter.MainAdapter
 import com.dmonster.darling.honey.util.Utility
@@ -354,10 +356,12 @@ object BindingAdapter {
 
     }
 
+    @SuppressLint("JavascriptInterface", "AddJavascriptInterface")
     @androidx.databinding.BindingAdapter("webViewUrl")
     @JvmStatic
     fun initWebView(mWebView: WebView, url : String){
         mWebView.webViewClient = WebViewClient() // 클릭시 새창 안뜨게
+
 
         val mWebSettings = mWebView.settings //세부 세팅 등록
 
@@ -366,6 +370,7 @@ object BindingAdapter {
         mWebSettings.setSupportMultipleWindows(false) // 새창 띄우기 허용 여부
 
         mWebSettings.javaScriptCanOpenWindowsAutomatically = false // 자바스크립트 새창 띄우기(멀티뷰) 허용 여부
+
 
         mWebSettings.loadWithOverviewMode = true // 메타태그 허용 여부
 
@@ -380,6 +385,8 @@ object BindingAdapter {
         mWebSettings.cacheMode = WebSettings.LOAD_NO_CACHE // 브라우저 캐시 허용 여부
 
         mWebSettings.domStorageEnabled = true // 로컬저장소 허용 여부
+
+        mWebView.addJavascriptInterface(JSHandler(mWebView.context), "Bridge")
 
         mWebView.loadUrl(url) // 웹뷰에 표시할 웹사이트 주소, 웹뷰 시작
     }

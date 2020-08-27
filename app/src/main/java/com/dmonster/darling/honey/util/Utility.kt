@@ -58,6 +58,7 @@ class Utility private constructor() {
         val instance = Utility()
     }
 
+    private var userId : String? = null
     private var userMb: String? = null    // 회원번호
     private var userNick: String? = null // 회원닉네임
     private var userGender: String? = null    // 성별
@@ -66,6 +67,12 @@ class Utility private constructor() {
     private var userRecommend: String? = null    // 추천인 회원번호
 
     inner class UserData {
+        fun setUserId(userId : String?){
+            this@Utility.userId = userId
+        }
+        fun getUserId() : String?{
+            return userId
+        }
         fun setUserMb(userMb: String?) {
             this@Utility.userMb = userMb
         }
