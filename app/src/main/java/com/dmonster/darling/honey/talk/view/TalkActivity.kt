@@ -28,6 +28,7 @@ import com.dmonster.darling.honey.databinding.ActivityTalkBinding
 import com.dmonster.darling.honey.dialog.ItemTalkDialog
 import com.dmonster.darling.honey.main.view.MainActivity
 import com.dmonster.darling.honey.point.model.ItemModel
+import com.dmonster.darling.honey.profile.view.InterestActivity
 import com.dmonster.darling.honey.profile.view.ProfileActivity
 import com.dmonster.darling.honey.servicecenter.view.ServiceCenterActivity
 import com.dmonster.darling.honey.talk.data.TalkData
@@ -398,22 +399,40 @@ class TalkActivity : BaseActivity(), TalkContract.View {
             })
 
         /*    더보기 선물하기    */
-        disposeBag.add(RxView.clicks(ll_act_talk_more_gift)
+        disposeBag.add(RxView.clicks(ll_act_talk_more_interest)
                 .throttleFirst(1, TimeUnit.SECONDS)
                 .subscribe {
-                    //임시로 마켓 못가도록 막는 코드.
-                    Utility.instance.showAlert(
-                        this,
-                        R.string.app_name,
-                        R.string.msg_popup_notWorkingYet,
-                        DialogInterface.OnClickListener { dialog, which ->
+                    val context = this
+                    val pref = context?.getSharedPreferences("Pref", Context.MODE_PRIVATE)
+                    if (pref != null) {
+                        if (pref.getBoolean(AppKeyValue.instance.hasFreePass, false)) {
+                            val intent = Intent(context, InterestActivity::class.java)
 
-                        })
+                            Utility.instance.showTwoButtonAlert(
+                                context,
+                                context.getString(R.string.interest_title),
+                                otherTalkId + context.getString(R.string.interest_talk_id),
+                                object : CustomDialogInterface {
+                                    override fun onConfirm(v: View) {
 
-                    //기존 코드
-//                    val intent = Intent(this, MarketActivity::class.java)
-//                    intent.putExtra(AppKeyValue.instance.marketOtherId, otherId)
-//                    startActivity(intent)
+                                        intent.putExtra(AppKeyValue.instance.goodOtherId, otherId)
+                                        intent.putExtra(
+                                            AppKeyValue.instance.goodOtherProfileImage,
+                                            imageUri
+                                        )
+                                        intent.putExtra(
+                                            AppKeyValue.instance.goodOtherTalkId,
+                                            otherTalkId
+                                        )
+                                        startActivity(intent)
+                                    }
+
+                                    override fun onCancel(v: View) {
+                                    }
+
+                                })
+                        }
+                    }
                 })
 
         /*    보내기    */

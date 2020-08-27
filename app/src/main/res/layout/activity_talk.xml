@@ -384,25 +384,31 @@
 
                 <!-- 선물하기 -->
                 <LinearLayout
-                    android:id="@+id/ll_act_talk_more_gift"
+                    android:id="@+id/ll_act_talk_more_interest"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:orientation="vertical"
                     android:paddingLeft="15dp"
-                    android:paddingRight="15dp">
-
-                    <ImageView
-                        android:layout_width="@dimen/talk_more_img_size"
-                        android:layout_height="@dimen/talk_more_img_size"
-                        android:src="@drawable/ic_talk_gift" />
-
+                    android:paddingRight="15dp"
+                    >
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bg_circle_cornflower"
+                        android:padding="15dip"
+                        >
+                        <ImageView
+                            android:layout_width="35dip"
+                            android:layout_height="35dip"
+                            android:src="@drawable/ic_heart" />
+                    </LinearLayout>
                     <TextView
                         style="@style/baseTextViewStyle"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:alpha="0.65"
-                        android:text="@string/talk_gift"
+                        android:text="@string/profile_interest"
                         android:textColor="@color/color_main"
                         android:textSize="@dimen/text_normal" />
                 </LinearLayout>
