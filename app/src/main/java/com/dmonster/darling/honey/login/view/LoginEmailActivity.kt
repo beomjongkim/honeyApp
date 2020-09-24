@@ -369,6 +369,7 @@ class LoginEmailActivity : BaseActivity(), LoginContract.View {
     ) {
         loginId?.let { Utility.instance.savePref(this, AppKeyValue.instance.savePrefID, it) }
         Utility.instance.UserData().apply {
+            setUserId(loginId)
             setUserMb(mbNo)
             setUserRecommend(recommend)
             setUserGender(gender)

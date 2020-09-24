@@ -19,7 +19,7 @@ import com.google.android.gms.base.R
 import io.reactivex.observers.DisposableObserver
 import java.util.*
 
-class BannerVM(var mb_id: String, var lifecycle: Lifecycle, var context: Context) : ViewModel(), LifecycleObserver {
+class BannerVM(var mb_id: String?, var lifecycle: Lifecycle, var context: Context) : ViewModel(), LifecycleObserver {
     var adRequest: AdRequest = AdRequest.Builder().build()
     var selfBannerId = -1
     var adListener = object : AdListener() {

@@ -51,5 +51,9 @@ class JSHandler(var context: Context) {
         mModel.requestIntroLogin(id, password, instanceId, type, subscriber)
         subscription.add(subscriber)
     }
+    @JavascriptInterface
+    fun logout(){
+        Utility.instance.setLogout(context)
+    }
 
 }

@@ -29,6 +29,7 @@ import com.dmonster.darling.honey.join.viewmodel.PhoneCertVM
 import com.dmonster.darling.honey.main.view.MainActivity
 import com.dmonster.darling.honey.util.AppKeyValue
 import com.dmonster.darling.honey.util.Utility
+import com.dmonster.darling.honey.webview.view.WebViewActivity
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.iid.FirebaseInstanceId
 import com.jakewharton.rxbinding2.view.RxView
@@ -592,7 +593,7 @@ class JoinActivity : BaseActivity(), JoinContract.View {
                         }
                     )
                 } else {
-                    val intent = Intent(this, MainActivity::class.java)
+                    val intent = Intent(this, WebViewActivity::class.java)
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                     startActivity(intent)

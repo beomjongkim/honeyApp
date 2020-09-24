@@ -15,18 +15,18 @@ class WebViewmodel(var url : String) : ViewModel() {
 
     }
 
-    private fun login(url: String){
+    private fun login(mUrl: String){
         Utility.instance.UserData().getUserId()?.let {
             if (it.isNotBlank()) {
-                cookieManager.setCookie(url, "cookie_logged_in=true")
-                cookieManager.setCookie(url, "cookie_logged_in_id=${Utility.instance.UserData().getUserId()}")
-                cookieManager.setCookie(url, "cookie_logged_in_nick=${Utility.instance.UserData().getUserNick()}")
-                cookieManager.setCookie(url, "cookie_logged_in_gender=${Utility.instance.UserData().getUserGender()}")
+                cookieManager.setCookie(mUrl, "cookie_logged_in=true")
+                cookieManager.setCookie(mUrl, "cookie_logged_in_id=${Utility.instance.UserData().getUserId()}")
+                cookieManager.setCookie(mUrl, "cookie_logged_in_nick=${Utility.instance.UserData().getUserNick()}")
+                cookieManager.setCookie(mUrl, "cookie_logged_in_gender=${Utility.instance.UserData().getUserGender()}")
                
             }
         }
     }
-    private fun setMainColor(url: String){
-        cookieManager.setCookie(url, "azures-color-scheme=red2}")
+    private fun setMainColor(mUrl: String){
+        cookieManager.setCookie(mUrl, "azures-color-scheme=red2")
     }
 }

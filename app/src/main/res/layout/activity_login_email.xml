@@ -80,7 +80,7 @@
                         android:background="@drawable/join_btn">
 
                         <TextView
-                                style="@style/baseTextViewStyle"
+                            style="@style/baseTextViewStyle"
                             android:id="@+id/tv_act_login_email"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"

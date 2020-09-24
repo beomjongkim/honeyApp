@@ -20,22 +20,19 @@ class WebViewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_web_view)
+        var id = Utility.instance.UserData().getUserId()
         activityWebViewBinding = DataBindingUtil.setContentView(this, R.layout.activity_web_view)
         activityWebViewBinding.webViewModel = WebViewmodel("https://jjagiya.co.kr/home.html")
-
+        activityWebViewBinding.bannerVM = BannerVM(id, lifecycle, this)
         webView = activityWebViewBinding.wvWebview
-
-
-        Utility.instance.UserData().getUserId()?.let {
-            if(it.isNotBlank()){
-              activityWebViewBinding.bannerVM = BannerVM(it, lifecycle, this)
-            }else{
-                val intent = Intent(this, LoginEmailActivity::class.java)
-                startActivity(intent)
-                finish()
-            }
-        }
         activityWebViewBinding.lifecycleOwner = this
+
+        if(id.isNullOrEmpty()){
+            val intent = Intent(this, LoginEmailActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+
     }
 
     override fun onBackPressed() {
