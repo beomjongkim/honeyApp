@@ -45,7 +45,8 @@ class IntroLoginPresenter: IntroLoginContract.Presenter {
                 item.let { it ->
                     if(it.isSuccess) {
                         it.item?.let {
-                            mView.setLoginComplete(it.mbNo,it.mbNick, it.mbSn, it.mbSex, it.mbSleep, it.mbProfileState)
+
+                            mView.setLoginComplete(it.mbId,it.mbNo,it.mbNick, it.mbSn, it.mbSex, it.mbSleep, it.mbProfileState)
                         }
                     }
                     else {

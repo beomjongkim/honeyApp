@@ -360,12 +360,13 @@ object BindingAdapter {
     @androidx.databinding.BindingAdapter("webViewUrl")
     @JvmStatic
     fun initWebView(mWebView: WebView, url : String){
-        mWebView.webViewClient = WebViewClient() // 클릭시 새창 안뜨게
 
+        mWebView.webViewClient = WebViewClient() // 클릭시 새창 안뜨게
 
         val mWebSettings = mWebView.settings //세부 세팅 등록
 
         mWebSettings.javaScriptEnabled = true // 웹페이지 자바스클비트 허용 여부
+        mWebSettings.domStorageEnabled = true
 
         mWebSettings.setSupportMultipleWindows(false) // 새창 띄우기 허용 여부
 

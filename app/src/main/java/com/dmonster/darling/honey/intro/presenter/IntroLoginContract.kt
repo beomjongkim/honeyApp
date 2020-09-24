@@ -8,7 +8,7 @@ interface IntroLoginContract {
 
     interface View: BaseView {
 
-        fun setLoginComplete(mbNo: String?, mbNick : String?, recommend: String?, gender: String?, dormantState: String?, profileState: String?)    // 로그인
+        fun setLoginComplete(mbId : String?, mbNo: String?, mbNick : String?, recommend: String?, gender: String?, dormantState: String?, profileState: String?)    // 로그인
 
         fun setLoginFailed(error: String?)    // 로그인 호출실패
     }

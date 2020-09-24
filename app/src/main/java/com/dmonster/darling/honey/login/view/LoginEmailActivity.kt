@@ -16,6 +16,7 @@ import com.dmonster.darling.honey.login.presenter.LoginContract
 import com.dmonster.darling.honey.login.presenter.LoginPresenter
 import com.dmonster.darling.honey.util.AppKeyValue
 import com.dmonster.darling.honey.util.Utility
+import com.dmonster.darling.honey.webview.view.WebViewActivity
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
@@ -199,7 +200,7 @@ class LoginEmailActivity : BaseActivity(), LoginContract.View {
 
         ll_act_login_progress.visibility = View.GONE
 
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, WebViewActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         startActivity(intent)
         finish()
@@ -386,7 +387,7 @@ class LoginEmailActivity : BaseActivity(), LoginContract.View {
 
         ll_act_login_progress.visibility = View.GONE
 
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, WebViewActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
         intent.putExtra(AppKeyValue.instance.findPW, intentPW)
         startActivity(intent)

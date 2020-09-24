@@ -21,6 +21,7 @@ import com.dmonster.darling.honey.util.AppKeyValue
 import com.dmonster.darling.honey.util.common.EventBus
 import com.dmonster.darling.honey.util.Utility
 import com.dmonster.darling.honey.util.retrofit.ResultItem
+import com.dmonster.darling.honey.webview.view.WebViewActivity
 
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
@@ -65,7 +66,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 val mbNo = it["mbNo"]
                 val otherTalkId = it["mbNick"]
 
-                val isAppTopRun = isAppTopRun(this, MainActivity::class.java.name.toString())
+                val isAppTopRun = isAppTopRun(this, WebViewActivity::class.java.name.toString())
                 val isActivityTop = isActivityTop(this, TalkActivity::class.java.name.toString())
 
 
@@ -165,7 +166,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
         val notificationManager =
             getSystemService(Activity.NOTIFICATION_SERVICE) as NotificationManager
-        val isAppToRun = isAppTopRun(this, MainActivity::class.java.name.toString())
+        val isAppToRun = isAppTopRun(this, WebViewActivity::class.java.name.toString())
 
         intent = Intent(this, IntroActivity::class.java)
         intent.putExtra(AppKeyValue.instance.pushNotificationType, notificationType)

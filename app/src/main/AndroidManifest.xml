@@ -28,6 +28,12 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning,Instantiatable">
+
+        <activity android:name=".webview.view.WebViewActivity"
+            android:screenOrientation="portrait">
+
+        </activity>
+
         <activity android:name=".ads.view.FullScreenActivity">
             <intent-filter>
                 <action android:name="android.intent.action.FACTORY_TEST" />
@@ -42,10 +48,11 @@
         <activity
             android:name=".intro.view.SlideActivity"
             android:screenOrientation="portrait">
-<!--            <intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>-->
+            </intent-filter>
         </activity>
         <activity
             android:name=".block_friends.view.BlockFriendsActivity"
@@ -73,8 +80,6 @@
             android:name=".intro.view.IntroActivity"
             android:screenOrientation="portrait">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 

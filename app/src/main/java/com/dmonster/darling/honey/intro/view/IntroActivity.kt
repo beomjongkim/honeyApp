@@ -11,20 +11,17 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.os.Handler
-import android.util.Base64
+import androidx.core.app.ActivityCompat
+import android.text.TextUtils
 import android.util.Log
 import android.view.KeyEvent
-import android.webkit.WebView
-import androidx.core.app.ActivityCompat
-import androidx.databinding.DataBindingUtil
+import android.widget.ImageView
 import com.dmonster.darling.honey.R
 import com.dmonster.darling.honey.base.BaseActivity
-import com.dmonster.darling.honey.databinding.ActivityTestBinding
 import com.dmonster.darling.honey.intro.presenter.IntroLoginContract
 import com.dmonster.darling.honey.intro.presenter.IntroLoginPresenter
 import com.dmonster.darling.honey.login.view.LoginEmailActivity
 import com.dmonster.darling.honey.main.view.MainActivity
-import com.dmonster.darling.honey.test.viewmodel.TestViewmodel
 import com.dmonster.darling.honey.util.AppKeyValue
 import com.dmonster.darling.honey.util.Utility
 import com.dmonster.darling.honey.util.VersionChecker
@@ -32,15 +29,16 @@ import com.google.android.gms.common.GoogleApiAvailability
 import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.iid.FirebaseInstanceId
+import android.util.Base64
+import com.dmonster.darling.honey.webview.view.WebViewActivity
 import java.security.MessageDigest
 import java.security.NoSuchAlgorithmException
 
 
 class IntroActivity : BaseActivity(), IntroLoginContract.View {
-    lateinit var activityTestBinding : ActivityTestBinding
 
     private lateinit var firebaseAnalytics: FirebaseAnalytics
-    private lateinit var webView: WebView
+
     private  var mPresenter: IntroLoginContract.Presenter? = null
 
     private var handler: Handler? = null
@@ -71,13 +69,13 @@ class IntroActivity : BaseActivity(), IntroLoginContract.View {
                 // Log
                 Log.d(TAG, "FCM_token : " + token)
 
-               /* if (!TextUtils.isEmpty(saveId) && !TextUtils.isEmpty(savePassword) || saveType == AppKeyValue.instance.keyTypeSocial) {
+                if (!TextUtils.isEmpty(saveId) && !TextUtils.isEmpty(savePassword) || saveType == AppKeyValue.instance.keyTypeSocial) {
                     mPresenter?.setLogin(saveId, savePassword, token, saveType)
                 } else {
                     val intent = Intent(this, LoginEmailActivity::class.java)
                     startActivity(intent)
                     finish()
-                }*/
+                }
             })
 
         /*}*/
@@ -91,11 +89,7 @@ class IntroActivity : BaseActivity(), IntroLoginContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         GoogleApiAvailability.getInstance().makeGooglePlayServicesAvailable(this)
-        //setContentView(R.layout.activity_intro)
-        activityTestBinding = DataBindingUtil.setContentView(this,R.layout.activity_test)
-        activityTestBinding.testViewModel = TestViewmodel()
-        webView = activityTestBinding.wvIntro
-
+        setContentView(R.layout.activity_intro)
         try {
             val info =
                 packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES)
@@ -124,7 +118,7 @@ class IntroActivity : BaseActivity(), IntroLoginContract.View {
 
         mPresenter = IntroLoginPresenter()
         mPresenter?.attachView(this)
-        /*val imageView: ImageView = this.findViewById(R.id.iv_intro)
+        val imageView: ImageView = this.findViewById(R.id.iv_intro)
         imageView.let {
 
             mPresenter?.setRandomImageView(
@@ -133,7 +127,7 @@ class IntroActivity : BaseActivity(), IntroLoginContract.View {
                     R.drawable.loding_page
                     )
             )
-        }*/
+        }
         initFCM()
     }
 
@@ -187,6 +181,7 @@ class IntroActivity : BaseActivity(), IntroLoginContract.View {
 
     /*    로그인    */
     override fun setLoginComplete(
+        mbId : String?,
         mbNo: String?,
         mbNick : String?,
         recommend: String?,
@@ -195,6 +190,7 @@ class IntroActivity : BaseActivity(), IntroLoginContract.View {
         profileState: String?
     ) {
         Utility.instance.UserData().apply {
+            setUserId(mbId)
             setUserMb(mbNo)
             setUserNick(mbNick)
             setUserRecommend(recommend)
@@ -203,7 +199,7 @@ class IntroActivity : BaseActivity(), IntroLoginContract.View {
             setUserProfile(profileState)
         }
 
-        intent = Intent(this, MainActivity::class.java)
+        intent = Intent(this, WebViewActivity::class.java)
         startActivity(intent)
         finish()
     }
@@ -320,14 +316,6 @@ class IntroActivity : BaseActivity(), IntroLoginContract.View {
                 val value = intent.extras!!.get(key)
                 Log.d("Fcm", "Key: $key Value: $value")
             }
-        }
-    }
-
-    override fun onBackPressed() {
-        if (webView.canGoBack()) {
-            webView.goBack()
-        } else {
-            super.onBackPressed()
         }
     }
 

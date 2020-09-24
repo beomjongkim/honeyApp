@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="webViewModel"
+            type="com.dmonster.darling.honey.webview.viewmodel.WebViewmodel" />
+        <variable
+            name="bannerVM"
+            type="com.dmonster.darling.honey.ads.viewmodel.BannerVM" />
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".test.view.TestActivity">
+
+
+        <WebView
+            android:id="@+id/wv_webview"
+            webViewUrl="@{webViewModel.url}"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toTopOf="@+id/wv_self_banner"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <ImageView
+            android:id="@+id/wv_self_banner"
+            setGlideGifId="@{bannerVM.selfBannerId}"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:onClick="@{(v)->bannerVM.onClickSelfBanner(v)}"
+            android:visibility="@{bannerVM.isSelfBannerShown? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@+id/bn_webview"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+
+        <com.google.android.gms.ads.AdView
+            android:id="@+id/bn_webview"
+            hasPass="@{bannerVM.hasPass}"
+            setAdListener="@{bannerVM.adListener}"
+            setAdRequest="@{bannerVM.adRequest}"
+            android:layout_width="0dp"
+            android:layout_height="50dp"
+            android:visibility="@{bannerVM.hasPass? View.GONE : View.VISIBLE}"
+            app:adSize="BANNER"
+            app:adUnitId="@string/banner_id"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
