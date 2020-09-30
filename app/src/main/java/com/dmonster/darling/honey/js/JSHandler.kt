@@ -7,6 +7,7 @@ import com.dmonster.darling.honey.intro.data.IntroLoginData
 import com.dmonster.darling.honey.intro.model.IntroLoginModel
 import com.dmonster.darling.honey.util.Utility
 import com.dmonster.darling.honey.util.retrofit.ResultItem
+import com.dmonster.darling.honey.webview.viewmodel.InappPurchaseViewModel
 import com.google.firebase.iid.FirebaseInstanceId
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
@@ -55,5 +56,11 @@ class JSHandler(var context: Context) {
     fun logout(){
         Utility.instance.setLogout(context)
     }
+    @JavascriptInterface
+    fun inAppPurchase(){
+
+        Utility.instance.setLogout(context)
+    }
+
 
 }
