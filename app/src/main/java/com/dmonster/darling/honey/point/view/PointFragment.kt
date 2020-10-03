@@ -49,7 +49,7 @@ class PointFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_point, container, false)
-
+        activity
         binding.pointViewModel = activity?.let { it ->
             PointViewModel(
                 Utility.instance.getPref(it, AppKeyValue.instance.savePrefID), lifecycle, it,

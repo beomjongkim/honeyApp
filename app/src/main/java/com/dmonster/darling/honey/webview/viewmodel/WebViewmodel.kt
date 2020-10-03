@@ -2,9 +2,10 @@ package com.dmonster.darling.honey.webview.viewmodel
 
 import android.webkit.CookieManager
 import androidx.lifecycle.ViewModel
+import com.dmonster.darling.honey.js.JSHandler
 import com.dmonster.darling.honey.util.Utility
 
-class WebViewmodel(var url : String) : ViewModel() {
+class WebViewmodel(var url : String, var jsHandler: JSHandler) : ViewModel() {
     var cookieManager: CookieManager
     init {
         cookieManager = CookieManager.getInstance()

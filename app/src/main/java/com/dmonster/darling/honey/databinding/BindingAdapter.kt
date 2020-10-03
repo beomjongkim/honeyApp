@@ -357,9 +357,9 @@ object BindingAdapter {
     }
 
     @SuppressLint("JavascriptInterface", "AddJavascriptInterface")
-    @androidx.databinding.BindingAdapter("webViewUrl")
+    @androidx.databinding.BindingAdapter("webViewUrl","jsHandler")
     @JvmStatic
-    fun initWebView(mWebView: WebView, url : String){
+    fun initWebView(mWebView: WebView, url : String, jsHandler: JSHandler){
 
         mWebView.webViewClient = WebViewClient() // 클릭시 새창 안뜨게
 
@@ -387,7 +387,7 @@ object BindingAdapter {
 
         mWebSettings.domStorageEnabled = true // 로컬저장소 허용 여부
 
-        mWebView.addJavascriptInterface(JSHandler(mWebView.context), "Bridge")
+        mWebView.addJavascriptInterface(jsHandler, "Bridge")
 
         mWebView.loadUrl(url) // 웹뷰에 표시할 웹사이트 주소, 웹뷰 시작
     }
