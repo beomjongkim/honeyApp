@@ -55,5 +55,10 @@ class JSHandler(var context: Context) {
     fun logout(){
         Utility.instance.setLogout(context)
     }
+    @JavascriptInterface
+    fun inAppPurchase(){
+
+    }
+
 
 }

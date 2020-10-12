@@ -128,7 +128,6 @@ class IntroActivity : BaseActivity(), IntroLoginContract.View {
                     )
             )
         }
-        initFCM()
     }
 
     /*    앱버전 확인    */
@@ -298,25 +297,5 @@ class IntroActivity : BaseActivity(), IntroLoginContract.View {
     }
 
 
-    private fun initFCM() {
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-            // Create channel to show notifications.
-
-            val notificationManager = getSystemService(NotificationManager::class.java)
-            notificationManager?.createNotificationChannel(
-                NotificationChannel(
-                    AppKeyValue.instance.notificationChannelId,
-                    AppKeyValue.instance.notificationChannelName,
-                    NotificationManager.IMPORTANCE_HIGH
-                )
-            )
-        }
-        if (intent.extras != null) {
-            for (key in intent.extras!!.keySet()) {
-                val value = intent.extras!!.get(key)
-                Log.d("Fcm", "Key: $key Value: $value")
-            }
-        }
-    }
 
 }

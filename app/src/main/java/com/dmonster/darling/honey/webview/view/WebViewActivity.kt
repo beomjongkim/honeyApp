@@ -10,6 +10,7 @@ import com.dmonster.darling.honey.R
 import com.dmonster.darling.honey.ads.viewmodel.BannerVM
 import com.dmonster.darling.honey.databinding.ActivityWebViewBinding
 import com.dmonster.darling.honey.login.view.LoginEmailActivity
+import com.dmonster.darling.honey.util.AppKeyValue
 import com.dmonster.darling.honey.util.Utility
 import com.dmonster.darling.honey.webview.viewmodel.WebViewmodel
 
@@ -32,7 +33,11 @@ class WebViewActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         }
+        init()
 
+    }
+    private fun init() {
+        val notificationType = intent.getStringExtra(AppKeyValue.instance.pushNotificationType)
     }
 
     override fun onBackPressed() {

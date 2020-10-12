@@ -551,20 +551,7 @@ class PointViewModel(
             R.drawable.ic_talk_vivid,
             object : CustomDialogInterface {
                 override fun onConfirm(v: View) {
-                    var skuDetail = skuDetailList[0]
-                    var name = ""
-                    when (inappType) {
-                        0 -> name = "point50"
-                        1 -> name = "point100"
-                        2 -> name = "point150"
-                        else -> name = "point50"
-                    }
-                    for (skuDetails in skuDetailList) {
-                        if (skuDetails.sku == name)
-                            skuDetail = skuDetails
-                    }
-//                    Utility.instance.showToast(v.context, skuDetail.sku)
-                    doBillingFlow(skuDetail)
+                    inAppPuchase()
                 }
 
                 override fun onCancel(v: View) {
@@ -575,6 +562,22 @@ class PointViewModel(
         popup.popupVM.negativeText.value = "무통장입금"
         popup.popupVM.positiveText.value = "인앱결제"
         popup.show()
+    }
+    private fun inAppPuchase(){
+        var skuDetail = skuDetailList[0]
+        var name = ""
+        when (inappType) {
+            0 -> name = "point50"
+            1 -> name = "point100"
+            2 -> name = "point150"
+            else -> name = "point50"
+        }
+        for (skuDetails in skuDetailList) {
+            if (skuDetails.sku == name)
+                skuDetail = skuDetails
+        }
+//                    Utility.instance.showToast(v.context, skuDetail.sku)
+        doBillingFlow(skuDetail)
     }
 
     override fun onPurchasesUpdated(result: BillingResult, purchases: MutableList<Purchase>?) {

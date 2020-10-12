@@ -783,6 +783,7 @@
                             android:layout_marginRight="@dimen/default_margin_15dp"
                             android:layout_toLeftOf="@+id/tv_act_join_personal_detail"
                             android:alpha="0.65"
+                            style="@style/baseTextViewStyle"
                             android:text="@string/join_personal"
                             android:textColor="@color/color_main"
                             android:textSize="@dimen/text_large"

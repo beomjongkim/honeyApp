@@ -14,13 +14,13 @@
     <style name="baseTextViewStyle" parent="android:Widget.TextView">
         <item name="android:textColor">@color/color_text_main</item>
         <item name="android:textColorHint">@color/color_hint</item>
-        <item name="android:fontFamily">@font/melona</item>
+        <item name="android:fontFamily">@font/spoqa_han_sans</item>
     </style>
 
     <style name="baseTextViewTitleStyle" parent="android:Widget.TextView">
         <item name="android:textColor">@color/color_text_main</item>
         <item name="android:textColorHint">@color/color_hint</item>
-        <item name="android:fontFamily">@font/tt_together</item>
+        <item name="android:fontFamily">@font/jalnan</item>
     </style>
 
     <style name="DialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
