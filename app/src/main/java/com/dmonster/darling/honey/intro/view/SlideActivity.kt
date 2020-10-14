@@ -14,14 +14,15 @@ import com.dmonster.darling.honey.R
 import com.dmonster.darling.honey.intro.data.SlideData
 import com.dmonster.darling.honey.util.AppKeyValue
 import com.dmonster.darling.honey.util.Utility
+import com.dmonster.darling.honey.webview.view.WebViewActivity
 
 class SlideActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_slide)
-        init()
         initFCM()
+        init()
     }
     fun init(){
         if(Utility.instance.getPref(this,"firstIntroduce")=="true"){
@@ -71,6 +72,11 @@ class SlideActivity : AppCompatActivity() {
             for (key in intent.extras!!.keySet()) {
                 val value = intent.extras!!.get(key)
                 Log.d("Fcm", "Key: $key Value: $value")
+                if(key == "link" ){
+                    val mIntent = Intent(this@SlideActivity,WebViewActivity::class.java)
+                    mIntent.putExtra("link", value.toString())
+                    startActivity(mIntent)
+                }
             }
         }
     }
