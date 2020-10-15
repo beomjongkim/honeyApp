@@ -2,10 +2,12 @@ package com.dmonster.darling.honey.js
 
 import android.app.Activity
 import android.content.Context
+import android.content.Intent
 import android.webkit.JavascriptInterface
 import androidx.activity.ComponentActivity
 import androidx.appcompat.app.AppCompatActivity
 import com.android.billingclient.api.BillingResult
+import com.dmonster.darling.honey.block_friends.view.BlockFriendsActivity
 import com.dmonster.darling.honey.intro.data.IntroLoginData
 import com.dmonster.darling.honey.intro.model.IntroLoginModel
 import com.dmonster.darling.honey.util.Utility
@@ -80,10 +82,9 @@ class JSHandler(var activity: AppCompatActivity) {
         }
     }
     @JavascriptInterface
-    fun inAppPurchase(){
-
+    fun goToBlockFriend(){
+        activity.startActivity(Intent(activity,BlockFriendsActivity::class.java))
     }
-
 
 
 }

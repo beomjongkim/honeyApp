@@ -68,47 +68,18 @@ class BlockFriendsActivity : AppCompatActivity() {
         }
         binding.blockfriVM =
             object : BlockFriendsVM(mb_id, intent.getBooleanExtra("fromJoinActivity", false)) {
-                override fun getFacebookFriendInfo(): Boolean {
-                    var result = false
-                    binding.contactVM?.let {
-                        result = it.getFacebookFriends(this@BlockFriendsActivity)
-                    }
-                    return result
-                }
+
 
                 override fun blockContact() {
                     binding.contactVM?.blockContacts(this@BlockFriendsActivity)
                 }
 
-                override fun blockFacebook() {
-                    binding.contactVM?.blockFacebook(this@BlockFriendsActivity)
-                }
+
 
                 override fun getContactInfo() {
                     binding.contactVM?.checkReadContactPermission()
                 }
             }
-
-        binding.twoBtnSwitchVM = TwoBtnSwitchVM("연락처", "페이스북", object : TwoBtnSwitch {
-            override fun firstBtnClicked() {
-                binding.blockfriVM?.getContactInfo()
-            }
-
-            override fun secondBtnClicked() {
-                val isFacebookLoggedIn = binding.blockfriVM?.getFacebookFriendInfo()
-
-                isFacebookLoggedIn?.let {
-                    if (!it) {
-                        binding.twoBtnSwitchVM?.isSwitched?.value = false
-                        Utility.instance.showToast(
-                            this@BlockFriendsActivity,
-                            getString(R.string.facebook_only)
-                        )
-                    }
-                }
-            }
-
-        })
 
     }
 
@@ -124,11 +95,6 @@ class BlockFriendsActivity : AppCompatActivity() {
         } else {
             Utility.instance.showToast(this, "")
         }
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
-        binding.blockfriVM?.onClickBackButton(binding.ivActBlkFriendsBack)
     }
 
 }

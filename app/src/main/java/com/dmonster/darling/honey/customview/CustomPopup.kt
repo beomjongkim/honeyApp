@@ -126,7 +126,7 @@ class CustomPopup : Dialog {
 
     fun init(){
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-        window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        this.window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         var layoutId=R.layout.layout_viewmodel_popup
         if(mCustomDialogInterface == null){
             layoutId =   R.layout.layout_viewmodel_notice

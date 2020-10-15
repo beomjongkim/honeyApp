@@ -19,9 +19,6 @@
             name="contactVM"
             type="com.dmonster.darling.honey.block_friends.viewmodel.ContactVM" />
 
-        <variable
-            name="twoBtnSwitchVM"
-            type="com.dmonster.darling.honey.common.viewmodel.TwoBtnSwitchVM" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -46,7 +43,6 @@
             android:layout_height="25dp"
             android:layout_marginLeft="16dp"
             android:rotation="180"
-            android:onClick="@{(v)->blockfriVM.onClickBackButton(v)}"
             android:scaleX="0.7"
             android:scaleY="0.7"
             android:tint="@color/color_white"
@@ -63,22 +59,12 @@
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
             android:backgroundTint="@color/colorPrimary"
-            android:onClick="@{(v)->blockfriVM.onClickButton(v,twoBtnSwitchVM)}"
+            android:onClick="@{(v)->blockfriVM.onClickButton(v)}"
             android:text="차단"
             android:textColor="@color/color_white"
             android:theme="@style/Widget.AppCompat.Button"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toBottomOf="@+id/rv_act_bf"
             app:layout_constraintEnd_toEndOf="parent" />
-
-        <include
-            android:id="@+id/tbs_act_blk_friends"
-            layout="@layout/layout_two_btn_switch"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/fl_act_blk_friends"
-            app:layout_constraintStart_toStartOf="parent"
-            app:twoBtnSwitchVM="@{twoBtnSwitchVM}" />
 
 
         <CheckBox
@@ -90,13 +76,11 @@
             android:layout_marginLeft="5dp"
             android:layout_marginTop="8dp"
             android:checked="true"
-            android:enabled="@{twoBtnSwitchVM.isSwitched()? false : true}"
             android:text="전체선택"
             android:textSize="@dimen/text_large"
             android:theme="@style/baseTextViewStyle"
-            android:visibility="@{twoBtnSwitchVM.isSwitched? View.GONE : View.VISIBLE }"
             app:layout_constraintStart_toStartOf="@+id/rv_act_bf"
-            app:layout_constraintTop_toBottomOf="@+id/tbs_act_blk_friends" />
+            app:layout_constraintTop_toBottomOf="@+id/fl_act_blk_friends" />
 
         <TextView
                                 style="@style/baseTextViewStyle"
@@ -122,8 +106,7 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
-            android:visibility="@{twoBtnSwitchVM.isSwitched? View.GONE : View.VISIBLE }"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/iv_act_block_friends_self_banner"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -132,20 +115,6 @@
 
         </androidx.recyclerview.widget.RecyclerView>
 
-        <TextView
-            android:id="@+id/textView"
-            style="@style/baseTextViewStyle"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="32dp"
-            android:layout_marginTop="32dp"
-            android:layout_marginRight="32dp"
-            android:text="@{contactVM.fbCountAnnounce}"
-            android:textSize="@dimen/text_xlarge"
-            android:visibility="@{twoBtnSwitchVM.isSwitched ? View.VISIBLE : View.GONE}"
-            app:layout_constraintLeft_toLeftOf="parent"
-            app:layout_constraintRight_toRightOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/rv_act_bf" />
 
         <ProgressBar
             android:id="@+id/pb_act_blk"

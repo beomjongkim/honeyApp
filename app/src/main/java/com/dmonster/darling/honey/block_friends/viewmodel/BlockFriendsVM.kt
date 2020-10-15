@@ -32,10 +32,7 @@ abstract class BlockFriendsVM(val id: String, val isInProcessJoin : Boolean = fa
 
     var customPopup: CustomPopup? = null
 
-    fun onClickButton(view: View, twoBtnSwitchVM: TwoBtnSwitchVM) {
-        if (twoBtnSwitchVM.isSwitched.value!!)
-            showBlockFacebookPopup(view.context)
-        else
+    fun onClickButton(view: View) {
             showBlockContactPopup(view.context)
     }
 
@@ -53,34 +50,12 @@ abstract class BlockFriendsVM(val id: String, val isInProcessJoin : Boolean = fa
 
     }
 
-    fun showBlockFacebookPopup(context: Context) {
-        Utility.instance.showTwoButtonAlert(context,
-            context.getString(R.string.noti_block_facebook),
-            context.resources.getString(R.string.noti_block_friends),
-            DialogInterface.OnClickListener { dialog, which ->
-                if (which == DialogInterface.BUTTON_POSITIVE) {
-                    blockFacebook()
-                }
-                dialog.dismiss()
-            }
-        )
-    }
 
-    fun onClickBackButton(view: View) {
-        val intent = Intent(view.context, MainActivity::class.java)
-        if(!isInProcessJoin){
-            intent.putExtra(AppKeyValue.instance.goToOption,true)
-        }
-        view.context.startActivity(intent)
-
-    }
 
     abstract fun getContactInfo()
 
-    abstract fun getFacebookFriendInfo(): Boolean
 
     abstract fun blockContact()
-    abstract fun blockFacebook()
 
     fun blockContactComplete(context: Context) {
         Utility.instance.showToast(context, context.getString(R.string.blocked_contact))
