@@ -59,6 +59,9 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".block_friends.view.BlockFriendsActivity"
@@ -264,9 +267,10 @@
 
         <service
             android:name=".fcm.MyFirebaseMessagingService"
-            android:exported="false">
+            android:stopWithTask="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
             </intent-filter>
         </service>
 

@@ -22,9 +22,14 @@ class WebViewActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_web_view)
-        var id = Utility.instance.UserData().getUserId()
+        val id = Utility.instance.UserData().getUserId()
         activityWebViewBinding = DataBindingUtil.setContentView(this, R.layout.activity_web_view)
-        activityWebViewBinding.webViewModel = WebViewmodel("https://jjagiya.co.kr/home.html",
+        val url_home =  "https://jjagiya.co.kr"
+        var url = url_home+"/home.html"
+        if(intent.hasExtra("link")){
+            url = url_home+intent.getStringExtra("link")
+        }
+        activityWebViewBinding.webViewModel = WebViewmodel(url,
             JSHandler(this)
         )
         activityWebViewBinding.bannerVM = BannerVM(id, lifecycle, this)
