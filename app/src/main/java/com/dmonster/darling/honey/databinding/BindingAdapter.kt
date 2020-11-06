@@ -7,7 +7,7 @@ import android.text.TextWatcher
 import android.view.View
 import android.webkit.WebSettings
 import android.webkit.WebView
-import android.webkit.WebViewClient
+
 import android.widget.*
 import android.widget.AdapterView.OnItemSelectedListener
 import androidx.core.content.ContextCompat
@@ -28,6 +28,7 @@ import com.dmonster.darling.honey.main.data.MainListData
 import com.dmonster.darling.honey.main.view.adapter.MainAdapter
 import com.dmonster.darling.honey.util.Utility
 import com.dmonster.darling.honey.util.retrofit.ResultListItem
+import com.dmonster.darling.honey.webview.view.CustomWebviewClient
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
@@ -361,7 +362,8 @@ object BindingAdapter {
     @JvmStatic
     fun initWebView(mWebView: WebView, url : String, jsHandler: JSHandler){
 
-        mWebView.webViewClient = WebViewClient() // 클릭시 새창 안뜨게
+        mWebView.webViewClient = CustomWebviewClient() // 클릭시 새창 안뜨게
+
 
         val mWebSettings = mWebView.settings //세부 세팅 등록
 
@@ -385,7 +387,6 @@ object BindingAdapter {
 
         mWebSettings.cacheMode = WebSettings.LOAD_NO_CACHE // 브라우저 캐시 허용 여부
 
-        mWebSettings.domStorageEnabled = true // 로컬저장소 허용 여부
 
         mWebView.addJavascriptInterface(jsHandler, "Bridge")
 

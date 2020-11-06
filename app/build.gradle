@@ -10,8 +10,8 @@ android {
         applicationId "com.dmonster.darling.honey"
         minSdkVersion 16
         targetSdkVersion 28
-        versionCode 64
-        versionName "1.2.38"
+        versionCode 67
+        versionName "1.2.41"
         setProperty("archivesBaseName", applicationId + "-v" + versionCode + "(" + versionName + ")")
         multiDexEnabled true
         renderscriptTargetApi 19
