@@ -20,7 +20,6 @@ import com.dmonster.darling.honey.R
 import com.dmonster.darling.honey.base.BaseActivity
 import com.dmonster.darling.honey.intro.presenter.IntroLoginContract
 import com.dmonster.darling.honey.intro.presenter.IntroLoginPresenter
-import com.dmonster.darling.honey.login.view.LoginEmailActivity
 import com.dmonster.darling.honey.main.view.MainActivity
 import com.dmonster.darling.honey.util.AppKeyValue
 import com.dmonster.darling.honey.util.Utility
@@ -72,7 +71,7 @@ class IntroActivity : BaseActivity(), IntroLoginContract.View {
                 if (!TextUtils.isEmpty(saveId) && !TextUtils.isEmpty(savePassword) || saveType == AppKeyValue.instance.keyTypeSocial) {
                     mPresenter?.setLogin(saveId, savePassword, token, saveType)
                 } else {
-                    val intent = Intent(this, LoginEmailActivity::class.java)
+                    val intent = Intent(this, WebViewActivity::class.java)
                     startActivity(intent)
                     finish()
                 }
@@ -205,7 +204,7 @@ class IntroActivity : BaseActivity(), IntroLoginContract.View {
 
     /*    로그인 호출실패    */
     override fun setLoginFailed(error: String?) {
-        intent = Intent(this, LoginEmailActivity::class.java)
+        intent = Intent(this, WebViewActivity::class.java)
         startActivity(intent)
         finish()
     }

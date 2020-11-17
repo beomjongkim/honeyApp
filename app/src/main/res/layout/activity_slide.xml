@@ -5,15 +5,103 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".intro.view.SlideActivity">
+
+    <TextView
+        android:id="@+id/tv_item_slide_title"
+        style="@style/baseTextViewTitleStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="자기야"
+        android:textSize="@dimen/text_much_large"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/vp_slide" />
+
+    <TextView
+        android:id="@+id/tv_item_slide_description"
+        style="@style/baseTextViewStyle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="커플 매칭의 모든 것 결혼어플 자기야! 자기야의 다양한 서비스를 통해 마음에 드는 이성을 찾고, 나의 매력을 어필하여 인연을 맺어보세요."
+        android:textColor="@color/color_main"
+
+        android:textSize="@dimen/text_normal"
+        app:layout_constraintEnd_toStartOf="@+id/gl_slide_end"
+        app:layout_constraintStart_toStartOf="@+id/gl_slide_start"
+        app:layout_constraintTop_toBottomOf="@+id/tv_intro_slide_subtitle2" />
+
+    <TextView
+        android:id="@+id/tv_intro_slide_subtitle1"
+        style="@style/baseTextViewTitleStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
+        android:text="가장"
+        app:layout_constraintEnd_toStartOf="@+id/tv_intro_slide_subtitle2"
+        app:layout_constraintTop_toBottomOf="@+id/tv_item_slide_title" />
+
+    <TextView
+        android:id="@+id/tv_intro_slide_subtitle2"
+        style="@style/baseTextViewTitleStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="달콤한"
+        android:textColor="@color/accent"
+        app:layout_constraintEnd_toEndOf="@+id/tv_item_slide_title"
+        app:layout_constraintStart_toStartOf="@+id/tv_item_slide_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_item_slide_title" />
+
+    <TextView
+        android:id="@+id/tv_intro_slide_subtitle3"
+        style="@style/baseTextViewTitleStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
+        android:text="중매앱"
+        app:layout_constraintStart_toEndOf="@+id/tv_intro_slide_subtitle2"
+        app:layout_constraintTop_toBottomOf="@+id/tv_item_slide_title" />
+
+    <Button
+        android:id="@+id/btn_intro_slide_before"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/bg_btn_sub"
+        android:text="이전"
+        android:visibility="gone"
+        android:textColor="@color/golden_yellow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btn_intro_slide_next"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="@+id/gl_slide_start"
+        app:layout_constraintWidth_percent="0.35" />
+
+    <Button
+        android:id="@+id/btn_intro_slide_next"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="32dp"
+        android:background="@drawable/bg_btn_accent"
+        android:text="다음"
+        android:textColor="@color/color_white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/gl_slide_end"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_intro_slide_before"
+        app:layout_constraintWidth_percent="0.35" />
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/vp_slide"
         android:layout_width="@dimen/default_margin_0dp"
         android:layout_height="@dimen/default_margin_0dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@+id/gl_slide_mid"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        >
+        app:layout_constraintTop_toTopOf="parent">
 
     </androidx.viewpager.widget.ViewPager>
 
@@ -27,9 +115,9 @@
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:text="건너뛰기"
-        android:textStyle="bold"
         android:textColor="@color/color_black"
         android:textSize="@dimen/text_xxlarge"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -57,7 +145,37 @@
         app:layout_constraintStart_toEndOf="@+id/iv_intro_slide_logo"
         app:layout_constraintTop_toTopOf="@+id/tv_slide_skip" />
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_slide_mid"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.6" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_slide_start"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.065" />
 
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/gl_slide_end"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.935" />
+
+    <ImageView
+        android:id="@+id/iv_slide_scroll"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:src="@drawable/scroll1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/tv_slide_skip"
+        app:layout_constraintStart_toEndOf="@+id/tv_slide_title"
+        app:layout_constraintTop_toBottomOf="@+id/tv_item_slide_title" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

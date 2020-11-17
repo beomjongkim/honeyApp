@@ -75,8 +75,6 @@ class LoginEmailActivity : BaseActivity(), LoginContract.View {
     private var isFacebookLoginMode = false
 
     //구글 로그인
-
-
     lateinit var auth :FirebaseAuth
     lateinit var authListener : FirebaseAuth.AuthStateListener
     lateinit var googleSigneInClient : GoogleSignInClient
