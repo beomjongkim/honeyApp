@@ -16,14 +16,13 @@ class WebViewmodel(var url : String, var jsHandler: JSHandler) : ViewModel() {
 
     }
 
-    private fun login(mUrl: String){
+    fun login(mUrl: String){
         Utility.instance.UserData().getUserId()?.let {
             if (it.isNotBlank()) {
                 cookieManager.setCookie(mUrl, "cookie_logged_in=true")
                 cookieManager.setCookie(mUrl, "cookie_logged_in_id=${Utility.instance.UserData().getUserId()}")
                 cookieManager.setCookie(mUrl, "cookie_logged_in_nick=${Utility.instance.UserData().getUserNick()}")
                 cookieManager.setCookie(mUrl, "cookie_logged_in_gender=${Utility.instance.UserData().getUserGender()}")
-               
             }
         }
     }

@@ -7,39 +7,33 @@
 
     <ImageView
         android:id="@+id/iv_item_slide"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:srcCompat="@color/browser_actions_divider_color"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="0dp" />
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toStartOf="@+id/gl_item_slide_end"
+        app:layout_constraintStart_toStartOf="@+id/gl_item_slide_start"
+        app:layout_constraintTop_toTopOf="@id/gl_item_slide_top"
+        app:srcCompat="@color/browser_actions_divider_color" />
 
     <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/gl_item_slide_bot"
+        android:id="@+id/gl_item_slide_top"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.95" />
+        app:layout_constraintGuide_percent="0.15" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/gl_item_slide_start"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.2" />
+        app:layout_constraintGuide_percent="0.065" />
+
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/gl_item_slide_end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.8" />
+        app:layout_constraintGuide_percent="0.935" />
 
-    <FrameLayout
-        android:id="@+id/fl_item_slide"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:layout_constraintBottom_toBottomOf="@id/gl_item_slide_bot"
-        app:layout_constraintEnd_toStartOf="@id/gl_item_slide_end"
-        app:layout_constraintHeight_percent="0.15"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/gl_item_slide_start" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

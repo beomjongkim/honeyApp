@@ -1,13 +1,16 @@
 package com.dmonster.darling.honey.databinding
 
 import android.annotation.SuppressLint
+import android.app.Application
+import android.content.pm.ApplicationInfo
 import android.graphics.drawable.Drawable
 import android.net.Uri
+import android.os.Build
 import android.text.TextWatcher
 import android.view.View
 import android.webkit.WebSettings
 import android.webkit.WebView
-import android.webkit.WebViewClient
+
 import android.widget.*
 import android.widget.AdapterView.OnItemSelectedListener
 import androidx.core.content.ContextCompat
@@ -28,6 +31,7 @@ import com.dmonster.darling.honey.main.data.MainListData
 import com.dmonster.darling.honey.main.view.adapter.MainAdapter
 import com.dmonster.darling.honey.util.Utility
 import com.dmonster.darling.honey.util.retrofit.ResultListItem
+import com.dmonster.darling.honey.webview.view.CustomWebviewClient
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
 import com.google.android.gms.ads.AdView
@@ -260,7 +264,7 @@ object BindingAdapter {
 
                     it.text.value = it.arrayAdapter.getItem(position)
 
-                    area = upperSpinnerVM.arrayAdapter.getItem(position)
+                    area = it.arrayAdapter.getItem(position)!!
                 }
                 val subAreaArray: Array<String?> =
                     Utility.instance.getSubArrayArea(lowerSpinner.context, area)
@@ -361,7 +365,8 @@ object BindingAdapter {
     @JvmStatic
     fun initWebView(mWebView: WebView, url : String, jsHandler: JSHandler){
 
-        mWebView.webViewClient = WebViewClient() // 클릭시 새창 안뜨게
+        mWebView.webViewClient = CustomWebviewClient() // 클릭시 새창 안뜨게
+
 
         val mWebSettings = mWebView.settings //세부 세팅 등록
 
@@ -372,21 +377,21 @@ object BindingAdapter {
 
         mWebSettings.javaScriptCanOpenWindowsAutomatically = false // 자바스크립트 새창 띄우기(멀티뷰) 허용 여부
 
-
         mWebSettings.loadWithOverviewMode = true // 메타태그 허용 여부
 
         mWebSettings.useWideViewPort = true // 화면 사이즈 맞추기 허용 여부
 
         mWebSettings.setSupportZoom(false) // 화면 줌 허용 여부
-
+        mWebSettings.textZoom = 100//시스템 폰트 크기에 따른 폰트 크기 변경 허용 않음.
         mWebSettings.builtInZoomControls = false // 화면 확대 축소 허용 여부
 
         mWebSettings.layoutAlgorithm = WebSettings.LayoutAlgorithm.SINGLE_COLUMN // 컨텐츠 사이즈 맞추기
 
         mWebSettings.cacheMode = WebSettings.LOAD_NO_CACHE // 브라우저 캐시 허용 여부
 
-        mWebSettings.domStorageEnabled = true // 로컬저장소 허용 여부
-
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
+            WebView.setWebContentsDebuggingEnabled(true)
+        }
         mWebView.addJavascriptInterface(jsHandler, "Bridge")
 
         mWebView.loadUrl(url) // 웹뷰에 표시할 웹사이트 주소, 웹뷰 시작

@@ -11,31 +11,17 @@ import android.text.TextUtils
 import android.util.Log
 import androidx.core.content.ContextCompat
 import com.dmonster.darling.honey.R
-import com.dmonster.darling.honey.intro.data.IntroLoginData
-import com.dmonster.darling.honey.intro.model.IntroLoginModel
-import com.dmonster.darling.honey.intro.view.IntroActivity
-import com.dmonster.darling.honey.main.view.MainActivity
+import com.dmonster.darling.honey.intro.view.SlideActivity
+
 import com.dmonster.darling.honey.talk.data.TalkData
-import com.dmonster.darling.honey.talk.view.TalkActivity
 import com.dmonster.darling.honey.util.AppKeyValue
 import com.dmonster.darling.honey.util.common.EventBus
 import com.dmonster.darling.honey.util.Utility
-import com.dmonster.darling.honey.util.retrofit.ResultItem
 import com.dmonster.darling.honey.webview.view.WebViewActivity
 
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import io.reactivex.disposables.CompositeDisposable
-import io.reactivex.observers.DisposableObserver
-import kotlin.math.log
-
-//enum class NotificationActionType(val value: Int) {
-//    MESSAGE(0),
-//    GOOD(1),
-//    NEW_MEMBER(2),
-//    LOVE_CARD(3),
-//    NOTICE(4)
-//}
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
     private lateinit var subscription: CompositeDisposable
@@ -50,8 +36,10 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         remoteMessage = p0
         remoteMessage?.data?.let {
             if (it.isNotEmpty()) {
+                Log.d("CloudMessagingReceiver",it.toString())
                 val title = it["title"]
                 val message = it["body"]
+                val link =it["link"]
                 val notificationType = it["noti_type"]
 
                 val roomNo = it["chat_room_no"]
@@ -67,52 +55,10 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 val otherTalkId = it["mbNick"]
 
                 val isAppTopRun = isAppTopRun(this, WebViewActivity::class.java.name.toString())
-                val isActivityTop = isActivityTop(this, TalkActivity::class.java.name.toString())
+                val isActivityTop = isActivityTop(this, WebViewActivity::class.java.name.toString())
 
+                setNotification(title,message,link)
 
-                when (notificationType) {
-                    resources.getString(R.string.push_notification_type_message), resources.getString(
-                        R.string.push_notification_type_good
-                    ) -> {
-                        if (isActivityTop) {
-                            val talkData = TalkData()
-                            talkData.chatRoomNo = roomNo
-                            talkData.chatSender = senderId
-                            talkData.chatReceiver = receiveId
-                            talkData.chatMsg = talkMessage
-                            talkData.chatImg = talkImage
-                            talkData.chatType = talkType
-                            talkData.chatSendDate = talkTime
-                            talkData.mbImgThumb = profileImage
-                            EventBus.sendEventTalk(talkData)
-                        } else {
-                            setNotification(
-                                title,
-                                message,
-                                notificationType,
-                                roomNo,
-                                mbNo,
-                                senderId,
-                                otherTalkId
-                            )
-                        }
-                    }
-
-                    resources.getString(R.string.push_notification_type_new_member) -> {
-                        setNotification(title, message, notificationType, "", "", "", "")
-                    }
-
-                    resources.getString(R.string.push_notification_type_love) -> {
-                        setNotification(title, message, notificationType, "", mbNo, "", "")
-                    }
-
-                    resources.getString(R.string.push_notification_type_notice) -> {
-                        setNotification(title, message, notificationType, "", "", "", "")
-                    }
-                    else -> {
-                        setNotification(title, message, "", "", "", "", "")
-                    }
-                }
             } else {
 
             }
@@ -154,11 +100,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     private fun setNotification(
         title: String?,
         messageBody: String?,
-        notificationType: String?,
-        roomNo: String?,
-        mbNo: String?,
-        otherId: String?,
-        otherTalkId: String?
+        link : String?
     ) {
         lateinit var intent: Intent
         lateinit var pendingIntent: PendingIntent
@@ -168,12 +110,8 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             getSystemService(Activity.NOTIFICATION_SERVICE) as NotificationManager
         val isAppToRun = isAppTopRun(this, WebViewActivity::class.java.name.toString())
 
-        intent = Intent(this, IntroActivity::class.java)
-        intent.putExtra(AppKeyValue.instance.pushNotificationType, notificationType)
-        intent.putExtra(AppKeyValue.instance.pushRoomNo, roomNo)
-        intent.putExtra(AppKeyValue.instance.pushMbNo, mbNo)
-        intent.putExtra(AppKeyValue.instance.pushOtherId, otherId)
-        intent.putExtra(AppKeyValue.instance.pushOtherTalkId, otherTalkId)
+        intent = Intent(this, WebViewActivity::class.java)
+        intent.putExtra("link", link)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP
 
 
@@ -181,7 +119,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
             this,
             0 /* Request code */,
             intent,
-            PendingIntent.FLAG_ONE_SHOT
+            PendingIntent.FLAG_UPDATE_CURRENT
         )
         val defaultSoundUri = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION)
 
