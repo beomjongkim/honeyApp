@@ -14,7 +14,7 @@ class ClickableImageView : androidx.appcompat.widget.AppCompatImageView {
     }
 
     constructor(
-        context: Context?,
+        context: Context,
         attrs: AttributeSet?
     ) : super(context, attrs) {
         init()
@@ -22,7 +22,7 @@ class ClickableImageView : androidx.appcompat.widget.AppCompatImageView {
     }
 
     constructor(
-        context: Context?,
+        context: Context,
         attrs: AttributeSet?,
         defStyleAttr: Int
     ) : super(context, attrs, defStyleAttr) {
