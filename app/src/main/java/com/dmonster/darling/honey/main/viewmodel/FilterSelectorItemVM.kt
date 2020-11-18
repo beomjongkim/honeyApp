@@ -100,7 +100,7 @@ class FilterSelectorItemVM(
     private fun setDialogView(dialog: Dialog, context: Context, wrap_height: Boolean = false) {
         dialog.show()
         val lp = WindowManager.LayoutParams()
-        dialog.window.let {
+        dialog.window?.let {
             lp.copyFrom(it.attributes)
             lp.width = (context.resources.displayMetrics.widthPixels * 0.94f).toInt()
             if (!wrap_height)

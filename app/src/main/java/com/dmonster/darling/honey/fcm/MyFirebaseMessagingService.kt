@@ -177,7 +177,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         if (info == null || info.isEmpty()) {
             return false
         }
-        return info[0].baseActivity.className == baseClassName
+        return info[0].baseActivity?.className == baseClassName
     }
 
     /*    채팅방이 실행중인지 판단    */
@@ -188,7 +188,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         if (info == null || info.isEmpty()) {
             return false
         }
-        return info[0].topActivity.className == className
+        return info[0].topActivity?.className == className
     }
 
 }

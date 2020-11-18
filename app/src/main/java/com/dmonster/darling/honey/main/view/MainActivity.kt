@@ -75,7 +75,7 @@ class MainActivity : BaseActivity(){
         val mb_id  = Utility.instance.getPref(this, AppKeyValue.instance.savePrefID)
         binding.naviVM = NavigationVM(
             supportFragmentManager,
-            mb_id,
+            mb_id!!,
             lifecycle
         )
         binding.bannerVM = BannerVM(mb_id,lifecycle,this)

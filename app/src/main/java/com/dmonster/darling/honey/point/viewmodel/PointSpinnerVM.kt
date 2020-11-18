@@ -33,7 +33,7 @@ class PointSpinnerVM(arrayAdapter: ArrayAdapter<String>, spinnerInterface :Spinn
                 id: Long
             ) {
                 position.value = mPosition
-                price.value = arrayAdapter.getItem(mPosition).replace("포인트","").toInt()
+                price.value = arrayAdapter.getItem(mPosition)!!.replace("포인트","").toInt()
                 won.value=(price.value!! *110).toString() + "원"
                 spinnerInterface.onItemSelected()
             }

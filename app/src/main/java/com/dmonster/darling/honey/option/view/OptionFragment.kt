@@ -32,7 +32,7 @@ class OptionFragment : BaseFragment() {
                     com.dmonster.darling.honey.util.Utility.instance.getPref(
                         it1,
                         AppKeyValue.instance.savePrefID
-                    )
+                    )!!
                 )
                 binding.lifecycleOwner = this
             }

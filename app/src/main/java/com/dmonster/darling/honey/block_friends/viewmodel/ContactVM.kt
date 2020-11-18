@@ -230,25 +230,27 @@ abstract class ContactVM(val id: String, var customAdapter: CustomAdapter) : Vie
         accessToken = AccessToken.getCurrentAccessToken()
         val id =
             Utility.instance.getPref(context, AppKeyValue.instance.savePrefID)
-        if (id.contains("facebook.com")) {
-            val userId = id.replace("@facebook.com", "")
-            accessToken?.let {
-                isFacebookLoggedIn = true
-                val request = GraphRequest.newGraphPathRequest(
-                    it,
-                    "/$userId/friends"
-                ) { response ->
-                    response.jsonObject.let { jsonObj ->
-                        if (!jsonObj.isNull("data")) {
-                            val fbArray = jsonObj.getJSONArray("data")
-                            makeListFromFacebookData(fbArray)
+        if (id != null) {
+            if (id.contains("facebook.com")) {
+                val userId = id.replace("@facebook.com", "")
+                accessToken?.let {
+                    isFacebookLoggedIn = true
+                    val request = GraphRequest.newGraphPathRequest(
+                        it,
+                        "/$userId/friends"
+                    ) { response ->
+                        response.jsonObject.let { jsonObj ->
+                            if (!jsonObj.isNull("data")) {
+                                val fbArray = jsonObj.getJSONArray("data")
+                                makeListFromFacebookData(fbArray)
+                            }
                         }
                     }
+
+                    request.executeAsync()
                 }
 
-                request.executeAsync()
             }
-
         }
 
         return isFacebookLoggedIn

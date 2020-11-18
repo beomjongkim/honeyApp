@@ -18,7 +18,7 @@ class ViewModelDialog(context: Context, viewModel: ViewModel, vmID : Int, layout
 
     init {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-        window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         val binding = DataBindingUtil.inflate<ViewDataBinding>(LayoutInflater.from(context),layoutID,null,false)
         binding.setVariable(vmID, viewModel)
         binding.lifecycleOwner = context as FragmentActivity
@@ -31,7 +31,7 @@ class ViewModelDialog(context: Context, viewModel: ViewModel, vmID : Int, layout
         )
 
         val lp = WindowManager.LayoutParams()
-        this.window.let { it1 ->
+        this.window?.let { it1 ->
             lp.copyFrom(it1.attributes)
             lp.width = (context.resources.displayMetrics.widthPixels * 0.94f).toInt()
             lp.height = ConstraintLayout.LayoutParams.WRAP_CONTENT

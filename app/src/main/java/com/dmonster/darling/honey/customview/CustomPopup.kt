@@ -126,7 +126,7 @@ class CustomPopup : Dialog {
 
     fun init(){
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-        this.window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        this.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         var layoutId=R.layout.layout_viewmodel_popup
         if(mCustomDialogInterface == null){
             layoutId =   R.layout.layout_viewmodel_notice
@@ -152,7 +152,7 @@ class CustomPopup : Dialog {
         )
 
         val lp = WindowManager.LayoutParams()
-        this.window.let { it1 ->
+        this.window?.let { it1 ->
             lp.copyFrom(it1.attributes)
             lp.width = (context.resources.displayMetrics.widthPixels * 0.78f).toInt()
             lp.height = ConstraintLayout.LayoutParams.WRAP_CONTENT

@@ -331,7 +331,7 @@ class Utility private constructor() {
 
     /*    drawable image to path    */
     fun getURLForResource(resourceId: Int): String {
-        return Uri.parse("android.resource://" + R::class.java.getPackage().name + "/" + resourceId)
+        return Uri.parse("android.resource://" + R::class.java.getPackage()?.name + "/" + resourceId)
             .toString()
     }
 
@@ -554,7 +554,7 @@ class Utility private constructor() {
         }
     }
 
-    fun getPref(context: Context, key: String): String {
+    fun getPref(context: Context, key: String): String? {
         val pref = context.getSharedPreferences("Pref", Context.MODE_PRIVATE)
         return pref.getString(key, "")
     }

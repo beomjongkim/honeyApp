@@ -39,7 +39,7 @@ abstract class CustomArrayDialog(context: Context, title: String, subTitle: Stri
 
     init {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-        window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         val binding = DataBindingUtil.inflate<ViewDataBinding>(LayoutInflater.from(context), R.layout.layout_viewmodel_dialog, null, false)
         binding.setVariable(BR.dialogVM, dialogVM)
         binding.lifecycleOwner = context as FragmentActivity
@@ -52,7 +52,7 @@ abstract class CustomArrayDialog(context: Context, title: String, subTitle: Stri
         )
 
         val lp = WindowManager.LayoutParams()
-        this.window.let { it1 ->
+        this.window?.let { it1 ->
             lp.copyFrom(it1.attributes)
             lp.width = (context.resources.displayMetrics.widthPixels * 0.94f).toInt()
             lp.height = ConstraintLayout.LayoutParams.WRAP_CONTENT

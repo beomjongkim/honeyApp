@@ -47,7 +47,7 @@ class FullScreenVM(var activity: Activity, var mb_id: String) : ViewModel(), Lif
                             val editor = pref.edit()
                             editor.putBoolean(AppKeyValue.instance.hasFreePass, item.isSuccess)
                             editor.apply()
-                            if(Integer.parseInt(it.item?.minutes_left) >  60)
+                            if(Integer.parseInt(it.item?.minutes_left!!) >  60)
                                 hasPass.value = it.isSuccess
                             else
                                 hasPass.value = false

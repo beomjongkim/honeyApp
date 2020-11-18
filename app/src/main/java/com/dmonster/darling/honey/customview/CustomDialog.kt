@@ -43,7 +43,7 @@ class CustomDialog: Dialog {
     private fun init(activity: Activity, title: String?, items: ArrayList<String?>, onSelect: DialogSelect?) {
         this.activity = activity
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-        window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         val inflater = activity.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val view = inflater.inflate(R.layout.custom_dialog, null)

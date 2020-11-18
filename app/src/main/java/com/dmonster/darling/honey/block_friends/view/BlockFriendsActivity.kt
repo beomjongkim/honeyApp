@@ -41,7 +41,7 @@ class BlockFriendsActivity : AppCompatActivity() {
             AppKeyValue.instance.savePrefID
         )
 
-        binding.contactVM = object : ContactVM(mb_id, CustomAdapter(R.layout.item_contact, this)) {
+        binding.contactVM = object : ContactVM(mb_id!!, CustomAdapter(R.layout.item_contact, this)) {
             override fun checkReadContactPermission() {
                 // OS가 Marshmallow 이상일 경우 권한체크를 해야 합니다.
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -67,7 +67,7 @@ class BlockFriendsActivity : AppCompatActivity() {
             }
         }
         binding.blockfriVM =
-            object : BlockFriendsVM(mb_id, intent.getBooleanExtra("fromJoinActivity", false)) {
+            object : BlockFriendsVM(mb_id!!, intent.getBooleanExtra("fromJoinActivity", false)) {
 
 
                 override fun blockContact() {

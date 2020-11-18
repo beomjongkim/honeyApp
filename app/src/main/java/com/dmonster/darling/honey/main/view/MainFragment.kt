@@ -76,7 +76,7 @@ class MainFragment : BaseFragment(), MainListContract.View {
 //        binding.bannerVM = RollingBannerVM()
         context?.let {
             binding.filterVM =
-                object : FilterVM(Utility.instance.getPref(it, AppKeyValue.instance.savePrefID)) {
+                object : FilterVM(Utility.instance.getPref(it, AppKeyValue.instance.savePrefID)!!) {
                     override fun profileDialog() {
                         setProfileDialog()
                     }

@@ -458,7 +458,7 @@ class PointViewModel(
                                         "simple text",
                                         message
                                     )
-                                    clipboard.primaryClip = clip
+                                    clipboard.setPrimaryClip(clip)
                                     Utility.instance.showToast(context, "복사되었습니다.")
                                 }
                                 dialog.dismiss()

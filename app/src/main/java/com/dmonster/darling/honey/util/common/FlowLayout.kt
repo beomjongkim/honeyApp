@@ -101,16 +101,20 @@ class FlowLayout(context: Context, attrs: AttributeSet): ViewGroup(context, attr
         if(lp.horizontalSpacing > 0) {
             val x = child.right.toFloat()
             val y = child.top + child.height / 2.0f
-            canvas.drawLine(x, y - 4.0f, x, y + 4.0f, mPaint)
-            canvas.drawLine(x, y, x + lp.horizontalSpacing, y, mPaint)
-            canvas.drawLine(x + lp.horizontalSpacing, y - 4.0f, x + lp.horizontalSpacing, y + 4.0f, mPaint)
+            mPaint?.let { canvas.drawLine(x, y - 4.0f, x, y + 4.0f, it) }
+            mPaint?.let { canvas.drawLine(x, y, x + lp.horizontalSpacing, y, it) }
+            mPaint?.let {
+                canvas.drawLine(x + lp.horizontalSpacing, y - 4.0f, x + lp.horizontalSpacing, y + 4.0f,
+                    it
+                )
+            }
         }
 
         if(lp.breakLine) {
             val x = child.right.toFloat()
             val y = child.top + child.height / 2.0f
-            canvas.drawLine(x, y, x, y + 6.0f, mPaint)
-            canvas.drawLine(x, y + 6.0f, x + 6.0f, y + 6.0f, mPaint)
+            mPaint?.let { canvas.drawLine(x, y, x, y + 6.0f, it) }
+            mPaint?.let { canvas.drawLine(x, y + 6.0f, x + 6.0f, y + 6.0f, it) }
         }
 
         return more

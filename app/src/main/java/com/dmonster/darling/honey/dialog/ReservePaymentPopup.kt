@@ -32,7 +32,7 @@ class ReservePaymentPopup(context: Context, var lifecycleOwner: LifecycleOwner) 
     var reservePaymentPopupVM = ReservePaymentPopupVM()
     fun init() {
         requestWindowFeature(Window.FEATURE_NO_TITLE)
-        window.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
+        window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
 
         val binding = DataBindingUtil.inflate<ViewDataBinding>(
             LayoutInflater.from(context),
@@ -95,7 +95,7 @@ class ReservePaymentPopup(context: Context, var lifecycleOwner: LifecycleOwner) 
         )
 
         val lp = WindowManager.LayoutParams()
-        this.window.let { it1 ->
+        this.window?.let { it1 ->
             lp.copyFrom(it1.attributes)
             lp.width = (context.resources.displayMetrics.widthPixels * 0.95f).toInt()
             lp.height = ConstraintLayout.LayoutParams.WRAP_CONTENT
