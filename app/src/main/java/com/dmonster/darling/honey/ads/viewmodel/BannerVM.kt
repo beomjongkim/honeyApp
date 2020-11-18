@@ -105,10 +105,14 @@ class BannerVM(var mb_id: String?, var lifecycle: Lifecycle, var context: Contex
                     val editor = pref.edit()
                     editor.putBoolean(AppKeyValue.instance.hasFreePass, item.isSuccess)
                     editor.apply()
-                    if(Integer.parseInt(item.item?.minutes_left!!) >  60)
-                        hasPass.value = it.isSuccess
-                    else
-                        hasPass.value = false
+
+                    if(it.item?.minutes_left !=null){
+                        if(Integer.parseInt(it.item.minutes_left!!) >  60)
+                            hasPass.value = it.isSuccess
+                        else
+                            hasPass.value = false
+                    }
+
                 }
             }
         }
