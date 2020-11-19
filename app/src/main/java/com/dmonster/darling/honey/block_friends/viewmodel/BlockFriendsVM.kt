@@ -33,22 +33,11 @@ abstract class BlockFriendsVM(val id: String, val isInProcessJoin : Boolean = fa
     var customPopup: CustomPopup? = null
 
     fun onClickButton(view: View) {
-            showBlockContactPopup(view.context)
+            showBlockContactPopup()
     }
 
-    fun showBlockContactPopup(context: Context) {
-        Utility.instance.showTwoButtonAlert(context,
-            context.getString(R.string.noti_block_contact),
-            context.resources.getString(R.string.noti_block_friends),
-            DialogInterface.OnClickListener { dialog, which ->
-                if (which == DialogInterface.BUTTON_POSITIVE) {
-                    blockContact()
-                }
-                dialog.dismiss()
-            }
-        )
+    abstract fun showBlockContactPopup()
 
-    }
 
 
 

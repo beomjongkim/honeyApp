@@ -2,6 +2,7 @@ package com.dmonster.darling.honey.intro.view
 
 import android.app.NotificationChannel
 import android.app.NotificationManager
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
@@ -148,6 +149,7 @@ class SlideActivity : AppCompatActivity() {
     private fun onClickNext(){
         slide.let {
             it.setCurrentItem(it.currentItem+1)
+            
         }
     }
 

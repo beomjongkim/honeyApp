@@ -6,7 +6,6 @@ import android.net.Uri
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.*
-import com.dmonster.darling.honey.ads.view.FullScreenActivity
 import com.dmonster.darling.honey.point.data.CheckFreePassData
 import com.dmonster.darling.honey.point.model.ItemModel
 import com.dmonster.darling.honey.util.AppKeyValue
@@ -15,7 +14,6 @@ import com.dmonster.darling.honey.youtube.data.YoutubeData
 import com.dmonster.darling.honey.youtube.model.YoutubeModel
 import com.google.android.gms.ads.AdListener
 import com.google.android.gms.ads.AdRequest
-import com.google.android.gms.base.R
 import io.reactivex.observers.DisposableObserver
 import java.util.*
 

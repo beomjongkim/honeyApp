@@ -60,7 +60,7 @@ class CustomPopup : Dialog {
                 dismiss()
             }
         }
-        popupVM = PopupVM(mTitle, mSubTitle,  mCustomDialogInterface)
+        popupVM = PopupVM(mTitle, mSubTitle, mCustomDialogInterface)
         init()
     }
 
@@ -75,7 +75,7 @@ class CustomPopup : Dialog {
         mSubTitle = subTitle
         mImgId = imgId
         mLifecycleOwner = lifecycleOwner
-        mCustomDialogInterface = object :CustomDialogInterface{
+        mCustomDialogInterface = object : CustomDialogInterface {
             override fun onConfirm(v: View) {
                 customDialogInterface.onConfirm(v)
                 dismiss()
@@ -88,7 +88,7 @@ class CustomPopup : Dialog {
 
         }
 
-        popupVM = PopupVM(mTitle, mSubTitle,  mCustomDialogInterface)
+        popupVM = PopupVM(mTitle, mSubTitle, mCustomDialogInterface)
         init()
     }
 
@@ -97,7 +97,7 @@ class CustomPopup : Dialog {
         context: Context,
         title: String,
         subTitle: String,
-       subTitleTwo :String , link : String ,
+        subTitleTwo: String, link: String,
         lifecycleOwner: LifecycleOwner? = null
     ) : super(context) {
         mTitle = title
@@ -106,7 +106,7 @@ class CustomPopup : Dialog {
         mLifecycleOwner = lifecycleOwner
         mCustomDialogInterface = null
 
-        popupVM = PopupVM(mTitle, mSubTitle, object : CustomDialogInterface{
+        popupVM = PopupVM(mTitle, mSubTitle, object : CustomDialogInterface {
             override fun onConfirm(v: View) {
                 dismiss()
             }
@@ -124,12 +124,10 @@ class CustomPopup : Dialog {
     var mLifecycleOwner: LifecycleOwner? = null
     var popupVM: PopupVM
 
-    fun init(){
-        requestWindowFeature(Window.FEATURE_NO_TITLE)
-        this.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
-        var layoutId=R.layout.layout_viewmodel_popup
-        if(mCustomDialogInterface == null){
-            layoutId =   R.layout.layout_viewmodel_notice
+    fun init() {
+        var layoutId = R.layout.layout_viewmodel_popup
+        if (mCustomDialogInterface == null) {
+            layoutId = R.layout.layout_viewmodel_notice
         }
         val binding = DataBindingUtil.inflate<ViewDataBinding>(
             LayoutInflater.from(context),
@@ -140,7 +138,7 @@ class CustomPopup : Dialog {
         binding.setVariable(BR.popupVM, popupVM)
 
         if (mLifecycleOwner != null) {
-             binding.lifecycleOwner = mLifecycleOwner
+            binding.lifecycleOwner = mLifecycleOwner
         }
 
         super.addContentView(
@@ -152,7 +150,10 @@ class CustomPopup : Dialog {
         )
 
         val lp = WindowManager.LayoutParams()
+
+        requestWindowFeature(Window.FEATURE_NO_TITLE)
         this.window?.let { it1 ->
+            it1.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
             lp.copyFrom(it1.attributes)
             lp.width = (context.resources.displayMetrics.widthPixels * 0.78f).toInt()
             lp.height = ConstraintLayout.LayoutParams.WRAP_CONTENT

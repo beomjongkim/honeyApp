@@ -12,6 +12,7 @@ import com.dmonster.darling.honey.R
 import com.dmonster.darling.honey.block_friends.view.BlockFriendsActivity
 import com.dmonster.darling.honey.intro.data.IntroLoginData
 import com.dmonster.darling.honey.intro.model.IntroLoginModel
+import com.dmonster.darling.honey.util.AppKeyValue
 import com.dmonster.darling.honey.util.Utility
 import com.dmonster.darling.honey.util.retrofit.ResultItem
 import com.dmonster.darling.honey.webview.model.InappPurchaseModel
@@ -60,12 +61,17 @@ import io.reactivex.observers.DisposableObserver
                                 setUserGender(it.mbSex)
                                 setUserDormant(it.mbSleep)
                                 setUserProfile(it.mbProfileState)
+
+                                it.mbId?.let { it1 ->
+                                    Utility.instance.savePref(activity, AppKeyValue.instance.savePrefID, it1)
+                                }
                             }
                         }
                     }
                 }
             }
         }
+
         mModel.requestIntroLogin(id, password, instanceId, type, subscriber)
         subscription.add(subscriber)
     }

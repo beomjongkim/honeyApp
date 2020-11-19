@@ -106,7 +106,7 @@ class WebViewActivity : AppCompatActivity(), LoginContract.View {
             url = url_home + intent.getStringExtra("link")
         }
         activityWebViewBinding?.let {
-            it.webViewModel = WebViewmodel(
+            it.webViewModel = WebViewmodel(application,
                 url,
                 JSHandler(this, object : JSHandler.WebViewInterface {
                     override fun initSocialLogin() {
@@ -118,11 +118,7 @@ class WebViewActivity : AppCompatActivity(), LoginContract.View {
             webView = it.wvWebview
             it.lifecycleOwner = this
         }
-//        if (id.isNullOrEmpty()) {
-//            val intent = Intent(this, WebViewActivity::class.java)
-//            startActivity(intent)
-//            finish()
-//        }
+
         init()
 
     }

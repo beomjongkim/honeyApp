@@ -274,4 +274,7 @@ abstract class ContactVM(val id: String, var customAdapter: CustomAdapter) : Vie
         fbCountAnnounce.value = "총 " + fbArray.length() + "명의 페이스북 친구가 자기야를 사용 중입니다."
     }
 
+    abstract fun onClickBackButton()
+
+
 }
