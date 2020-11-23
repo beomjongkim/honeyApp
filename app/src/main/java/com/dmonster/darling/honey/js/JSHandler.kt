@@ -111,8 +111,7 @@ import io.reactivex.observers.DisposableObserver
 
     @JavascriptInterface
     fun facebookLogin(){
-        val signInIntent =googleSigneInClient.signInIntent
-        startActivityForResult( activity,signInIntent,RC_FACEBOOK_LOGIN, null)
+
     }
 
 

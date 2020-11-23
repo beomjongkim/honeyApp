@@ -9,23 +9,26 @@ import com.dmonster.darling.honey.js.JSHandler
 import com.dmonster.darling.honey.util.AppKeyValue
 import com.dmonster.darling.honey.util.Utility
 
-class WebViewmodel(application : Application,var url: String, var jsHandler: JSHandler) : AndroidViewModel(application) {
+class WebViewmodel(application: Application, var url: String, var jsHandler: JSHandler) :
+    AndroidViewModel(application) {
     var cookieManager: CookieManager
 
     init {
         cookieManager = CookieManager.getInstance()
         cookieManager.setAcceptCookie(true)
         val url_home = "https://jjagiya.co.kr"
-        Log.d("WebViewModel",
-            cookieManager.getCookie(url_home))
-        var cookieArray= cookieManager.getCookie(url_home).split(";")
-        for(cookie in cookieArray){
-            if(cookie.contains("cookie_logged_in_id")){
-                var keyValue = cookie.split("=")
-                Utility.instance.savePref( application, AppKeyValue.instance.savePrefID, keyValue[1])
-                break
+        cookieManager.getCookie(url_home)?.let {
+
+            val cookieArray =    it.split(";")
+            for (cookie in cookieArray) {
+                if (cookie.contains("cookie_logged_in_id")) {
+                    var keyValue = cookie.split("=")
+                    Utility.instance.savePref(application, AppKeyValue.instance.savePrefID, keyValue[1])
+                    break
+                }
             }
         }
+
         setMainColor(url_home)
         login(url_home)
     }

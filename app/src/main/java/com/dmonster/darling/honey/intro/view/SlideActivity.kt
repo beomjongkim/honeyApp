@@ -30,11 +30,8 @@ class SlideActivity : AppCompatActivity() {
         init()
     }
     fun init(){
-        if(Utility.instance.getPref(this,"firstIntroduce")=="true"){
-//            startActivity(Intent(this@SlideActivity,IntroActivity::class.java))
-//            finish()
-        }
-        val skip :TextView= findViewById(R.id.tv_slide_skip)
+
+        val skip : TextView= findViewById(R.id.tv_slide_skip)
         skip.setOnClickListener {
             onClickSkip()
         }
