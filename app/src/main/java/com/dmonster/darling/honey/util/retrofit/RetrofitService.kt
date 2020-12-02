@@ -754,7 +754,8 @@ interface RetrofitService {
     fun buyItem(
         @Field("method") method: String?,
         @Field("mb_id") id: String?,
-        @Field("it_id") it_id: Int?
+        @Field("it_id") it_id: Int?,
+        @Field("mb_id_receive_gift") receiveId: String?
     ): Observable<ResultItem<String>>
     /*   포인트 충전    */
     @FormUrlEncoded

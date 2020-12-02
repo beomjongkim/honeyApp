@@ -87,6 +87,9 @@ class InappPurchaseModel(
         skuList.add("point50")
         skuList.add("point100")
         skuList.add("point150")
+        skuList.add("freepass_month")
+        skuList.add("freepass_year")
+
 
         val params = SkuDetailsParams.newBuilder()
         params.setSkusList(skuList).setType(BillingClient.SkuType.INAPP)
@@ -94,10 +97,7 @@ class InappPurchaseModel(
             params.build()
         ) { result, skuDetailsList ->
             if (result.responseCode == BillingClient.BillingResponseCode.OK && skuDetailsList != null) {
-
                 for (skuDetails in skuDetailsList) {
-                    val sku = skuDetails.sku
-                    val price = skuDetails.price
                     skuDetailList.add(skuDetails)
                 }
 
@@ -152,6 +152,35 @@ class InappPurchaseModel(
         itemModel.rechargePoint(id, point, subscriber)
     }
 
+    private fun buyItem(context: Context, item_id: Int){
+        isProgressing.postValue(true)
+        val subscriber = object : DisposableObserver<ResultItem<String>>() {
+            override fun onComplete() {
+                isProgressing.postValue(false)
+            }
+
+            override fun onError(e: Throwable) {
+                isProgressing.postValue(false)
+                Utility.instance.showToast(context, "구매 과정 중 오류가 발생하였습니다.")
+            }
+
+            override fun onNext(item: ResultItem<String>) {
+                item.let { it ->
+                    if (it.isSuccess) {
+                        Log.d(tag, "item purchase success")
+                        Utility.instance.showToast(context, "성공적으로 상품을 구매하였습니다.")
+
+                    } else {
+                        Utility.instance.showToast(context, "구매 과정 중 오류가 발생하였습니다.")
+                    }
+                }
+                isProgressing.postValue(false)
+            }
+        }
+
+
+        itemModel.buyItem(id, item_id, subscriber)
+    }
 
 
     private fun afterPurchase(purchase: Purchase) {
@@ -172,6 +201,9 @@ class InappPurchaseModel(
                     "point50" -> rechargePoint(activity, 0)
                     "point100" -> rechargePoint(activity, 1)
                     "point150" -> rechargePoint(activity, 2)
+                    "freepass_month"->buyItem(activity,2)
+                    "freepass_year"->buyItem(activity,6)
+                    "freepass_twodays"->buyItem(activity,7)
                 }
             }
         }

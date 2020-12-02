@@ -8,6 +8,7 @@ import android.net.Uri
 import android.os.Build
 import android.text.TextWatcher
 import android.view.View
+import android.webkit.CookieManager
 import android.webkit.WebSettings
 import android.webkit.WebView
 
@@ -389,6 +390,13 @@ object BindingAdapter {
 
         mWebSettings.cacheMode = WebSettings.LOAD_NO_CACHE // 브라우저 캐시 허용 여부
 
+
+        val cookieManager = CookieManager.getInstance()
+
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.LOLLIPOP) {
+            mWebSettings.mixedContentMode = WebSettings.MIXED_CONTENT_ALWAYS_ALLOW
+            cookieManager.setAcceptThirdPartyCookies(mWebView,true)
+        }
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT){
             WebView.setWebContentsDebuggingEnabled(true)
         }

@@ -18,7 +18,7 @@ import com.kakao.util.helper.Utility
 import gun0912.tedbottompicker.TedBottomPicker
 
 class MarriageCertVM : ViewModel() {
-    val imgUri = MutableLiveData<Uri>()
+    val imgUri = MutableLiveData<Uri?>()
     val pictureMarryData = MutableLiveData<PictureMarryData>()
     val isModifyMode = MutableLiveData<Boolean>()
     var del_mb_marry_img :String? = null
@@ -70,6 +70,5 @@ class MarriageCertVM : ViewModel() {
             }
         }
     }
-    interface onClick
 
 }

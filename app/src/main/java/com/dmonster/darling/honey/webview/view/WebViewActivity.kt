@@ -9,6 +9,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
+import android.webkit.CookieManager
 import android.webkit.ValueCallback
 import android.webkit.WebChromeClient
 import android.webkit.WebView
@@ -129,7 +130,7 @@ class WebViewActivity : AppCompatActivity(), LoginContract.View {
         mPresenter.attachView(this)
 
 
-        val notificationType = intent.getStringExtra(AppKeyValue.instance.pushNotificationType)
+
         webView.webChromeClient = object : WebChromeClient() {
             @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
             override fun onShowFileChooser(

@@ -3,6 +3,7 @@ package com.dmonster.darling.honey.js
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.webkit.JavascriptInterface
 import androidx.activity.ComponentActivity
 import androidx.appcompat.app.AppCompatActivity
@@ -16,6 +17,7 @@ import com.dmonster.darling.honey.util.AppKeyValue
 import com.dmonster.darling.honey.util.Utility
 import com.dmonster.darling.honey.util.retrofit.ResultItem
 import com.dmonster.darling.honey.webview.model.InappPurchaseModel
+import com.dmonster.darling.honey.youtube.view.YoutubePlayerActivity
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -90,7 +92,9 @@ import io.reactivex.observers.DisposableObserver
         //point Unit 예
         //point50,point100,point150
         inappPurchaseModel.let {
+            Log.d("inAppPurchase",pointUnit)
             for (skuDetail in inappPurchaseModel.skuDetailList) {
+                Log.d("inAppPurchase",skuDetail.sku)
                 if (skuDetail.sku == pointUnit) {
                     inappPurchaseModel.doBillingFlow(skuDetail)
                     break;
@@ -129,6 +133,11 @@ import io.reactivex.observers.DisposableObserver
      fun initSocialLogin(){
         webViewInterface?.initSocialLogin()
     }
+
+     @JavascriptInterface
+     fun showYoutube(){
+         activity.startActivity(Intent(activity, YoutubePlayerActivity::class.java))
+     }
 
     private fun configureGoogleSignIn() {
         // Configure Google Sign In

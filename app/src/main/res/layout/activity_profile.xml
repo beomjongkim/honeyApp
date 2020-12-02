@@ -1373,7 +1373,6 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_alignBottom="@+id/rv_act_talk_list"
             android:visibility="@{bannerVM.hasPass? View.GONE : View.VISIBLE}"
             app:adSize="BANNER"
             app:adUnitId="@string/banner_id" />
