@@ -19,6 +19,7 @@ import com.dmonster.darling.honey.custom_recyclerview.view.CustomAdapter
 import com.dmonster.darling.honey.customview.CustomDialogInterface
 import com.dmonster.darling.honey.customview.CustomPopup
 import com.dmonster.darling.honey.dialog.ReservePaymentPopup
+import com.dmonster.darling.honey.js.JSHandler
 import com.dmonster.darling.honey.point.data.CheckFreePassData
 import com.dmonster.darling.honey.point.data.PointData
 import com.dmonster.darling.honey.point.data.PointLogData
@@ -32,18 +33,16 @@ import com.google.android.gms.ads.rewarded.RewardedAdCallback
 import io.reactivex.observers.DisposableObserver
 class InappPurchaseModel(
     var id: String?,
-    var activity: ComponentActivity
+    var activity: ComponentActivity,
+    var webViewInterface: JSHandler.WebViewInterface?
 ) : ViewModel(), LifecycleObserver, PurchasesUpdatedListener {
     private var billingClient: BillingClient
-    var productId = "freepass_month"
 
-    //    var productId = "android.test.purchased"
-    var tag = "PointViewModel"
-    var inappType = 0
+    var tag = "InappPurchaseModel"
+
 
     var skuDetailList = ArrayList<SkuDetails>()
     var itemModel = ItemModel()
-    var user_nick = Utility.instance.UserData().getUserNick()
 
 
     var isProgressing = MutableLiveData<Boolean>().also {
@@ -173,8 +172,10 @@ class InappPurchaseModel(
                     } else {
                         Utility.instance.showToast(context, "구매 과정 중 오류가 발생하였습니다.")
                     }
+                    webViewInterface?.afterPurchase()
                 }
                 isProgressing.postValue(false)
+
             }
         }
 
@@ -245,4 +246,5 @@ class InappPurchaseModel(
             Log.e(tag, result.debugMessage)
         }
     }
+
 }

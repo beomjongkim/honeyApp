@@ -109,6 +109,9 @@ class BannerVM(var mb_id: String?, var lifecycle: Lifecycle, var context: Contex
                             hasPass.value = it.isSuccess
                         else
                             hasPass.value = false
+                        isSelfBannerShown.value = false
+                    }else{
+                        isSelfBannerShown.value = true
                     }
 
                 }

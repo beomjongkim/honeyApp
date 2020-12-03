@@ -1,14 +1,12 @@
 package com.dmonster.darling.honey.js
 
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.util.Log
 import android.webkit.JavascriptInterface
-import androidx.activity.ComponentActivity
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat.startActivityForResult
-import com.android.billingclient.api.BillingResult
+import androidx.core.content.ContextCompat.startActivity
 import com.dmonster.darling.honey.R
 import com.dmonster.darling.honey.block_friends.view.BlockFriendsActivity
 import com.dmonster.darling.honey.intro.data.IntroLoginData
@@ -25,7 +23,11 @@ import com.google.firebase.iid.FirebaseInstanceId
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
 
- class JSHandler(var activity: AppCompatActivity, var webViewInterface: JSHandler.WebViewInterface? = null) {
+
+class JSHandler(
+     var activity: AppCompatActivity,
+     var webViewInterface: JSHandler.WebViewInterface? = null
+ ) {
     lateinit var inappPurchaseModel : InappPurchaseModel
     val RC_GOOGLE_LOGIN: Int = 101
     val RC_FACEBOOK_LOGIN: Int = 102
@@ -55,19 +57,37 @@ import io.reactivex.observers.DisposableObserver
                 item.let { it ->
                     if (it.isSuccess) {
                         it.item?.let {
-                            Utility.instance.UserData().apply {
-                                setUserId(it.mbId)
-                                setUserMb(it.mbNo)
-                                setUserNick(it.mbNick)
-                                setUserRecommend(it.mbSn)
-                                setUserGender(it.mbSex)
-                                setUserDormant(it.mbSleep)
-                                setUserProfile(it.mbProfileState)
+//                            Utility.instance.UserData().apply {
+//                                setUserId(it.mbId)
+//                                setUserMb(it.mbNo)
+//                                setUserNick(it.mbNick)
+//                                setUserRecommend(it.mbSn)
+//                                setUserGender(it.mbSex)
+//                                setUserDormant(it.mbSleep)
+//                                setUserProfile(it.mbProfileState)
+//                            }
 
-                                it.mbId?.let { it1 ->
-                                    Utility.instance.savePref(activity, AppKeyValue.instance.savePrefID, it1)
-                                }
+                            it.mbId?.let { it1 ->
+                                Utility.instance.savePref(activity,
+                                    AppKeyValue.instance.savePrefID,
+                                    it1)
                             }
+                            it.mbSex?.let { it1 ->
+                                Utility.instance.savePref(activity,
+                                    AppKeyValue.instance.savePrefGender,
+                                    it1)
+                            }
+                            it.mbSleep?.let { it1 ->
+                                Utility.instance.savePref(activity,
+                                    AppKeyValue.instance.savePrefDormant,
+                                    it1)
+                            }
+                            it.mbNick?.let { it1 ->
+                                Utility.instance.savePref(activity,
+                                    AppKeyValue.instance.savePrefNick,
+                                    it1)
+                            }
+
                         }
                     }
                 }
@@ -85,16 +105,16 @@ import io.reactivex.observers.DisposableObserver
 
     @JavascriptInterface
     fun initInappPurchase(id: String?){
-        inappPurchaseModel = InappPurchaseModel(id, activity)
+        inappPurchaseModel =   InappPurchaseModel(id, activity, webViewInterface)
     }
     @JavascriptInterface
     fun inAppPurchase(pointUnit: String?) {
         //point Unit 예
         //point50,point100,point150
         inappPurchaseModel.let {
-            Log.d("inAppPurchase",pointUnit)
+            Log.d("inAppPurchase", pointUnit)
             for (skuDetail in inappPurchaseModel.skuDetailList) {
-                Log.d("inAppPurchase",skuDetail.sku)
+                Log.d("inAppPurchase", skuDetail.sku)
                 if (skuDetail.sku == pointUnit) {
                     inappPurchaseModel.doBillingFlow(skuDetail)
                     break;
@@ -104,7 +124,7 @@ import io.reactivex.observers.DisposableObserver
     }
     @JavascriptInterface
     fun goToBlockFriend(){
-        activity.startActivity(Intent(activity,BlockFriendsActivity::class.java))
+        activity.startActivity(Intent(activity, BlockFriendsActivity::class.java))
     }
 
     @JavascriptInterface
@@ -126,7 +146,7 @@ import io.reactivex.observers.DisposableObserver
     @JavascriptInterface
     fun googleLogin(){
         val signInIntent =googleSigneInClient.signInIntent
-        startActivityForResult( activity,signInIntent,RC_GOOGLE_LOGIN, null)
+        startActivityForResult(activity, signInIntent, RC_GOOGLE_LOGIN, null)
     }
 
     @JavascriptInterface
@@ -138,6 +158,12 @@ import io.reactivex.observers.DisposableObserver
      fun showYoutube(){
          activity.startActivity(Intent(activity, YoutubePlayerActivity::class.java))
      }
+     @JavascriptInterface
+     fun showOtherWebsite(uri : String){
+         val browserIntent =
+             Intent(Intent.ACTION_VIEW, Uri.parse(uri))
+         activity.startActivity(browserIntent)
+     }
 
     private fun configureGoogleSignIn() {
         // Configure Google Sign In
@@ -147,10 +173,11 @@ import io.reactivex.observers.DisposableObserver
             .requestEmail()
             .build();
 
-        googleSigneInClient= GoogleSignIn.getClient(activity,gso)
+        googleSigneInClient= GoogleSignIn.getClient(activity, gso)
     }
 
      interface WebViewInterface{
          fun initSocialLogin()
+         fun afterPurchase()
      }
 }

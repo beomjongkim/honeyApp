@@ -3,14 +3,14 @@ package com.dmonster.darling.honey.webview.viewmodel
 import android.app.Application
 import android.util.Log
 import android.webkit.CookieManager
-import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.*
 import com.dmonster.darling.honey.js.JSHandler
 import com.dmonster.darling.honey.util.AppKeyValue
 import com.dmonster.darling.honey.util.Utility
 
-class WebViewmodel(application: Application, var url: String, var jsHandler: JSHandler) :
-    AndroidViewModel(application) {
+class WebViewmodel(application: Application, var url: String, var jsHandler: JSHandler, lifecycle: Lifecycle) :
+    AndroidViewModel(application) , LifecycleObserver {
+    var context = application.applicationContext
     var cookieManager: CookieManager
 
     init {
@@ -29,24 +29,26 @@ class WebViewmodel(application: Application, var url: String, var jsHandler: JSH
             }
         }
 
+        lifecycle.addObserver(this)
         setMainColor(url_home)
         login(url_home)
     }
 
     fun login(mUrl: String) {
-        var id = Utility.instance.UserData().getUserId()
+        var id = Utility.instance.getPref(context, AppKeyValue.instance.savePrefID)
         if (id != null) {
             cookieManager.setCookie(mUrl, "cookie_logged_in=true")
             cookieManager.setCookie(mUrl,
-                "cookie_logged_in_id=${Utility.instance.UserData().getUserId()}")
+                "cookie_logged_in_id=${ Utility.instance.getPref(context, AppKeyValue.instance.savePrefID)}")
             cookieManager.setCookie(mUrl,
-                "cookie_logged_in_nick=${Utility.instance.UserData().getUserNick()}")
+                "cookie_logged_in_nick=${ Utility.instance.getPref(context, AppKeyValue.instance.savePrefNick)}")
             cookieManager.setCookie(mUrl,
-                "cookie_logged_in_gender=${Utility.instance.UserData().getUserGender()}")
+                "cookie_logged_in_gender=${ Utility.instance.getPref(context, AppKeyValue.instance.savePrefGender)}")
         }
     }
 
     private fun setMainColor(mUrl: String) {
         cookieManager.setCookie(mUrl, "azures-color-scheme=red2")
     }
+
 }

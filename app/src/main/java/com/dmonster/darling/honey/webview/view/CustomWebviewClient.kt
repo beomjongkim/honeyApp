@@ -39,6 +39,8 @@ class CustomWebviewClient() : WebViewClient() {
                 e.printStackTrace()
             }
 
+        }else if(url !=null && !url.contains("jjagiya.co.kr")){
+
         }
         view.loadUrl(url)
         return false

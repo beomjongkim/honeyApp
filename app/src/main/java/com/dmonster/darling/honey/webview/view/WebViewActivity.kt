@@ -9,7 +9,7 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import android.webkit.CookieManager
+
 import android.webkit.ValueCallback
 import android.webkit.WebChromeClient
 import android.webkit.WebView
@@ -38,7 +38,7 @@ import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.iid.FirebaseInstanceId
-import com.kakao.auth.AuthType
+
 import com.kakao.auth.ISessionCallback
 import com.kakao.auth.Session
 import com.kakao.network.ErrorResult
@@ -99,7 +99,7 @@ class WebViewActivity : AppCompatActivity(), LoginContract.View {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 //        setContentView(R.layout.activity_web_view)
-        val id = Utility.instance.UserData().getUserId()
+        val id = Utility.instance.getPref(this,AppKeyValue.instance.savePrefID)
         activityWebViewBinding = DataBindingUtil.setContentView(this, R.layout.activity_web_view)
         val url_home = "https://jjagiya.co.kr"
         var url = url_home + "/page-login-1.html"
@@ -113,7 +113,12 @@ class WebViewActivity : AppCompatActivity(), LoginContract.View {
                     override fun initSocialLogin() {
                         initializeSocialLogin()
                     }
-                })
+
+                    override fun afterPurchase() {
+                        webView.reload()
+                    }
+                }),
+                lifecycle
             )
             it.bannerVM = BannerVM(id, lifecycle, this)
             webView = it.wvWebview
@@ -347,6 +352,11 @@ class WebViewActivity : AppCompatActivity(), LoginContract.View {
         dormantState: String?,
         profileState: String?
     ) {
+        loginId?.let { Utility.instance.savePref(this, AppKeyValue.instance.savePrefID, it) }
+        mbNo?.let { Utility.instance.savePref(this, AppKeyValue.instance.savePrefMbNumber, it) }
+        mbNick?.let { Utility.instance.savePref(this, AppKeyValue.instance.savePrefNick, it) }
+        gender?.let { Utility.instance.savePref(this, AppKeyValue.instance.savePrefGender, it) }
+        dormantState?.let { Utility.instance.savePref(this, AppKeyValue.instance.savePrefDormant, it) }
     }
 
     override fun setLoginFailed(error: String?) {
@@ -362,15 +372,20 @@ class WebViewActivity : AppCompatActivity(), LoginContract.View {
         profileState: String?
     ) {
         loginId?.let { Utility.instance.savePref(this, AppKeyValue.instance.savePrefID, it) }
-        Utility.instance.UserData().apply {
-            setUserId(loginId)
-            setUserMb(mbNo)
-            setUserRecommend(recommend)
-            setUserGender(gender)
-            setUserNick(mbNick)
-            setUserDormant(dormantState)
-            setUserProfile(profileState)
-        }
+        mbNo?.let { Utility.instance.savePref(this, AppKeyValue.instance.savePrefMbNumber, it) }
+        mbNick?.let { Utility.instance.savePref(this, AppKeyValue.instance.savePrefNick, it) }
+        gender?.let { Utility.instance.savePref(this, AppKeyValue.instance.savePrefGender, it) }
+        dormantState?.let { Utility.instance.savePref(this, AppKeyValue.instance.savePrefDormant, it) }
+//        Utility.instance.UserData().apply {
+//            setUserId(loginId)
+//            setUserMb(mbNo)
+//            setUserRecommend(recommend)
+//            setUserGender(gender)
+//            setUserNick(mbNick)
+//            setUserDormant(dormantState)
+//            setUserProfile(profileState)
+//        }
+
 
 //        Utility.instance.savePref(this, AppKeyValue.instance.savePrefPassword, loginPassword)
 //        Utility.instance.savePref(
@@ -525,4 +540,11 @@ class WebViewActivity : AppCompatActivity(), LoginContract.View {
             }
         })
     }
+
+    override fun onResume() {
+        super.onResume()
+        webView.reload()
+
+    }
+
 }
