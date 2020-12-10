@@ -16,11 +16,12 @@ import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
 import io.reactivex.observers.DisposableObserver
 
-class YoutubePlayerVM(var activity: Activity, var secLeftTextView : TextView) : ViewModel() , YouTubePlayer.OnInitializedListener{
-    var apiKey : String  = activity.getString(R.string.google_api_key)
+class YoutubePlayerVM(var activity: Activity, var secLeftTextView: TextView) : ViewModel(),
+    YouTubePlayer.OnInitializedListener {
+    var apiKey: String = activity.getString(R.string.google_api_key)
     var currentMilliSec = 0
     var leftSec = 30
-    var timer : CountDownTimer = object : CountDownTimer(30000,1000) {
+    var timer: CountDownTimer = object : CountDownTimer(30000, 1000) {
         override fun onFinish() {
             TODO("Not yet implemented")
         }
@@ -32,26 +33,28 @@ class YoutubePlayerVM(var activity: Activity, var secLeftTextView : TextView) : 
     }
     var model = YoutubeModel()
 
-    fun onClickSkip(v: View){
+    fun onClickSkip(v: View) {
         leftSec.let {
-            if(it <= 0){
+            if (it <= 0) {
                 ItemModel().also {
-                     var id  = Utility.instance.getPref(activity, AppKeyValue.instance.savePrefID)
-                    it.buyItem(id,1,object : DisposableObserver<ResultItem<String>>() {
+                    var id = Utility.instance.getPref(activity, AppKeyValue.instance.savePrefID)
+                    it.buyItem(id, 1, object : DisposableObserver<ResultItem<String>>() {
                         override fun onComplete() {
                         }
 
                         override fun onNext(t: ResultItem<String>) {
-                            if(t.isSuccess){
-                                Utility.instance.showToast(activity,"1시간 이용권이 지급되었습니다.")
-                            }else{
-                                Utility.instance.showToast(activity,activity.getString(R.string.app_error))
+                            if (t.isSuccess) {
+                                Utility.instance.showToast(activity, "1시간 이용권이 지급되었습니다.")
+                            } else {
+                                Utility.instance.showToast(activity,
+                                    activity.getString(R.string.app_error))
                             }
                             activity.finish()
                         }
 
                         override fun onError(e: Throwable) {
-                            Utility.instance.showToast(activity,activity.getString(R.string.app_error))
+                            Utility.instance.showToast(activity,
+                                activity.getString(R.string.app_error))
                         }
                     })
                 }
@@ -59,6 +62,7 @@ class YoutubePlayerVM(var activity: Activity, var secLeftTextView : TextView) : 
         }
 
     }
+
     override fun onInitializationSuccess(
         p0: YouTubePlayer.Provider?,
         youtubePlayer: YouTubePlayer?,
@@ -66,9 +70,8 @@ class YoutubePlayerVM(var activity: Activity, var secLeftTextView : TextView) : 
     ) {
         if (!isReady) {
 
-            model.getYoutubePlayKey(object: DisposableObserver<ResultItem<YoutubeData>>() {
+            model.getYoutubePlayKey(object : DisposableObserver<ResultItem<YoutubeData>>() {
                 override fun onComplete() {
-                    youtubePlayer?.play()
                 }
 
                 override fun onError(e: Throwable) {
@@ -76,10 +79,11 @@ class YoutubePlayerVM(var activity: Activity, var secLeftTextView : TextView) : 
                 }
 
                 override fun onNext(t: ResultItem<YoutubeData>) {
-                    if(t.isSuccess){
+                    if (t.isSuccess) {
                         youtubePlayer?.let {
                             it.cueVideo(t.item?.playKey)
-                            it.setPlaybackEventListener(object :YouTubePlayer.PlaybackEventListener{
+                            it.setPlaybackEventListener(object :
+                                YouTubePlayer.PlaybackEventListener {
                                 override fun onSeekTo(p0: Int) {
                                     currentMilliSec = it.currentTimeMillis
                                 }
@@ -88,16 +92,17 @@ class YoutubePlayerVM(var activity: Activity, var secLeftTextView : TextView) : 
                                 }
 
                                 override fun onPlaying() {
-                                    timer =  object: CountDownTimer((leftSec*1000).toLong(), 1100) {
-                                        override fun onTick(millisUntilFinished: Long) {
-                                            leftSec = (millisUntilFinished/1000).toInt()
-                                            secLeftTextView.text = leftSec.toString() + "초 남음"
-                                        }
+                                    timer =
+                                        object : CountDownTimer((leftSec * 1000).toLong(), 1100) {
+                                            override fun onTick(millisUntilFinished: Long) {
+                                                leftSec = (millisUntilFinished / 1000).toInt()
+                                                secLeftTextView.text = leftSec.toString() + "초 남음"
+                                            }
 
-                                        override fun onFinish() {
-                                            secLeftTextView.text = "광고 건너뛰기"
-                                        }
-                                    }.also { it.start() }
+                                            override fun onFinish() {
+                                                secLeftTextView.text = "이용권 받기"
+                                            }
+                                        }.also { it.start() }
 
                                 }
 
@@ -115,6 +120,20 @@ class YoutubePlayerVM(var activity: Activity, var secLeftTextView : TextView) : 
                 }
             })
 
+        }
+
+        youtubePlayer?.let {
+
+            it.setPlayerStateChangeListener(object : YouTubePlayer.PlayerStateChangeListener {
+                override fun onAdStarted() {}
+                override fun onLoading() {}
+                override fun onVideoStarted() {}
+                override fun onVideoEnded() {}
+                override fun onError(p0: YouTubePlayer.ErrorReason) {}
+                override fun onLoaded(videoId: String) {
+                    it.play()
+                }
+            })
         }
     }
 
