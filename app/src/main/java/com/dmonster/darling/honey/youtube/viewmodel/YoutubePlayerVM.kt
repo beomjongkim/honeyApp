@@ -68,7 +68,7 @@ class YoutubePlayerVM(var activity: Activity, var secLeftTextView : TextView) : 
 
             model.getYoutubePlayKey(object: DisposableObserver<ResultItem<YoutubeData>>() {
                 override fun onComplete() {
-
+                    youtubePlayer?.play()
                 }
 
                 override fun onError(e: Throwable) {

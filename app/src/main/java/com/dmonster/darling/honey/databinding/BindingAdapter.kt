@@ -358,7 +358,6 @@ object BindingAdapter {
     @JvmStatic
     fun initYoutubePlayer(youTubePlayerView: YouTubePlayerView, apiKey: String, onInitializedListener: YouTubePlayer.OnInitializedListener){
         youTubePlayerView.initialize(apiKey, onInitializedListener)
-
     }
 
     @SuppressLint("JavascriptInterface", "AddJavascriptInterface")
