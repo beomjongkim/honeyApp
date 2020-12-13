@@ -1,27 +1,36 @@
 package com.dmonster.darling.honey.js
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.net.Uri
 import android.util.Log
+import android.view.View
 import android.webkit.JavascriptInterface
+import androidx.annotation.NonNull
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat.startActivityForResult
 import androidx.core.content.ContextCompat.startActivity
 import com.dmonster.darling.honey.R
+import com.dmonster.darling.honey.ads.viewmodel.RewardVM
 import com.dmonster.darling.honey.block_friends.view.BlockFriendsActivity
 import com.dmonster.darling.honey.intro.data.IntroLoginData
 import com.dmonster.darling.honey.intro.model.IntroLoginModel
+import com.dmonster.darling.honey.point.model.ItemModel
 import com.dmonster.darling.honey.util.AppKeyValue
 import com.dmonster.darling.honey.util.Utility
 import com.dmonster.darling.honey.util.retrofit.ResultItem
 import com.dmonster.darling.honey.webview.model.InappPurchaseModel
 import com.dmonster.darling.honey.youtube.view.YoutubePlayerActivity
+import com.google.android.gms.ads.rewarded.RewardItem
+import com.google.android.gms.ads.rewarded.RewardedAdCallback
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.firebase.iid.FirebaseInstanceId
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
+import kotlinx.android.synthetic.main.fragment_my_act_talk.*
 
 
 class JSHandler(
@@ -153,9 +162,17 @@ class JSHandler(
      fun initSocialLogin(){
         webViewInterface?.initSocialLogin()
     }
-
+    @JavascriptInterface
+    fun checkOwnFreepass(hasFreepass : Boolean) {
+        val pref = activity.getSharedPreferences("Pref", Context.MODE_PRIVATE)
+        val editor = pref.edit()
+        editor.putBoolean(AppKeyValue.instance.hasFreePass, hasFreepass)
+        editor.apply()
+        Log.d("checkOwnFreepass",hasFreepass.toString())
+    }
      @JavascriptInterface
-     fun showYoutube(){
+     fun showAdsVideo(){
+//         webViewInterface?.showVideoAds()
          activity.startActivity(Intent(activity, YoutubePlayerActivity::class.java))
      }
      @JavascriptInterface
@@ -179,5 +196,6 @@ class JSHandler(
      interface WebViewInterface{
          fun initSocialLogin()
          fun afterPurchase()
+         fun showVideoAds()
      }
 }

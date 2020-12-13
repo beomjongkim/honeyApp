@@ -429,13 +429,13 @@
 
         <com.google.android.gms.ads.AdView
             android:id="@+id/bn_act_talk"
-            hasPass="@{bannerVM.hasPass}"
+            hasPass="@{bannerVM.isBannerShown}"
             setAdListener="@{bannerVM.adListener}"
             setAdRequest="@{bannerVM.adRequest}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/rv_act_talk_list"
-            android:visibility="@{bannerVM.hasPass? View.GONE : View.VISIBLE}"
+            android:visibility="@{bannerVM.isBannerShown? View.GONE : View.VISIBLE}"
             app:adSize="BANNER"
             app:adUnitId="@string/banner_id"
             app:layout_constraintBottom_toBottomOf="parent"

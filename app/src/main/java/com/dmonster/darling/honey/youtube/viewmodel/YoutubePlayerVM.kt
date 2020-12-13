@@ -44,7 +44,7 @@ class YoutubePlayerVM(var activity: Activity, var secLeftTextView: TextView) : V
 
                         override fun onNext(t: ResultItem<String>) {
                             if (t.isSuccess) {
-                                Utility.instance.showToast(activity, "1시간 이용권이 지급되었습니다.")
+                                Utility.instance.showToast(activity, "5분 이용권이 지급되었습니다.")
                             } else {
                                 Utility.instance.showToast(activity,
                                     activity.getString(R.string.app_error))

@@ -6,7 +6,6 @@ import android.net.Uri
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.*
-import com.dmonster.darling.honey.point.data.CheckFreePassData
 import com.dmonster.darling.honey.point.model.ItemModel
 import com.dmonster.darling.honey.util.AppKeyValue
 import com.dmonster.darling.honey.util.retrofit.ResultItem
@@ -20,6 +19,7 @@ import java.util.*
 class BannerVM(var mb_id: String?, var lifecycle: Lifecycle, var context: Context) : ViewModel(), LifecycleObserver {
     var adRequest: AdRequest = AdRequest.Builder().build()
     var selfBannerId = -1
+    var adAvailable = false
     var adListener = object : AdListener() {
         override fun onAdLoaded() {
             // Code to be executed when an ad finishes loading.
@@ -27,13 +27,13 @@ class BannerVM(var mb_id: String?, var lifecycle: Lifecycle, var context: Contex
 
         override fun onAdFailedToLoad(errorCode: Int) {
             // Code to be executed when an ad request fails.
-            hasPass.value = true
-            isSelfBannerShown.value = true
+            adAvailable = false
         }
 
         override fun onAdOpened() {
             // Code to be executed when an ad opens an overlay that
             // covers the screen.
+            adAvailable = true
         }
 
         override fun onAdClicked() {
@@ -50,7 +50,7 @@ class BannerVM(var mb_id: String?, var lifecycle: Lifecycle, var context: Contex
             // to the app after tapping on an ad.
         }
     }
-    var hasPass = MutableLiveData<Boolean>().also {
+    var isBannerShown = MutableLiveData<Boolean>().also {
         it.value = false
     }
     var isSelfBannerShown  = MutableLiveData<Boolean>().also {
@@ -84,41 +84,15 @@ class BannerVM(var mb_id: String?, var lifecycle: Lifecycle, var context: Contex
     }
 
     private fun checkOwnFreepass() {
-        val subscriber = object : DisposableObserver<ResultItem<CheckFreePassData>>() {
-            override fun onComplete() {
-
-            }
-
-            override fun onError(e: Throwable) {
-                hasPass.value = false
-                val pref = context.getSharedPreferences("Pref", Context.MODE_PRIVATE)
-                val editor = pref.edit()
-                editor.putBoolean(AppKeyValue.instance.hasFreePass, false)
-                editor.apply()
-            }
-
-            override fun onNext(item: ResultItem<CheckFreePassData>) {
-                item.let { it ->
-                    val pref = context.getSharedPreferences("Pref", Context.MODE_PRIVATE)
-                    val editor = pref.edit()
-                    editor.putBoolean(AppKeyValue.instance.hasFreePass, item.isSuccess)
-                    editor.apply()
-
-                    if(it.item?.minutes_left !=null){
-                        if(Integer.parseInt(it.item.minutes_left!!) >  60)
-                            hasPass.value = it.isSuccess
-                        else
-                            hasPass.value = false
-                        isSelfBannerShown.value = false
-                    }else{
-                        isSelfBannerShown.value = true
-                    }
-
-                }
-            }
+        val pref = context.getSharedPreferences("Pref", Context.MODE_PRIVATE)
+        Log.d("BannerVM", pref.getBoolean(AppKeyValue.instance.hasFreePass,false).toString())
+        if(adAvailable){//광고를 불러올 수 있는 상황이라면,
+            isBannerShown.value =  !pref.getBoolean(AppKeyValue.instance.hasFreePass,false)//서버에서 이용권있는지 체크하고 이용권이 있다면 배너를 없앤다.
+            isSelfBannerShown.value =  false
+        }else{//
+            isBannerShown.value = false
+            isSelfBannerShown.value = !pref.getBoolean(AppKeyValue.instance.hasFreePass,false)
         }
-
-        itemModel.check_own_freepass(mb_id, subscriber)
     }
 
     fun onClickSelfBanner(v : View){
@@ -130,7 +104,6 @@ class BannerVM(var mb_id: String?, var lifecycle: Lifecycle, var context: Contex
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun onResume() {
-        isSelfBannerShown.value = false
         checkOwnFreepass()
     }
 

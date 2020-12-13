@@ -1367,13 +1367,13 @@
             android:id="@+id/bn_act_profile"
             setAdListener="@{bannerVM.adListener}"
             setAdRequest="@{bannerVM.adRequest}"
-            hasPass="@{bannerVM.hasPass}"
+            hasPass="@{bannerVM.isBannerShown}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:visibility="@{bannerVM.hasPass? View.GONE : View.VISIBLE}"
+            android:visibility="@{bannerVM.isBannerShown? View.GONE : View.VISIBLE}"
             app:adSize="BANNER"
             app:adUnitId="@string/banner_id" />
     </androidx.constraintlayout.widget.ConstraintLayout>

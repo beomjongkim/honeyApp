@@ -14,23 +14,29 @@ import android.webkit.ValueCallback
 import android.webkit.WebChromeClient
 import android.webkit.WebView
 import android.widget.Toast
+import androidx.annotation.NonNull
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import com.dmonster.darling.honey.R
 import com.dmonster.darling.honey.ads.viewmodel.BannerVM
+import com.dmonster.darling.honey.ads.viewmodel.RewardVM
 import com.dmonster.darling.honey.databinding.ActivityWebViewBinding
 import com.dmonster.darling.honey.js.JSHandler
 import com.dmonster.darling.honey.login.presenter.LoginContract
 import com.dmonster.darling.honey.login.presenter.LoginPresenter
+import com.dmonster.darling.honey.point.model.ItemModel
 import com.dmonster.darling.honey.util.AppKeyValue
 import com.dmonster.darling.honey.util.Utility
+import com.dmonster.darling.honey.util.retrofit.ResultItem
 import com.dmonster.darling.honey.webview.viewmodel.WebViewmodel
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
 import com.facebook.login.LoginResult
+import com.google.android.gms.ads.rewarded.RewardItem
+import com.google.android.gms.ads.rewarded.RewardedAdCallback
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -50,6 +56,7 @@ import com.kakao.util.exception.KakaoException
 import com.nhn.android.naverlogin.OAuthLogin
 import com.nhn.android.naverlogin.OAuthLoginHandler
 import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.observers.DisposableObserver
 import org.json.JSONObject
 import java.io.BufferedReader
 import java.io.InputStreamReader
@@ -73,28 +80,25 @@ class WebViewActivity : AppCompatActivity(), LoginContract.View {
 
     // 카카오 로그인
     private lateinit var kakaoCallback: SessionCallback
-    private var isKakaoLoginMode = false
 
     //페이스북 로그인
     private lateinit var facebookCallbackManager: CallbackManager
     private lateinit var facebookCallback: FacebookCallback<LoginResult>
-    private var isFacebookLoginMode = false
 
     //구글 로그인
     lateinit var auth: FirebaseAuth
-    lateinit var authListener: FirebaseAuth.AuthStateListener
-    lateinit var googleSigneInClient: GoogleSignInClient
+
     val RC_GOOGLE_LOGIN: Int = 101
     val RC_FACEBOOK_LOGIN: Int = 102
     val RC_KAKAO_LOGIN: Int = 103
     val RC_NAVER_LOGIN: Int = 104
     val RC_FILE_UPLOAD : Int = 105
-    private var isGoogleLoginMode = false
+
 
     private var id: String? = null
     private var social: String? = null
-    private var intentPW: Boolean? = false
 
+    lateinit var rewardVM : RewardVM
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -117,6 +121,10 @@ class WebViewActivity : AppCompatActivity(), LoginContract.View {
                     override fun afterPurchase() {
                         webView.reload()
                     }
+
+                    override fun showVideoAds() {
+                        rewardVM.rewardedAd.show(this@WebViewActivity, rewardVM.adCallBackBase)
+                    }
                 }),
                 lifecycle
             )
@@ -133,7 +141,47 @@ class WebViewActivity : AppCompatActivity(), LoginContract.View {
         disposeBag = CompositeDisposable()
         mPresenter = LoginPresenter()
         mPresenter.attachView(this)
+        rewardVM = RewardVM(this)
+        rewardVM.adCallback = object : RewardedAdCallback() {
 
+            override fun onRewardedAdOpened() {
+                // Ad opened.
+                Log.d("showAds", "Ad opened.")
+            }
+
+            override fun onRewardedAdClosed() {
+                // Ad closed.
+                Log.d("showAds", "Ad closed.")
+            }
+
+            override fun onUserEarnedReward(@NonNull reward: RewardItem) {
+
+                // User earned reward.
+                val subscriber = object : DisposableObserver<ResultItem<String>>() {
+                    override fun onComplete() {
+                    }
+
+                    override fun onError(e: Throwable) {
+                    }
+
+                    override fun onNext(item: ResultItem<String>) {
+                        item.let { it ->
+                            if (it.isSuccess) {
+                                this@WebViewActivity.let { it1 -> Utility.instance.showToast(it1, "성공적으로 이용권을 구매하였습니다.") }
+                            }
+                        }
+                    }
+                }
+                val id = Utility.instance.getPref(this@WebViewActivity,AppKeyValue.instance.savePrefID)
+                ItemModel().buyItem(id, 1, subscriber)
+                Log.d("showAds", "User earned reward.")
+            }
+
+            override fun onRewardedAdFailedToShow(errorCode: Int) {
+                // Ad failed to display.
+                Log.d("showAds", "Ad failed to display.")
+            }
+        }
 
 
         webView.webChromeClient = object : WebChromeClient() {
@@ -187,7 +235,6 @@ class WebViewActivity : AppCompatActivity(), LoginContract.View {
                 return true
             }
         }
-
 
     }
 
@@ -543,7 +590,7 @@ class WebViewActivity : AppCompatActivity(), LoginContract.View {
 
     override fun onResume() {
         super.onResume()
-        webView.reload()
+//        webView.reload()
 
     }
 

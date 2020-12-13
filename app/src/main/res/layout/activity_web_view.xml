@@ -43,12 +43,12 @@
 
         <com.google.android.gms.ads.AdView
             android:id="@+id/bn_webview"
-            hasPass="@{bannerVM.hasPass}"
+            hasPass="@{bannerVM.isBannerShown}"
             setAdListener="@{bannerVM.adListener}"
             setAdRequest="@{bannerVM.adRequest}"
             android:layout_width="0dp"
             android:layout_height="50dp"
-            android:visibility="@{bannerVM.hasPass? View.GONE : View.VISIBLE}"
+            android:visibility="@{bannerVM.isBannerShown? View.VISIBLE : View.GONE}"
             app:adSize="BANNER"
             app:adUnitId="@string/banner_id"
             app:layout_constraintBottom_toBottomOf="parent"

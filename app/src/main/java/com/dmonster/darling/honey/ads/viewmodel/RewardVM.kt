@@ -64,5 +64,4 @@ class RewardVM(var activity: Activity) : ViewModel(), LifecycleObserver {
         }
     }
 
-
 }
