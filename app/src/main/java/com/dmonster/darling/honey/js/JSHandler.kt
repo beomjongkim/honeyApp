@@ -171,7 +171,7 @@ class JSHandler(
         Log.d("checkOwnFreepass",hasFreepass.toString())
     }
      @JavascriptInterface
-     fun showAdsVideo(){
+     fun showYoutube(){
 //         webViewInterface?.showVideoAds()
          activity.startActivity(Intent(activity, YoutubePlayerActivity::class.java))
      }
