@@ -3,13 +3,16 @@ package com.dmonster.darling.honey.webview.view
 import android.Manifest
 import android.annotation.SuppressLint
 import android.app.Activity
+import android.content.BroadcastReceiver
+import android.content.Context
 import android.content.Intent
+import android.content.IntentFilter
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
-
+import android.webkit.ConsoleMessage
 import android.webkit.ValueCallback
 import android.webkit.WebChromeClient
 import android.webkit.WebView
@@ -39,12 +42,10 @@ import com.google.android.gms.ads.rewarded.RewardItem
 import com.google.android.gms.ads.rewarded.RewardedAdCallback
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
-import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.common.api.ApiException
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.iid.FirebaseInstanceId
-
 import com.kakao.auth.ISessionCallback
 import com.kakao.auth.Session
 import com.kakao.network.ErrorResult
@@ -100,10 +101,23 @@ class WebViewActivity : AppCompatActivity(), LoginContract.View {
 
     lateinit var rewardVM : RewardVM
 
+    var myReceiver: BroadcastReceiver = object : BroadcastReceiver() {
+        override fun onReceive(context: Context?, intent: Intent) {
+            val action = intent.getStringExtra("action")
+            aaa()
+        }
+    }
+
+
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
+
+        Log.e("Console","onCreate")
 //        setContentView(R.layout.activity_web_view)
-        val id = Utility.instance.getPref(this,AppKeyValue.instance.savePrefID)
+        Log.e("bbbCheck","login 1  "+Utility.instance.getPref(this, AppKeyValue.instance.savePrefID))
+        val id = Utility.instance.getPref(this, AppKeyValue.instance.savePrefID)
+
         activityWebViewBinding = DataBindingUtil.setContentView(this, R.layout.activity_web_view)
         val url_home = "https://jjagiya.co.kr"
         var url = url_home + "/page-login-1.html"
@@ -116,6 +130,7 @@ class WebViewActivity : AppCompatActivity(), LoginContract.View {
                 JSHandler(this, object : JSHandler.WebViewInterface {
                     override fun initSocialLogin() {
                         initializeSocialLogin()
+                        it.bannerVM = BannerVM(id, lifecycle, this@WebViewActivity)
                     }
 
                     override fun afterPurchase() {
@@ -125,6 +140,11 @@ class WebViewActivity : AppCompatActivity(), LoginContract.View {
                     override fun showVideoAds() {
                         rewardVM.rewardedAd.show(this@WebViewActivity, rewardVM.adCallBackBase)
                     }
+
+                    override fun viewRefresh() {
+                        Log.e("dddCheck", "viewRefresh")
+                        webView.reload()
+                    }
                 }),
                 lifecycle
             )
@@ -132,6 +152,7 @@ class WebViewActivity : AppCompatActivity(), LoginContract.View {
             webView = it.wvWebview
             it.lifecycleOwner = this
         }
+
 
         init()
 
@@ -167,12 +188,16 @@ class WebViewActivity : AppCompatActivity(), LoginContract.View {
                     override fun onNext(item: ResultItem<String>) {
                         item.let { it ->
                             if (it.isSuccess) {
-                                this@WebViewActivity.let { it1 -> Utility.instance.showToast(it1, "성공적으로 이용권을 구매하였습니다.") }
+                                this@WebViewActivity.let { it1 -> Utility.instance.showToast(it1,
+                                    "성공적으로 이용권을 구매하였습니다.") }
                             }
                         }
                     }
                 }
-                val id = Utility.instance.getPref(this@WebViewActivity,AppKeyValue.instance.savePrefID)
+
+                Log.e("bbbCheck","login 2  "+Utility.instance.getPref(this@WebViewActivity, AppKeyValue.instance.savePrefID))
+                val id = Utility.instance.getPref(this@WebViewActivity,
+                    AppKeyValue.instance.savePrefID)
                 ItemModel().buyItem(id, 1, subscriber)
                 Log.d("showAds", "User earned reward.")
             }
@@ -183,6 +208,7 @@ class WebViewActivity : AppCompatActivity(), LoginContract.View {
             }
         }
 
+        Log.e("Console","load")
 
         webView.webChromeClient = object : WebChromeClient() {
             @RequiresApi(Build.VERSION_CODES.LOLLIPOP)
@@ -232,6 +258,15 @@ class WebViewActivity : AppCompatActivity(), LoginContract.View {
                     }
                     uploadMessage = null
                 }
+                return true
+            }
+
+            override fun onConsoleMessage(consoleMessage: ConsoleMessage?): Boolean {
+                Log.e("Console","load2")
+                Log.e("ConsoleLog","msg : "+consoleMessage!!.message())
+                Log.e("ConsoleLog","line : "+consoleMessage!!.lineNumber())
+                Log.e("ConsoleLog","url : "+consoleMessage!!.sourceId())
+
                 return true
             }
         }
@@ -403,7 +438,11 @@ class WebViewActivity : AppCompatActivity(), LoginContract.View {
         mbNo?.let { Utility.instance.savePref(this, AppKeyValue.instance.savePrefMbNumber, it) }
         mbNick?.let { Utility.instance.savePref(this, AppKeyValue.instance.savePrefNick, it) }
         gender?.let { Utility.instance.savePref(this, AppKeyValue.instance.savePrefGender, it) }
-        dormantState?.let { Utility.instance.savePref(this, AppKeyValue.instance.savePrefDormant, it) }
+        dormantState?.let { Utility.instance.savePref(this,
+            AppKeyValue.instance.savePrefDormant,
+            it) }
+
+        Log.e("bbbCheck","login 3  "+Utility.instance.getPref(this, AppKeyValue.instance.savePrefID))
     }
 
     override fun setLoginFailed(error: String?) {
@@ -422,7 +461,9 @@ class WebViewActivity : AppCompatActivity(), LoginContract.View {
         mbNo?.let { Utility.instance.savePref(this, AppKeyValue.instance.savePrefMbNumber, it) }
         mbNick?.let { Utility.instance.savePref(this, AppKeyValue.instance.savePrefNick, it) }
         gender?.let { Utility.instance.savePref(this, AppKeyValue.instance.savePrefGender, it) }
-        dormantState?.let { Utility.instance.savePref(this, AppKeyValue.instance.savePrefDormant, it) }
+        dormantState?.let { Utility.instance.savePref(this,
+            AppKeyValue.instance.savePrefDormant,
+            it) }
 //        Utility.instance.UserData().apply {
 //            setUserId(loginId)
 //            setUserMb(mbNo)
@@ -442,6 +483,8 @@ class WebViewActivity : AppCompatActivity(), LoginContract.View {
 //        )
         activityWebViewBinding?.webViewModel?.login("https://jjagiya.co.kr")
         webView.loadUrl("https://jjagiya.co.kr/home.html")
+
+        Log.e("bbbCheck","login 4  "+Utility.instance.getPref(this, AppKeyValue.instance.savePrefID))
 
     }
 
@@ -590,8 +633,21 @@ class WebViewActivity : AppCompatActivity(), LoginContract.View {
 
     override fun onResume() {
         super.onResume()
+        registerReceiver(myReceiver, IntentFilter("refresh"))
+
 //        webView.reload()
 
+    }
+
+    override fun onPause() {
+        super.onPause()
+        unregisterReceiver(myReceiver)
+    }
+
+    fun aaa(){
+        Log.e("dddCheck", "aaa")
+        webView.reload()
+        Log.e("dddCheck","url : "+webView.url)
     }
 
 }

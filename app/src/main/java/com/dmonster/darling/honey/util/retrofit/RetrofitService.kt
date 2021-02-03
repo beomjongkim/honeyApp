@@ -747,6 +747,13 @@ interface RetrofitService {
         @Field("mb_id") id: String?
     ): Observable<ResultItem<PointData>>
 
+    /* 광고시청 무료이용권 지급 */
+    @FormUrlEncoded
+    @POST("json/api_json.php")
+    fun addAdsReward(
+        @Field("method") method: String?,
+        @Field("mb_id") id: String?
+    ): Observable<ResultItem<String>>
 
     /*   아이템 구매    */
     @FormUrlEncoded

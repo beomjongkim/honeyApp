@@ -26,8 +26,9 @@ class SlideActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_slide)
-        initFCM()
-        init()
+//        initFCM()
+//        init()
+        onClickSkip()
     }
     fun init(){
 
@@ -43,7 +44,7 @@ class SlideActivity : AppCompatActivity() {
         imgList.add(R.drawable.intro_img_4)
         imgList.add(R.drawable.intro_img_5)
 
-        itemList.add(SlideData("자기야","커플 매칭의 모든 것 결혼어플 자기야! 자기야의 다양한 서비스를 통해 마음에 드는 이성을 찾고, 나의 매력을 어필하여 인연을 맺어보세요.", R.drawable.scroll1))
+        itemList.add(SlideData("자기야z","커플 매칭의 모든 것 결혼어플 자기야! 자기야의 다양한 서비스를 통해 마음에 드는 이성을 찾고, 나의 매력을 어필하여 인연을 맺어보세요.", R.drawable.scroll1))
         itemList.add(SlideData("언제 어디서나","결혼어플 자기야는 IOS, 안드로이드, 웹 통합 기능으로 언제 어디서나 어떤 매체로든 편안하게 이용할 수 있는 환경을 제공합니다.", R.drawable.scroll2))
         itemList.add(SlideData("다크모드 지원","결혼어플 자기야를 통해 마음에 드는 이성과 장시간 소통할 수 있도록, 시간에 구애받지 않고 소통할 수 있도록 눈이 편안한 다크모드를 지원합니다.", R.drawable.scroll3))
         itemList.add(SlideData("선물&쇼핑하기","이제 결혼어플 자기야에서 선물&쇼핑도 가능합니다! 직접 쇼핑도 즐기고, 마음에 드는 이성에게 선물하기 기능을 통해 마음을 표현해보세요!", R.drawable.scroll4))

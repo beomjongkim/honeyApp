@@ -2,6 +2,7 @@ package com.dmonster.darling.honey.youtube.viewmodel
 
 import android.app.Activity
 import android.os.CountDownTimer
+import android.util.Log
 import android.view.View
 import android.widget.TextView
 import androidx.lifecycle.ViewModel
@@ -38,13 +39,22 @@ class YoutubePlayerVM(var activity: Activity, var secLeftTextView: TextView) : V
             if (it <= 0) {
                 ItemModel().also {
                     var id = Utility.instance.getPref(activity, AppKeyValue.instance.savePrefID)
-                    it.buyItem(id, 1, object : DisposableObserver<ResultItem<String>>() {
+                    it.addAdsReward(id, object : DisposableObserver<ResultItem<String>>() {
                         override fun onComplete() {
+                            Log.e("YutubeCheck","onComprete")
                         }
 
                         override fun onNext(t: ResultItem<String>) {
+                            Log.e("YutubeCheck","onNext")
+                            Log.e("YutubeCheck","id : "+id)
+                            Log.e("YutubeCheck","isSuccess : "+t.isSuccess)
+                            Log.e("YutubeCheck","item : "+t.item)
+                            Log.e("YutubeCheck","message : "+t.message)
+                            Log.e("YutubeCheck","method : "+t.method)
+                            Log.e("YutubeCheck","result : "+t.result)
+                            Log.e("YutubeCheck","count : "+t.count)
                             if (t.isSuccess) {
-                                Utility.instance.showToast(activity, "5분 이용권이 지급되었습니다.")
+                                Utility.instance.showToast(activity, t.message)
                             } else {
                                 Utility.instance.showToast(activity,
                                     activity.getString(R.string.app_error))
@@ -53,6 +63,7 @@ class YoutubePlayerVM(var activity: Activity, var secLeftTextView: TextView) : V
                         }
 
                         override fun onError(e: Throwable) {
+                            Log.e("YutubeCheck","onError e : "+e)
                             Utility.instance.showToast(activity,
                                 activity.getString(R.string.app_error))
                         }
@@ -72,6 +83,9 @@ class YoutubePlayerVM(var activity: Activity, var secLeftTextView: TextView) : V
 
             model.getYoutubePlayKey(object : DisposableObserver<ResultItem<YoutubeData>>() {
                 override fun onComplete() {
+
+                    var id = Utility.instance.getPref(activity, AppKeyValue.instance.savePrefID)
+                    Log.e("YutubeCheck","id 2 : "+id)
                 }
 
                 override fun onError(e: Throwable) {

@@ -1,5 +1,6 @@
 package com.dmonster.darling.honey.point.model
 
+import android.util.Log
 import com.dmonster.darling.honey.point.data.*
 import com.dmonster.darling.honey.util.ServerApi
 import com.dmonster.darling.honey.util.retrofit.BaseItem
@@ -79,6 +80,7 @@ class ItemModel {
 
     /*    이용권 구매하기  */
     fun buyItem(id: String?, it_id : Int?, subscriber: DisposableObserver<ResultItem<String>>) {
+        Log.e("buyCheck","id : "+id)
         RetrofitProtocol().retrofit.buyItem(ServerApi.instance.buyItem, id, it_id,"")
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
@@ -88,6 +90,14 @@ class ItemModel {
 
     fun rechargePoint(id : String?, point : Int? ,subscriber: DisposableObserver<ResultItem<String>>){
         RetrofitProtocol().retrofit.rechargePoint(ServerApi.instance.rechargePoint, id, point)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .unsubscribeOn(Schedulers.io())
+            .subscribe(subscriber)
+    }
+
+    fun addAdsReward(id : String?, subscriber: DisposableObserver<ResultItem<String>>) {
+        RetrofitProtocol().retrofit.addAdsReward(ServerApi.instance.adsReward, id)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .unsubscribeOn(Schedulers.io())

@@ -4,7 +4,7 @@ import android.content.DialogInterface
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.os.Bundle
-import androidx.fragment.app.DialogFragment
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -31,7 +31,11 @@ class DormantDialog: androidx.fragment.app.DialogFragment() {
 
     private var id: String? = null
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
         dialog?.requestWindowFeature(Window.FEATURE_NO_TITLE)
         dialog?.window?.setBackgroundDrawable(ColorDrawable(Color.TRANSPARENT))
         
@@ -58,17 +62,17 @@ class DormantDialog: androidx.fragment.app.DialogFragment() {
     private fun setListener() {
         /*    취소    */
         disposeBag.add(RxView.clicks(tv_dlg_basic_cancel)
-                .throttleFirst(1, TimeUnit.SECONDS)
-                .subscribe {
-                    dismiss()
-                })
+            .throttleFirst(1, TimeUnit.SECONDS)
+            .subscribe {
+                dismiss()
+            })
 
         /*    확인    */
         disposeBag.add(RxView.clicks(tv_dlg_basic_enter)
-                .throttleFirst(1, TimeUnit.SECONDS)
-                .subscribe {
-                    setDormant(id, AppKeyValue.instance.keyYes)
-                })
+            .throttleFirst(1, TimeUnit.SECONDS)
+            .subscribe {
+                setDormant(id, AppKeyValue.instance.keyYes)
+            })
     }
 
     /*    계정 휴면    */
@@ -86,12 +90,22 @@ class DormantDialog: androidx.fragment.app.DialogFragment() {
                 item.let {
                     if(it.isSuccess) {
                         dialog?.context?.let { it1 ->
-                            Utility.instance.showAlert(it1, it1.getString(R.string.app_name), it1.getString(R.string.msg_main_dormant_complete), DialogInterface.OnClickListener { dialog, which ->
-                                /*Utility.instance.savePref(it1, AppKeyValue.instance.savePrefDormant, AppKeyValue.instance.keyYes)*/
-                                FirebaseAnalytics.getInstance(it1).logEvent("setDormant",Bundle().also { it2 -> it2.putString("user_id", id)})
-                                Utility.instance.setLogout(it1)
-                                dismiss()
-                            })
+                            Utility.instance.showAlert(it1,
+                                it1.getString(R.string.app_name),
+                                it1.getString(
+                                    R.string.msg_main_dormant_complete),
+                                DialogInterface.OnClickListener { dialog, which ->
+                                    /*Utility.instance.savePref(it1, AppKeyValue.instance.savePrefDormant, AppKeyValue.instance.keyYes)*/
+                                    FirebaseAnalytics.getInstance(it1).logEvent("setDormant",
+                                        Bundle().also { it2 ->
+                                            it2.putString(
+                                                "user_id",
+                                                id)
+                                        })
+                                    Log.e("logoutCheck", "1")
+                                    Utility.instance.setLogout(it1)
+                                    dismiss()
+                                })
                         }
                     }
                 }

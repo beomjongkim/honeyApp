@@ -23,17 +23,26 @@ class BannerVM(var mb_id: String?, var lifecycle: Lifecycle, var context: Contex
     var adListener = object : AdListener() {
         override fun onAdLoaded() {
             // Code to be executed when an ad finishes loading.
+            val pref = context.getSharedPreferences("Pref", Context.MODE_PRIVATE)
+            if(pref.getBoolean(AppKeyValue.instance.hasFreePass,true)){
+                isBannerShown.value = false
+                isSelfBannerShown.value = true
+            }else{
+                isBannerShown.value = true
+                isSelfBannerShown.value = false
+            }
+
         }
 
         override fun onAdFailedToLoad(errorCode: Int) {
             // Code to be executed when an ad request fails.
-            adAvailable = false
+//            adAvailable = false
         }
 
         override fun onAdOpened() {
             // Code to be executed when an ad opens an overlay that
             // covers the screen.
-            adAvailable = true
+//            adAvailable = true
         }
 
         override fun onAdClicked() {
@@ -83,18 +92,18 @@ class BannerVM(var mb_id: String?, var lifecycle: Lifecycle, var context: Contex
         selfBannerId = selfBannerList[Random().nextInt(2)]
     }
 
-    private fun checkOwnFreepass() {
-        val pref = context.getSharedPreferences("Pref", Context.MODE_PRIVATE)
-        Log.d("BannerVM", pref.getBoolean(AppKeyValue.instance.hasFreePass,false).toString())
-        if(adAvailable){//광고를 불러올 수 있는 상황이라면,
-            isBannerShown.value =  !pref.getBoolean(AppKeyValue.instance.hasFreePass,false)//서버에서 이용권있는지 체크하고 이용권이 있다면 배너를 없앤다.
-            isSelfBannerShown.value =  false
-        }else{//
-            isBannerShown.value = false
-            isSelfBannerShown.value = !pref.getBoolean(AppKeyValue.instance.hasFreePass,false)
-        }
-    }
-
+//    private fun checkOwnFreepass() {
+//        val pref = context.getSharedPreferences("Pref", Context.MODE_PRIVATE)
+//        Log.d("BannerVM", pref.getBoolean(AppKeyValue.instance.hasFreePass,false).toString())
+//        if(adAvailable){//광고를 불러올 수 있는 상황이라면,
+//            isBannerShown.value =  !pref.getBoolean(AppKeyValue.instance.hasFreePass,false)//서버에서 이용권있는지 체크하고 이용권이 있다면 배너를 없앤다.
+//            isSelfBannerShown.value =  false
+//        }else{//
+//            isBannerShown.value = false
+//            isSelfBannerShown.value = !pref.getBoolean(AppKeyValue.instance.hasFreePass,false)
+//        }
+//    }
+//
     fun onClickSelfBanner(v : View){
         link?.let{
             val i = Intent(Intent.ACTION_VIEW, Uri.parse(it))
@@ -104,7 +113,6 @@ class BannerVM(var mb_id: String?, var lifecycle: Lifecycle, var context: Contex
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
     fun onResume() {
-        checkOwnFreepass()
     }
 
 

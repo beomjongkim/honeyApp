@@ -3,6 +3,7 @@ package com.dmonster.darling.honey.ads.viewmodel
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.*
 import com.dmonster.darling.honey.R
@@ -38,6 +39,7 @@ class FullScreenVM(var activity: Activity, var mb_id: String) : ViewModel(), Lif
                     val editor = pref.edit()
                     editor.putBoolean(AppKeyValue.instance.hasFreePass, false)
                     editor.apply()
+
                 }
 
                 override fun onNext(item: ResultItem<CheckFreePassData>) {

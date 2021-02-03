@@ -109,7 +109,14 @@ class JSHandler(
 
     @JavascriptInterface
     fun logout() {
+        Log.e("logoutCheck", "4")
         Utility.instance.setLogout(activity)
+    }
+
+    @JavascriptInterface
+    fun logoutBridge() {
+        Log.e("logoutCheck", "4")
+        Utility.instance.setBridgeLogout(activity)
     }
 
     @JavascriptInterface
@@ -163,6 +170,9 @@ class JSHandler(
         webViewInterface?.initSocialLogin()
     }
     @JavascriptInterface
+    fun viewRefresh(){
+    }
+    @JavascriptInterface
     fun checkOwnFreepass(hasFreepass : Boolean) {
         val pref = activity.getSharedPreferences("Pref", Context.MODE_PRIVATE)
         val editor = pref.edit()
@@ -193,9 +203,10 @@ class JSHandler(
         googleSigneInClient= GoogleSignIn.getClient(activity, gso)
     }
 
-     interface WebViewInterface{
+    interface WebViewInterface{
          fun initSocialLogin()
          fun afterPurchase()
          fun showVideoAds()
+         fun viewRefresh()
      }
 }

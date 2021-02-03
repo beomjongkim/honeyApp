@@ -642,6 +642,20 @@ class Utility private constructor() {
         context.startActivity(intent)
     }
 
+    fun setBridgeLogout(context: Context){
+        Log.e("logoutCheck", "2")
+        savePref(context, AppKeyValue.instance.savePrefID, "")
+        savePref(context, AppKeyValue.instance.savePrefPassword, "")
+        savePref(context, AppKeyValue.instance.savePrefType, "")
+        UserData().apply {
+            setUserMb(null)
+            setUserGender(null)
+            setUserProfile(null)
+            setUserDormant(null)
+            setUserRecommend(null)
+        }
+    }
+
     /*    전화번호 받아오기    */
     fun getPhoneNumber(context: Context): String? {
         val telephonyManager =

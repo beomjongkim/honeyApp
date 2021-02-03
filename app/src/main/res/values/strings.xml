@@ -87,6 +87,8 @@
     <string name="msg_ideal_type_religion">종교를 선택하세요.</string>
     <string name="msg_ideal_type_blood">혈액형을 선택하세요.</string>
 
+    <string name="msg_advertising_reward">1일 1회 광고 시청시 프로필 열람 1회/관심있어요1회/톡이용권5분 지급</string>
+
     <string name="arrow">%s > %s</string>
     <string name="wave">%s ~ %s</string>
     <string name="comma_str01">%s,%s</string>

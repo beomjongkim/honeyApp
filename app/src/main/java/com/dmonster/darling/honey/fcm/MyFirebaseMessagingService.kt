@@ -6,19 +6,14 @@ import android.content.Intent
 import android.graphics.Color
 import android.media.RingtoneManager
 import android.os.Build
-import androidx.core.app.NotificationCompat
 import android.text.TextUtils
 import android.util.Log
+import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat
 import com.dmonster.darling.honey.R
-import com.dmonster.darling.honey.intro.view.SlideActivity
-
-import com.dmonster.darling.honey.talk.data.TalkData
 import com.dmonster.darling.honey.util.AppKeyValue
-import com.dmonster.darling.honey.util.common.EventBus
 import com.dmonster.darling.honey.util.Utility
 import com.dmonster.darling.honey.webview.view.WebViewActivity
-
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 import io.reactivex.disposables.CompositeDisposable
@@ -36,7 +31,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
         remoteMessage = p0
         remoteMessage?.data?.let {
             if (it.isNotEmpty()) {
-                Log.d("CloudMessagingReceiver",it.toString())
+                Log.d("CloudMessagingReceiver", it.toString())
                 val title = it["title"]
                 val message = it["body"]
                 val link =it["link"]
@@ -57,17 +52,21 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
                 val isAppTopRun = isAppTopRun(this, WebViewActivity::class.java.name.toString())
                 val isActivityTop = isActivityTop(this, WebViewActivity::class.java.name.toString())
 
-                setNotification(title,message,link)
+                setNotification(title, message, link)
+                val myIntent = Intent("refresh")
+                myIntent.putExtra("action", "aaa")
+                this.sendBroadcast(myIntent)
 
             } else {
 
             }
         }
+        Log.e("dddCheck", "fcm receive")
     }
 
     override fun onNewToken(p0: String) {
         super.onNewToken(p0)
-        Log.d("FCM_token",p0)
+        Log.d("FCM_token", p0)
 //        sendRegistrationToServer(p0)
 //        subscription.clear()
 
@@ -100,7 +99,7 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
     private fun setNotification(
         title: String?,
         messageBody: String?,
-        link : String?
+        link: String?
     ) {
         lateinit var intent: Intent
         lateinit var pendingIntent: PendingIntent

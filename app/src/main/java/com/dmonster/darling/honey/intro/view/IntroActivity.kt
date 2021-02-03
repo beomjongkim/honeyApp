@@ -89,6 +89,10 @@ class IntroActivity : BaseActivity(), IntroLoginContract.View {
         super.onCreate(savedInstanceState)
         GoogleApiAvailability.getInstance().makeGooglePlayServicesAvailable(this)
         setContentView(R.layout.activity_intro)
+
+        initFCM()
+
+        Log.e("bbbCheck","Intro")
         try {
             val info =
                 packageManager.getPackageInfo(packageName, PackageManager.GET_SIGNATURES)
@@ -295,6 +299,31 @@ class IntroActivity : BaseActivity(), IntroLoginContract.View {
         mPresenter?.detachView()
     }
 
+    private fun initFCM() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            // Create channel to show notifications.
+
+            val notificationManager = getSystemService(NotificationManager::class.java)
+            notificationManager?.createNotificationChannel(
+                NotificationChannel(
+                    AppKeyValue.instance.notificationChannelId,
+                    AppKeyValue.instance.notificationChannelName,
+                    NotificationManager.IMPORTANCE_HIGH
+                )
+            )
+        }
+        if (intent.extras != null) {
+            for (key in intent.extras!!.keySet()) {
+                val value = intent.extras!!.get(key)
+                Log.d("Fcm", "Key: $key Value: $value")
+                if(key == "link" ){
+                    val mIntent = Intent(this@IntroActivity,WebViewActivity::class.java)
+                    mIntent.putExtra("link", value.toString())
+                    startActivity(mIntent)
+                }
+            }
+        }
+    }
 
 
 }

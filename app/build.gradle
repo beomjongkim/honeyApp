@@ -40,6 +40,8 @@ android {
 
             signingConfig signingConfigs.release
             buildConfigField 'boolean', 'ENABLE_CRASHLYTICS', 'true'
+            debuggable true
+
         }
         debug {
 // 프로가드 활성화

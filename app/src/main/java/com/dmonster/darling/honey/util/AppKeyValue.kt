@@ -186,6 +186,7 @@ class AppKeyValue {
     val savePrefProfile = "prefProfile"    // 프로필등록여부
     val savePrefDormant = "prefDormant"    // 휴면여부
     val savePrefRecommend = "prefRecommend"    // 추천인 회원번호
+    val savePrefDayReward = "pefDayReward" // 광고시청 무료이용권 하루제한
     val alarm_event_agreed = "alarm_event_agreed"
 
     val notificationChannelId = "notificationChannelId"
