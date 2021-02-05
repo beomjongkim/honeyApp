@@ -16,6 +16,8 @@ import com.dmonster.darling.honey.youtube.model.YoutubeModel
 import com.google.android.youtube.player.YouTubeInitializationResult
 import com.google.android.youtube.player.YouTubePlayer
 import io.reactivex.observers.DisposableObserver
+import java.text.SimpleDateFormat
+import java.util.*
 
 class YoutubePlayerVM(var activity: Activity, var secLeftTextView: TextView) : ViewModel(),
     YouTubePlayer.OnInitializedListener {
@@ -41,20 +43,16 @@ class YoutubePlayerVM(var activity: Activity, var secLeftTextView: TextView) : V
                     var id = Utility.instance.getPref(activity, AppKeyValue.instance.savePrefID)
                     it.addAdsReward(id, object : DisposableObserver<ResultItem<String>>() {
                         override fun onComplete() {
-                            Log.e("YutubeCheck","onComprete")
                         }
 
                         override fun onNext(t: ResultItem<String>) {
-                            Log.e("YutubeCheck","onNext")
-                            Log.e("YutubeCheck","id : "+id)
-                            Log.e("YutubeCheck","isSuccess : "+t.isSuccess)
-                            Log.e("YutubeCheck","item : "+t.item)
-                            Log.e("YutubeCheck","message : "+t.message)
-                            Log.e("YutubeCheck","method : "+t.method)
-                            Log.e("YutubeCheck","result : "+t.result)
-                            Log.e("YutubeCheck","count : "+t.count)
                             if (t.isSuccess) {
                                 Utility.instance.showToast(activity, t.message)
+
+                                val sdf = SimpleDateFormat("yyyy-MM-dd")
+                                val currentDate = sdf.format(Date())
+                                Utility.instance.savePref(activity,AppKeyValue.instance.savePrefDayReward,currentDate)
+
                             } else {
                                 Utility.instance.showToast(activity,
                                     activity.getString(R.string.app_error))
@@ -63,7 +61,6 @@ class YoutubePlayerVM(var activity: Activity, var secLeftTextView: TextView) : V
                         }
 
                         override fun onError(e: Throwable) {
-                            Log.e("YutubeCheck","onError e : "+e)
                             Utility.instance.showToast(activity,
                                 activity.getString(R.string.app_error))
                         }

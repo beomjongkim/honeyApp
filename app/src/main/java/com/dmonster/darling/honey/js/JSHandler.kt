@@ -31,6 +31,10 @@ import com.google.firebase.iid.FirebaseInstanceId
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableObserver
 import kotlinx.android.synthetic.main.fragment_my_act_talk.*
+import java.text.SimpleDateFormat
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 
 class JSHandler(
@@ -128,9 +132,9 @@ class JSHandler(
         //point Unit 예
         //point50,point100,point150
         inappPurchaseModel.let {
-            Log.d("inAppPurchase", pointUnit)
+            Log.d("inAppPurchase", "unit : "+pointUnit)
             for (skuDetail in inappPurchaseModel.skuDetailList) {
-                Log.d("inAppPurchase", skuDetail.sku)
+                Log.d("inAppPurchase", "sku : "+skuDetail.sku)
                 if (skuDetail.sku == pointUnit) {
                     inappPurchaseModel.doBillingFlow(skuDetail)
                     break;
@@ -161,19 +165,23 @@ class JSHandler(
     }
     @JavascriptInterface
     fun googleLogin(){
+        Log.e("JSCheck","googleLogin")
         val signInIntent =googleSigneInClient.signInIntent
         startActivityForResult(activity, signInIntent, RC_GOOGLE_LOGIN, null)
     }
 
     @JavascriptInterface
      fun initSocialLogin(){
+        Log.e("JSCheck","initSocialLogin")
         webViewInterface?.initSocialLogin()
     }
     @JavascriptInterface
     fun viewRefresh(){
+        Log.e("JSCheck","viewRefresh")
     }
     @JavascriptInterface
     fun checkOwnFreepass(hasFreepass : Boolean) {
+        Log.e("JSCheck","checkOwnFreepass")
         val pref = activity.getSharedPreferences("Pref", Context.MODE_PRIVATE)
         val editor = pref.edit()
         editor.putBoolean(AppKeyValue.instance.hasFreePass, hasFreepass)
@@ -183,7 +191,17 @@ class JSHandler(
      @JavascriptInterface
      fun showYoutube(){
 //         webViewInterface?.showVideoAds()
-         activity.startActivity(Intent(activity, YoutubePlayerActivity::class.java))
+
+         val sdf = SimpleDateFormat("yyyy-MM-dd")
+         val currentDate = sdf.format(Date())
+         var prefDate = Utility.instance.getPref(activity,AppKeyValue.instance.savePrefDayReward)
+
+         if(currentDate != prefDate){
+             activity.startActivity(Intent(activity, YoutubePlayerActivity::class.java))
+         }else{
+             Utility.instance.showToast(activity,
+                 "무료이용권이 이미 지급완료 되었습니다.")
+         }
      }
      @JavascriptInterface
      fun showOtherWebsite(uri : String){

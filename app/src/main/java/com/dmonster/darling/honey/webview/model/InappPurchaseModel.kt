@@ -83,11 +83,37 @@ class InappPurchaseModel(
     fun querySkuDetails() {
         Log.d(tag, "querySkuDetails")
         val skuList = ArrayList<String>()
-        skuList.add("point50")
-        skuList.add("point100")
-        skuList.add("point150")
-        skuList.add("freepass_month")
-        skuList.add("freepass_year")
+        // 프로필 열람
+        skuList.add("profile_three")
+        skuList.add("profile_five")
+        skuList.add("profile_fifteen")
+        skuList.add("profile_thirty")
+        skuList.add("profile_fifty")
+        skuList.add("profile_onehundred")
+
+        //관심있어요
+        skuList.add("wisi_three")
+        skuList.add("wish_five")
+        skuList.add("wish_fifteen")
+        skuList.add("wish_thirty")
+        skuList.add("wish_fifty")
+        skuList.add("wish_onehundred")
+
+        // 톡이용권
+        skuList.add("talk_one")
+        skuList.add("talk_five")
+        skuList.add("talk_ten")
+        skuList.add("talk_fifteen")
+        skuList.add("talk_thirty")
+        skuList.add("talk_sixty")
+
+        //프로필점프업업
+        skuList.add("jumpup_fifty")
+        skuList.add("jumpup_onehundred")
+        skuList.add("jumpup_twohundredfifty")
+        skuList.add("jumpup_fivehundred")
+        skuList.add("jumpup_onethousand")
+        skuList.add("jumpup_onethousandfivehundred")
 
 
         val params = SkuDetailsParams.newBuilder()
@@ -107,6 +133,7 @@ class InappPurchaseModel(
     fun doBillingFlow(skuDetails: SkuDetails) {
         Log.d(tag, "doBillingFlow")
 
+        Log.e("inAppPurchase","skuDetails : "+skuDetails)
         val flowParams: BillingFlowParams =
             BillingFlowParams.newBuilder().setSkuDetails(skuDetails).build()
         val responseCode = billingClient.launchBillingFlow(activity, flowParams)
