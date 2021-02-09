@@ -1,6 +1,7 @@
 package com.dmonster.darling.honey.youtube.viewmodel
 
 import android.app.Activity
+import android.content.Intent
 import android.os.CountDownTimer
 import android.util.Log
 import android.view.View
@@ -41,6 +42,7 @@ class YoutubePlayerVM(var activity: Activity, var secLeftTextView: TextView) : V
             if (it <= 0) {
                 ItemModel().also {
                     var id = Utility.instance.getPref(activity, AppKeyValue.instance.savePrefID)
+                    Log.e("idCheck","onClickSkip id : "+id)
                     it.addAdsReward(id, object : DisposableObserver<ResultItem<String>>() {
                         override fun onComplete() {
                         }
@@ -52,6 +54,10 @@ class YoutubePlayerVM(var activity: Activity, var secLeftTextView: TextView) : V
                                 val sdf = SimpleDateFormat("yyyy-MM-dd")
                                 val currentDate = sdf.format(Date())
                                 Utility.instance.savePref(activity,AppKeyValue.instance.savePrefDayReward,currentDate)
+
+                                val myIntent = Intent("refresh")
+                                myIntent.putExtra("action", "aaa")
+                                activity.sendBroadcast(myIntent)
 
                             } else {
                                 Utility.instance.showToast(activity,

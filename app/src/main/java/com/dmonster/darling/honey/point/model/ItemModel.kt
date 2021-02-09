@@ -97,7 +97,44 @@ class ItemModel {
     }
 
     fun addAdsReward(id : String?, subscriber: DisposableObserver<ResultItem<String>>) {
-        RetrofitProtocol().retrofit.addAdsReward(ServerApi.instance.adsReward, id)
+
+        Log.e("idCheck","addAdsReward id : "+id)
+        RetrofitProtocol().retrofit.addAdsReward(ServerApi.instance.adsReward, id!!.replace("%40","@"))
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .unsubscribeOn(Schedulers.io())
+            .subscribe(subscriber)
+    }
+
+    fun addReadingPass(id : String?, description : String? , value : String? , subscriber: DisposableObserver<ResultItem<String>>) {
+        Log.e("inAppPurchase","succ id : "+id)
+        Log.e("inAppPurchase","succ description : "+description)
+        Log.e("inAppPurchase","succ value : "+value)
+        RetrofitProtocol().retrofit.addReadingPass(ServerApi.instance.addReadingPAss, id!!.replace("%40","@") , description , value)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .unsubscribeOn(Schedulers.io())
+            .subscribe(subscriber)
+    }
+
+    fun addWishPass(id : String?, description : String? , value : String? , subscriber: DisposableObserver<ResultItem<String>>) {
+        RetrofitProtocol().retrofit.addWishPass(ServerApi.instance.addWishPass, id!!.replace("%40","@") , description , value)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .unsubscribeOn(Schedulers.io())
+            .subscribe(subscriber)
+    }
+
+    fun addTalkPass(id : String?, description : String? , value : String? , subscriber: DisposableObserver<ResultItem<String>>) {
+        RetrofitProtocol().retrofit.addTalkPass(ServerApi.instance.addTalkPass, id!!.replace("%40","@") , description , value)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .unsubscribeOn(Schedulers.io())
+            .subscribe(subscriber)
+    }
+
+    fun addJumpupPass(id : String?, description : String? , value : String? , subscriber: DisposableObserver<ResultItem<String>>) {
+        RetrofitProtocol().retrofit.addJumpupPass(ServerApi.instance.addJumpupPass, id!!.replace("%40","@") , description , value)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .unsubscribeOn(Schedulers.io())

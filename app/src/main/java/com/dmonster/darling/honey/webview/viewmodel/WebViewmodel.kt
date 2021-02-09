@@ -23,6 +23,7 @@ class WebViewmodel(application: Application, var url: String, var jsHandler: JSH
             for (cookie in cookieArray) {
                 if (cookie.contains("cookie_logged_in_id")) {
                     var keyValue = cookie.split("=")
+                    Log.e("idCheck","cookie set id : "+keyValue[1])
                     Utility.instance.savePref(application, AppKeyValue.instance.savePrefID, keyValue[1])
                     break
                 }

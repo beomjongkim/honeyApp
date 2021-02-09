@@ -40,6 +40,7 @@ class InappPurchaseModel(
 
     var tag = "InappPurchaseModel"
 
+    lateinit var itemSkuDetail : SkuDetails
 
     var skuDetailList = ArrayList<SkuDetails>()
     var itemModel = ItemModel()
@@ -133,6 +134,7 @@ class InappPurchaseModel(
     fun doBillingFlow(skuDetails: SkuDetails) {
         Log.d(tag, "doBillingFlow")
 
+        itemSkuDetail = skuDetails
         Log.e("inAppPurchase","skuDetails : "+skuDetails)
         val flowParams: BillingFlowParams =
             BillingFlowParams.newBuilder().setSkuDetails(skuDetails).build()
@@ -210,8 +212,91 @@ class InappPurchaseModel(
         itemModel.buyItem(id, item_id, subscriber)
     }
 
+    private fun buyItemNew(context: Context , item_id : String){
+
+        isProgressing.postValue(true)
+        val subscriber = object : DisposableObserver<ResultItem<String>>() {
+            override fun onComplete() {
+                isProgressing.postValue(false)
+            }
+
+            override fun onError(e: Throwable) {
+                isProgressing.postValue(false)
+                Utility.instance.showToast(context, "구매 과정 중 오류가 발생하였습니다.")
+            }
+
+            override fun onNext(item: ResultItem<String>) {
+                item.let { it ->
+                    if (it.isSuccess) {
+                        Log.d(tag, "item purchase success")
+                        Utility.instance.showToast(context, "성공적으로"+ itemSkuDetail.description +"상품을 구매하였습니다.")
+
+                    } else {
+                        Utility.instance.showToast(context, "구매 과정 중 오류가 발생하였습니다.")
+                    }
+                    webViewInterface?.afterPurchase()
+                }
+                isProgressing.postValue(false)
+
+            }
+        }
+
+        if(item_id.contains("profile")){
+            when (item_id) {
+                "profile_three" -> itemModel.addReadingPass(id, itemSkuDetail.description ,"3", subscriber)
+                "profile_five" -> itemModel.addReadingPass(id, itemSkuDetail.description ,"5", subscriber)
+                "profile_fifteen" -> itemModel.addReadingPass(id, itemSkuDetail.description ,"15", subscriber)
+                "profile_thirty" -> itemModel.addReadingPass(id, itemSkuDetail.description ,"30", subscriber)
+                "profile_fifty" -> itemModel.addReadingPass(id, itemSkuDetail.description ,"50", subscriber)
+                "profile_onehundred" -> itemModel.addReadingPass(id, itemSkuDetail.description ,"100", subscriber)
+                else -> {
+                }
+            }
+        }else if(item_id.contains("wish")){
+            when (item_id) {
+                "wisi_three" -> itemModel.addWishPass(id, itemSkuDetail.description ,"3", subscriber)
+                "wisi_five" -> itemModel.addWishPass(id, itemSkuDetail.description ,"5", subscriber)
+                "wisi_fifteen" -> itemModel.addWishPass(id, itemSkuDetail.description ,"15", subscriber)
+                "wisi_thirty" -> itemModel.addWishPass(id, itemSkuDetail.description ,"30", subscriber)
+                "wisi_fifty" -> itemModel.addWishPass(id, itemSkuDetail.description ,"50", subscriber)
+                "wish_onehundred" -> itemModel.addWishPass(id, itemSkuDetail.description ,"100", subscriber)
+                else -> {
+                }
+            }
+        }else if(item_id.contains("talk")){
+            when (item_id) {
+                "talk_one" -> itemModel.addTalkPass(id, itemSkuDetail.description ,""+(1*24*60*60), subscriber)
+                "talk_five" -> itemModel.addTalkPass(id, itemSkuDetail.description ,""+(5*24*60*60), subscriber)
+                "talk_ten" -> itemModel.addTalkPass(id, itemSkuDetail.description ,""+(10*24*60*60), subscriber)
+                "talk_fifteen" -> itemModel.addTalkPass(id, itemSkuDetail.description ,""+(15*24*60*60), subscriber)
+                "talk_thirty" -> itemModel.addTalkPass(id, itemSkuDetail.description ,""+(30*24*60*60), subscriber)
+                "talk_sixty" -> itemModel.addTalkPass(id, itemSkuDetail.description ,""+(60*24*60*60), subscriber)
+                else -> {
+                }
+            }
+
+        }else if(item_id.contains("jumpup")){
+            when (item_id) {
+                "jumpup_fifty" -> itemModel.addJumpupPass(id, itemSkuDetail.description ,"50", subscriber)
+                "jumpup_onehundred" -> itemModel.addJumpupPass(id, itemSkuDetail.description ,"100", subscriber)
+                "jumpup_twohundredfifty" -> itemModel.addJumpupPass(id, itemSkuDetail.description ,"250", subscriber)
+                "jumpup_fivehundred" -> itemModel.addJumpupPass(id, itemSkuDetail.description ,"500", subscriber)
+                "jumpup_onethousand" -> itemModel.addJumpupPass(id, itemSkuDetail.description ,"1000", subscriber)
+                "jumpup_onethousandfivehundred" -> itemModel.addJumpupPass(id, itemSkuDetail.description ,"1500", subscriber)
+                else -> {
+                }
+            }
+
+        }
+
+    }
+
 
     private fun afterPurchase(purchase: Purchase) {
+
+        Log.e("inAppPurchase","afterPurchase")
+        Log.e("inAppPurchase","sku : "+purchase.sku)
+        Log.e("inAppPurchase","purchase : "+purchase)
         Log.d(tag, "afterPurchase")
         val purchaseToken = purchase.purchaseToken
         val consumeParams =
@@ -225,14 +310,7 @@ class InappPurchaseModel(
                 Log.d(tag, "consumeResponse")
                 // Handle the success of the consume operation.
                 // For example, increase the number of coins inside the user's basket.
-                when (purchase.sku) {
-                    "point50" -> rechargePoint(activity, 0)
-                    "point100" -> rechargePoint(activity, 1)
-                    "point150" -> rechargePoint(activity, 2)
-                    "freepass_month"->buyItem(activity,2)
-                    "freepass_year"->buyItem(activity,6)
-                    "freepass_twodays"->buyItem(activity,7)
-                }
+                buyItemNew(activity,purchase.sku)
             }
         }
 

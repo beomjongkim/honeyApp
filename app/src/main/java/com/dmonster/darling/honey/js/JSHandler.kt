@@ -81,6 +81,8 @@ class JSHandler(
 //                            }
 
                             it.mbId?.let { it1 ->
+
+                                Log.e("idCheck","JSHandler set id : "+"")
                                 Utility.instance.savePref(activity,
                                     AppKeyValue.instance.savePrefID,
                                     it1)
@@ -196,6 +198,7 @@ class JSHandler(
          val currentDate = sdf.format(Date())
          var prefDate = Utility.instance.getPref(activity,AppKeyValue.instance.savePrefDayReward)
 
+//         activity.startActivity(Intent(activity, YoutubePlayerActivity::class.java))
          if(currentDate != prefDate){
              activity.startActivity(Intent(activity, YoutubePlayerActivity::class.java))
          }else{

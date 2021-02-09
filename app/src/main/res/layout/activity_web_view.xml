@@ -25,35 +25,35 @@
             jsHandler="@{webViewModel.jsHandler}"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/wv_self_banner"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-        <ImageView
-            android:id="@+id/wv_self_banner"
-            setGlideGifId="@{bannerVM.selfBannerId}"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:onClick="@{(v)->bannerVM.onClickSelfBanner(v)}"
-            android:visibility="@{bannerVM.isSelfBannerShown? View.VISIBLE : View.GONE}"
-            app:layout_constraintBottom_toTopOf="@+id/bn_webview"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+<!--        <ImageView-->
+<!--            android:id="@+id/wv_self_banner"-->
+<!--            setGlideGifId="@{bannerVM.selfBannerId}"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:onClick="@{(v)->bannerVM.onClickSelfBanner(v)}"-->
+<!--            android:visibility="@{bannerVM.isSelfBannerShown? View.VISIBLE : View.GONE}"-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/bn_webview"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent" />-->
 
 
-        <com.google.android.gms.ads.AdView
-            android:id="@+id/bn_webview"
-            hasPass="@{bannerVM.isBannerShown}"
-            setAdListener="@{bannerVM.adListener}"
-            setAdRequest="@{bannerVM.adRequest}"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:visibility="@{bannerVM.isBannerShown? View.VISIBLE : View.GONE}"
-            app:adSize="BANNER"
-            app:adUnitId="@string/banner_id"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            />
+<!--        <com.google.android.gms.ads.AdView-->
+<!--            android:id="@+id/bn_webview"-->
+<!--            hasPass="@{bannerVM.isBannerShown}"-->
+<!--            setAdListener="@{bannerVM.adListener}"-->
+<!--            setAdRequest="@{bannerVM.adRequest}"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:visibility="@{bannerVM.isBannerShown? View.VISIBLE : View.GONE}"-->
+<!--            app:adSize="BANNER"-->
+<!--            app:adUnitId="@string/banner_id"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            />-->
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

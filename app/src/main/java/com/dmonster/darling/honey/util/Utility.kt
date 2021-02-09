@@ -644,6 +644,8 @@ class Utility private constructor() {
 
     fun setBridgeLogout(context: Context){
         Log.e("logoutCheck", "2")
+
+        Log.e("idCheck","setBridgeLogout set id : "+"")
         savePref(context, AppKeyValue.instance.savePrefID, "")
         savePref(context, AppKeyValue.instance.savePrefPassword, "")
         savePref(context, AppKeyValue.instance.savePrefType, "")

@@ -83,4 +83,8 @@ class ServerApi {
     val readMagazine = "magazine/read"//매거진 내역 불러오기
     val rechargePoint = "user/recharge_point"//포인트 충전하기
     val readYoutube = "youtube/read"//포인트 충전하기
+    val addReadingPAss = "proc_add_member_reading_pass"
+    val addWishPass = "proc_add_member_wish_pass"
+    val addTalkPass = "proc_add_member_talk_pass"
+    val addJumpupPass = "proc_add_member_jumpup_pass"
 }

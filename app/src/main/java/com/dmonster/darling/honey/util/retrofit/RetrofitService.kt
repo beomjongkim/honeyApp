@@ -799,4 +799,40 @@ interface RetrofitService {
     ): Observable<ResultItem<YoutubeData>>
 
 
+    @FormUrlEncoded
+    @POST("json/proc_json.php")
+    fun addReadingPass(
+        @Field("method") method: String?,
+        @Field("mb_id") mb_id: String?,
+        @Field("mr_description") mr_description: String?,
+        @Field("mr_quantity") mr_quantity: String?
+    ): Observable<ResultItem<String>>
+
+    @FormUrlEncoded
+    @POST("json/proc_json.php")
+    fun addWishPass(
+        @Field("method") method: String?,
+        @Field("mb_id") mb_id: String?,
+        @Field("mw_description") mw_description: String?,
+        @Field("mw_quantity") mw_quantity: String?
+    ): Observable<ResultItem<String>>
+
+    @FormUrlEncoded
+    @POST("json/proc_json.php")
+    fun addTalkPass(
+        @Field("method") method: String?,
+        @Field("mb_id") mb_id: String?,
+        @Field("mt_description") mt_description: String?,
+        @Field("mt_seconds") mt_seconds: String?
+    ): Observable<ResultItem<String>>
+
+    @FormUrlEncoded
+    @POST("json/proc_json.php")
+    fun addJumpupPass(
+        @Field("method") method: String?,
+        @Field("mb_id") mb_id: String?,
+        @Field("mj_description") mj_description: String?,
+        @Field("mj_quantity") mj_quantity: String?
+    ): Observable<ResultItem<String>>
+
 }

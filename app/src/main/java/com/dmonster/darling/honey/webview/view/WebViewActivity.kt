@@ -113,6 +113,8 @@ class WebViewActivity : AppCompatActivity(), LoginContract.View {
 
         super.onCreate(savedInstanceState)
 
+        registerReceiver(myReceiver, IntentFilter("refresh"))
+
         Log.e("Console","onCreate")
 //        setContentView(R.layout.activity_web_view)
         Log.e("bbbCheck","login 1  "+Utility.instance.getPref(this, AppKeyValue.instance.savePrefID))
@@ -434,7 +436,10 @@ class WebViewActivity : AppCompatActivity(), LoginContract.View {
         dormantState: String?,
         profileState: String?
     ) {
-        loginId?.let { Utility.instance.savePref(this, AppKeyValue.instance.savePrefID, it) }
+        loginId?.let {
+
+            Log.e("idCheck","setLoginComplete set id : "+it)
+            Utility.instance.savePref(this, AppKeyValue.instance.savePrefID, it) }
         mbNo?.let { Utility.instance.savePref(this, AppKeyValue.instance.savePrefMbNumber, it) }
         mbNick?.let { Utility.instance.savePref(this, AppKeyValue.instance.savePrefNick, it) }
         gender?.let { Utility.instance.savePref(this, AppKeyValue.instance.savePrefGender, it) }
@@ -442,7 +447,6 @@ class WebViewActivity : AppCompatActivity(), LoginContract.View {
             AppKeyValue.instance.savePrefDormant,
             it) }
 
-        Log.e("bbbCheck","login 3  "+Utility.instance.getPref(this, AppKeyValue.instance.savePrefID))
     }
 
     override fun setLoginFailed(error: String?) {
@@ -457,7 +461,11 @@ class WebViewActivity : AppCompatActivity(), LoginContract.View {
         dormantState: String?,
         profileState: String?
     ) {
-        loginId?.let { Utility.instance.savePref(this, AppKeyValue.instance.savePrefID, it) }
+        loginId?.let {
+
+            Log.e("idCheck","setSocialLoginComplete set id : "+it)
+            Utility.instance.savePref(this, AppKeyValue.instance.savePrefID, it)
+        }
         mbNo?.let { Utility.instance.savePref(this, AppKeyValue.instance.savePrefMbNumber, it) }
         mbNick?.let { Utility.instance.savePref(this, AppKeyValue.instance.savePrefNick, it) }
         gender?.let { Utility.instance.savePref(this, AppKeyValue.instance.savePrefGender, it) }
@@ -484,7 +492,6 @@ class WebViewActivity : AppCompatActivity(), LoginContract.View {
         activityWebViewBinding?.webViewModel?.login("https://jjagiya.co.kr")
         webView.loadUrl("https://jjagiya.co.kr/home.html")
 
-        Log.e("bbbCheck","login 4  "+Utility.instance.getPref(this, AppKeyValue.instance.savePrefID))
 
     }
 
@@ -500,6 +507,7 @@ class WebViewActivity : AppCompatActivity(), LoginContract.View {
 
     override fun onDestroy() {
         super.onDestroy()
+        unregisterReceiver(myReceiver)
         disposeBag.clear()
         mPresenter.detachView()
         Session.getCurrentSession().removeCallback(kakaoCallback)
@@ -629,19 +637,6 @@ class WebViewActivity : AppCompatActivity(), LoginContract.View {
 
             }
         })
-    }
-
-    override fun onResume() {
-        super.onResume()
-        registerReceiver(myReceiver, IntentFilter("refresh"))
-
-//        webView.reload()
-
-    }
-
-    override fun onPause() {
-        super.onPause()
-        unregisterReceiver(myReceiver)
     }
 
     fun aaa(){
