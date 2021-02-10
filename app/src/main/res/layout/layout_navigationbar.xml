@@ -17,31 +17,31 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
-        <ImageView
-            android:id="@+id/iv_layout_navi_self_banner"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            setGlideGifId ="@{bannerVM.selfBannerId}"
-            android:onClick="@{(v)->bannerVM.onClickSelfBanner(v)}"
-            android:visibility="@{bannerVM.isSelfBannerShown? View.VISIBLE : View.GONE}"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            />
+<!--        <ImageView-->
+<!--            android:id="@+id/iv_layout_navi_self_banner"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            setGlideGifId ="@{bannerVM.selfBannerId}"-->
+<!--            android:onClick="@{(v)->bannerVM.onClickSelfBanner(v)}"-->
+<!--            android:visibility="@{bannerVM.isSelfBannerShown? View.VISIBLE : View.GONE}"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            />-->
 
-        <com.google.android.gms.ads.AdView
-            android:id="@+id/bn_layout_navi"
-            setAdListener="@{bannerVM.adListener}"
-            setAdRequest="@{bannerVM.adRequest}"
-            hasPass="@{bannerVM.isBannerShown}"
-            android:layout_width="0dp"
-            android:layout_height="50dp"
-            android:visibility="@{bannerVM.isBannerShown? View.GONE : View.VISIBLE}"
-            app:adSize="BANNER"
-            app:adUnitId="@string/banner_id"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/iv_layout_navi_self_banner" />
+<!--        <com.google.android.gms.ads.AdView-->
+<!--            android:id="@+id/bn_layout_navi"-->
+<!--            setAdListener="@{bannerVM.adListener}"-->
+<!--            setAdRequest="@{bannerVM.adRequest}"-->
+<!--            hasPass="@{bannerVM.isBannerShown}"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="50dp"-->
+<!--            android:visibility="@{bannerVM.isBannerShown? View.GONE : View.VISIBLE}"-->
+<!--            app:adSize="BANNER"-->
+<!--            app:adUnitId="@string/banner_id"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toBottomOf="@id/iv_layout_navi_self_banner" />-->
         <!-- 메인 -->
 
         <!-- 상점 -->

@@ -59,29 +59,29 @@
         </LinearLayout>
     </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/iv_act_notice_self_banner"
-        setGlideGifId="@{bannerVM.selfBannerId}"
-        android:layout_width="0dp"
-        android:layout_height="50dp"
-        android:onClick="@{(v)->bannerVM.onClickSelfBanner(v)}"
-        android:visibility="@{bannerVM.isSelfBannerShown? View.VISIBLE : View.GONE}"
-        app:layout_constraintBottom_toTopOf="@+id/bn_act_my_info"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-<com.google.android.gms.ads.AdView
-        android:id="@+id/bn_act_my_info"
-        setAdListener="@{bannerVM.adListener}"
-        setAdRequest="@{bannerVM.adRequest}"
-        hasPass="@{bannerVM.isBannerShown}"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:visibility="@{bannerVM.isBannerShown? View.GONE : View.VISIBLE}"
-        app:adSize="BANNER"
-        app:adUnitId="@string/banner_id"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        />
+<!--    <ImageView-->
+<!--        android:id="@+id/iv_act_notice_self_banner"-->
+<!--        setGlideGifId="@{bannerVM.selfBannerId}"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:onClick="@{(v)->bannerVM.onClickSelfBanner(v)}"-->
+<!--        android:visibility="@{bannerVM.isSelfBannerShown? View.VISIBLE : View.GONE}"-->
+<!--        app:layout_constraintBottom_toTopOf="@+id/bn_act_my_info"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent" />-->
+<!--<com.google.android.gms.ads.AdView-->
+<!--        android:id="@+id/bn_act_my_info"-->
+<!--        setAdListener="@{bannerVM.adListener}"-->
+<!--        setAdRequest="@{bannerVM.adRequest}"-->
+<!--        hasPass="@{bannerVM.isBannerShown}"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:visibility="@{bannerVM.isBannerShown? View.GONE : View.VISIBLE}"-->
+<!--        app:adSize="BANNER"-->
+<!--        app:adUnitId="@string/banner_id"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        />-->
 </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

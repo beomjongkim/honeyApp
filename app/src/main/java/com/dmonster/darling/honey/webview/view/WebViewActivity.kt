@@ -132,7 +132,7 @@ class WebViewActivity : AppCompatActivity(), LoginContract.View {
                 JSHandler(this, object : JSHandler.WebViewInterface {
                     override fun initSocialLogin() {
                         initializeSocialLogin()
-                        it.bannerVM = BannerVM(id, lifecycle, this@WebViewActivity)
+//                        it.bannerVM = BannerVM(id, lifecycle, this@WebViewActivity)
                     }
 
                     override fun afterPurchase() {
